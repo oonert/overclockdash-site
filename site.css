@@ -121,6 +121,14 @@ section.page .sub { font-size: var(--t-lead); color: var(--ink); margin-top: 16p
 .watch img { grid-column: 7 / 13; width: 100%; height: auto; }
 @media (max-width: 900px) { .watch { display: block; } .watch img { margin-top: 32px; } }
 
+
+/* why: six big reasons, bigger type than the feature lists */
+.why { list-style: none; margin: 0; padding: 40px var(--margin) 0; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 36px; }
+.why li { grid-column: span 4; font-size: var(--t-lead); line-height: 1.4; padding-top: 18px; border-top: 3px solid var(--amber); }
+.why li b { display: block; font-size: clamp(24px, 2.2vw, 32px); line-height: 1.1; margin-bottom: 10px; }
+@media (max-width: 900px) { .why li { grid-column: span 6; } }
+@media (max-width: 600px) { .why li { grid-column: span 12; } .why { row-gap: 28px; } }
+
 /* feature lists: bold lead, one line each */
 .feat, .wont { list-style: none; margin: 0; padding: 40px var(--margin) 0; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 28px; }
 .feat li, .wont li { grid-column: span 4; font-size: var(--t-body); }
