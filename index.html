@@ -26,10 +26,11 @@
   <section class="hero" id="top">
     <h1>Your truck's new clock.</h1>
     <div class="words in">
-      <p class="lead">OVERCLOCK drops into the dash clock slot of a 1996 to 2002 Toyota truck. One knob, a bright screen, and the clock you remember on one page, with gauges, trips, weather, tilt and solar on the next.</p>
+      <p class="lead">OVERCLOCK replaces the factory clock in a nineties Toyota truck with a real instrument: a bright screen, one knob, and firmware that watches the truck the way a good mechanic would. The clock you remember is still the first page.</p>
       <div class="actions">
         <a class="btn" href="demo.html">Open the demo</a>
         <a class="btn ghost" href="#knob">See the pages</a>
+        <a class="btn ghost" href="#fits">Does it fit my truck?</a>
       </div>
     </div>
     <div class="object">
@@ -48,37 +49,51 @@
       <h2>ONE KNOB, EVERY PAGE</h2>
       <div class="row-btns"><button type="button" data-step="-1" aria-label="Back">&larr;</button><button type="button" data-step="1" aria-label="Forward">&rarr;</button></div>
     </div>
-    <p class="sub">Turn to change pages, click to open one, hold for its menu. That is the whole manual.</p>
+    <p class="sub">Rotate to move between things. Click to act on the thing you are looking at. Hold to go back. Every screen works the same way, and that is the whole manual.</p>
     <div class="row-wrap">
       <div class="progress"><i id="row-progress"></i></div>
       <div class="row" id="moments">
-        <div class="moment" style="--air:40px"><h3>Gauges</h3><p>Speed, rpm, coolant and volts from the engine computer, each with its own scale and warning colours.</p><div class="air"></div><img src="pages/gauges.png" width="320" height="240" alt="The GAUGES page: speed, rpm, coolant and volts" loading="lazy"></div>
-        <div class="moment" style="--air:120px"><h3>Speed, big</h3><p>Click a gauge and it fills the screen, with top, average and the drive so far beside it.</p><div class="air"></div><img src="pages/speed.png" width="320" height="240" alt="The SPEED page opened big" loading="lazy"></div>
-        <div class="moment" style="--air:80px"><h3>Temperatures</h3><p>Outside, inside, fridge and freezer from wired probes. The fridge warns you before the food does.</p><div class="air"></div><img src="pages/temp.png" width="320" height="240" alt="The TEMP page: outside, inside, fridge and freezer" loading="lazy"></div>
-        <div class="moment" style="--air:140px"><h3>Weather from pressure</h3><p>Three days of barometer, a trend line, and a storm warning when the pressure falls a storm's worth.</p><div class="air"></div><img src="pages/weather.png" width="320" height="240" alt="The WEATHER page with the pressure trend" loading="lazy"></div>
-        <div class="moment" style="--air:60px"><h3>Solar and house battery</h3><p>Watts in, amps, charge state, over Bluetooth from the solar controller and the shunt.</p><div class="air"></div><img src="pages/solar.png" width="320" height="240" alt="The SOLAR page: watts, battery and charge" loading="lazy"></div>
-        <div class="moment" style="--air:110px"><h3>Health over weeks</h3><p>Crank volts, charging, fuel trim, coolant and mileage as small graphs of recent drives, so a slow problem shows early.</p><div class="air"></div><img src="pages/health.png" width="320" height="240" alt="The HEALTH page: a list of small graphs" loading="lazy"></div>
-        <div class="moment" style="--air:40px"><h3>Tilt for camp</h3><p>Pitch and roll from a tilt sensor, and a camp view that tells you which wheel to lift.</p><div class="air"></div><img src="pages/level.png" width="320" height="240" alt="The TILT page with two bubble levels" loading="lazy"></div>
-        <div class="moment" style="--air:90px"><h3>Trips and fuel</h3><p>Two trip meters, the tank, range, and a fill-up prompt that learns where you buy fuel.</p><div class="air"></div><img src="pages/trips.png" width="320" height="240" alt="The TRIPS page with meters A and B" loading="lazy"></div>
+        <div class="moment" style="--air:40px"><h3>Four gauges, picked on the spot</h3><p>Hold on the GAUGES card and the boxes become pickers: speed, rpm, coolant, intake, volts, altitude, heading and whatever else your truck reports. Click one and it opens full size.</p><div class="air"></div><img src="pages/gauges.png" width="320" height="240" alt="The GAUGES page: speed, rpm, coolant and volts" loading="lazy"></div>
+        <div class="moment" style="--air:120px"><h3>One gauge, big</h3><p>A retro instrument pane: big value, sweep ruler, moving pointer. Colour follows the value, green when healthy, amber warm, red wrong.</p><div class="air"></div><img src="pages/speed.png" width="320" height="240" alt="The SPEED page opened big" loading="lazy"></div>
+        <div class="moment" style="--air:80px"><h3>Health: is anything slowly getting worse?</h3><p>Resting volts, crank dip, charging, fuel trim, coolant and mileage as graphs of recent drives. Each gives a verdict in plain words and what to check first.</p><div class="air"></div><img src="pages/health.png" width="320" height="240" alt="The HEALTH page: a list of small graphs" loading="lazy"></div>
+        <div class="moment" style="--air:60px"><h3>Four probes, each with a job</h3><p>Outside, inside, fridge, freezer, engine, cargo, trailer or water. The fridge is watched for you: warm goes amber, two hours warm goes red, frozen lettuce goes ice blue.</p><div class="air"></div><img src="pages/temp.png" width="320" height="240" alt="The TEMP page: outside, inside, fridge and freezer" loading="lazy"></div>
+        <div class="moment" style="--air:140px"><h3>Weather from the barometer</h3><p>Three days of pressure, the trend, and a storm notice when it falls a storm's worth in three hours.</p><div class="air"></div><img src="pages/weather.png" width="320" height="240" alt="The WEATHER page with the pressure trend" loading="lazy"></div>
+        <div class="moment" style="--air:40px"><h3>Tilt and camp</h3><p>Pitch and roll led by the gyro, so a hard stop does not read as a slope. The CAMP view shows the inches of block each wheel needs to level a rooftop tent.</p><div class="air"></div><img src="pages/level.png" width="320" height="240" alt="The TILT page with two bubble levels" loading="lazy"></div>
+        <div class="moment" style="--air:100px"><h3>Solar and the house battery</h3><p>Watts in, amps, charge state, over Bluetooth from a Victron controller and shunt.</p><div class="air"></div><img src="pages/solar.png" width="320" height="240" alt="The SOLAR page: watts, battery and charge" loading="lazy"></div>
+        <div class="moment" style="--air:70px"><h3>Trips, fuel and true MPG</h3><p>Two trip meters, the tank, range, and a fill-up prompt that learns where you buy fuel. Every mile and every drive go to the card.</p><div class="air"></div><img src="pages/trips.png" width="320" height="240" alt="The TRIPS page with meters A and B" loading="lazy"></div>
+        <div class="moment" style="--air:110px"><h3>Starter: the battery, weeks ahead</h3><p>Resting volts before each start, how low the crank dips, what the alternator holds. The startup screen says WAIT, then START, so every crank is measured against a true resting number.</p><div class="air"></div><img src="pages/voltage.png" width="320" height="240" alt="The VOLTS page" loading="lazy"></div>
+        <div class="moment" style="--air:50px"><h3>The retro clock, with shows</h3><p>The factory clock redrawn from caliper measurements. Its three buttons work, and five seconds after you stop playing with them the tube puts on a show and lands on the real time.</p><div class="air"></div><img src="video/clock-faces-poster.jpg" width="1200" height="936" alt="The clock in its case" loading="lazy"></div>
       </div>
     </div>
   </section>
 
   <section class="page" id="watch">
     <div class="head in"><h2>WHAT IT WATCHES FOR</h2></div>
-    <p class="sub">The clock reads the engine computer and the probes all the time and only interrupts you when it matters.</p>
+    <p class="sub">It is on whenever the key is on and it is watching the whole time. A full-screen takeover with a marching hazard border is for the things that cannot wait; everything else stays out of your way.</p>
     <div class="watch">
       <ul class="watch-list in">
-        <li><b>Overheat.</b> Coolant past the line: a takeover you cannot miss, until it cools or you snooze it.</li>
-        <li><b>Charging.</b> Volts falling (alternator) or rising (regulator), with the battery chemistry's own limits.</li>
-        <li><b>Check engine.</b> The code, what it means in plain words, and whether to stop soon or drive gently to a shop.</li>
-        <li><b>Oil pressure.</b> The one alert that says stop the engine now.</li>
-        <li><b>Fridge and freezer.</b> Warm, too cold, or thawing.</li>
-        <li><b>Storm.</b> Pressure falling fast over three hours.</li>
-        <li><b>Towing.</b> Transmission fluid climbing toward its ceiling on a loaded grade.</li>
+        <li><b>Overheat.</b> The real coolant number, not the factory gauge that sits dead centre until you are already in trouble.</li>
+        <li><b>Over-voltage.</b> The highest priority and the only alert with no waiting: a failed regulator is cooking the battery while you watch.</li>
+        <li><b>Not charging.</b> The alternator quit; the volts tell it before the lights dim.</li>
+        <li><b>Trouble codes.</b> STOP ENGINE and STOP SOON codes take the screen, with the code in plain words. Lesser codes only light the small lamp.</li>
+        <li><b>Fridge and freezer.</b> Warm, freezing or thawing, after ten minutes, with how long it has been that way.</li>
+        <li><b>Storm.</b> Pressure falling a storm's worth in three hours.</li>
+        <li><b>And every alert fails to off.</b> If a sensor goes quiet, its alert disarms instead of crying wolf. Quieting one is a three-second hold, never a slip.</li>
       </ul>
       <img src="pages/case-4runner-gauges.png" width="1200" height="938" alt="The 4Runner clock showing the GAUGES page" loading="lazy">
     </div>
+  </section>
+
+  <section class="page" id="wont">
+    <div class="head in"><h2>WHAT IT WILL NOT DO</h2></div>
+    <p class="sub">Trust is built here, not in the feature list.</p>
+    <ul class="wont in">
+      <li><b>It does not tune or reprogram anything.</b> It reads. The one thing it ever writes is clearing fault codes, and only when you arm it and hold.</li>
+      <li><b>It never guesses.</b> If a sensor has not answered, the screen says so instead of showing a number that looks real.</li>
+      <li><b>No cloud, no account, no subscription, no phone app required.</b> Your data lives on a card in your dash.</li>
+      <li><b>It does not record your position unless you let it.</b> The switch stops the dash writing it at all; open the card and the column is empty.</li>
+      <li><b>No live engine data on pre-1996 trucks.</b> Engine data needs OBD2, which arrived in the 1996 model year. Older trucks get everything else, and the engine pages simply are not in the rotation.</li>
+    </ul>
   </section>
 
   <figure class="film in">
@@ -99,7 +114,7 @@
 
 <footer id="fits">
   <div class="cols">
-    <div class="col"><b>Fits</b><span>3rd gen 4Runner, 1996 to 2002</span><span>1st gen Tacoma, 1995 to 2004</span><span>T100, 1993 to 1998</span><span>Land Cruiser and LX450, 1995 to 1997</span></div>
+    <div class="col"><b>Fits</b><span>3rd gen 4Runner, 1996 to 2002</span><span>1st gen Tacoma, 1995 to 2004</span><span>T100, 1993 to 1998</span><span>Land Cruiser and LX450, 1995 to 1997</span><span>Engine data on 1996 and newer; everything else on all of them</span></div>
     <div class="col"><b>Inside</b><span>A 2 inch or 2.8 inch screen, one knob</span><span>Engine computer link, GPS, barometer, tilt sensor</span><span>Four temperature probes, two sender inputs</span><span>Logs every drive to a memory card</span></div>
     <div class="col"><b>Made in</b><span>Vancouver, Washington</span><span>For Toyota trucks of the late nineties</span></div>
     <div class="col"><b>Elsewhere</b><a href="demo.html">The demo</a><a href="https://github.com/oonert/overclockdash-site">This site on GitHub</a></div>

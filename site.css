@@ -120,6 +120,13 @@ section.page .sub { font-size: var(--t-lead); color: var(--ink); margin-top: 16p
 .watch img { grid-column: 7 / 13; width: 100%; height: auto; }
 @media (max-width: 900px) { .watch { display: block; } .watch img { margin-top: 32px; } }
 
+/* what it will not do: a plain list */
+.wont { list-style: none; margin: 0; padding: 40px var(--margin) 0; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 28px; }
+.wont li { grid-column: span 4; font-size: var(--t-body); }
+.wont li b { display: block; color: var(--amber); font-size: 22px; line-height: 1.15; margin-bottom: 8px; }
+@media (max-width: 900px) { .wont li { grid-column: span 6; } }
+@media (max-width: 600px) { .wont li { grid-column: span 12; } }
+
 /* try it: the two cases as doors */
 .try { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); padding: 40px var(--margin) 32px; }
 .try-card { display: block; text-decoration: none; background: var(--panel); padding: 24px; transition: transform .25s var(--ease), background .2s; }
