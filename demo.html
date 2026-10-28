@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OVERCLOCK demo: the real firmware, every control beside it</title>
+<meta name="description" content="Drive OVERCLOCK's actual firmware in your browser: the knob, the pages, thirteen faults to inject, and a truck to tip while the TILT page follows.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="demo.css">
+</head>
+<body class="demo">
+<header class="bar">
+  <a class="mark" href="index.html">OVERCLOCK</a>
+  <nav>
+    <a href="#knob">Knob</a>
+    <a href="#pages">Pages</a>
+    <a href="#faults">Faults</a>
+    <a href="#truck">Tilt</a>
+  </nav>
+  <a class="btn ghost" href="index.html">About the clock</a>
+</header>
+
+<main class="demo-grid">
+  <!-- the clock stays in view: sticky on desktop, pinned at the top on a phone -->
+  <section class="stage" aria-label="The clock, live">
+    <h1>The demo: real firmware, live</h1>
+    <div class="tabs" role="tablist" aria-label="Which truck">
+      <button role="tab" aria-selected="true" data-case="4runner">4Runner</button>
+      <button role="tab" aria-selected="false" data-case="tacoma">Tacoma</button>
+    </div>
+    <div id="clock"></div>
+    <p class="status" id="status">Loading the firmware (about 4 MB)...</p>
+  </section>
+
+  <div class="panels">
+    <section class="panel" id="knob">
+      <h2>THE KNOB</h2>
+      <p>Scroll on the screen or drag around the dial to turn. Tap the screen to click, keep your finger down to hold. Or use these.</p>
+      <div class="chips">
+        <button class="btn ghost" type="button" data-knob="turn:-1">&larr; Turn</button>
+        <button class="btn ghost" type="button" data-knob="turn:1">Turn &rarr;</button>
+        <button class="btn" type="button" data-knob="click">Click</button>
+        <button class="btn" type="button" data-knob="hold">Hold</button>
+      </div>
+    </section>
+
+    <section class="panel" id="pages">
+      <h2>PAGES</h2>
+      <p>Jump straight to a page. Turning the knob from there goes to the next one.</p>
+      <div class="chips" id="page-chips"></div>
+    </section>
+
+    <section class="panel" id="faults">
+      <h2>INJECT A FAULT</h2>
+      <p>The firmware's own demo events: each bends a real reading, so the real alert fires. One at a time; each eases back by itself. <span id="fault-now">Nothing running.</span></p>
+      <div class="chips faults" id="fault-chips"></div>
+      <div class="chips"><button class="btn ghost" type="button" id="stop-fault">Stop the fault</button></div>
+    </section>
+
+    <section class="panel" id="truck">
+      <h2>TIP THE TRUCK</h2>
+      <p>Drag up and down for pitch, side to side for roll. The TILT page follows through the firmware's own filter, so the needles settle like they do in the truck.</p>
+      <div id="truck3d" aria-label="A 3D truck you can drag"><div id="readout"></div></div>
+      <div class="chips presets" role="group" aria-label="Preset tilts">
+        <button class="btn ghost" type="button" data-tilt="0,0" aria-pressed="true">Level</button>
+        <button class="btn ghost" type="button" data-tilt="12,0">Nose up</button>
+        <button class="btn ghost" type="button" data-tilt="-8,0">Nose down</button>
+        <button class="btn ghost" type="button" data-tilt="0,10">Right side up</button>
+        <button class="btn ghost" type="button" data-tilt="0,-10">Left side up</button>
+      </div>
+    </section>
+
+    <section class="panel" id="about">
+      <h2>ABOUT THIS DEMO</h2>
+      <p>This is OVERCLOCK's actual firmware (demo build, version <em id="fw">loading</em>) compiled to run in a browser, with a recorded drive standing in for the sensors. Nothing is sent anywhere; the settings you change stay in this browser. <a href="index.html">About the clock itself.</a></p>
+    </section>
+  </div>
+</main>
+
+<script src="lib/three.min.js"></script>
+<script src="overclock.js"></script>
+<script src="demo.js"></script>
+</body>
+</html>

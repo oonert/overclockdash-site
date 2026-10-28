@@ -58,8 +58,9 @@ h1, h2, h3, p { margin: 0; }
 .tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--amber); }
 #clock { min-height: 420px; display: flex; justify-content: center; }
 #clock .overclock { padding: 0; gap: 20px; }
-#clock .overclock-dial { box-shadow: none !important; }
-.status { margin-top: 10px; font-size: var(--t-small); color: var(--muted); min-height: 1.5em; }
+#clock .overclock-dial { box-shadow: none !important; } /* removes the widget's own: taste-skill-ignore */
+.hero .faces { width: 100%; max-width: 640px; height: auto; background: #000; }
+.status { margin-top: 14px; font-size: var(--t-small); color: var(--muted); min-height: 1.5em; max-width: 52ch; text-align: center; }
 .status b { color: var(--green); font-weight: 400; }
 @media (max-width: 900px) {
   .hero { display: flex; flex-direction: column; padding-top: 8px; }
@@ -106,58 +107,25 @@ section.page .sub { font-size: var(--t-lead); color: var(--ink); margin-top: 16p
   .row-btns { display: none; }
 }
 
-/* faults: a deck of cards in three tones */
-.deck { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--margin); padding: 40px var(--margin) 8px; scrollbar-width: none; }
-.deck::-webkit-scrollbar { display: none; }
-.fault { flex: 0 0 min(520px, 86vw); scroll-snap-align: start; padding: 28px 28px 24px; display: flex; flex-direction: column; min-height: 240px; background: var(--panel); }
-.fault:nth-child(3n+2) { background: var(--panel-2); }
-.fault:nth-child(3n) { background: var(--panel-3); }
-.fault h3 { font-size: 30px; line-height: 1.1; font-weight: 700; }
-.fault p { margin-top: 12px; color: var(--ink); font-size: 16px; max-width: 40ch; }
-.fault .foot { margin-top: auto; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-.fault .foot span { color: var(--muted); font-size: 16px; }
-.fault.running { outline: 3px solid var(--amber); outline-offset: -3px; }
-.fault.running .btn { background: var(--panel-3); color: var(--ink); }
-.deck-foot { padding: 32px var(--margin) 0; display: flex; gap: 24px; align-items: center; font-size: 17px; flex-wrap: wrap; }
-.deck-foot span { color: var(--muted); }
-@media (max-width: 760px) {
-  .deck { flex-direction: column; overflow: visible; padding-top: 28px; }
-  .fault { flex-basis: auto; min-height: 0; padding: 20px; }
-  .fault h3 { font-size: 24px; }
-}
+/* what it watches: the list beside the case */
+.watch { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); padding: 40px var(--margin) 0; align-items: center; }
+.watch-list { grid-column: 1 / 7; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; font-size: var(--t-lead); max-width: 40ch; }
+.watch-list b { color: var(--amber); font-weight: 700; }
+.watch img { grid-column: 7 / 13; width: 100%; height: auto; }
+@media (max-width: 900px) { .watch { display: block; } .watch img { margin-top: 32px; } }
+
+/* try it: the two cases as doors */
+.try { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); padding: 40px var(--margin) 32px; }
+.try-card { display: block; text-decoration: none; background: var(--panel); padding: 24px; transition: transform .25s var(--ease), background .2s; }
+.try-card:hover { background: var(--panel-3); transform: translateY(-4px); }
+.try-card img { width: 100%; height: auto; max-height: 420px; object-fit: contain; }
+.try-card span { display: block; margin-top: 16px; font-size: 20px; font-weight: 700; }
+@media (max-width: 760px) { .try { grid-template-columns: 1fr; } }
 
 /* the moving picture: the clock in the case */
 .film { margin-top: var(--section); }
 .film video { width: 100%; aspect-ratio: 1280 / 880; background: var(--panel); }
 .film figcaption { padding: 14px var(--margin) 0; color: var(--muted); font-size: var(--t-small); }
-
-/* the truck: square plate, spare text */
-.plate { display: grid; grid-template-columns: 1fr 1fr; min-height: 88svh; margin-top: 40px; background: var(--panel); }
-.plate .left { padding: 40px; display: flex; align-items: center; justify-content: center; }
-.plate #truck3d { width: 100%; aspect-ratio: 1; max-width: 640px; background: #14171b; touch-action: none; cursor: grab; position: relative; }
-.plate #truck3d.grabbing { cursor: grabbing; }
-.plate #readout { position: absolute; left: 20px; bottom: 14px; color: var(--green); font-size: 16px; }
-.plate .right { padding: 40px; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; }
-.plate .presets { display: flex; gap: 24px; flex-wrap: wrap; }
-.plate .presets button { background: none; border: 0; padding: 6px 0; font-size: 18px; color: var(--muted); border-bottom: 3px solid transparent; }
-.plate .presets button[aria-pressed="true"], .plate .presets button:hover { color: var(--ink); border-bottom-color: var(--amber); }
-.plate h3 { font-size: clamp(28px, 2.6vw, 40px); font-weight: 700; line-height: 1.05; }
-.plate .desc { margin-top: 24px; max-width: 34ch; font-size: var(--t-body); }
-.plate .cells { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.plate .cells .btn { min-height: 72px; font-size: 18px; }
-@media (max-width: 900px) {
-  .plate { grid-template-columns: 1fr; min-height: 0; }
-  .plate .left { padding: 16px; }
-  .plate .right { padding: 24px 16px 28px; gap: 24px; }
-  .plate .cells { grid-template-columns: 1fr; }
-  .plate .cells .btn { min-height: 60px; }
-}
-
-/* ── the clock follows you on a phone ──────────────────────────────────── */
-.mini { position: fixed; right: 10px; bottom: 10px; width: 132px; z-index: 30; border: 0; padding: 0; background: #000; box-shadow: 0 6px 24px rgba(0,0,0,.6); /* a floating overlay: taste-skill-ignore */ transform: translateY(140%); transition: transform .35s var(--ease); display: none; }
-.mini.on { transform: none; }
-.mini canvas { width: 100%; height: auto; image-rendering: pixelated; }
-@media (max-width: 900px) { .mini { display: block; } }
 
 /* ── footer: the back of the object, uncovered like a curtain ──────────── */
 main { position: relative; z-index: 2; background: var(--ground); padding-bottom: var(--section); }

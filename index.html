@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OVERCLOCK: the real clock, running in your browser</title>
-<meta name="description" content="OVERCLOCK is a replacement dash clock for 1996 to 2002 Toyota trucks. This page runs its actual firmware: turn the knob, inject a fault, tip the truck.">
+<title>OVERCLOCK: a new dash clock for old Toyota trucks</title>
+<meta name="description" content="OVERCLOCK replaces the dash clock in 1996 to 2002 Toyota trucks with a screen and one knob: gauges, trips, weather, tilt, solar and alerts. Try the real firmware in your browser.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
@@ -16,29 +16,25 @@
     <a class="mark" href="#top">OVERCLOCK</a>
     <nav>
       <a href="#knob">The knob</a>
-      <a href="#faults">Faults</a>
-      <a href="#truck">Tilt</a>
+      <a href="#watch">What it watches</a>
+      <a href="#try">Try it</a>
       <a href="#fits">Fits</a>
     </nav>
-    <a class="btn" href="#clock" id="focus-clock">Turn the knob</a>
+    <a class="btn" href="demo.html">Open the demo</a>
   </header>
 
   <section class="hero" id="top">
-    <h1>The real clock, live.</h1>
+    <h1>Your truck's new clock.</h1>
     <div class="words in">
-      <p class="lead">OVERCLOCK replaces the dash clock in a 1996 to 2002 Toyota truck. This is its actual firmware running in your browser, not a mock-up. Scroll on the screen to turn the knob, tap to click, hold to hold.</p>
+      <p class="lead">OVERCLOCK drops into the dash clock slot of a 1996 to 2002 Toyota truck. One knob, a bright screen, and the clock you remember on one page, with gauges, trips, weather, tilt and solar on the next.</p>
       <div class="actions">
-        <a class="btn" href="#faults">Inject a fault</a>
-        <a class="btn ghost" href="#truck">Tip the truck</a>
+        <a class="btn" href="demo.html">Open the demo</a>
+        <a class="btn ghost" href="#knob">See the pages</a>
       </div>
     </div>
     <div class="object">
-      <div class="tabs" role="tablist" aria-label="Which truck">
-        <button role="tab" aria-selected="true" data-case="4runner">4Runner</button>
-        <button role="tab" aria-selected="false" data-case="tacoma">Tacoma</button>
-      </div>
-      <div id="clock" aria-label="The clock, live"></div>
-      <p class="status" id="status">Loading the firmware (about 4 MB)...</p>
+      <video class="faces" src="video/clock-faces.mp4" poster="video/clock-faces-poster.jpg" muted loop playsinline autoplay preload="auto" width="1200" height="936" aria-label="The clock switching between its new face with live widgets and its retro face"></video>
+      <p class="status">The new face with its live corner widgets, and the retro face. Both are the real firmware; this is a recording of it.</p>
     </div>
   </section>
 
@@ -46,72 +42,64 @@
 
   <section class="page" id="knob">
     <div class="head in">
-      <h2>THE KNOB</h2>
+      <h2>ONE KNOB, EVERY PAGE</h2>
       <div class="row-btns"><button type="button" data-step="-1" aria-label="Back">&larr;</button><button type="button" data-step="1" aria-label="Forward">&rarr;</button></div>
     </div>
-    <p class="sub">One knob does everything on the real clock. On this page the screen itself is the knob.</p>
+    <p class="sub">Turn to change pages, click to open one, hold for its menu. That is the whole manual.</p>
     <div class="row-wrap">
       <div class="progress"><i id="row-progress"></i></div>
       <div class="row" id="moments">
-        <div class="moment" style="--air:40px"><h3>Turn to change pages</h3><p>Scroll over the screen, or drag around the dial under it. Each click of the wheel is one notch of the real knob, through the real encoder code.</p><div class="air"></div><img src="pages/gauges.png" width="320" height="240" alt="The GAUGES page: speed, rpm, coolant and volts" loading="lazy"></div>
-        <div class="moment" style="--air:120px"><h3>Click to open</h3><p>Tap the screen. On a gauge page a click opens the big gauge; on the clock it steps through the corner widgets.</p><div class="air"></div><img src="pages/speed.png" width="320" height="240" alt="The SPEED page opened big" loading="lazy"></div>
-        <div class="moment" style="--air:80px"><h3>Hold for the menu</h3><p>Keep your finger down. After the firmware's own long-press time the page's menu comes up: set the time, pick a face, choose widgets.</p><div class="air"></div><img src="pages/temp.png" width="320" height="240" alt="The TEMP page: outside, inside, fridge and freezer" loading="lazy"></div>
-        <div class="moment" style="--air:140px"><h3>Weather from pressure</h3><p>The clock keeps three days of barometer and warns of a storm. The demo drive carries real readings, so the trend is real.</p><div class="air"></div><img src="pages/weather.png" width="320" height="240" alt="The WEATHER page with the pressure trend" loading="lazy"></div>
-        <div class="moment" style="--air:60px"><h3>Solar and the house battery</h3><p>Watts in, amps, charge state. On the truck this comes over Bluetooth from the solar controller.</p><div class="air"></div><img src="pages/solar.png" width="320" height="240" alt="The SOLAR page: watts, battery and charge" loading="lazy"></div>
-        <div class="moment" style="--air:110px"><h3>Health over weeks</h3><p>Crank volts, charging, fuel trim, coolant and mileage, each a small graph of recent drives.</p><div class="air"></div><img src="pages/health.png" width="320" height="240" alt="The HEALTH page: a list of small graphs" loading="lazy"></div>
-        <div class="moment" style="--air:40px"><h3>Trips and fuel</h3><p>Two trip meters, the tank, and a fill-up prompt that learns where you buy fuel.</p><div class="air"></div><img src="pages/trips.png" width="320" height="240" alt="The TRIPS page with meters A and B" loading="lazy"></div>
+        <div class="moment" style="--air:40px"><h3>Gauges</h3><p>Speed, rpm, coolant and volts from the engine computer, each with its own scale and warning colours.</p><div class="air"></div><img src="pages/gauges.png" width="320" height="240" alt="The GAUGES page: speed, rpm, coolant and volts" loading="lazy"></div>
+        <div class="moment" style="--air:120px"><h3>Speed, big</h3><p>Click a gauge and it fills the screen, with top, average and the drive so far beside it.</p><div class="air"></div><img src="pages/speed.png" width="320" height="240" alt="The SPEED page opened big" loading="lazy"></div>
+        <div class="moment" style="--air:80px"><h3>Temperatures</h3><p>Outside, inside, fridge and freezer from wired probes. The fridge warns you before the food does.</p><div class="air"></div><img src="pages/temp.png" width="320" height="240" alt="The TEMP page: outside, inside, fridge and freezer" loading="lazy"></div>
+        <div class="moment" style="--air:140px"><h3>Weather from pressure</h3><p>Three days of barometer, a trend line, and a storm warning when the pressure falls a storm's worth.</p><div class="air"></div><img src="pages/weather.png" width="320" height="240" alt="The WEATHER page with the pressure trend" loading="lazy"></div>
+        <div class="moment" style="--air:60px"><h3>Solar and house battery</h3><p>Watts in, amps, charge state, over Bluetooth from the solar controller and the shunt.</p><div class="air"></div><img src="pages/solar.png" width="320" height="240" alt="The SOLAR page: watts, battery and charge" loading="lazy"></div>
+        <div class="moment" style="--air:110px"><h3>Health over weeks</h3><p>Crank volts, charging, fuel trim, coolant and mileage as small graphs of recent drives, so a slow problem shows early.</p><div class="air"></div><img src="pages/health.png" width="320" height="240" alt="The HEALTH page: a list of small graphs" loading="lazy"></div>
+        <div class="moment" style="--air:40px"><h3>Tilt for camp</h3><p>Pitch and roll from a tilt sensor, and a camp view that tells you which wheel to lift.</p><div class="air"></div><img src="pages/level.png" width="320" height="240" alt="The TILT page with two bubble levels" loading="lazy"></div>
+        <div class="moment" style="--air:90px"><h3>Trips and fuel</h3><p>Two trip meters, the tank, range, and a fill-up prompt that learns where you buy fuel.</p><div class="air"></div><img src="pages/trips.png" width="320" height="240" alt="The TRIPS page with meters A and B" loading="lazy"></div>
       </div>
     </div>
   </section>
 
-  <section class="page" id="faults">
-    <div class="head in">
-      <h2>INJECT A FAULT</h2>
-    </div>
-    <p class="sub">These are the firmware's own demo events. Each one bends a real reading, so the real alert fires on the clock. One at a time; each eases back by itself after about a minute.</p>
-    <div class="deck" id="deck"></div>
-    <div class="deck-foot">
-      <button class="btn ghost" type="button" id="stop-fault">Stop the fault</button>
-      <span id="fault-now">Nothing running.</span>
+  <section class="page" id="watch">
+    <div class="head in"><h2>WHAT IT WATCHES FOR</h2></div>
+    <p class="sub">The clock reads the engine computer and the probes all the time and only interrupts you when it matters.</p>
+    <div class="watch">
+      <ul class="watch-list in">
+        <li><b>Overheat.</b> Coolant past the line: a takeover you cannot miss, until it cools or you snooze it.</li>
+        <li><b>Charging.</b> Volts falling (alternator) or rising (regulator), with the battery chemistry's own limits.</li>
+        <li><b>Check engine.</b> The code, what it means in plain words, and whether to stop soon or drive gently to a shop.</li>
+        <li><b>Oil pressure.</b> The one alert that says stop the engine now.</li>
+        <li><b>Fridge and freezer.</b> Warm, too cold, or thawing.</li>
+        <li><b>Storm.</b> Pressure falling fast over three hours.</li>
+        <li><b>Towing.</b> Transmission fluid climbing toward its ceiling on a loaded grade.</li>
+      </ul>
+      <img src="pages/case-4runner-gauges.png" width="1200" height="938" alt="The 4Runner clock showing the GAUGES page" loading="lazy">
     </div>
   </section>
 
   <figure class="film in">
     <video src="video/4runner-tour.mp4" poster="video/4runner-tour-poster.jpg" muted loop playsinline autoplay preload="metadata" width="1280" height="880" aria-label="The clock in its case, powering on and touring its pages"></video>
-    <figcaption>The 4Runner case, from power-on through the pages. Same firmware as above.</figcaption>
+    <figcaption>The 4Runner case, from power-on through the pages. A recording of the same firmware.</figcaption>
   </figure>
 
-  <section class="page" id="truck">
-    <div class="head in"><h2>TIP THE TRUCK</h2></div>
-    <p class="sub">The clock has a tilt sensor for camp. Grab this truck and the TILT page follows, through the firmware's own filter.</p>
-    <div class="plate">
-      <div class="left"><div id="truck3d" aria-label="A 3D truck you can drag"><div id="readout" aria-live="off"></div></div></div>
-      <div class="right">
-        <div class="presets" role="group" aria-label="Preset tilts">
-          <button type="button" data-tilt="0,0" aria-pressed="true">Level</button>
-          <button type="button" data-tilt="12,0">Nose up</button>
-          <button type="button" data-tilt="-8,0">Nose down</button>
-          <button type="button" data-tilt="0,10">Right side up</button>
-        </div>
-        <div>
-          <h3>Drag up and down for pitch, side to side for roll.</h3>
-          <p class="desc">The needles settle over a second or two, the way they do in the truck. The camp view tells you which wheel to lift.</p>
-        </div>
-        <div class="cells">
-          <button class="btn" type="button" id="show-tilt">Show TILT on the clock</button>
-          <button class="btn ghost" type="button" id="level-truck">Level it</button>
-        </div>
-      </div>
+  <section class="page" id="try">
+    <div class="head in"><h2>TRY THE REAL THING</h2></div>
+    <p class="sub">The demo page runs the clock's actual firmware in your browser, with every control beside it: the knob, every page, thirteen faults to inject, and a truck to tip while the TILT page follows.</p>
+    <div class="try">
+      <a class="try-card" href="demo.html?v=4runner"><img src="pages/hero-4runner.png" width="1200" height="938" alt="The 4Runner clock" loading="lazy"><span>4Runner, landscape</span></a>
+      <a class="try-card" href="demo.html?v=tacoma"><img src="pages/case-tacoma-gauges.png" width="1200" height="1116" alt="The Tacoma clock, portrait" loading="lazy"><span>Tacoma, portrait</span></a>
     </div>
+    <p class="sub"><a class="btn" href="demo.html">Open the demo</a></p>
   </section>
 </main>
 
 <footer id="fits">
   <div class="cols">
     <div class="col"><b>Fits</b><span>3rd gen 4Runner, 1996 to 2002</span><span>1st gen Tacoma, 1995 to 2004</span><span>T100, 1993 to 1998</span><span>Land Cruiser and LX450, 1995 to 1997</span></div>
-    <div class="col"><b>On this page</b><span>Firmware <em id="fw">loading</em>, demo build</span><span>The same code the clock runs</span><span>Nothing is sent anywhere; your settings stay in this browser</span></div>
+    <div class="col"><b>Inside</b><span>A 2 inch or 2.8 inch screen, one knob</span><span>Engine computer link, GPS, barometer, tilt sensor</span><span>Four temperature probes, two sender inputs</span><span>Logs every drive to a memory card</span></div>
     <div class="col"><b>Made in</b><span>Vancouver, Washington</span><span>For Toyota trucks of the late nineties</span></div>
-    <div class="col"><b>Elsewhere</b><a href="https://github.com/oonert/overclockdash-site">This site on GitHub</a></div>
+    <div class="col"><b>Elsewhere</b><a href="demo.html">The demo</a><a href="https://github.com/oonert/overclockdash-site">This site on GitHub</a></div>
   </div>
   <div></div>
   <div>
@@ -120,10 +108,6 @@
   </div>
 </footer>
 
-<button class="mini" id="mini" type="button" aria-label="Back to the clock"><canvas id="mini-canvas"></canvas></button>
-
-<script src="lib/three.min.js"></script>
-<script src="overclock.js"></script>
-<script src="site.js"></script>
+<script src="index.js"></script>
 </body>
 </html>

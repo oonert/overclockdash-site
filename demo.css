@@ -1,0 +1,40 @@
+/* The demo: the clock stays in view, every control beside it. */
+body.demo { overflow-x: clip; }
+.demo-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: var(--gap); padding: 0 var(--margin) 80px; align-items: start; }
+.stage { position: sticky; top: 16px; display: flex; flex-direction: column; align-items: center; padding-top: 8px; }
+.stage h1 { font-size: 22px; font-weight: 700; color: var(--amber); margin-bottom: 10px; }
+.stage #clock { min-height: 320px; display: flex; justify-content: center; }
+.stage #clock .overclock { padding: 0; gap: 18px; }
+.stage #clock .overclock-dial { box-shadow: none !important; } /* removes the widget's own: taste-skill-ignore */
+.stage .status { text-align: center; max-width: 44ch; }
+.panels { display: flex; flex-direction: column; gap: 14px; padding-top: 8px; }
+.panel { background: var(--panel); padding: 24px 24px 22px; }
+.panel:nth-child(even) { background: var(--panel-2); }
+.panel h2 { color: var(--amber); font-size: 26px; font-weight: 700; line-height: 1; }
+.panel p { margin-top: 10px; font-size: 16px; max-width: 48ch; }
+.panel p span { color: var(--green); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.chips .btn { min-height: 44px; padding: 0 16px; font-size: 16px; }
+.chips.faults .btn { background: var(--panel-3); color: var(--ink); }
+.chips.faults .btn:hover { background: #2a2a2a; }
+.chips.faults .btn.running { background: var(--amber); color: #000; }
+.chips.presets .btn[aria-pressed="true"] { background: var(--amber); color: #000; }
+#truck3d { position: relative; width: 100%; aspect-ratio: 16 / 10; background: #14171b; margin-top: 16px; touch-action: none; cursor: grab; }
+#truck3d.grabbing { cursor: grabbing; }
+#truck3d canvas { position: absolute; inset: 0; }
+#readout { position: absolute; left: 16px; bottom: 12px; color: var(--green); font-size: 15px; }
+@media (max-width: 900px) {
+  .demo-grid { display: block; padding: 0 12px 60px; }
+  .stage { position: sticky; top: 0; z-index: 5; background: var(--ground); padding: 6px 0 8px; }
+  .stage h1 { font-size: 16px; margin-bottom: 4px; }
+  .stage .tabs { margin-bottom: 4px; }
+  .stage .tabs button { padding: 6px 0; font-size: 16px; }
+  .stage #clock { min-height: 0; }
+  .stage #clock .overclock { gap: 10px; }
+  .stage #clock .overclock-dial { width: 48px !important; height: 48px !important; }
+  .stage .status { display: none; }
+  .panels { padding-top: 12px; }
+  .panel { padding: 18px 16px 16px; }
+  .panel h2 { font-size: 22px; }
+  .chips .btn { flex: 1 1 auto; }
+}
