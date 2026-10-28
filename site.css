@@ -34,8 +34,9 @@ h1, h2, h3, p { margin: 0; }
 
 /* ── top bar ───────────────────────────────────────────────────────────── */
 .bar { display: flex; align-items: center; justify-content: space-between; gap: var(--gap); padding: 20px var(--margin); }
-.bar .mark { font-weight: 700; font-size: 22px; letter-spacing: .06em; text-decoration: none; }
-.bar .mark small { font-size: 13px; font-weight: 400; color: var(--amber); letter-spacing: .12em; margin-left: 8px; }
+.bar .mark { display: inline-flex; flex-direction: column; text-decoration: none; line-height: 1; }
+.bar .mark-top { font-weight: 700; font-size: 24px; letter-spacing: .06em; border-bottom: 2px solid var(--ink); padding-bottom: 2px; }
+.bar .mark-sub { font-size: 11px; font-weight: 700; color: var(--amber); letter-spacing: .3em; margin-top: 4px; }
 .bar nav { display: flex; gap: 22px; }
 .bar nav a { text-decoration: none; font-size: 17px; }
 .bar nav a:hover { color: var(--amber); }
@@ -44,7 +45,7 @@ h1, h2, h3, p { margin: 0; }
 .btn:active { transform: scale(.97); }
 .btn.ghost { background: var(--panel-3); color: var(--ink); }
 .btn.ghost:hover { background: #2a2a2a; }
-@media (max-width: 760px) { .bar nav { display: none; } .bar .mark small { display: none; } .bar .btn { white-space: nowrap; padding: 0 14px; } }
+@media (max-width: 760px) { .bar nav { display: none; } .bar .mark-top { font-size: 20px; } .bar .mark-sub { font-size: 9px; letter-spacing: .28em; } .bar .btn { white-space: nowrap; padding: 0 14px; } }
 
 /* ── hero: the clock in its case, the page's object ─────────────────────── */
 .hero { padding: 24px var(--margin) 0; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); align-items: start; }

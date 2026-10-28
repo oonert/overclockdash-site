@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>OVERCLOCK demo: the real firmware, every control beside it</title>
-<meta name="description" content="Drive OVERCLOCK's actual firmware in your browser: the knob, the pages, thirteen faults to inject, and a truck to tip while the TILT page follows.">
+<title>OVERCLOCK Field Computer demo: the real firmware, every control beside it</title>
+<meta name="description" content="Drive the OVERCLOCK Field Computer's actual firmware in your browser: the knob, the pages, thirteen faults to inject, and a truck to tip while the TILT page follows.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
@@ -13,14 +13,14 @@
 </head>
 <body class="demo">
 <header class="bar">
-  <a class="mark" href="index.html">OVERCLOCK</a>
+  <a class="mark" href="index.html"><span class="mark-top">OVERCLOCK</span><span class="mark-sub">FIELD COMPUTER</span></a>
   <nav>
     <a href="#knob">Knob</a>
     <a href="#pages">Pages</a>
     <a href="#faults">Faults</a>
     <a href="#truck">Tilt</a>
   </nav>
-  <a class="btn ghost" href="index.html">About the clock</a>
+  <a class="btn ghost" href="index.html">About it</a>
 </header>
 
 <main class="demo-grid">
@@ -32,6 +32,7 @@
       <button role="tab" aria-selected="false" data-case="tacoma">Tacoma</button>
     </div>
     <div id="clock"></div>
+    <p class="howto" aria-label="How the knob works"><span><b>Turn</b> moves between pages and items</span><span><b>Click</b> selects</span><span><b>Hold</b> goes back</span></p>
     <p class="status" id="status">Loading the firmware (about 4 MB)...</p>
   </section>
 
@@ -79,7 +80,7 @@
 
     <section class="panel" id="about">
       <h2>ABOUT THIS DEMO</h2>
-      <p>This is OVERCLOCK's actual firmware (demo build, version <em id="fw">loading</em>) compiled to run in a browser, with a recorded drive standing in for the sensors. Nothing is sent anywhere; the settings you change stay in this browser. <a href="index.html">About the clock itself.</a></p>
+      <p>This is the OVERCLOCK Field Computer's actual firmware (demo build, version <em id="fw">loading</em>) compiled to run in a browser, with a recorded drive standing in for the sensors. Nothing is sent anywhere; the settings you change stay in this browser. <a href="index.html">About the clock itself.</a></p>
     </section>
   </div>
 </main>
