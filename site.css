@@ -157,6 +157,7 @@ footer { position: sticky; bottom: 0; z-index: 1; min-height: 100svh; background
 footer .cols { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 32px; }
 footer .col { grid-column: span 3; font-size: 16px; }
 footer .col b { display: block; font-weight: 700; margin-bottom: 6px; }
+footer .col b.soon { margin-top: 14px; color: #8a6a00; }
 footer .col span, footer .col a { display: block; color: #3a3630; }
 footer .col em { font-style: normal; }
 .plate #truck3d canvas { position: absolute; inset: 0; }
