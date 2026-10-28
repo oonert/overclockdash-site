@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>OVERCLOCK in the browser</title>
+<style>
+  body { background: #111; color: #ccc; font: 14px/1.4 system-ui, sans-serif; margin: 24px; }
+  .row { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+  button { font: inherit; padding: 4px 10px; }
+  p { max-width: 640px; }
+  .row > div:last-child p { max-width: 460px; }
+</style>
+</head>
+<body>
+<h1 style="font-weight:normal;font-size:18px">OVERCLOCK, the real firmware in your browser</h1>
+<p><a href="tilt.html" style="color:#9ecf6a">Grab the truck: the TILT page follows &rarr;</a></p>
+<p>Scroll over the screen or the dial to turn. Click to click. Press and hold to hold. Dragging around the dial turns too, and so do the arrow keys and space.</p>
+<div class="row">
+  <div id="clock"></div>
+  <div>
+    <p>
+      <button onclick="clock.turn(-1)">&larr; turn</button>
+      <button onclick="clock.turn(1)">turn &rarr;</button>
+      <button onclick="clock.click()">click</button>
+      <button onclick="clock.hold()">hold</button>
+    </p>
+    <p>
+      <button onclick="mountClock('4runner')">4Runner</button>
+      <button onclick="mountClock('tacoma')">Tacoma</button>
+      <button onclick="mountClock('landscape')">bare landscape</button>
+      <button onclick="mountClock('portrait')">bare portrait</button>
+    </p>
+    <p id="status"></p>
+    <p><b>Inject a fault</b> (the firmware's own demo events; one at a time, each eases back by itself)</p>
+    <p id="faults"></p>
+    <p><button onclick="clock.event('stop')">stop the fault</button></p>
+  </div>
+</div>
+<script src="overclock.js"></script>
+<script>
+  let clock = null;
+  async function mountClock(view) {           // '4runner', 'tacoma', 'landscape' or 'portrait'
+    if (clock) clock.destroy();
+    const frame = view === '4runner' || view === 'tacoma' ? view : null;
+    const orientation = view === 'portrait' ? 'portrait' : 'landscape';
+    document.getElementById('status').textContent = 'loading...';
+    clock = await OverclockClock.mount(document.getElementById('clock'), { orientation, frame, base: 'dist/', scale: 2, alerts: { storm: false }, frameWidth: frame === 'tacoma' ? 520 : 600 });
+    document.getElementById('status').textContent = 'firmware ' + clock.version;
+    const names = { overheat: 'overheat', nocharge: 'no charge', overvolt: 'overvolt', checkengine: 'check engine', misfire: 'misfire', threecodes: 'three codes', loselink: 'lose link', engineok: 'engine OK (clear codes)', fridgewarm: 'fridge warm', fridgecold: 'fridge cold', freezerthaw: 'freezer thaw', towing: 'towing climb', lowoil: 'low oil pressure' };
+    const f = document.getElementById('faults'); f.innerHTML = '';
+    for (const e of clock.events) { const b = document.createElement('button'); b.textContent = names[e] || e; b.style.margin = '2px'; b.onclick = () => clock.event(e); f.appendChild(b); }
+  }
+  mountClock(new URLSearchParams(location.search).get('v') || '4runner');
+</script>
+</body>
+</html>
