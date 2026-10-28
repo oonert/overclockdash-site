@@ -1,5 +1,5 @@
 /* The demo: the clock stays in view, every control beside it. */
-body.demo { overflow-x: clip; }
+body.demo { overflow-x: clip; touch-action: pan-y; }
 .demo-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: var(--gap); padding: 0 var(--margin) 80px; align-items: start; }
 .stage { position: sticky; top: 16px; display: flex; flex-direction: column; align-items: center; padding-top: 8px; }
 .stage h1 { font-size: 22px; font-weight: 700; color: var(--amber); margin-bottom: 10px; }
@@ -37,4 +37,21 @@ body.demo { overflow-x: clip; }
   .panel { padding: 18px 16px 16px; }
   .panel h2 { font-size: 22px; }
   .chips .btn { flex: 1 1 auto; }
+}
+
+/* the jog wheel: a big thumb-sized ring with a click button in the middle */
+.jog { position: relative; width: min(100%, 300px); aspect-ratio: 1; margin: 18px auto 0; touch-action: none; user-select: none; -webkit-user-select: none; }
+.jog-ring { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 50% 42%, #2c2c2c, #141414 72%); border: 2px solid #333; cursor: grab; overflow: hidden; outline-offset: 4px; }
+.jog-ring.grabbing { cursor: grabbing; }
+.jog-ticks { position: absolute; inset: 0; border-radius: 50%; will-change: transform; }
+.jog-ticks i { position: absolute; left: 50%; top: 6%; width: 3px; height: 9%; margin-left: -1.5px; background: #5a5a5a; border-radius: 2px; transform-origin: 50% calc(100% / 0.09 * 0.44); }
+.jog-ticks i:nth-child(6n+1) { background: var(--amber); height: 12%; }
+.jog-btn { position: absolute; left: 50%; top: 50%; width: 44%; height: 44%; transform: translate(-50%, -50%); border-radius: 50%; border: 2px solid #3a3a3a; background: radial-gradient(circle at 40% 35%, #4a4a4a, #1a1a1a 75%); color: var(--ink); font-weight: 700; font-size: 20px; letter-spacing: .08em; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; touch-action: none; -webkit-tap-highlight-color: transparent; }
+.jog-btn small { font-size: 11px; font-weight: 400; letter-spacing: 0; color: var(--muted); }
+.jog-btn.down { background: radial-gradient(circle at 40% 35%, #ffd264, var(--amber) 75%); color: #000; border-color: var(--amber); }
+.jog-btn.down small { color: #3a2a00; }
+.jog-btn.held { box-shadow: 0 0 0 6px rgba(255, 176, 0, .35); }
+@media (max-width: 900px) {
+  .jog { width: min(78vw, 300px); }
+  .stage #clock .overclock-dial { display: none !important; }
 }

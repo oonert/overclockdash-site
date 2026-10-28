@@ -15,7 +15,7 @@
     if (clock) { clock.destroy(); clock = null; }
     status.textContent = 'Loading the firmware (about 4 MB)...';
     try {
-      clock = await OverclockClock.mount($('#clock'), { frame: which, frameWidth: frameWidth(), base: 'dist/', alerts: { storm: false }, settings: { clk_face: 0, clk_24h: 0, clk_page: 2, clk_color: 0x8FE0, clk_slots: [21, 1, 7, 16, 11, 12, 7, 8] } });
+      clock = await OverclockClock.mount($('#clock'), { frame: which, frameWidth: frameWidth(), base: 'dist/', dial: false, alerts: { storm: false }, settings: { clk_face: 0, clk_24h: 0, clk_page: 2, clk_color: 0x8FE0, clk_slots: [21, 1, 7, 16, 11, 12, 7, 8] } });
       status.innerHTML = 'Firmware <b>' + clock.version + '</b> is running. Scroll on the screen to turn, tap to click, hold to hold.';
       $('#fw').textContent = clock.version;
       buildFaults(); markRunning();
@@ -23,6 +23,36 @@
   }
   $$('.tabs [role=tab]').forEach(b => b.addEventListener('click', () => { if (b.dataset.case !== currentCase) mountClock(b.dataset.case); }));
   mountClock(new URLSearchParams(location.search).get('v') === 'tacoma' ? 'tacoma' : '4runner');
+
+  // ── the jog wheel: an iPod-style ring for a thumb, a button in the middle ──
+  const ring = $('#jog-ring'), ticks = $('#jog-ticks'), jbtn = $('#jog-btn');
+  for (let i = 0; i < 36; i++) { const t = document.createElement('i'); t.style.transform = 'rotate(' + (i * 10) + 'deg)'; ticks.appendChild(t); }
+  const DETENT = 18;                         // degrees of thumb travel per click of the knob
+  let rot = 0, last = null, carry = 0, pid = null;
+  function buzz() { if (navigator.vibrate) navigator.vibrate(8); }
+  function angleAt(e) { const r = ring.getBoundingClientRect(); return Math.atan2(e.clientY - (r.top + r.height / 2), e.clientX - (r.left + r.width / 2)) * 180 / Math.PI; }
+  function spin(deg) { rot += deg; ticks.style.transform = 'rotate(' + rot + 'deg)'; }
+  ring.addEventListener('pointerdown', (e) => { pid = e.pointerId; ring.setPointerCapture(pid); last = angleAt(e); carry = 0; ring.classList.add('grabbing'); ring.focus(); e.preventDefault(); });
+  ring.addEventListener('pointermove', (e) => {
+    if (e.pointerId !== pid || last === null) return;
+    const a = angleAt(e); let d = a - last; if (d > 180) d -= 360; if (d < -180) d += 360; last = a;
+    spin(d); carry += d;
+    while (carry >= DETENT) { carry -= DETENT; if (clock) clock.turn(1); buzz(); }
+    while (carry <= -DETENT) { carry += DETENT; if (clock) clock.turn(-1); buzz(); }
+  });
+  const ringUp = (e) => { if (e.pointerId !== pid) return; pid = null; last = null; ring.classList.remove('grabbing'); };
+  ring.addEventListener('pointerup', ringUp); ring.addEventListener('pointercancel', ringUp);
+  ring.addEventListener('wheel', (e) => { if (!clock) return; const n = e.deltaY > 0 ? 1 : -1; clock.turn(n); spin(n * DETENT); e.preventDefault(); }, { passive: false });
+  ring.addEventListener('keydown', (e) => { if (!clock) return; if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { clock.turn(1); spin(DETENT); e.preventDefault(); } if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { clock.turn(-1); spin(-DETENT); e.preventDefault(); } });
+  // The middle: press is the real button, so a tap clicks and a long press holds.
+  let bpid = null, heldTimer = null;
+  jbtn.addEventListener('pointerdown', (e) => { if (!clock) return; bpid = e.pointerId; jbtn.setPointerCapture(bpid); jbtn.classList.add('down'); clock.press(true); buzz(); heldTimer = setTimeout(() => jbtn.classList.add('held'), 600); e.preventDefault(); });
+  const btnUp = (e) => { if (e.pointerId !== bpid) return; bpid = null; clearTimeout(heldTimer); jbtn.classList.remove('down', 'held'); if (clock) clock.press(false); };
+  jbtn.addEventListener('pointerup', btnUp); jbtn.addEventListener('pointercancel', btnUp);
+  jbtn.addEventListener('click', (e) => e.preventDefault());
+  jbtn.addEventListener('keydown', (e) => { if ((e.key === ' ' || e.key === 'Enter') && !e.repeat && clock) { clock.press(true); jbtn.classList.add('down'); e.preventDefault(); } });
+  jbtn.addEventListener('keyup', (e) => { if ((e.key === ' ' || e.key === 'Enter') && clock) { clock.press(false); jbtn.classList.remove('down'); e.preventDefault(); } });
+  jbtn.addEventListener('contextmenu', (e) => e.preventDefault());
 
   // ── the knob buttons ──────────────────────────────────────────────────────
   $$('[data-knob]').forEach(b => b.addEventListener('click', () => {

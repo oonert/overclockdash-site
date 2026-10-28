@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>OVERCLOCK demo: the real firmware, every control beside it</title>
 <meta name="description" content="Drive OVERCLOCK's actual firmware in your browser: the knob, the pages, thirteen faults to inject, and a truck to tip while the TILT page follows.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +38,11 @@
   <div class="panels">
     <section class="panel" id="knob">
       <h2>THE KNOB</h2>
-      <p>Rotate to move, click to act, hold to go back (on the clock, hold opens its own settings). Scroll on the screen or drag the dial to turn, tap to click, keep your finger down to hold. Or use these.</p>
+      <p>Rotate to move, click to act, hold to go back (on the clock, hold opens its own settings). Run your thumb around the wheel to turn. Tap the middle to click, keep it pressed to hold.</p>
+      <div class="jog" id="jog" aria-label="The knob: drag around the ring to turn, press the middle to click or hold">
+        <div class="jog-ring" id="jog-ring" tabindex="0" role="slider" aria-label="Turn the knob" aria-valuetext="turn"><div class="jog-ticks" id="jog-ticks"></div></div>
+        <button class="jog-btn" id="jog-btn" type="button" aria-label="Click, or hold">CLICK<small>hold to go back</small></button>
+      </div>
       <div class="chips">
         <button class="btn ghost" type="button" data-knob="turn:-1">&larr; Turn</button>
         <button class="btn ghost" type="button" data-knob="turn:1">Turn &rarr;</button>
@@ -81,6 +85,11 @@
 </main>
 
 <script src="lib/three.min.js"></script>
+<script>
+// No pinch or double-tap zoom: the page is the clock, and a zoom breaks the knob.
+document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
+document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
+</script>
 <script src="overclock.js"></script>
 <script src="demo.js"></script>
 </body>
