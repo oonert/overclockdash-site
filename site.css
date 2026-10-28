@@ -35,6 +35,7 @@ h1, h2, h3, p { margin: 0; }
 /* ── top bar ───────────────────────────────────────────────────────────── */
 .bar { display: flex; align-items: center; justify-content: space-between; gap: var(--gap); padding: 20px var(--margin); }
 .bar .mark { font-weight: 700; font-size: 22px; letter-spacing: .06em; text-decoration: none; }
+.bar .mark small { font-size: 13px; font-weight: 400; color: var(--amber); letter-spacing: .12em; margin-left: 8px; }
 .bar nav { display: flex; gap: 22px; }
 .bar nav a { text-decoration: none; font-size: 17px; }
 .bar nav a:hover { color: var(--amber); }
@@ -43,7 +44,7 @@ h1, h2, h3, p { margin: 0; }
 .btn:active { transform: scale(.97); }
 .btn.ghost { background: var(--panel-3); color: var(--ink); }
 .btn.ghost:hover { background: #2a2a2a; }
-@media (max-width: 760px) { .bar nav { display: none; } }
+@media (max-width: 760px) { .bar nav { display: none; } .bar .mark small { display: none; } .bar .btn { white-space: nowrap; padding: 0 14px; } }
 
 /* ── hero: the clock in its case, the page's object ─────────────────────── */
 .hero { padding: 24px var(--margin) 0; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); align-items: start; }
@@ -73,7 +74,7 @@ h1, h2, h3, p { margin: 0; }
   .hero h1 { padding-top: 8px; order: 1; }
   .hero .object { order: 2; margin-top: 20px; }
   .hero .words { order: 3; padding-top: 0; margin-top: 36px; }
-  .hero h1 { font-size: clamp(44px, 13vw, 72px); max-width: none; }
+  .hero h1 { font-size: clamp(40px, 11.5vw, 72px); max-width: none; }
   .hero .lead { margin-top: 20px; }
   .hero .actions { margin-top: 24px; }
   #clock { min-height: 300px; }
@@ -120,12 +121,12 @@ section.page .sub { font-size: var(--t-lead); color: var(--ink); margin-top: 16p
 .watch img { grid-column: 7 / 13; width: 100%; height: auto; }
 @media (max-width: 900px) { .watch { display: block; } .watch img { margin-top: 32px; } }
 
-/* what it will not do: a plain list */
-.wont { list-style: none; margin: 0; padding: 40px var(--margin) 0; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 28px; }
-.wont li { grid-column: span 4; font-size: var(--t-body); }
-.wont li b { display: block; color: var(--amber); font-size: 22px; line-height: 1.15; margin-bottom: 8px; }
-@media (max-width: 900px) { .wont li { grid-column: span 6; } }
-@media (max-width: 600px) { .wont li { grid-column: span 12; } }
+/* feature lists: bold lead, one line each */
+.feat, .wont { list-style: none; margin: 0; padding: 40px var(--margin) 0; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 28px; }
+.feat li, .wont li { grid-column: span 4; font-size: var(--t-body); }
+.feat li b, .wont li b { display: block; color: var(--amber); font-size: 22px; line-height: 1.15; margin-bottom: 6px; }
+@media (max-width: 900px) { .feat li, .wont li { grid-column: span 6; } }
+@media (max-width: 600px) { .feat li, .wont li { grid-column: span 12; } .feat, .wont { row-gap: 20px; } }
 
 /* try it: the two cases as doors */
 .try { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); padding: 40px var(--margin) 32px; }

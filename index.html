@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OVERCLOCK: a new dash clock for old Toyota trucks</title>
+<title>OVERCLOCK Field Computer: the dash clock, replaced with everything</title>
 <meta name="description" content="OVERCLOCK replaces the dash clock in 1996 to 2002 Toyota trucks with a screen and one knob: gauges, trips, weather, tilt, solar and alerts. Try the real firmware in your browser.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,24 +13,24 @@
 <body>
 <main>
   <header class="bar">
-    <a class="mark" href="#top">OVERCLOCK</a>
+    <a class="mark" href="#top">OVERCLOCK <small>FIELD COMPUTER</small></a>
     <nav>
-      <a href="#knob">The knob</a>
-      <a href="#watch">What it watches</a>
-      <a href="#inside">Parked</a>
-      <a href="#try">Try it</a>
-      <a href="#fits">Fits</a>
+      <a href="#engine">Engine</a>
+      <a href="#gps">GPS</a>
+      <a href="#logs">Logging</a>
+      <a href="#phone">Phone</a>
+      <a href="#camp">Camp</a>
+      <a href="#built">Built</a>
     </nav>
     <a class="btn" href="demo.html">Open the demo</a>
   </header>
 
   <section class="hero" id="top">
-    <h1>Your truck's new clock.</h1>
+    <h1>Your truck's field computer.</h1>
     <div class="words in">
-      <p class="lead">OVERCLOCK replaces the factory clock in a nineties Toyota truck with a real instrument: a bright screen, one knob, and firmware that watches the truck the way a good mechanic would. The clock you remember is still the first page.</p>
+      <p class="lead">OVERCLOCK Field Computer drops into the clock slot of a nineties Toyota truck. A bright screen, one knob, and everything the truck knows, on the dash: engine, codes, GPS, trips, weather, tilt, solar, and every drive written down. The clock you remember is still the first page.</p>
       <div class="actions">
         <a class="btn" href="demo.html">Open the demo</a>
-        <a class="btn ghost" href="#knob">See the pages</a>
         <a class="btn ghost" href="#fits">Does it fit my truck?</a>
       </div>
     </div>
@@ -50,76 +50,149 @@
       <h2>ONE KNOB, EVERY PAGE</h2>
       <div class="row-btns"><button type="button" data-step="-1" aria-label="Back">&larr;</button><button type="button" data-step="1" aria-label="Forward">&rarr;</button></div>
     </div>
-    <p class="sub">Rotate to move between things. Click to act on the thing you are looking at. Hold to go back. Every screen works the same way, and that is the whole manual.</p>
+    <p class="sub">Turn to move between pages. Click to open the thing you are looking at. Hold to go back. That is the whole manual.</p>
     <div class="row-wrap">
       <div class="progress"><i id="row-progress"></i></div>
       <div class="row" id="moments">
-        <div class="moment" style="--air:40px"><h3>Four gauges, picked on the spot</h3><p>Hold on the GAUGES card and the boxes become pickers: speed, rpm, coolant, intake, volts, altitude, heading and whatever else your truck reports. Click one and it opens full size.</p><div class="air"></div><img src="pages/gauges.png" width="320" height="240" alt="The GAUGES page: speed, rpm, coolant and volts" loading="lazy"></div>
-        <div class="moment" style="--air:120px"><h3>One gauge, big</h3><p>A retro instrument pane: big value, sweep ruler, moving pointer. Colour follows the value, green when healthy, amber warm, red wrong.</p><div class="air"></div><img src="pages/speed.png" width="320" height="240" alt="The SPEED page opened big" loading="lazy"></div>
-        <div class="moment" style="--air:80px"><h3>Health: is anything slowly getting worse?</h3><p>Resting volts, crank dip, charging, fuel trim, coolant and mileage as graphs of recent drives. Each gives a verdict in plain words and what to check first.</p><div class="air"></div><img src="pages/health.png" width="320" height="240" alt="The HEALTH page: a list of small graphs" loading="lazy"></div>
-        <div class="moment" style="--air:60px"><h3>Four probes, each with a job</h3><p>Outside, inside, fridge, freezer, engine, cargo, trailer or water. The fridge is watched for you: warm goes amber, two hours warm goes red, frozen lettuce goes ice blue.</p><div class="air"></div><img src="pages/temp.png" width="320" height="240" alt="The TEMP page: outside, inside, fridge and freezer" loading="lazy"></div>
-        <div class="moment" style="--air:140px"><h3>Weather from the barometer</h3><p>Three days of pressure, the trend, and a storm notice when it falls a storm's worth in three hours.</p><div class="air"></div><img src="pages/weather.png" width="320" height="240" alt="The WEATHER page with the pressure trend" loading="lazy"></div>
-        <div class="moment" style="--air:40px"><h3>Tilt and camp</h3><p>Pitch and roll led by the gyro, so a hard stop does not read as a slope. The CAMP view shows the inches of block each wheel needs to level a rooftop tent.</p><div class="air"></div><img src="pages/level.png" width="320" height="240" alt="The TILT page with two bubble levels" loading="lazy"></div>
-        <div class="moment" style="--air:100px"><h3>Solar and the house battery</h3><p>Watts in, amps, charge state, over Bluetooth from a Victron controller and shunt.</p><div class="air"></div><img src="pages/solar.png" width="320" height="240" alt="The SOLAR page: watts, battery and charge" loading="lazy"></div>
-        <div class="moment" style="--air:70px"><h3>Trips, fuel and true MPG</h3><p>Two trip meters, the tank, range, and a fill-up prompt that learns where you buy fuel. Every mile and every drive go to the card.</p><div class="air"></div><img src="pages/trips.png" width="320" height="240" alt="The TRIPS page with meters A and B" loading="lazy"></div>
-        <div class="moment" style="--air:110px"><h3>Starter: the battery, weeks ahead</h3><p>Resting volts before each start, how low the crank dips, what the alternator holds. The startup screen says WAIT, then START, so every crank is measured against a true resting number.</p><div class="air"></div><img src="pages/voltage.png" width="320" height="240" alt="The VOLTS page" loading="lazy"></div>
-        <div class="moment" style="--air:50px"><h3>The retro clock, with shows</h3><p>The factory clock redrawn from caliper measurements. Its three buttons work, and five seconds after you stop playing with them the tube puts on a show and lands on the real time.</p><div class="air"></div><img src="video/clock-faces-poster.jpg" width="1200" height="936" alt="The clock in its case" loading="lazy"></div>
+        <div class="moment" style="--air:40px"><h3>Gauges</h3><p>Four live gauges on one page, and you pick which four right there.</p><div class="air"></div><img src="pages/gauges.png" width="320" height="240" alt="The GAUGES page: speed, rpm, coolant and volts" loading="lazy"></div>
+        <div class="moment" style="--air:120px"><h3>One gauge, big</h3><p>Click a gauge and it fills the screen. Green when healthy, amber warm, red wrong.</p><div class="air"></div><img src="pages/speed.png" width="320" height="240" alt="The SPEED page opened big" loading="lazy"></div>
+        <div class="moment" style="--air:80px"><h3>Health</h3><p>Is anything slowly getting worse? Graphs of recent drives with a verdict in plain words.</p><div class="air"></div><img src="pages/health.png" width="320" height="240" alt="The HEALTH page: a list of small graphs" loading="lazy"></div>
+        <div class="moment" style="--air:60px"><h3>Temperatures</h3><p>Outside, cabin, fridge, freezer, engine bay, cargo, trailer or water. Four probes, your choice.</p><div class="air"></div><img src="pages/temp.png" width="320" height="240" alt="The TEMP page: outside, inside, fridge and freezer" loading="lazy"></div>
+        <div class="moment" style="--air:140px"><h3>Weather</h3><p>Three days of barometer and a storm warning before the storm.</p><div class="air"></div><img src="pages/weather.png" width="320" height="240" alt="The WEATHER page with the pressure trend" loading="lazy"></div>
+        <div class="moment" style="--air:40px"><h3>Tilt and camp</h3><p>Pitch and roll, and a camp view that says which wheel to lift and by how much.</p><div class="air"></div><img src="pages/level.png" width="320" height="240" alt="The TILT page with two bubble levels" loading="lazy"></div>
+        <div class="moment" style="--air:100px"><h3>Solar</h3><p>Watts in, amps, and the house battery's charge, from your solar gear.</p><div class="air"></div><img src="pages/solar.png" width="320" height="240" alt="The SOLAR page: watts, battery and charge" loading="lazy"></div>
+        <div class="moment" style="--air:70px"><h3>Trips and fuel</h3><p>Two trip meters, the tank, range, and true MPG from the pump.</p><div class="air"></div><img src="pages/trips.png" width="320" height="240" alt="The TRIPS page with meters A and B" loading="lazy"></div>
+        <div class="moment" style="--air:110px"><h3>Starter battery</h3><p>Resting volts, crank dip and charging, so a tired battery shows weeks before it strands you.</p><div class="air"></div><img src="pages/voltage.png" width="320" height="240" alt="The VOLTS page" loading="lazy"></div>
+        <div class="moment" style="--air:50px"><h3>The retro clock</h3><p>The factory clock, redrawn to the millimetre. Its buttons work, and it puts on a show.</p><div class="air"></div><img src="video/clock-faces-poster.jpg" width="1200" height="936" alt="The clock in its case" loading="lazy"></div>
       </div>
     </div>
   </section>
 
+  <section class="page" id="engine">
+    <div class="head in"><h2>THE ENGINE, EXPLAINED</h2></div>
+    <p class="sub">A Bluetooth adapter in the truck's diagnostic port, and the Field Computer reads everything the engine computer knows. Every cheap dongle shows you numbers. This one tells you what they mean.</p>
+    <ul class="feat in">
+      <li><b>Live engine gauges.</b> Speed, rpm, coolant, intake air, load, throttle, timing, airflow, fuel trims and more, around fifty readings.</li>
+      <li><b>Check engine codes in plain words.</b> Every code a 1996 to 2002 truck can set, with a name, what it means, and what to check first.</li>
+      <li><b>Ranked by the drive home.</b> Stop engine, stop soon, use caution, get checked, or just emissions. Only the serious ones take the screen.</li>
+      <li><b>Pending codes.</b> A fault the computer has seen once but not confirmed, caught before the light even comes on.</li>
+      <li><b>Snapshots.</b> What the engine was doing the second each code set. A handheld reader plugged in later cannot know that.</li>
+      <li><b>Will it pass smog?</b> The truck's self-tests as a bar of blocks, with a straight answer.</li>
+      <li><b>Clear codes, honestly.</b> A guarded clear, and then the truth about what comes next.</li>
+      <li><b>Towing.</b> Transmission and coolant temperature on a grade, with one verdict: normal, caution, warning, pull over.</li>
+      <li><b>Oil and fuel pressure.</b> Add a sender and see the number all the time, not an idiot light.</li>
+      <li><b>True MPG.</b> Fill-ups logged against real miles and real gallons, and the dash learns your truck's airflow sensor from the pump.</li>
+    </ul>
+  </section>
+
+  <section class="page" id="gps">
+    <div class="head in"><h2>GPS, BUILT IN</h2></div>
+    <p class="sub">A receiver inside, an antenna on the case. It works on every truck, whatever the year.</p>
+    <ul class="feat in">
+      <li><b>Speed from the sky.</b> Ground speed from satellites, even on a truck that cannot report it.</li>
+      <li><b>The clock sets itself.</b> Time and time zone from GPS. Drive across a line and the hour is right.</li>
+      <li><b>Every actual mile.</b> Engine data and GPS counted together, each trusted only when it deserves to be, so a parked truck never gains a foot and a tunnel never loses one.</li>
+      <li><b>Altitude, climb and grade.</b> Barometer and GPS together, with gain and loss since you left.</li>
+      <li><b>Compass heading.</b> On the clock, on the gauges, wherever you want it.</li>
+      <li><b>Places and home.</b> Save places, get a WELCOME HOME sign, and a sign when you cross a state line.</li>
+      <li><b>It notices the pump.</b> Stop at a fuel station and the dash asks if you filled up. It learns where you buy fuel.</li>
+      <li><b>Road trip.</b> Distance, time and fuel for the long one, day by day.</li>
+    </ul>
+  </section>
+
+  <section class="page" id="logs">
+    <div class="head in"><h2>IT WRITES EVERYTHING DOWN</h2></div>
+    <p class="sub">A silent flight recorder on a memory card in the dash. Pull the card and open it in any spreadsheet. No cloud, no account, no subscription, and none of it leaves the truck.</p>
+    <ul class="feat in">
+      <li><b>Every second of every drive.</b> More than seventy readings a second: speed, rpm, every temperature, volts, position, altitude, fuel, tilt and the rest.</li>
+      <li><b>Every start.</b> Resting volts, the crank dip, charging, the engine light and readiness, in a battery log and an engine log.</li>
+      <li><b>Every code.</b> As it comes and goes, pending ones included, with what the engine was doing.</li>
+      <li><b>Every tank.</b> Real gallons against real miles.</li>
+      <li><b>Every parked hour.</b> With the key off the dash wakes every hour, or every 15 or 30 minutes, writes one line (battery, pressure, every probe, position, solar) and sleeps again. It will not flatten the battery: pick the volts where it stops.</li>
+      <li><b>A breadcrumb trail.</b> A dot every twenty seconds, off with one switch that stops all position logging for good.</li>
+      <li><b>Room for years.</b> An 8 GB card holds over ten thousand hours of driving. The card is checked at every start, so a dying card cannot log in silence.</li>
+    </ul>
+  </section>
+
+  <section class="page" id="phone">
+    <div class="head in"><h2>YOUR PHONE IS THE BIG SCREEN</h2></div>
+    <p class="sub">Turn WiFi on and the dash makes its own hotspot or joins yours. Scan the code on the screen and the phone page opens. Save it to your home screen and it works like an app.</p>
+    <ul class="feat in">
+      <li><b>Files.</b> A calendar of every day the dash logged. Tap the days and download one zip.</li>
+      <li><b>Live.</b> Watched engine values with a running trace, and everything else the truck answers.</li>
+      <li><b>Codes.</b> Read, explain and clear trouble codes from the phone, freeze frame included.</li>
+      <li><b>Photos.</b> Send pictures for the slideshow on the clock.</li>
+      <li><b>Firmware updates over WiFi.</b> Send a new version from the phone. The dash checks it is whole, undamaged and built for this unit before it installs. Updates also go in from the card.</li>
+      <li><b>Setup.</b> Networks, the state map, the fuel station list, solar gear and Bluetooth batteries.</li>
+    </ul>
+  </section>
+
+  <section class="page" id="camp">
+    <div class="head in"><h2>FOR THE CAMP AND THE TRAIL</h2></div>
+    <p class="sub">The parts that matter when the engine is off.</p>
+    <ul class="feat in">
+      <li><b>Fridge and freezer watch.</b> Warm goes amber, two hours warm goes red, and a pop-up says how long the milk has been in trouble.</li>
+      <li><b>Camp level.</b> A top-down truck with the inches of block each wheel needs for a flat tent.</li>
+      <li><b>Weather coming.</b> Pressure falling a storm's worth in three hours gets a notice. Parked overnight, it keeps watching.</li>
+      <li><b>Solar and house battery.</b> Victron controllers and shunts over Bluetooth, and Bluetooth batteries by brand. Several batteries can show as one big one.</li>
+      <li><b>Sunrise and sunset.</b> The next one, on a corner of the clock.</li>
+      <li><b>Starter battery.</b> Rest, crank and charge, with WAIT then START on the startup screen so every crank is measured right.</li>
+      <li><b>Stopwatch, timer, alarms, games, slideshow.</b> Because a dash clock should also be fun.</li>
+      <li><b>Night mode and dimming.</b> Dusk and dawn for where you are, or wired to the headlights.</li>
+    </ul>
+  </section>
+
   <section class="page" id="watch">
     <div class="head in"><h2>WHAT IT WATCHES FOR</h2></div>
-    <p class="sub">It is on whenever the key is on and it is watching the whole time. A full-screen takeover with a marching hazard border is for the things that cannot wait; everything else stays out of your way.</p>
+    <p class="sub">On whenever the key is on, watching the whole time. The things that cannot wait take the screen with a marching hazard border. Everything else stays out of your way.</p>
     <div class="watch">
       <ul class="watch-list in">
-        <li><b>Overheat.</b> The real coolant number, not the factory gauge that sits dead centre until you are already in trouble.</li>
-        <li><b>Over-voltage.</b> The highest priority and the only alert with no waiting: a failed regulator is cooking the battery while you watch.</li>
+        <li><b>Overheat.</b> The real coolant number, not a factory gauge that sits dead centre until it is too late.</li>
+        <li><b>Over-voltage.</b> First priority and instant: a failed regulator is cooking the battery.</li>
         <li><b>Not charging.</b> The alternator quit; the volts tell it before the lights dim.</li>
-        <li><b>Trouble codes.</b> STOP ENGINE and STOP SOON codes take the screen, with the code in plain words. Lesser codes only light the small lamp.</li>
-        <li><b>Fridge and freezer.</b> Warm, freezing or thawing, after ten minutes, with how long it has been that way.</li>
-        <li><b>Storm.</b> Pressure falling a storm's worth in three hours.</li>
-        <li><b>And every alert fails to off.</b> If a sensor goes quiet, its alert disarms instead of crying wolf. Quieting one is a three-second hold, never a slip.</li>
+        <li><b>Serious codes.</b> Stop engine and stop soon take the screen, in plain words. Lesser codes only light the small lamp.</li>
+        <li><b>Low oil pressure.</b> With a sender fitted, the one alert that says stop the engine now.</li>
+        <li><b>Fridge, freezer, storm, towing.</b> Each with its own switch.</li>
+        <li><b>Every alert fails to off.</b> A sensor that goes quiet disarms its alert instead of crying wolf.</li>
       </ul>
       <img src="pages/case-4runner-gauges.png" width="1200" height="938" alt="The 4Runner clock showing the GAUGES page" loading="lazy">
     </div>
   </section>
 
-  <section class="page" id="inside">
-    <div class="head in"><h2>IT KEEPS WATCH WHILE YOU ARE PARKED</h2></div>
-    <p class="sub">The dash stays connected to the battery. Every hour, or every 15 or 30 minutes if you want a closer watch, it wakes for about twenty seconds, looks around, writes a line to the card, and goes back to sleep. Between wakes the meter reads zero.</p>
-    <ul class="wont in">
-      <li><b>What each wake records.</b> Battery volts, air pressure and temperature, every probe (fridge, freezer, cabin, outside), GPS position and altitude, and the solar charger and house battery if you have them. A cold night or a storm coming in shows up overnight.</li>
-      <li><b>It will not flatten your battery.</b> Pick a low-battery line, 11.8 or 12.0 volts, or never. Two low readings in a row and it stops waking until the battery comes back up a little, say from solar.</li>
-      <li><b>Turning the key off.</b> Fifteen seconds to finish: the startup screen in reverse, SAVING, SAVED, and the backlight fades. Key back on inside that and it simply carries on.</li>
-      <li><b>A real oil pressure gauge.</b> Add a sender and the number is on the screen all the time, not an idiot light that comes on when the pressure is nearly gone. The same input takes a fuel pressure sender instead.</li>
-      <li><b>Transmission temperature on any truck.</b> Add a sender and a manual, or any truck that does not report it, gets the reading anyway. Four sender types built in.</li>
-      <li><b>Bluetooth on its own processor.</b> Two processors on one board: the second handles the OBD adapter, the solar controller and the house battery shunt all at once, so the screen never stutters for it. Bluetooth Low Energy only.</li>
-      <li><b>GPS built in.</b> It sets the clock, picks the time zone, finds your speed when the truck will not say, and puts the time back within a minute after a battery disconnect.</li>
-      <li><b>Built like a truck part.</b> A 2 amp fuse on the board, surge and reverse-polarity protection, screw terminals for the probes and senders, a fused 12 volt expansion port, and no USB port to fill with dust: firmware updates come from the card.</li>
+  <figure class="film in">
+    <video src="video/4runner-tour.mp4" poster="video/4runner-tour-poster.jpg" muted loop playsinline autoplay preload="metadata" width="1280" height="880" aria-label="The clock in its case, powering on and touring its pages"></video>
+    <figcaption>The 4Runner case, from power-on through the pages. A recording of the real firmware.</figcaption>
+  </figure>
+
+  <section class="page" id="built">
+    <div class="head in"><h2>BUILT FOR THE TRUCK</h2></div>
+    <p class="sub">Not a phone holder and not a kit. A purpose-made unit that fits the slot the factory clock came out of.</p>
+    <ul class="feat in">
+      <li><b>A fully custom circuit board.</b> Designed for this job, nothing bolted together from modules.</li>
+      <li><b>Two processors.</b> One runs the screen, sensors and logging. The second does nothing but Bluetooth, so the screen never stutters.</li>
+      <li><b>A screen made for the truck.</b> 2 inch for the 4Runner, 2.8 inch for the Tacoma, behind a bezel made for each dash.</li>
+      <li><b>Protected.</b> Its own fuse, surge protection against the spikes trucks make, reverse-polarity protection, and a graceful fifteen-second shutdown when the key goes off.</li>
+      <li><b>Expandable.</b> Screw terminals for four temperature probes and two senders, and a powered expansion port for add-ons.</li>
+      <li><b>Nothing to wear out.</b> No USB port, no coin cell. Updates from WiFi or the card; GPS puts the time back after a battery disconnect.</li>
+      <li><b>Made in Vancouver, Washington.</b> By someone who drives one.</li>
     </ul>
   </section>
 
   <section class="page" id="wont">
     <div class="head in"><h2>WHAT IT WILL NOT DO</h2></div>
     <p class="sub">Trust is built here, not in the feature list.</p>
-    <ul class="wont in">
-      <li><b>It does not tune or reprogram anything.</b> It reads. The one thing it ever writes is clearing fault codes, and only when you arm it and hold.</li>
-      <li><b>It never guesses.</b> If a sensor has not answered, the screen says so instead of showing a number that looks real.</li>
-      <li><b>No cloud, no account, no subscription, no phone app required.</b> Your data lives on a card in your dash.</li>
-      <li><b>It does not record your position unless you let it.</b> The switch stops the dash writing it at all; open the card and the column is empty.</li>
-      <li><b>No live engine data on pre-1996 trucks.</b> Engine data needs OBD2, which arrived in the 1996 model year. Older trucks get everything else, and the engine pages simply are not in the rotation.</li>
+    <ul class="feat in">
+      <li><b>It does not tune or reprogram anything.</b> It reads. The one thing it ever writes is clearing codes, and only when you arm it and hold.</li>
+      <li><b>It never guesses.</b> If a sensor has not answered, the screen says so instead of inventing a number.</li>
+      <li><b>No cloud, no account, no subscription.</b> Your data lives on a card in your dash.</li>
+      <li><b>No position logging unless you want it.</b> One switch, and the column in the file stays empty.</li>
+      <li><b>No live engine data before 1996.</b> Those trucks have nothing to read. They get everything else, and the engine pages simply are not there.</li>
     </ul>
   </section>
 
-  <figure class="film in">
-    <video src="video/4runner-tour.mp4" poster="video/4runner-tour-poster.jpg" muted loop playsinline autoplay preload="metadata" width="1280" height="880" aria-label="The clock in its case, powering on and touring its pages"></video>
-    <figcaption>The 4Runner case, from power-on through the pages. A recording of the same firmware.</figcaption>
-  </figure>
-
   <section class="page" id="try">
     <div class="head in"><h2>TRY THE REAL THING</h2></div>
-    <p class="sub">The demo page runs the clock's actual firmware in your browser, with every control beside it: the knob, every page, thirteen faults to inject, and a truck to tip while the TILT page follows.</p>
+    <p class="sub">The demo runs the actual firmware in your browser: the knob, every page, thirteen faults to inject, and a truck to tip while the tilt page follows.</p>
     <div class="try">
       <a class="try-card" href="demo.html?v=4runner"><img src="pages/hero-4runner.png" width="1200" height="938" alt="The 4Runner clock" loading="lazy"><span>4Runner, landscape</span></a>
       <a class="try-card" href="demo.html?v=tacoma"><img src="pages/case-tacoma-gauges.png" width="1200" height="1116" alt="The Tacoma clock, portrait" loading="lazy"><span>Tacoma, portrait</span></a>
@@ -131,14 +204,14 @@
 <footer id="fits">
   <div class="cols">
     <div class="col"><b>Fits</b><span>3rd gen 4Runner, 1996 to 2002</span><span>1st gen Tacoma, 1995 to 2004</span><span>T100, 1993 to 1998</span><span>Land Cruiser and LX450, 1995 to 1997</span><span>Engine data on 1996 and newer; everything else on all of them</span></div>
-    <div class="col"><b>Inside</b><span>A 2 inch or 2.8 inch screen, one knob</span><span>Two processors, GPS, barometer, tilt sensor</span><span>Four temperature probes, two sender inputs, an expansion port</span><span>Logs every drive and every parked hour to a memory card</span></div>
+    <div class="col"><b>Inside</b><span>Screen, knob, GPS, barometer, tilt sensor</span><span>Two processors, Bluetooth, WiFi</span><span>Four probes, two senders, an expansion port</span><span>Every drive and every parked hour on the card</span></div>
     <div class="col"><b>Made in</b><span>Vancouver, Washington</span><span>For Toyota trucks of the late nineties</span></div>
-    <div class="col"><b>Elsewhere</b><a href="demo.html">The demo</a><a href="https://github.com/oonert/overclockdash-site">This site on GitHub</a></div>
+    <div class="col"><b>Elsewhere</b><a href="demo.html">The demo</a></div>
   </div>
   <div></div>
   <div>
     <svg class="mark-big" viewBox="0 0 1000 150" aria-hidden="true" focusable="false"><text x="0" y="128" textLength="1000" lengthAdjust="spacingAndGlyphs" font-family="Roboto Condensed, Arial Narrow, sans-serif" font-weight="700" font-size="150" fill="#000">OVERCLOCK</text></svg>
-    <p class="legal">OVERCLOCK is not affiliated with Toyota Motor Corporation. 4Runner, Tacoma, T100 and Land Cruiser are Toyota's names for their trucks.</p>
+    <p class="legal">OVERCLOCK Field Computer is not affiliated with Toyota Motor Corporation. 4Runner, Tacoma, T100 and Land Cruiser are Toyota's names for their trucks.</p>
   </div>
 </footer>
 
