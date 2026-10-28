@@ -15,7 +15,7 @@
     if (clock) { clock.destroy(); clock = null; }
     status.textContent = 'Loading the firmware (about 4 MB)...';
     try {
-      clock = await OverclockClock.mount($('#clock'), { frame: which, frameWidth: frameWidth(), base: 'dist/', alerts: { storm: false } });
+      clock = await OverclockClock.mount($('#clock'), { frame: which, frameWidth: frameWidth(), base: 'dist/', alerts: { storm: false }, settings: { clk_face: 0, clk_24h: 0, clk_page: 2, clk_color: 0x8FE0, clk_slots: [21, 1, 7, 16, 11, 12, 7, 8] } });
       status.innerHTML = 'Firmware <b>' + clock.version + '</b> is running. Scroll on the screen to turn, tap to click, hold to hold.';
       $('#fw').textContent = clock.version;
       buildFaults(); markRunning();

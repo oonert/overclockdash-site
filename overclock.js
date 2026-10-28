@@ -12,7 +12,8 @@
  *                                    // sets the orientation; null = bare panel; or your own
  *                                    // { src, aspect, screen: [x, y, w, h] }
  *     frameWidth: 640,               // the case picture's width on the page
- *     settings: { clk_face: 1 },     // the firmware's own settings, by key, before boot
+ *     settings: { clk_face: 0 },     // the firmware's own settings, by key, before boot:
+ *                                    // a number, a string, or an array of bytes (a blob, e.g. clk_slots)
  *     time: null,                    // a Date for the clock chip; null = the visitor's clock
  *     storage: 'overclock-nvs-1',    // localStorage key for the settings; null = forget on reload
  *     dial: true,                    // draw the dial under the panel
@@ -174,6 +175,7 @@
       writes: Module._oc_writes, turn: Module._oc_turn, press: Module._oc_press, pause: Module._oc_pause,
       booted: Module._oc_booted, setU32: withStr(Module._oc_set_u32), setStr: withStr(Module._oc_set_str),
       goto: withStr(Module._oc_goto), setTime: Module._oc_set_time,
+      setBlob: (key, bytes) => { const n = Module.lengthBytesUTF8(key) + 1, k = Module._malloc(n), d = Module._malloc(bytes.length); Module.stringToUTF8(key, k, n); Module.HEAPU8.set(bytes, d); try { Module._oc_set_blob(k, d, bytes.length); } finally { Module._free(k); Module._free(d); } },
       version: () => Module.UTF8ToString(Module._oc_version()),
       notifyDefault: Module._oc_notify_default, notifyBit: withStr(Module._oc_notify_bit), notifyMask: Module._oc_notify_mask,
       event: Module._oc_event, eventRunning: Module._oc_event_running, eventCount: Module._oc_event_count,
@@ -192,7 +194,7 @@
     for (let i = 1; i < c.eventCount(); i++) { const n = c.eventName(i); if (n) events[n] = i; }
     for (const k in opts.settings) {
       const v = opts.settings[k];
-      if (typeof v === 'string') c.setStr(k, v); else c.setU32(k, v >>> 0);
+      if (typeof v === 'string') c.setStr(k, v); else if (Array.isArray(v)) c.setBlob(k, Uint8Array.from(v)); else c.setU32(k, v >>> 0);
     }
     Module.callMain([]);            // boots the firmware; it runs on between the browser's frames
 

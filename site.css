@@ -59,7 +59,13 @@ h1, h2, h3, p { margin: 0; }
 #clock { min-height: 420px; display: flex; justify-content: center; }
 #clock .overclock { padding: 0; gap: 20px; }
 #clock .overclock-dial { box-shadow: none !important; } /* removes the widget's own: taste-skill-ignore */
-.hero .faces { width: 100%; max-width: 640px; height: auto; background: #000; }
+.hero-clock { position: relative; width: 100%; max-width: 640px; }
+.hero .faces { width: 100%; height: auto; background: #000; display: block; }
+.hero-clock #clock { position: absolute; inset: 0; display: flex; justify-content: center; align-items: flex-start; opacity: 0; transition: opacity .8s var(--ease); }
+.hero-clock.live #clock { opacity: 1; }
+.hero-clock.live .faces { visibility: hidden; }
+.hero-clock #clock .overclock { padding: 0; gap: 0; }
+.hero-clock #clock .overclock-dial { display: none; }
 .status { margin-top: 14px; font-size: var(--t-small); color: var(--muted); min-height: 1.5em; max-width: 52ch; text-align: center; }
 .status b { color: var(--green); font-weight: 400; }
 @media (max-width: 900px) {

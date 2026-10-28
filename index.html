@@ -33,8 +33,11 @@
       </div>
     </div>
     <div class="object">
-      <video class="faces" src="video/clock-faces.mp4" poster="video/clock-faces-poster.jpg" muted loop playsinline autoplay preload="auto" width="1200" height="936" aria-label="The clock switching between its new face with live widgets and its retro face"></video>
-      <p class="status">The new face with its live corner widgets, and the retro face. Both are the real firmware; this is a recording of it.</p>
+      <div class="hero-clock" id="hero-clock">
+        <video class="faces" src="video/clock-faces.mp4" poster="video/clock-faces-poster.jpg" muted loop playsinline autoplay preload="auto" width="1200" height="936" aria-label="The clock switching between its retro face and its new face with live widgets"></video>
+        <div id="clock" aria-label="The clock, live"></div>
+      </div>
+      <p class="status" id="status">Loading the real firmware behind this picture...</p>
     </div>
   </section>
 
@@ -108,6 +111,7 @@
   </div>
 </footer>
 
+<script src="overclock.js"></script>
 <script src="index.js"></script>
 </body>
 </html>
