@@ -210,7 +210,7 @@ section.page .sub.small { font-size: var(--t-small); color: var(--muted); margin
 
 /* ── footer: the back of the object, uncovered like a curtain ──────────── */
 main { position: relative; z-index: 2; background: var(--ground); padding-bottom: var(--section); }
-footer { position: sticky; bottom: 0; z-index: 1; min-height: 100svh; background: var(--ink); color: #000; display: grid; grid-template-rows: auto 1fr auto; padding: 40px var(--margin) 24px; }
+footer.big { position: sticky; bottom: 0; z-index: 1; min-height: 100svh; background: var(--ink); color: #000; display: grid; grid-template-rows: auto 1fr auto; padding: 40px var(--margin) 24px; }
 footer .cols { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 32px; }
 footer .col { grid-column: span 3; font-size: 16px; }
 footer .col b { display: block; font-weight: 700; margin-bottom: 6px; }
@@ -239,7 +239,7 @@ footer .legal { font-size: 13px; color: #3a3630; }
 /* skip link, the small footer on the demo and 3D pages, and the document pages */
 .skip { position: absolute; left: -9999px; top: 8px; z-index: 100; background: var(--amber); color: #000; padding: 10px 16px; font-weight: 700; }
 .skip:focus { left: 8px; }
-.foot-small { padding: 24px var(--margin) 28px; color: var(--muted); font-size: var(--t-small); border-top: 1px solid #222; }
+footer.foot-small { position: static; min-height: 0; display: block; background: var(--ground); color: var(--muted); padding: 24px var(--margin) 28px; color: var(--muted); font-size: var(--t-small); border-top: 1px solid #222; }
 .foot-small p { margin: 0 0 6px; }
 .foot-small a { color: var(--amber); text-decoration: none; }
 .foot-small a:hover { text-decoration: underline; }
