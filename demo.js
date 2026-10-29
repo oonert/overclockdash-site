@@ -7,7 +7,7 @@
 
   // ── the clock ─────────────────────────────────────────────────────────────
   let clock = null, currentCase = '4runner';
-  const FW_STAMP = '2026-10-28g';   // bump when dist/ is rebuilt, so browsers fetch the new firmware
+  const FW_STAMP = '2026-10-28h';   // bump when dist/ is rebuilt, so browsers fetch the new firmware
   const status = $('#status');
   function frameWidth() { return phone() ? Math.round((window.innerWidth - 24) * 0.8) : Math.min(560, Math.round(window.innerWidth * 0.42)); }
   async function mountClock(which) {
