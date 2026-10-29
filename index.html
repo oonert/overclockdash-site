@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=20261028o">
+<link rel="stylesheet" href="site.css?v=20261028p">
 </head>
 <body>
 <main>
@@ -289,24 +289,33 @@
     </ul>
   </section>
 
-  <section class="page" id="want">
-    <div class="head in"><h2>WANT ONE?</h2></div>
-    <div class="want">
-      <div class="want-words in">
-        <p class="sub">OVERCLOCK is finished. Designed, built, and tested on the road. The first batch is small and limited, and we're starting with the people who reach out first.</p>
+  <div class="stripes" aria-hidden="true"><span></span><span></span><span></span></div>
+
+  <section class="page want-page" id="want">
+    <div class="want-hero in">
+      <div class="want-copy">
+        <h2>WANT ONE?</h2>
+        <p class="big">OVERCLOCK is finished. Designed, built, and tested on the road. The first batch is small and limited, and we're starting with the people who reach out first.</p>
         <p class="sub">Send a quick note with what you drive and we'll reply personally with where you stand and what happens next. No deposit, no commitment, no spam.</p>
-        <p class="actions"><a class="btn" href="mailto:hello@overclockdash.com?subject=I%20want%20an%20OVERCLOCK&amp;body=Truck%20(year%20and%20model)%3A%0A%0AAnything%20else%3A">I want one</a></p>
+        <p class="actions"><a class="btn big" href="mailto:hello@overclockdash.com?subject=I%20want%20an%20OVERCLOCK&amp;body=Truck%20(year%20and%20model)%3A%0A%0AAnything%20else%3A">I want one</a></p>
         <p class="fine">or write to <a href="mailto:hello@overclockdash.com">hello@overclockdash.com</a></p>
       </div>
-      <form class="want-form in" id="want-form" action="https://script.google.com/macros/s/AKfycbxi-XidVNt5O5QgqWX2Q7AxgvgE4CeUgcNRVTkpfK_G4opo1XjTwOyEbTPtx3rodjcp6w/exec" method="POST" novalidate>
+      <div class="want-renders" aria-hidden="true">
+        <img class="r1" src="pages/render-4runner-angle.jpg" width="1400" height="950" alt="" loading="lazy">
+        <img class="r2" src="pages/render-4runner-far.jpg" width="1400" height="906" alt="" loading="lazy">
+        <img class="r3" src="pages/case-tacoma-gauges.png" width="1200" height="1116" alt="" loading="lazy">
+      </div>
+    </div>
+    <form class="want-form in" id="want-form" action="https://script.google.com/macros/s/AKfycbxi-XidVNt5O5QgqWX2Q7AxgvgE4CeUgcNRVTkpfK_G4opo1XjTwOyEbTPtx3rodjcp6w/exec" method="POST" novalidate>
+      <h3>Save my spot</h3>
+      <div class="fields">
         <label>Email<input type="email" name="email" required autocomplete="email" placeholder="you@example.com"></label>
         <label>Truck, year and model<input type="text" name="truck" required placeholder="1997 4Runner SR5"></label>
-        <label>Anything else<textarea name="notes" rows="3" placeholder="Optional"></textarea></label>
-        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="gotcha">
-                <button class="btn" type="submit">Save my spot</button>
-        <p class="form-say" id="form-say" aria-live="polite"></p>
-      </form>
-    </div>
+        <label class="wide">Anything else<textarea name="notes" rows="2" placeholder="Optional"></textarea></label>
+      </div>
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="gotcha">
+      <div class="send"><button class="btn" type="submit">Save my spot</button><p class="form-say" id="form-say" aria-live="polite"></p></div>
+    </form>
   </section>
 
   <section class="page" id="try">
@@ -339,6 +348,6 @@
 document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
 document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
 </script>
-<script src="index.js?v=20261028o"></script>
+<script src="index.js?v=20261028p"></script>
 </body>
 </html>
