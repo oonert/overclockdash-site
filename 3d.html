@@ -34,16 +34,13 @@
   <div class="stage" id="stage">
     <canvas id="c" aria-label="3D model. Drag to turn, pinch or scroll to zoom."></canvas>
     <div class="dots" id="dots"></div>
-    <div class="screenbar" id="screenbar">
-      <button id="prev" aria-label="Turn knob left">&larr;</button><button id="press" aria-label="Press knob">CLICK</button><span id="sname">Dash</span><button id="next" aria-label="Turn knob right">&rarr;</button>
-    </div>
     <div class="tools">
       <button class="btn ghost" id="flip">Show back</button>
       <button class="btn ghost" id="labels" aria-pressed="true">Hide labels</button>
       <button class="btn ghost" id="reset">Reset view</button>
     </div>
     <div class="card" id="card" hidden><button class="x" id="cardx" aria-label="Close">&times;</button><h2 id="ct"></h2><p id="cb"></p><div class="ref" id="cr"></div></div>
-    <div class="hint" id="hint">Drag to turn &middot; Pinch or scroll to zoom &middot; Tap a dot &middot; Tap the screen to press the knob</div>
+    <div class="hint" id="hint">Drag to turn &middot; Pinch or scroll to zoom &middot; Tap a dot</div>
     <div class="loading" id="loading">Loading the model...</div>
   </div>
   <p class="fine">The screens run the real firmware. The board is the production V2 board, straight from its design files.</p>
@@ -63,21 +60,21 @@ const SCREENS = {
   '4runner':[['dash','Dash'],['clock','Clock'],['gauges','Gauges'],['temp','Temps'],['towing','Towing'],['starter','Starter'],['apps','Apps']].map(([f,n])=>['screens/'+f+'.jpg',n]),
   tacoma:[['clock','Clock'],['gauges','Gauges'],['temp','Temps'],['towing','Towing'],['starter','Starter'],['apps','Apps'],['retro','Retro']].map(([f,n])=>['screens/portrait/'+f+'.png',n])};
 const TEXT = {
-  screen:['Live screen','This is the real OVERCLOCK firmware running in your browser. Use the arrows to turn the knob and tap the screen to press it.'],
+  screen:['Live screen','The real OVERCLOCK firmware, running in your browser and turning through its pages.'],
   sma:['GPS antenna port','Standard SMA screw-on antenna. GPS sets the clock and tracks speed and altitude.'],
   oem:['Factory plug','The original clock connector plugs straight in. No cutting or splicing.'],
-  terminals:['Sensor terminals','Screw terminals for a pressure sender and a temperature probe.'],
+  terminals:['Sensor terminals','Screw terminals for a pressure sender and up to four temperature probes.'],
   tempb:['TEMP B input','A second temperature input, for a sender like transmission temp.'],
   sd:['microSD slot','Trip logs and firmware updates. Cards up to 32 GB.'],
   fuse:['Fuse access','The board’s 2 A blade fuse is reachable through the bottom of the case.'],
   ties:['Zip-tie anchors','Loops on top of the case to keep the wiring tidy behind the dash.'],
-  U302:['Coprocessor','A second ESP32 that shares the work and runs the expansion port.'],
-  U301:['Main processor','ESP32 with 16 MB flash. Runs the screen, gauges, Wi-Fi and Bluetooth.'],
+  U302:['Coprocessor','A second ESP32 that does all the Bluetooth: the engine adapter, solar gear and smart batteries. It also runs the expansion port.'],
+  U301:['Main processor','ESP32 with 16 MB flash. Runs the screen, the gauges, the sensors, the logging and WiFi.'],
   U601:['GPS receiver','u-blox M10. Sets the time and tracks speed, heading and altitude.'],
   J601:['GPS antenna jack','Wired to the SMA connector on the case.'],
   F101:['2 A blade fuse','Protects the board and the truck. Mounted on the underside.'],
   J705:['Pressure input','PRES A terminals: 5 V, A− and A+ for a pressure sender.'],
-  J702:['Temperature probe','3V3, GND and DATA for a digital temperature probe.'],
+  J702:['Temperature probes','3V3, GND and DATA. Up to four digital temperature probes, wired in parallel on this one port.'],
   J706:['TEMP B input','Two terminals for a second temperature sender.'],
   J701:['Knob connector','Plug for the rotary knob that drives the menus.'],
   J704:['Expansion port','Spare connection for future add-ons.'],
@@ -125,7 +122,6 @@ async function setScreen(i){
   const list=SCREENS[mode]; if(!list) return;
   screenIdx=(i+list.length)%list.length;
   if(liveClock){ return; }
-  document.getElementById('sname').textContent=list[screenIdx][1];
   if(!screenMat) return;
   const t=await loadTex(list[screenIdx][0]); if(t&&!liveClock){ screenMat.emissiveMap=t; screenMat.needsUpdate=true; }
 }
@@ -137,10 +133,11 @@ async function goLive(m){
     const {clk,t}=await startLive(m); if(mode!==m) return;
     clk.resume(); liveClock=clk; liveTex=t;
     if(screenMat){ screenMat.emissiveMap=t; screenMat.needsUpdate=true; }
-    document.getElementById('sname').textContent='LIVE';
   }catch(e){ console.warn('live firmware unavailable, showing still screens',e); }
 }
-function knob(n){ if(liveClock){ n===0?liveClock.click():liveClock.turn(n); } else if(n) setScreen(screenIdx+n); else setScreen(screenIdx+1); pauseSpin(); }
+// The screen never sits still: the live firmware turns to the next page every
+// few seconds; the stills (if the firmware could not load) change the same way.
+setInterval(()=>{ if(liveClock) liveClock.turn(1); else if(screenMat) setScreen(screenIdx+1); }, 2500);
 function frame(obj,dir){
   const box=new THREE.Box3().setFromObject(obj), c=box.getCenter(new THREE.Vector3()), r=box.getSize(new THREE.Vector3()).length()/2;
   const vf=THREE.MathUtils.degToRad(camera.fov/2), hf=Math.atan(Math.tan(vf)*camera.aspect);
@@ -151,8 +148,7 @@ function frame(obj,dir){
 function homeDir(){ return mode==='board'? new THREE.Vector3(0.35,1,0.55).multiplyScalar(back?-1:1).setX(0.35) : back? new THREE.Vector3(0.55,0.45,-1): new THREE.Vector3(-0.62,0.32,1); }
 async function show(m){
   mode=m; back=false; hideCard();
-  for(const b of ['4runner','tacoma','board']) document.getElementById('m-'+b).setAttribute('aria-pressed',String(b===m));
-  document.getElementById('screenbar').hidden = m==='board';
+  for(const b of ['4runner','tacoma','board']){ const el=document.getElementById('m-'+b); el.setAttribute('aria-pressed',String(b===m)); el.setAttribute('aria-selected',String(b===m)); }
   document.getElementById('flip').textContent = m==='board' ? 'Show bottom' : 'Show back';
   const file = m==='board' ? 'board.gltf.json' : `clock_${m}.gltf.json`;
   document.getElementById('loading').hidden=false;
@@ -200,9 +196,6 @@ function placeDots(){
 function pauseSpin(){ controls.autoRotate=false; clearTimeout(idleTimer); idleTimer=setTimeout(()=>{ if(card.hidden) controls.autoRotate=!matchMedia('(prefers-reduced-motion: reduce)').matches; },9000); }
 controls.addEventListener('start',()=>{pauseSpin(); document.getElementById('hint').style.opacity=0;});
 if(matchMedia('(prefers-reduced-motion: reduce)').matches) controls.autoRotate=false;
-document.getElementById('prev').onclick=()=>knob(-1);
-document.getElementById('next').onclick=()=>knob(1);
-document.getElementById('press').onclick=()=>knob(0);
 document.getElementById('flip').onclick=()=>{ back=!back; if(current) frame(current,homeDir()); document.getElementById('flip').textContent = mode==='board' ? (back?'Show top':'Show bottom') : (back?'Show front':'Show back'); pauseSpin(); };
 document.getElementById('reset').onclick=()=>{ back=false; if(current) frame(current,homeDir()); document.getElementById('flip').textContent= mode==='board'?'Show bottom':'Show back'; hideCard(); };
 document.getElementById('labels').onclick=(e)=>{ showLabels=!showLabels; dotsEl.hidden=!showLabels; e.currentTarget.textContent=showLabels?'Hide labels':'Show labels'; e.currentTarget.setAttribute('aria-pressed',String(showLabels)); if(!showLabels) hideCard(); };
@@ -214,7 +207,7 @@ canvas.addEventListener('pointerup',e=>{
   if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>6||!current) return;
   const r=canvas.getBoundingClientRect(); ptr.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);
   ray.setFromCamera(ptr,camera); const hit=ray.intersectObject(current,true)[0];
-  if(hit&&hit.object.material&&hit.object.material.name==='screen') knob(0); else hideCard();
+  hideCard();
 });
 function resize(){ const w=stage.clientWidth,h=stage.clientHeight; renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix(); }
 new ResizeObserver(resize).observe(stage); resize();
