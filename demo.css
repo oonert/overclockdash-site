@@ -12,6 +12,10 @@ body.demo { overflow-x: clip; touch-action: pan-y; }
 .stage .hint.gone { opacity: 0; pointer-events: none; }
 .stage .hint .phone { display: none; }
 @media (hover: none) and (pointer: coarse) { .stage .hint .desk { display: none; } .stage .hint .phone { display: inline; } }
+.stage .guide { width: 100%; max-width: 560px; margin-top: 28px; padding: 20px 22px; background: var(--panel); }
+.stage .guide h2 { color: var(--amber); font-size: 18px; font-weight: 700; letter-spacing: .04em; }
+.stage .guide ul { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 15px; color: var(--muted); }
+.stage .guide b { color: var(--ink); }
 .panels { display: flex; flex-direction: column; gap: 14px; padding-top: 8px; }
 .panel { background: var(--panel); padding: 24px 24px 22px; }
 .panel:nth-child(even) { background: var(--panel-2); }
@@ -38,6 +42,7 @@ body.demo { overflow-x: clip; touch-action: pan-y; }
   .stage #clock .overclock { gap: 10px; }
   .stage #clock .overclock-dial { width: 48px !important; height: 48px !important; }
   .stage .status { display: none; }
+  .stage .guide { display: none; }
   .stage .hint { margin-top: 6px; font-size: 13px; gap: 4px 12px; }
   .panels { padding-top: 12px; }
   .panel { padding: 18px 16px 16px; }
