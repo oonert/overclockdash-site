@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>OVERCLOCK Field Computer: the clock your Toyota should have come with</title>
 <meta name="description" content="OVERCLOCK Field Computer plugs into the factory clock spot of a nineties Toyota truck. Engine codes spelled out, GPS, every drive logged every second, weather, tilt, solar and alerts. No wiring. Try the real firmware in your browser.">
-<link rel="stylesheet" href="site.css?v=20261030o">
+<link rel="stylesheet" href="site.css?v=20261030p">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -236,7 +236,7 @@
     <div class="head in"><h2>EVERY GALLON, ACCOUNTED FOR</h2></div>
     <div class="lead-row">
       <p class="sub">Real miles per gallon from the engine, not a guess from the gauge. Log a fill at the pump and every number gets sharper: this tank, the last one, your range, and what the truck is costing you.</p>
-      <img class="lead-shot" src="pages/fuel.png" width="320" height="240" alt="The FUEL page: range, this tank, last tank and the fill-up tile" loading="lazy">
+      <video class="lead-shot" src="video/fuel.mp4" poster="video/fuel-poster.jpg" muted loop playsinline autoplay preload="auto" width="1200" height="938" aria-label="The FUEL page, logging a fill: gallons, price, the engine's own check, save; then the clock with range, live mpg, average mpg and heading"></video>
     </div>
     <ul class="feat in">
       <li><b>Live mpg, all the time.</b> Fuel is measured from the engine's own airflow every second, so mpg sits in a corner of the clock, on the gauges and on the trip meters while you drive.</li>
@@ -442,7 +442,7 @@
 document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
 document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
 </script>
-<script src="index.js?v=20261030o"></script>
-<script src="menu.js?v=20261030o"></script>
+<script src="index.js?v=20261030p"></script>
+<script src="menu.js?v=20261030p"></script>
 </body>
 </html>
