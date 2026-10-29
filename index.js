@@ -40,7 +40,7 @@
 
   // "Does it fit my truck?" points at the footer, which is pinned under the page
   // like a curtain, so a plain anchor jump goes nowhere: scroll to the end instead.
-  $$('a[href="#fits"]').forEach(a => a.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' }); }));
+  $$('a[href="#fits"]').forEach(a => a.addEventListener('click', (e) => { e.preventDefault(); document.getElementById('fits').scrollIntoView({ behavior: 'smooth' }); }));
 
   // Want one: the short form posts to a small Google Apps Script in Derek's
   // Workspace (a row in the OVERCLOCK interest sheet, an email to hello@).

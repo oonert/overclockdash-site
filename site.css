@@ -274,3 +274,22 @@ section.page > .head::before { content: "PAGE " counter(sec, decimal-leading-zer
 main { padding-bottom: 0; }
 
 .feat li a { color: var(--amber); }
+
+/* the spec sheet: the fitment and contents as a datasheet, hairline rows like the page dividers */
+.spec-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 40px; padding: 32px var(--margin) 0; }
+.spec-block h3 { color: var(--amber); font-size: 13px; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; padding-bottom: 8px; border-bottom: 1px solid var(--amber); }
+.spec-block h3.later { margin-top: 28px; }
+.spec-block .row { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid #262626; font-size: 15px; line-height: 1.3; }
+.spec-block .row span { color: var(--muted); }
+.spec-block .row b { font-weight: 700; text-align: right; }
+.spec-block .row a { color: var(--amber); text-decoration: none; }
+.spec-block .row a:hover { text-decoration: underline; }
+.spec-note { margin-top: 12px; font-size: 14px; }
+.spec-note a { color: var(--amber); }
+@media (max-width: 1000px) { .spec-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .spec-grid { grid-template-columns: 1fr; } }
+footer.foot-small.home { margin-top: 0; }
+footer.foot-small.home .mark { display: inline-flex; flex-direction: column; text-decoration: none; line-height: 1; margin-bottom: 18px; }
+footer.foot-small.home .mark-top { font-weight: 700; font-size: 24px; letter-spacing: .06em; border-bottom: 2px solid var(--ink); padding-bottom: 2px; color: var(--ink); }
+footer.foot-small.home .mark-sub { font-size: 11px; font-weight: 700; color: var(--amber); letter-spacing: .3em; margin-top: 4px; }
+footer.foot-small.home p { max-width: 110ch; }
