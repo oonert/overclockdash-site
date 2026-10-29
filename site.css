@@ -50,18 +50,18 @@ h1, h2, h3, p { margin: 0; }
 /* ── hero: the clock in its case, the page's object ─────────────────────── */
 .hero { padding: 24px var(--margin) 0; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); align-items: start; }
 .hero h1 { grid-column: 1 / 13; padding-top: 32px; }
-.hero .words { grid-column: 1 / 6; padding-top: 32px; }
+.hero .words { grid-column: 1 / 8; padding-top: 32px; }
 .hero h1 { font-weight: 700; font-size: var(--t-display); line-height: .92; letter-spacing: -.02em; }
-.hero .lead { font-size: var(--t-lead); margin-top: 32px; max-width: 34ch; color: var(--ink); }
+.hero .lead { font-size: var(--t-lead); margin-top: 32px; max-width: 46ch; color: var(--ink); }
 .hero .actions { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
-.hero .object { grid-column: 6 / 13; display: flex; flex-direction: column; align-items: center; }
+.hero .object { grid-column: 8 / 13; display: flex; flex-direction: column; align-items: flex-end; padding-top: 32px; }
 .tabs { display: flex; gap: 28px; margin-bottom: 12px; }
 .tabs button { background: none; border: 0; padding: 10px 0; font-size: 18px; color: var(--muted); border-bottom: 3px solid transparent; }
 .tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--amber); }
 #clock { min-height: 420px; display: flex; justify-content: center; }
 #clock .overclock { padding: 0; gap: 20px; }
 #clock .overclock-dial { box-shadow: none !important; } /* removes the widget's own: taste-skill-ignore */
-.hero-clock { position: relative; width: 100%; max-width: 640px; }
+.hero-clock { position: relative; width: 100%; max-width: 400px; }
 .hero .faces { width: 100%; height: auto; background: #000; display: block; }
 .hero-clock #clock { position: absolute; inset: 0; display: flex; justify-content: center; align-items: flex-start; opacity: 0; transition: opacity .8s var(--ease); }
 .hero-clock.live #clock { opacity: 1; }
@@ -76,7 +76,8 @@ h1, h2, h3, p { margin: 0; }
 @media (max-width: 900px) {
   .hero { display: flex; flex-direction: column; padding-top: 8px; }
   .hero h1 { padding-top: 8px; order: 1; }
-  .hero .object { order: 2; margin-top: 20px; }
+  .hero .object { order: 2; margin-top: 20px; align-items: center; padding-top: 0; }
+  .hero-clock { max-width: 72vw; }
   .hero .words { order: 3; padding-top: 0; margin-top: 36px; }
   .hero h1 { font-size: clamp(40px, 11.5vw, 72px); max-width: none; }
   .hero .lead { margin-top: 20px; }
@@ -96,6 +97,11 @@ section.page { padding-block: var(--section) 0; }
 section.page > .head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--gap); padding-inline: var(--margin); }
 section.page h2 { color: var(--amber); font-weight: 700; font-size: var(--t-title); line-height: 1; letter-spacing: -.01em; }
 section.page .sub { font-size: var(--t-lead); color: var(--ink); margin-top: 16px; max-width: 44ch; padding-inline: var(--margin); }
+/* the intro beside one picture of the page it talks about */
+.lead-row { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); align-items: center; padding-right: var(--margin); }
+.lead-row .sub { grid-column: 1 / 8; }
+.lead-row .lead-shot { grid-column: 8 / 13; width: 100%; max-width: 420px; height: auto; justify-self: end; margin-top: 16px; border: 1px solid #2a2a2a; border-radius: 6px; background: #000; }
+@media (max-width: 900px) { .lead-row { display: block; padding-right: 0; } .lead-row .lead-shot { margin: 24px var(--margin) 0; max-width: calc(100% - 2 * var(--margin)); } }
 
 /* the knob: a drag row of moments */
 .row-wrap { margin-top: 40px; }
