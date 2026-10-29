@@ -17,6 +17,7 @@
  *     time: null,                    // a Date for the clock chip; null = the visitor's clock
  *     storage: 'overclock-nvs-1',    // localStorage key for the settings; null = forget on reload
  *     dial: true,                    // draw the dial under the panel
+ *     v: '2026-10-28',               // optional: a stamp added to the firmware file URLs, so a rebuilt dist/ is fetched fresh
  *     backlight: true,               // dim the picture with the firmware's backlight (false = always full)
  *     alerts: { storm: false },      // popups off (or on) against the firmware's defaults:
  *                                    // storm, fridge, freezer, fuel, home, border, gpsdot
@@ -87,12 +88,13 @@
     if (opts.storage === undefined) opts.storage = 'overclock-nvs-' + orient;
     const base = opts.base && !opts.base.endsWith('/') ? opts.base + '/' : (opts.base || '');
     const NVS_PATH = '/nvs.bin';
+    const bust = opts.v ? '?v=' + encodeURIComponent(opts.v) : '';   // a stamp that changes when dist/ does, past any cache
 
     // One firmware file per orientation; each defines OverclockModule when it
     // loads, so the factory is kept per orientation and the global cleared.
     if (!factories[orient]) {
       global.OverclockModule = undefined;       // a plain var once a file has loaded: cannot be deleted, only overwritten
-      await loadScript(base + 'overclock-' + orient + '.js');
+      await loadScript(base + 'overclock-' + orient + '.js' + bust);
       factories[orient] = global.OverclockModule; global.OverclockModule = undefined;
     }
     const factory = factories[orient];
@@ -145,7 +147,7 @@
     const saved = nvsLoad(opts.storage);
     const timeAt = opts.time ? new Date(opts.time) : new Date();
     const Module = await factory({
-      locateFile: (path) => base + path,
+      locateFile: (path) => base + path + bust,
       print: (t) => console.log('[overclock] ' + t),
       printErr: (t) => console.warn('[overclock] ' + t),
       noInitialRun: true,           // the page's settings go in first, then main()

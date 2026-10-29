@@ -7,6 +7,7 @@
 
   // ── the clock ─────────────────────────────────────────────────────────────
   let clock = null, currentCase = '4runner';
+  const FW_STAMP = '2026-10-28b';   // bump when dist/ is rebuilt, so browsers fetch the new firmware
   const status = $('#status');
   function frameWidth() { return phone() ? Math.round((window.innerWidth - 24) * 0.8) : Math.min(560, Math.round(window.innerWidth * 0.42)); }
   async function mountClock(which) {
@@ -15,7 +16,7 @@
     if (clock) { clock.destroy(); clock = null; }
     status.textContent = 'Loading the firmware (about 4 MB)...';
     try {
-      clock = await OverclockClock.mount($('#clock'), { frame: which, frameWidth: frameWidth(), base: 'dist/', dial: false, alerts: { storm: false }, settings: { clk_face: 0, clk_24h: 0, clk_page: 2, clk_color: 0x8FE0, clk_slots: [21, 1, 7, 16, 11, 12, 7, 8] } });
+      clock = await OverclockClock.mount($('#clock'), { frame: which, frameWidth: frameWidth(), base: 'dist/', v: FW_STAMP, dial: false, alerts: { storm: false }, settings: { clk_face: 0, clk_24h: 0, clk_page: 2, clk_color: 0x8FE0, clk_slots: [21, 1, 7, 16, 11, 12, 7, 8] } });
       status.textContent = ''; showHint();
       $('#fw').textContent = clock.version;
       buildFaults(); markRunning();
@@ -137,10 +138,10 @@
     // Camp: a rooftop tent, and a block under the front-right wheel.
     tent = new THREE.Group(); tent.visible = false; truck.add(tent);
     const canvasMat = new THREE.MeshStandardMaterial({ color: 0x9a8a5c, roughness: 1 });
-    const tentBase = new THREE.Mesh(new THREE.BoxGeometry(2.3, 0.22, 1.5), new THREE.MeshStandardMaterial({ color: 0x2b2b2b, roughness: 1 })); tentBase.position.set(-0.75, 2.33, 0); tentBase.castShadow = true; tent.add(tentBase);
+    const tentBase = new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.22, 1.5), new THREE.MeshStandardMaterial({ color: 0x2b2b2b, roughness: 1 })); tentBase.position.set(-0.9, 2.33, 0);   // on the cab roof (the cab is x -1.9 to 0.1) tentBase.castShadow = true; tent.add(tentBase);
     const ridge = new THREE.Shape(); ridge.moveTo(-0.8, 0); ridge.lineTo(0.8, 0); ridge.lineTo(0, 0.7); ridge.lineTo(-0.8, 0);
-    const tentTop = new THREE.Mesh(new THREE.ExtrudeGeometry(ridge, { depth: 2.3, bevelEnabled: false }), canvasMat);
-    tentTop.rotation.y = Math.PI / 2; tentTop.position.set(-0.75 + 1.15, 2.44, 0); tentTop.castShadow = true; tent.add(tentTop);
+    const tentTop = new THREE.Mesh(new THREE.ExtrudeGeometry(ridge, { depth: 2.0, bevelEnabled: false }), canvasMat);
+    tentTop.rotation.y = Math.PI / 2; tentTop.position.set(-1.9, 2.44, 0);   // extrudes toward +x after the turn tentTop.castShadow = true; tent.add(tentTop);
     const FR_WHEEL_X = 1.35, FR_WHEEL_Z = 1.0;   // the truck faces +x; +z is its right side
     block = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.06, 0.5), new THREE.MeshStandardMaterial({ color: 0xffb000, roughness: 0.8 })); block.visible = false; block.position.set(FR_WHEEL_X, 0.03, FR_WHEEL_Z); block.castShadow = true; rig.add(block);
     let drag = null;
