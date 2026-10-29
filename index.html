@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>OVERCLOCK Field Computer: the clock your Toyota should have come with</title>
 <meta name="description" content="OVERCLOCK Field Computer plugs into the factory clock spot of a nineties Toyota truck. Engine codes in plain English, GPS, every drive logged every second, weather, tilt, solar and alerts. No wiring. Try the real firmware in your browser.">
-<link rel="stylesheet" href="site.css?v=20261028z">
+<link rel="stylesheet" href="site.css?v=20261029a">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -22,6 +22,7 @@
       <a href="#logs">Logging</a>
       <a href="#built">Built</a>
       <a href="3d.html">3D</a>
+      <a href="faq.html">Questions</a>
       <a href="#want">Want one?</a>
     </nav>
   </header>
@@ -153,7 +154,7 @@
   <section class="page" id="temps">
     <div class="head in"><h2>TEMPERATURES, ANYWHERE YOU WANT THEM.</h2></div>
     <div class="lead-row">
-      <p class="sub">Plug in up to four optional temperature probes, name each one, and put them wherever you need eyes: inside the cab, outside air, your fridge, your freezer, the battery box. That's on top of a dedicated transmission temperature sender, so you can watch up to five temperatures at once.</p>
+      <p class="sub">Two temperature probes come in the box, and it takes up to four. Plug them in, name each one, and put them wherever you need eyes: inside the cab, outside air, your fridge, your freezer, the battery box. That's on top of a dedicated transmission temperature sender, so you can watch up to five temperatures at once.</p>
       <img class="lead-shot" src="pages/temp4.png" width="320" height="240" alt="The TEMP page showing four named probes" loading="lazy">
     </div>
     <ul class="feat in">
@@ -298,6 +299,7 @@
       <li><b>No cloud, no account, no subscription.</b> Your data lives on a card in your dash and goes nowhere unless you download it.</li>
       <li><b>No location logging unless you want it.</b> One switch, and location never gets recorded.</li>
       <li><b>No live engine data before 1996.</b> Pre-1996 trucks don't have the diagnostic port the adapter talks to. They still get GPS, weather, tilt and everything else. The engine pages just stay hidden.</li>
+      <li><b>It doesn't drain your battery.</b> Parked, it switches itself off and wakes once an hour for a 19-second check-in, about 2 to 5 percent on top of what the truck already draws sitting still. If the battery runs low, it stops waking. <a href="power.html">The numbers.</a></li>
       <li><b>It doesn't replace your mechanic.</b> It tells you what a code means and what to check first. A good mechanic still makes the final call.</li>
     </ul>
   </section>
@@ -353,7 +355,7 @@
   <div></div>
   <div>
     <svg class="mark-big" viewBox="0 0 1000 215" aria-hidden="true" focusable="false"><text x="0" y="128" textLength="1000" lengthAdjust="spacingAndGlyphs" font-family="Roboto Condensed, Arial Narrow, sans-serif" font-weight="700" font-size="150" fill="#000">OVERCLOCK</text><rect x="0" y="142" width="1000" height="6" fill="#000"/><text x="0" y="205" textLength="1000" lengthAdjust="spacingAndGlyphs" font-family="Roboto Condensed, Arial Narrow, sans-serif" font-weight="700" font-size="54" fill="#b8860b">FIELD COMPUTER</text></svg>
-    <p class="legal">&copy; 2026 OVERCLOCK Field Computer. Not affiliated with Toyota Motor Corporation, Victron Energy, 3M, Google, the Bluetooth SIG or the Wi-Fi Alliance; their names are used only to say what the product works with. 4Runner, Tacoma and T100 are Toyota's names for their trucks. Auto Meter is a trademark of Auto Meter Products, Inc. VDO is a trademark of Continental AG. AEM is a trademark of AEM Performance Electronics. OVERCLOCK is not affiliated with or endorsed by these companies. Compatibility with third-party solar gear and batteries is by reading their published Bluetooth data. <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="licenses.html">Licenses</a> &middot; <a href="regulatory.html">Regulatory</a><br>Contains FCC ID: 2AC7Z-ESP32WROOM32E</p>
+    <p class="legal">&copy; 2026 OVERCLOCK Field Computer. Not affiliated with Toyota Motor Corporation, Victron Energy, 3M, Google, the Bluetooth SIG or the Wi-Fi Alliance; their names are used only to say what the product works with. 4Runner, Tacoma and T100 are Toyota's names for their trucks. Auto Meter is a trademark of Auto Meter Products, Inc. VDO is a trademark of Continental AG. AEM is a trademark of AEM Performance Electronics. OVERCLOCK is not affiliated with or endorsed by these companies. Compatibility with third-party solar gear and batteries is by reading their published Bluetooth data. <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="licenses.html">Licenses</a> &middot; <a href="regulatory.html">Regulatory</a> &middot; <a href="faq.html">Questions</a> &middot; <a href="power.html">Power</a><br>Contains FCC ID: 2AC7Z-ESP32WROOM32E</p>
   </div>
 </footer>
 
@@ -362,7 +364,7 @@
 document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
 document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
 </script>
-<script src="index.js?v=20261028z"></script>
-<script src="menu.js?v=20261028z"></script>
+<script src="index.js?v=20261029a"></script>
+<script src="menu.js?v=20261029a"></script>
 </body>
 </html>

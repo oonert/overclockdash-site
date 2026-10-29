@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Power and your battery: OVERCLOCK Field Computer</title>
+<meta name="description" content="How much power the OVERCLOCK Field Computer draws driving, at key-off and parked, and how it protects your battery.">
+<link rel="stylesheet" href="site.css?v=20261029a">
+</head>
+<body class="doc">
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="index.html"><span class="mark-top">OVERCLOCK</span><span class="mark-sub">FIELD COMPUTER</span></a>
+      <button class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+  <nav id="site-nav"><a href="index.html">Home</a><a href="demo.html">Demo</a><a href="3d.html">3D</a></nav>
+</header>
+<main class="doc-main" id="main">
+  <h1>Power and your battery</h1>
+  <p class="updated">OVERCLOCK adds about 2 to 5 percent to what your truck already draws while parked, and shuts itself off if the battery gets low.</p>
+
+  <h2>Driving</h2>
+  <p>With the key on and the screen on, OVERCLOCK draws about a tenth of an amp, about as much as one dashboard bulb. With the Wi-Fi hotspot on, a little more. An hour of driving uses about 110 mAh, less than a fifth of a percent of a typical starter battery, and the alternator covers it anyway.</p>
+
+  <h2>Key off</h2>
+  <p>The clock stays on for 15 seconds after you turn the key off, so a stall or a quick restart doesn't interrupt it. Then it saves your trip and logs and switches itself fully off, about 18 to 19 seconds after the key. Each key-off costs about 0.6 mAh.</p>
+
+  <h2>Parked</h2>
+  <p>Between check-ins the board is switched off, not sleeping. The only thing awake is the clock chip and the circuit that wakes it, which draws under 1 mA, effectively zero. That is the number that matters for a truck that sits.</p>
+
+  <h2>Parked check-ins</h2>
+  <p>While parked, OVERCLOCK wakes on a schedule you pick: every hour (the default), every 30 minutes, or every 15 minutes. Each wake runs about 19 seconds: a GPS fix, the temperature probes, the barometer, and your solar and battery readings if you have them, then one line in the log and back off. About 0.6 mAh per wake.</p>
+  <ul class="lic">
+    <li>Hourly (the default): about 15 mAh a day</li>
+    <li>Every 30 minutes: about 30 mAh a day</li>
+    <li>Every 15 minutes: about 60 mAh a day</li>
+  </ul>
+  <p>Averaged out, that is 0.6 to 2.5 mA of continuous draw. A typical vehicle's own standing draw (engine computer memory, radio presets, alarm, clock) is 20 to 50 mA, about 500 to 1,200 mAh a day. OVERCLOCK adds roughly 2 to 5 percent on top of that.</p>
+
+  <h2>Protection</h2>
+  <ul class="lic">
+    <li><b>Low-battery cutoff.</b> Set it to 11.8 V (the default), 12.0 V, or never. Two low readings in a row pause the check-ins. It then rechecks only every 6 hours until the battery is back up by 0.2 V or the truck is driven.</li>
+    <li><b>No restart loops.</b> If the battery is disconnected while parked, the clock stays off until the key comes on, and it never restarts more than three times with the key off.</li>
+    <li><b>Cranking.</b> Brownout protection on the board means a cranking sag never corrupts a setting or a log.</li>
+  </ul>
+
+  <p class="updated">Figures are bench measurements of a V2 board at 12.6 V, rounded. The running figure matched the truck.</p>
+</main>
+<footer class="foot-small">
+  <p>&copy; 2026 OVERCLOCK Field Computer. Questions? <a href="mailto:hello@overclockdash.com">hello@overclockdash.com</a></p>
+  <p><a href="index.html">Home</a> &middot; <a href="demo.html">Demo</a> &middot; <a href="3d.html">3D</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="licenses.html">Licenses</a> &middot; <a href="regulatory.html">Regulatory</a> &middot; <a href="faq.html">Questions</a> &middot; <a href="power.html">Power</a></p>
+  <p>Contains FCC ID: 2AC7Z-ESP32WROOM32E</p>
+</footer>
+<script src="menu.js?v=20261029a"></script>
+</body>
+</html>
