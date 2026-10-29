@@ -9,7 +9,7 @@
   row.addEventListener('scroll', updateProgress, { passive: true }); updateProgress(); window.addEventListener('resize', updateProgress);
   // Grab a row with the mouse and throw it: it coasts and slows down. Touch
   // keeps the browser's own swipe. Snap is off while the mouse has it.
-  // the mouse wheel over a row scrolls it sideways, smoothly, with a glide at the end
+  // the mouse wheel over a row scrolls it sideways, smoothly, with a glide at the end (not wired up: Derek 2026-10-28, it fought the page scroll; drag, the arrows and a trackpad swipe move the rows)
   function wheelRow(row) {
     let target = null, anim = null;
     const step = () => {
@@ -56,7 +56,7 @@
     row.addEventListener('click', (e) => { if (row.classList.contains('thrown')) e.preventDefault(); }, true);
     row.addEventListener('dragstart', (e) => e.preventDefault());
   }
-  grabRow(row); wheelRow(row);
+  grabRow(row);
   // click a picture in a row: the lightbox
   $$('.row').forEach(r => r.addEventListener('click', (e) => {
     const img = e.target.closest('img'); if (!img || r.classList.contains('thrown')) return;
@@ -69,7 +69,7 @@
     const onKey = (ev) => { if (ev.key === 'Escape') close(); };
     box.addEventListener('click', close); document.addEventListener('keydown', onKey);
   }));
-  rowProgress($('#phones'), $('#phone-progress')); grabRow($('#phones')); wheelRow($('#phones'));
+  rowProgress($('#phones'), $('#phone-progress')); grabRow($('#phones'));
   $$('.row').forEach(el => { el.classList.add('in'); });
 
   // "Does it fit my truck?" points at the footer, which is pinned under the page
