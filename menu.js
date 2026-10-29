@@ -6,3 +6,11 @@
   nav.addEventListener('click', function (e) { if (e.target.tagName === 'A') set(false); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
 })();
+
+// the wordmark: FIELD COMPUTER spread letter by letter to the width of OVERCLOCK
+document.querySelectorAll('.mark-sub').forEach(function (el) {
+  if (el.dataset.spread) return; el.dataset.spread = '1';
+  var t = el.textContent, out = '';
+  for (var i = 0; i < t.length; i++) out += t[i] === ' ' ? '<i class="gap"></i>' : '<i>' + t[i] + '</i>';
+  el.innerHTML = out;
+});
