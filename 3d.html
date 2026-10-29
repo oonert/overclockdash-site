@@ -112,7 +112,7 @@ function startLive(m){
   if(!live[o]) live[o]=(async()=>{
     if(!window.OverclockClock) throw new Error('no firmware');
     const host=document.createElement('div'); host.style.cssText='position:fixed;left:0;top:0;opacity:0.001;pointer-events:none;z-index:-1'; document.body.appendChild(host);
-    const clk=await OverclockClock.mount(host,{orientation:o,base:FW.base,v:FW.v,scale:1,dial:false,storage:null,backlight:false,alerts:{storm:false},settings:{scr_Slides:0}});
+    const clk=await OverclockClock.mount(host,{orientation:o,base:FW.base,v:FW.v,scale:1,dial:false,storage:null,backlight:false,alerts:{storm:false},settings:{scr_Slides:0, clk_face:0, clk_24h:0, clk_page:2, clk_color:0x8FE0, clk_slots:[21,1,7,16,11,12,7,8]}});
     const t=new THREE.CanvasTexture(clk.canvas); t.colorSpace=THREE.SRGBColorSpace; t.flipY=false; t.anisotropy=8; t.minFilter=THREE.LinearFilter;
     return {clk,t};
   })();
