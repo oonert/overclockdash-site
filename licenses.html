@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Licenses and credits: OVERCLOCK Field Computer</title>
 <meta name="description" content="Open-source software used on overclockdash.com and inside the browser demo.">
-<link rel="stylesheet" href="site.css?v=20261028t">
+<link rel="stylesheet" href="site.css?v=20261028u">
 </head>
 <body class="doc">
 <a class="skip" href="#main">Skip to content</a>
@@ -22,22 +22,26 @@
 <li><b>meshoptimizer decoder</b> (inside the 3D viewer bundle). MIT License, &copy; Arseny Kapoulkine. <a href="https://github.com/zeux/meshoptimizer">Source</a>.</li>
 <li><b>Roboto Condensed</b> (the typeface). SIL Open Font License 1.1, &copy; 2011 Google Inc. Served from this site. <a href="fonts/LICENSE-roboto-condensed.txt">License text</a>.</li>
 </ul>
-<h2>Inside the firmware and the browser demo</h2>
-<p>The demo is the OVERCLOCK firmware compiled to run in a browser. The firmware is &copy; 2026 OVERCLOCK Field Computer and is not open source. It is built with these libraries and fonts:</p>
+<h2>Fonts</h2>
+<p>OVERCLOCK's screens are set in TeX Gyre Heros, a typeface by B. Jackowski and J.M. Nowacki for the GUST e-foundry, based on URW Nimbus Sans. Used under the GUST Font License (GFL), a free license that permits commercial use and embedding. Copyright 2007 to 2009 by B. Jackowski and J.M. Nowacki (on behalf of TeX users groups).</p>
+<p>The OVERCLOCK wordmark on the startup screen is set in Archivo Black by Omnibus-Type, used under the SIL Open Font License 1.1. Copyright 2012 The Archivo Black Project Authors.</p>
+<p>Guide signs on the clock are set in Roboto Condensed by Christian Robertson for Google, used under the SIL Open Font License 1.1.</p>
+<p>The digital numerals are drawn by OVERCLOCK's own segment renderer and are not a licensed typeface.</p>
+<h2>Open source software</h2>
+<p>OVERCLOCK's firmware includes the following open source software. Each is used under its own license, and the license text is included with the firmware source. The browser demo on this site is the same firmware compiled to run in a browser, using the Emscripten runtime (MIT License and the University of Illinois/NCSA license).</p>
 <ul class="lic">
-<li><b>Arduino core for ESP32</b> and <b>ESP-IDF</b> (the processor's base software). GNU Lesser General Public License 2.1 and Apache License 2.0, &copy; Espressif Systems. <a href="https://github.com/espressif/arduino-esp32">Source</a>.</li>
-<li><b>NimBLE-Arduino</b> (Bluetooth). Apache License 2.0. <a href="https://github.com/h2zero/NimBLE-Arduino">Source</a>.</li>
-<li><b>QR Code generator</b> by Project Nayuki (the Wi-Fi join code). MIT License, &copy; Project Nayuki. <a href="https://github.com/nayuki/QR-Code-generator">Source</a>.</li>
-<li><b>Adafruit INA219</b>, <b>Adafruit MPU6050</b> and <b>Adafruit BusIO</b> (the voltage and tilt sensors). BSD and MIT Licenses, &copy; Adafruit Industries. <a href="https://github.com/adafruit">Source</a>.</li>
-<li><b>DallasTemperature</b> and <b>OneWire</b> (the temperature probes). MIT License. <a href="https://github.com/milesburton/Arduino-Temperature-Control-Library">Source</a>.</li>
-<li><b>Archivo Black</b> (the OVERCLOCK wordmark on the splash). SIL Open Font License 1.1, &copy; Omnibus-Type. <a href="https://github.com/Omnibus-Type/ArchivoBlack">Source</a>.</li>
-<li><b>Roboto Condensed Bold</b> (the guide signs). SIL Open Font License 1.1, &copy; Google Inc. <a href="fonts/LICENSE-roboto-condensed.txt">License text</a>.</li>
-<li><b>Emscripten</b> runtime (runs the firmware in the browser). MIT License and the University of Illinois/NCSA license. <a href="https://github.com/emscripten-core/emscripten">Source</a>.</li>
-<li><b>Adafruit GFX Library</b> (drawing). BSD License, &copy; Adafruit Industries. <a href="https://github.com/adafruit/Adafruit-GFX-Library">Source</a>.</li>
-<li><b>RTClib</b> (the clock chip). MIT License, &copy; 2019 Adafruit Industries. <a href="https://github.com/adafruit/RTClib">Source</a>.</li>
-<li><b>TJpg_Decoder</b> with <b>TJpgDec</b> (pictures). TJpg_Decoder by Bodmer, built on TJpgDec &copy; ChaN, 2019, used under its own permissive license. <a href="https://github.com/Bodmer/TJpg_Decoder">Source</a>.</li>
-<li><b>TinyGPSPlus</b> (reading the GPS). GNU Lesser General Public License 2.1, &copy; Mikal Hart. <a href="https://github.com/mikalhart/TinyGPSPlus">Source</a>. In line with the LGPL, the library is used unmodified and its source is available at that link; write to hello@overclockdash.com if you need the exact version used.</li>
+<li>Adafruit GFX Library, Adafruit BusIO, Adafruit INA219, Adafruit MPU6050 and Adafruit Unified Sensor, by Adafruit Industries (BSD and MIT licenses)</li>
+<li>Arduino core for the ESP32, by Espressif Systems (LGPL 2.1)</li>
+<li>ESP-IDF, by Espressif Systems (Apache License 2.0)</li>
+<li>NimBLE-Arduino, by h2zero, built on Apache NimBLE (Apache License 2.0)</li>
+<li>TinyGPSPlus, by Mikal Hart (LGPL 2.1)</li>
+<li>RTClib, by Adafruit Industries and JeeLabs (MIT License)</li>
+<li>TJpg_Decoder, by Bodmer, built on TJpgDec by ChaN (MIT License and the TJpgDec license)</li>
+<li>DallasTemperature, by Miles Burton and contributors (LGPL 2.1)</li>
+<li>OneWire, by Paul Stoffregen and contributors (MIT License)</li>
+<li>QR Code generator library, by Project Nayuki (MIT License)</li>
 </ul>
+<p>In line with the LGPL, those libraries are used unmodified and their source is available from their authors; write to hello@overclockdash.com if you need the exact versions used.</p>
 <h2>Everything else</h2>
 <p>The case and board renders are from our own design files, the 3D models from our own CAD and board files, the screens from the firmware itself, and the slideshow pictures were drawn for this site. Trademarks are listed on the <a href="terms.html">terms page</a>.</p>
 
