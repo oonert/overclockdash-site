@@ -29,6 +29,8 @@
  *   clock.event('overheat');          // start a fault (clock.events lists them); clock.event('stop') ends it
  *   clock.tilt(pitch, roll);          // tip the truck (degrees; pitch + nose up, roll + right side up): TILT follows
  *   clock.pause(); clock.resume(); clock.destroy();
+ *   clock.off(); clock.on(); clock.isOn();   // power: dark panel, or boot from the startup screen
+ *   clock.update('0.99.200', 1500000);     // an update from the card: UPDATING, the bar, UPDATED, reboot
  *
  * The dial and the panel both work as the knob: mouse wheel (or a drag around
  * the dial) turns, a tap clicks, a finger kept still holds. A drag never
@@ -182,7 +184,7 @@
       notifyDefault: Module._oc_notify_default, notifyBit: withStr(Module._oc_notify_bit), notifyMask: Module._oc_notify_mask,
       event: Module._oc_event, eventRunning: Module._oc_event_running, eventCount: Module._oc_event_count,
       eventName: (n) => Module.UTF8ToString(Module._oc_event_name(n)),
-      tilt: Module._oc_tilt,
+      tilt: Module._oc_tilt, restart: Module._oc_restart, update: withStr(Module._oc_update),
     };
     // Which alerts may pop up: the firmware's defaults, minus the ones the page
     // turns off ({ storm: false }). Applied before boot, over the saved settings.
@@ -226,10 +228,12 @@
       }
       lutLamp = L;
     }
+    let powered = true;
     function paint() {
       if (!alive) return;
       raf = requestAnimationFrame(paint);
       const writes = c.writes(), L = opts.backlight ? Math.round(c.lamp() * 255) / 255 : 1;
+      if (!powered) return;
       if (writes === lastWrites && L === lastLamp) return;
       lastWrites = writes; lastLamp = L;
       if (L !== lutLamp) buildLut(L);
@@ -292,6 +296,17 @@
       tilt(pitch, roll) { c.tilt(+pitch || 0, +roll || 0); },   // degrees: pitch + nose up, roll + right side up
       pause() { c.pause(1); },
       resume() { c.pause(0); },
+      // Power: off() stops the firmware and darkens the panel; on() boots it
+      // from the startup screen again (the same restart path the firmware
+      // takes after an update). isOn() says which.
+      off() { if (!powered) return; powered = false; c.pause(1); ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H); },
+      on() { if (powered) { c.restart(); return; } powered = true; lastWrites = -1; c.restart(); c.pause(0); },
+      isOn() { return powered; },
+      restart() { api.on(); },
+      // An update: update.bin lands on the card with a version note beside it
+      // and the firmware restarts into its own UPDATING, UPDATED screens, then
+      // boots the "new" version. bytes sets how long the bar takes (about 340 KB/s).
+      update(version, bytes) { if (!powered) api.on(); c.update(version || '0.99.200', bytes || 1500000); },
       destroy() { alive = false; cancelAnimationFrame(raf); clearInterval(saver); clearInterval(ticker); c.pause(1); root.remove(); },
     };
 
