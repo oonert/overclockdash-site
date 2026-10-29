@@ -84,14 +84,8 @@
         <button class="btn ghost" type="button" data-tilt="0,10">Right side up</button>
         <button class="btn ghost" type="button" data-tilt="0,-10">Left side up</button>
       </div>
-      <div class="chips"><button class="btn ghost" type="button" data-view="Tilt">TILT page</button><button class="btn ghost" type="button" data-view="Camp">CAMP page</button></div>
-      <h2 class="sub-h">CAMP FOR THE NIGHT</h2>
-      <p>Park on a slope with the tent on the roof. The CAMP page says which wheel to lift and by how much. Then put the block under it.</p>
-      <div class="chips camp" role="group" aria-label="Camp demo">
-        <button class="btn" type="button" id="camp-park">Park at camp</button>
-        <button class="btn ghost" type="button" id="camp-wedge" disabled>Put a 2-inch block under the front right wheel</button>
-        <button class="btn ghost" type="button" id="camp-pack" disabled>Pack up</button>
-      </div>
+      <div class="chips"><button class="btn ghost" type="button" data-view="Tilt" aria-pressed="true">TILT page</button><button class="btn ghost" type="button" data-view="Camp" aria-pressed="false">CAMP page</button></div>
+      <div class="chips camp" id="camp-row" hidden><button class="btn" type="button" id="camp-block" aria-pressed="false">Put a 2-inch block under the front right wheel</button></div>
       <p><span id="camp-say"></span></p>
     </section>
 

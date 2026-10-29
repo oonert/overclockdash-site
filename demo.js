@@ -145,8 +145,8 @@
     const FR_WHEEL_X = 1.35, FR_WHEEL_Z = 1.0;   // the truck faces +x; +z is its right side
     block = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.06, 0.5), new THREE.MeshStandardMaterial({ color: 0xffb000, roughness: 0.8 })); block.visible = false; block.position.set(FR_WHEEL_X, 0.03, FR_WHEEL_Z); block.castShadow = true; rig.add(block);
     let drag = null;
-    box.addEventListener('pointerdown', e => { box.setPointerCapture(e.pointerId); drag = { x: e.clientX, y: e.clientY, p: target.pitch, r: target.roll }; box.classList.add('grabbing'); if (clock) clock.goto('Level'); e.preventDefault(); });
-    box.addEventListener('pointermove', e => { if (!drag) return; if (camp) { camp = null; tent.visible = false; block.visible = false; campSay.textContent = ''; campWedge.disabled = true; campPack.disabled = true; campPark.disabled = false; } setTilt(drag.p + (drag.y - e.clientY) * 0.25, drag.r + (e.clientX - drag.x) * 0.25); clearPresets(); });
+    box.addEventListener('pointerdown', e => { box.setPointerCapture(e.pointerId); drag = { x: e.clientX, y: e.clientY, p: target.pitch, r: target.roll }; box.classList.add('grabbing'); if (camp) campEnd(); if (clock) clock.goto('Tilt'); e.preventDefault(); });
+    box.addEventListener('pointermove', e => { if (!drag) return; if (camp) campEnd(); setTilt(drag.p + (drag.y - e.clientY) * 0.25, drag.r + (e.clientX - drag.x) * 0.25); clearPresets(); });
     const drop = () => { drag = null; box.classList.remove('grabbing'); };
     box.addEventListener('pointerup', drop); box.addEventListener('pointercancel', drop);
     const readout = $('#readout'); let lastSent = '';
@@ -170,23 +170,31 @@
     box.innerHTML = '<p style="padding:24px">The 3D truck needs WebGL. The preset buttons still tip the clock.</p>';
   }
   // ── camp for the night ────────────────────────────────────────────────────
-  // A 3rd gen 4Runner: wheelbase 105.3 in, front track 59.3 in. Parked so the
+  // CAMP page: the truck is parked with the tent up, on ground just off level.
+  // A 3rd gen 4Runner (wheelbase 105.3 in, front track 59.3 in) parked so its
   // front-right wheel sits 2.2 in below the rear-left (the two beside it 1.1):
-  // a 2-inch block under the front right pivots the truck level on its rear-left.
+  // a 2-inch block under the front right pivots it level on the rear-left.
+  // TILT page, a drag or a preset packs it all up.
   const WB = 105.3, TK = 59.3, LOW_IN = 1.1;
   const groundPitch = -Math.asin(LOW_IN / WB) * 180 / Math.PI, groundRoll = -Math.asin(LOW_IN / TK) * 180 / Math.PI;
-  const campPark = $('#camp-park'), campWedge = $('#camp-wedge'), campPack = $('#camp-pack'), campSay = $('#camp-say');
-  function campState(lift) {
+  const campRow = $('#camp-row'), campBlock = $('#camp-block'), campSay = $('#camp-say');
+  function viewButtons(which) { $$('[data-view]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === which))); }
+  function campStart(lift) {
     camp = { ground: { pitch: groundPitch, roll: groundRoll }, lift };
     tent.visible = true; block.visible = lift > 0;
     setTilt(groundPitch * (1 - lift), groundRoll * (1 - lift)); clearPresets();
-    campWedge.disabled = lift > 0; campPack.disabled = false; campPark.disabled = lift === 0;
-    campSay.textContent = lift > 0 ? 'Level. The CAMP page says sleep on it.' : 'Nose down and leaning right. The CAMP page says 2 inches under the front right, 1 under the two beside it. Start with the 2.';
-    if (clock) clock.goto('Camp');
+    campRow.hidden = false; campBlock.setAttribute('aria-pressed', String(lift > 0));
+    campBlock.textContent = lift > 0 ? 'Take the block out' : 'Put a 2-inch block under the front right wheel';
+    campSay.textContent = lift > 0 ? 'Level. Sleep on it.' : 'Parked for the night. The CAMP page says 2 inches under the front right.';
+    viewButtons('Camp');
   }
-  campPark.addEventListener('click', () => campState(0));
-  campWedge.addEventListener('click', () => campState(1));
-  campPack.addEventListener('click', () => { camp = null; tent.visible = false; block.visible = false; setTilt(0, 0); clearPresets(); $('.presets .btn').setAttribute('aria-pressed', 'true'); campWedge.disabled = true; campPack.disabled = true; campPark.disabled = false; campSay.textContent = ''; if (clock) clock.goto('Tilt'); });
-  $$('[data-view]').forEach(b => b.addEventListener('click', () => clock && clock.goto(b.dataset.view)));
-  $$('.presets .btn').forEach(b => b.addEventListener('click', () => { const [p, r] = b.dataset.tilt.split(',').map(Number); if (camp) { camp = null; tent.visible = false; block.visible = false; campSay.textContent = ''; campWedge.disabled = true; campPack.disabled = true; campPark.disabled = false; } setTilt(p, r); clearPresets(); b.setAttribute('aria-pressed', 'true'); if (clock) clock.goto('Level'); }));
+  function campEnd() {
+    camp = null; tent.visible = false; block.visible = false; campRow.hidden = true; campSay.textContent = ''; viewButtons('Tilt');
+  }
+  campBlock.addEventListener('click', () => campStart(camp && camp.lift > 0 ? 0 : 1));
+  $$('[data-view]').forEach(b => b.addEventListener('click', () => {
+    if (b.dataset.view === 'Camp') campStart(0); else { campEnd(); setTilt(0, 0); clearPresets(); $('.presets .btn').setAttribute('aria-pressed', 'true'); }
+    if (clock) clock.goto(b.dataset.view);
+  }));
+  $$('.presets .btn').forEach(b => b.addEventListener('click', () => { const [p, r] = b.dataset.tilt.split(',').map(Number); if (camp) campEnd(); setTilt(p, r); clearPresets(); b.setAttribute('aria-pressed', 'true'); if (clock) clock.goto('Tilt'); }));
 })();

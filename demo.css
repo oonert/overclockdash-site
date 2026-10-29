@@ -17,8 +17,8 @@ body.demo { overflow-x: clip; touch-action: pan-y; }
 .stage .guide ul { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 15px; color: var(--muted); }
 .stage .guide b { color: var(--ink); }
 .panels .fine { color: var(--muted); font-size: 13px; padding: 4px 24px; }
-.panel h2.sub-h { margin-top: 26px; font-size: 22px; }
-.chips.camp .btn[disabled] { opacity: .4; cursor: default; }
+.chips.camp[hidden] { display: none; }
+.chips .btn[data-view][aria-pressed="true"], #camp-block[aria-pressed="true"] { background: var(--amber); color: #000; }
 .panels { display: flex; flex-direction: column; gap: 14px; padding-top: 8px; }
 .panel { background: var(--panel); padding: 24px 24px 22px; }
 .panel:nth-child(even) { background: var(--panel-2); }
