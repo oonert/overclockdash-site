@@ -294,7 +294,7 @@ footer.foot-small.home .mark-top { font-weight: 700; font-size: 24px; letter-spa
 footer.foot-small.home .mark-sub { font-size: 11px; font-weight: 700; color: var(--amber); letter-spacing: .3em; margin-top: 4px; }
 footer.foot-small.home p { max-width: 110ch; }
 
-section.page .sub a { color: var(--amber); }
+section.page .sub a:not(.btn) { color: var(--amber); }
 
 /* make it yours: three faces in a row */
 .faces { display: grid; grid-template-columns: repeat(3, 280px); gap: var(--gap); padding: 32px var(--margin) 0; }
