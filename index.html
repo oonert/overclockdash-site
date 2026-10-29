@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=20261028k">
+<link rel="stylesheet" href="site.css?v=20261028l">
 </head>
 <body>
 <main>
@@ -62,7 +62,7 @@
     <div class="head in"><h2>FITS LIKE IT CAME FROM THE FACTORY</h2></div>
     <div class="lead-row">
       <p class="sub">Pop out the factory clock, plug OVERCLOCK into the same connector, and click it into the same opening. Plug the included Bluetooth adapter into the diagnostic port under the dash, and you're done.</p>
-      <img class="lead-shot" src="pages/hero-4runner.png" width="1200" height="938" alt="The 4Runner unit in its case" loading="lazy">
+      <img class="lead-shot" src="pages/case-retro.png" width="1200" height="938" alt="The 4Runner unit in its case, showing the factory clock face" loading="lazy">
     </div>
     <ul class="feat in">
       <li><b>Factory spot, factory plug.</b> Uses the clock's own connector and power. No cutting, no splicing, no new wires to run.</li>
@@ -99,9 +99,10 @@
         <div class="moment more"><h3>Fridge warm</h3><p>Amber, with how warm. Hold to quiet it for the drive.</p><img src="pages/alert-fridge.png" width="320" height="240" alt="The FRIDGE WARM notice at 42 F" loading="lazy"></div>
         <div class="moment more"><h3>Towing</h3><p>Transmission and coolant on a grade, with one verdict.</p><img src="pages/towing.png" width="320" height="240" alt="The TOWING page: trans 180, coolant 192, NORMAL" loading="lazy"></div>
         <div class="moment more"><h3>Starter battery</h3><p>Alternator, crank dip and resting volts on one page.</p><img src="pages/starter.png" width="320" height="240" alt="The STARTER page: 14.4 V charging" loading="lazy"></div>
-        <div class="moment more"><h3>Records</h3><p>States, countries, farthest, top speed, highest.</p><img src="pages/records.png" width="320" height="240" alt="The RECORDS list" loading="lazy"></div>
+        <div class="moment more"><h3>Records</h3><p>Top speed, where and when. Twenty-four of them, and the states you have driven.</p><img src="pages/records-top.png" width="320" height="240" alt="The TOP SPEED record: 80 mph, July 18 2026, Biggs Junction" loading="lazy"></div>
+        <div class="moment more"><h3>States</h3><p>Seven of fifty so far. Click for the map.</p><img src="pages/records-states.png" width="320" height="240" alt="The STATES record: 7 of 50" loading="lazy"></div>
         <div class="moment more"><h3>0 to 60</h3><p>Stop, then floor it. GPS does the timing.</p><img src="pages/zerosixty.png" width="320" height="240" alt="The 0 TO 60 timer" loading="lazy"></div>
-        <div class="moment more"><h3>Stopwatch</h3><p>And timers and alarms, because it is still a clock.</p><img src="pages/stopwatch.png" width="320" height="240" alt="The STOPWATCH page" loading="lazy"></div>
+        <div class="moment more"><h3>Stopwatch</h3><p>And timers and alarms, because it is still a clock.</p><img src="pages/stopwatch.png" width="320" height="240" alt="The STOPWATCH page, running" loading="lazy"></div>
         <div class="moment more"><h3>Games</h3><p>Four of them, on the knob, for the campsite.</p><img src="pages/games.png" width="320" height="240" alt="The GAMES page: four games" loading="lazy"></div>
         <div class="moment more"><h3>Apps</h3><p>Settings, truck, games, travel, overland, tools.</p><img src="pages/apps.png" width="320" height="240" alt="The APPS page" loading="lazy"></div>
         <div class="moment more"><h3>Settings</h3><p>Pages, display, style, clock, units and on down the list.</p><img src="pages/settings.png" width="320" height="240" alt="The SETTINGS list" loading="lazy"></div>
@@ -244,7 +245,7 @@
     <div class="head in"><h2>PURPOSE-BUILT, NOT BOLTED TOGETHER</h2></div>
     <div class="lead-row">
       <p class="sub">Not a phone holder, not a kit, not hobby boards wired together. A custom circuit board designed from a blank sheet for this one job, in a case made for your dash.</p>
-      <img class="lead-shot" src="pages/board.jpg" width="600" height="450" alt="The circuit board" loading="lazy">
+      <div class="lead-shot boards"><img src="pages/board-top.jpg" width="1400" height="1054" alt="The circuit board, top: main processor, screen connector, memory card slot" loading="lazy"><img src="pages/board-bottom.jpg" width="1400" height="1054" alt="The circuit board, underside: coprocessor, GPS, screw terminals, factory plug" loading="lazy"></div>
     </div>
     <ul class="feat in">
       <li><b>A custom circuit board.</b> Every part chosen for life in a truck: summer heat, winter cold and the voltage spikes a starter throws.</li>
@@ -317,6 +318,6 @@
 document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
 document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
 </script>
-<script src="index.js?v=20261028k"></script>
+<script src="index.js?v=20261028l"></script>
 </body>
 </html>

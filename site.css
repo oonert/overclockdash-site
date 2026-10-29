@@ -101,6 +101,8 @@ section.page .sub { font-size: var(--t-lead); color: var(--ink); margin-top: 16p
 .lead-row { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); align-items: center; padding-right: var(--margin); }
 .lead-row .sub { grid-column: 1 / 8; }
 .lead-row .lead-shot { grid-column: 8 / 13; width: 100%; max-width: 420px; height: auto; justify-self: end; margin-top: 16px; border: 1px solid #2a2a2a; border-radius: 6px; background: #000; }
+.lead-row .lead-shot.boards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; max-width: 560px; border: 0; background: transparent; }
+.lead-row .lead-shot.boards img { width: 100%; height: auto; border: 1px solid #2a2a2a; border-radius: 6px; background: #000; }
 @media (max-width: 900px) { .lead-row { display: block; padding-right: 0; } .lead-row .lead-shot { margin: 24px var(--margin) 0; max-width: calc(100% - 2 * var(--margin)); } }
 
 /* the knob: a drag row of moments */
