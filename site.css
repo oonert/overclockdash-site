@@ -122,8 +122,8 @@ section.page .sub { font-size: var(--t-lead); color: var(--ink); margin-top: 16p
 .watch { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); padding: 40px var(--margin) 0; align-items: center; }
 .watch-list { grid-column: 1 / 7; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; font-size: var(--t-lead); max-width: 40ch; }
 .watch-list b { color: var(--amber); font-weight: 700; }
-.watch img { grid-column: 7 / 13; width: 100%; height: auto; }
-@media (max-width: 900px) { .watch { display: block; } .watch img { margin-top: 32px; } }
+.watch img, .watch video { grid-column: 7 / 13; width: 100%; height: auto; background: #000; }
+@media (max-width: 900px) { .watch { display: block; } .watch img, .watch video { margin-top: 32px; } }
 
 
 /* why: six big reasons, bigger type than the feature lists */
