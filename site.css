@@ -298,11 +298,12 @@ footer.foot-small.home p { max-width: 110ch; }
 section.page .sub a { color: var(--amber); }
 
 /* make it yours: three faces in a row */
-.faces { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); padding: 32px var(--margin) 0; }
+.faces { display: grid; grid-template-columns: repeat(3, 280px); gap: var(--gap); padding: 32px var(--margin) 0; }
 .faces figure { margin: 0; }
 .faces img { width: 100%; height: auto; border: 1px solid #2a2a2a; border-radius: 6px; background: #000; }
 .faces figcaption { margin-top: 8px; color: var(--muted); font-size: var(--t-small); }
-@media (max-width: 760px) { .faces { grid-template-columns: 1fr; } }
+@media (max-width: 1000px) { .faces { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .faces { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* the lightbox: click a screen or a phone page to see it big */
 .lightbox { position: fixed; inset: 0; z-index: 200; background: rgba(0, 0, 0, .88); display: flex; align-items: center; justify-content: center; padding: 24px; cursor: zoom-out; opacity: 0; transition: opacity .25s; }
