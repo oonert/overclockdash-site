@@ -9,6 +9,26 @@
   row.addEventListener('scroll', updateProgress, { passive: true }); updateProgress(); window.addEventListener('resize', updateProgress);
   // Grab a row with the mouse and throw it: it coasts and slows down. Touch
   // keeps the browser's own swipe. Snap is off while the mouse has it.
+  // the mouse wheel over a row scrolls it sideways, smoothly, with a glide at the end
+  function wheelRow(row) {
+    let target = null, anim = null;
+    const step = () => {
+      const d = target - row.scrollLeft;
+      if (Math.abs(d) < 0.5) { row.scrollLeft = target; target = null; anim = null; return; }
+      row.scrollLeft += d * 0.16; anim = requestAnimationFrame(step);
+    };
+    row.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;            // a trackpad swiping sideways: leave it native
+      const max = row.scrollWidth - row.clientWidth; if (max <= 0) return;
+      const at = target === null ? row.scrollLeft : target;
+      if ((e.deltaY > 0 && at >= max - 1) || (e.deltaY < 0 && at <= 1)) { target = null; return; }   // at an end: let the page scroll
+      e.preventDefault();
+      target = Math.max(0, Math.min(max, at + e.deltaY * 1.6));
+      if (!anim) anim = requestAnimationFrame(step);
+    }, { passive: false });
+    row.addEventListener('pointerdown', () => { target = null; });
+  }
+
   function grabRow(row) {
     let grab = null, vel = 0, coast = null;
     row.addEventListener('pointerdown', (e) => {
@@ -34,7 +54,7 @@
     row.addEventListener('click', (e) => { if (row.classList.contains('thrown')) e.preventDefault(); }, true);
     row.addEventListener('dragstart', (e) => e.preventDefault());
   }
-  grabRow(row);
+  grabRow(row); wheelRow(row);
   // click a picture in a row: the lightbox
   $$('.row').forEach(r => r.addEventListener('click', (e) => {
     const img = e.target.closest('img'); if (!img || r.classList.contains('thrown')) return;
@@ -47,7 +67,7 @@
     const onKey = (ev) => { if (ev.key === 'Escape') close(); };
     box.addEventListener('click', close); document.addEventListener('keydown', onKey);
   }));
-  rowProgress($('#phones'), $('#phone-progress')); grabRow($('#phones'));
+  rowProgress($('#phones'), $('#phone-progress')); grabRow($('#phones')); wheelRow($('#phones'));
   $$('.row').forEach(el => { el.classList.add('in'); });
 
   // "Does it fit my truck?" points at the footer, which is pinned under the page

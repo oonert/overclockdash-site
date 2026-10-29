@@ -116,15 +116,16 @@ section.page .sub { font-size: var(--t-lead); color: var(--ink); margin-top: 16p
 .row-wrap { margin-top: 40px; }
 .progress { height: 6px; background: var(--panel-3); margin-inline: var(--margin); }
 .progress i { display: block; height: 100%; width: 20%; background: var(--ink); transition: width .2s; }
-.row { display: flex; gap: 32px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x proximity; scroll-padding-inline: var(--margin); padding: 32px var(--margin) 28px; scrollbar-width: none; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; }
+.row { display: flex; gap: 32px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: none; padding: 40px var(--margin) 40px; scrollbar-width: none; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; }
 .row::-webkit-scrollbar { display: none; }
-@media (hover: hover) { .row { cursor: grab; } .row.grabbing, .row.thrown { cursor: grabbing; scroll-snap-type: none; } .row.grabbing { user-select: none; } .row img { -webkit-user-drag: none; } }
-.moment { flex: 0 0 280px; scroll-snap-align: start; display: flex; flex-direction: column; contain: layout paint; }
+@media (hover: hover) { .row { cursor: grab; } .row.grabbing, .row.thrown { cursor: grabbing; } .row.grabbing { user-select: none; } .row img { -webkit-user-drag: none; } }
+.moment { flex: 0 0 280px; display: flex; flex-direction: column; transition: transform .5s cubic-bezier(.34, 1.56, .64, 1), opacity .3s; will-change: transform; }
+@media (hover: hover) { .row:hover .moment { opacity: .5; } .row:hover .moment:hover { opacity: 1; transform: translateY(-8px) scale(1.08); z-index: 2; } .row.grabbing .moment, .row.thrown .moment { opacity: 1; transform: none; } }
 .row:not(.all) .moment.more { display: none; }
 .moment h3 { font-size: 22px; font-weight: 700; }
 .moment p { margin-top: 8px; color: var(--muted); font-size: 16px; flex: 1 0 auto; }
 .moment img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; background: #000; margin-top: 20px; border: 1px solid #2a2a2a; border-radius: 6px; image-rendering: auto; cursor: zoom-in; transition: transform .5s cubic-bezier(.34, 1.56, .64, 1); will-change: transform; }
-@media (hover: hover) { .moment:hover img { transform: scale(1.07); } }
+@media (hover: hover) { .moment:hover img { transform: scale(1.04); box-shadow: 0 18px 40px rgba(0, 0, 0, .6); } }
 .row-btns { display: flex; gap: 8px; }
 .row-btns button { width: 48px; height: 48px; border: 0; background: var(--panel-3); color: var(--ink); font-size: 22px; }
 .row-btns button:hover { background: var(--amber); color: #000; }
