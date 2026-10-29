@@ -2,7 +2,7 @@
 body.demo { overflow-x: clip; touch-action: pan-y; }
 body.demo .foot-small { margin-top: 0; }
 .demo-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: var(--gap); padding: 0 var(--margin) 80px; align-items: start; }
-.stage { position: sticky; top: 16px; display: flex; flex-direction: column; align-items: center; padding-top: 8px; }
+.stage { position: sticky; top: 16px; z-index: 5; background: var(--ground); display: flex; flex-direction: column; align-items: center; padding-top: 8px; }
 .stage h1 { font-size: 22px; font-weight: 700; color: var(--amber); margin-bottom: 10px; }
 .stage #clock { min-height: 320px; display: flex; justify-content: center; }
 .stage #clock .overclock { padding: 0; gap: 18px; }
@@ -77,10 +77,44 @@ body.demo .foot-small { margin-top: 0; }
 .jog-btn.down small { color: #3a2a00; }
 .jog-btn.held { box-shadow: 0 0 0 6px rgba(255, 176, 0, .35); }
 @media (max-width: 900px) {
-  .jog { width: min(78vw, 300px); }
+  .jog { width: min(52vw, 200px); }
+  .stage .learn { display: none; }                 /* on phones the button sits at the top of THE KNOB panel instead, so the sticky stage stays short */
+  .stage .fine { display: none; }
+  .stage h1 { font-size: 18px; margin-bottom: 6px; }
+  .stage #clock { min-height: 0; }
+  .panel .learn.phone-only { margin: 0 0 6px; justify-content: center; }
+  .panel .learn.phone-only .btn.big { min-height: 44px; padding: 0 20px; font-size: 16px; }
   .stage #clock .overclock-dial { display: none !important; }
 }
 
 /* learn the knob: the one big button under the clock */
 .learn { display: flex; align-items: center; gap: 16px; margin-top: 16px; flex-wrap: wrap; }
 .learn span { color: var(--muted); font-size: var(--t-small); max-width: 36ch; }
+
+/* phones: the tilt panel is the 3D truck, tall, with its buttons laid over it,
+   so the model gets the room (Derek 2026-10-28: too tight under the sticky stage) */
+@media (max-width: 900px) {
+  #truck { position: relative; }
+  #truck > p:first-of-type { display: none; }
+  #truck3d { aspect-ratio: auto; height: clamp(260px, calc(100svh - 300px), 420px); margin-top: 10px; }
+  #readout { left: 12px; top: 12px; bottom: auto; font-size: 14px; }
+  #truck .chips { position: absolute; margin: 0; gap: 6px; }
+  #truck .chips .btn { flex: 0 1 auto; min-height: 36px; padding: 0 10px; font-size: 13px; }
+  #truck .chips .btn.ghost { background: rgba(0, 0, 0, .6); }
+  #truck .chips.presets { left: 12px; right: 12px; bottom: 56px; justify-content: center; }
+  #truck .chips.views { top: 28px; right: 24px; }
+  #truck .chips.camp { left: 24px; right: 24px; bottom: 16px; justify-content: center; }
+  #truck .chips.camp .btn { font-size: 13px; white-space: normal; text-align: center; line-height: 1.2; padding: 6px 12px; }
+  #truck > p:last-child { position: absolute; left: 12px; right: 12px; bottom: 104px; margin: 0; text-align: center; font-size: 13px; color: var(--amber); pointer-events: none; text-shadow: 0 1px 4px #000; }
+}
+.phone-only { display: none; }
+@media (max-width: 900px) { .phone-only { display: flex; } }
+
+/* phones, scrolled into the panels: the stage shrinks to the clock alone, so a
+   panel (the 3D truck most of all) gets the screen */
+@media (max-width: 900px) {
+  .stage.compact h1, .stage.compact .tabs, .stage.compact .hint { display: none; }
+  .stage.compact { padding-top: 4px; }
+  .stage.compact #clock { transform: scale(.68); transform-origin: top center; transition: transform .25s; margin-bottom: -28%; }
+  .panels { padding-bottom: 36svh; }                /* room to bring the last panel up under the shrunken stage */
+}

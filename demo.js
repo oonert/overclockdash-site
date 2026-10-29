@@ -9,7 +9,7 @@
   let clock = null, currentCase = '4runner';
   const FW_STAMP = '2026-10-28h';   // bump when dist/ is rebuilt, so browsers fetch the new firmware
   const status = $('#status');
-  function frameWidth() { return phone() ? Math.round((window.innerWidth - 24) * 0.8) : Math.min(560, Math.round(window.innerWidth * 0.42)); }
+  function frameWidth() { return phone() ? Math.round((window.innerWidth - 24) * 0.68) : Math.min(560, Math.round(window.innerWidth * 0.42)); }
   async function mountClock(which) {
     currentCase = which;
     $$('.tabs [role=tab]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.case === which)));
@@ -64,8 +64,12 @@
   jbtn.addEventListener('contextmenu', (e) => e.preventDefault());
 
   // ── the knob buttons ──────────────────────────────────────────────────────
+  // phones: once the knob panel has scrolled under the stage, the stage shrinks to the clock
+  const knobPanel = $('#knob');
+  function compactStage() { if (!phone()) { stage.classList.remove('compact'); return; } stage.classList.toggle('compact', window.scrollY > knobPanel.offsetTop + knobPanel.offsetHeight - 120); }
+  window.addEventListener('scroll', compactStage, { passive: true }); window.addEventListener('resize', compactStage);
   // LEARN THE KNOB: the firmware's own first-power-on lesson (SETUP), from WELCOME
-  $('#learn').addEventListener('click', () => { if (!clock) return; hideHint(); clock.goto('Setup'); $('#clock').focus(); });
+  $$('#learn, #learn2').forEach(b => b.addEventListener('click', () => { if (!clock) return; hideHint(); clock.goto('Setup'); $('#clock').focus(); }));
   $$('[data-knob]').forEach(b => b.addEventListener('click', () => {
     if (!clock) return;
     const [what, n] = b.dataset.knob.split(':');
