@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=20261028f">
+<link rel="stylesheet" href="site.css?v=20261028g">
 </head>
 <body>
 <main>
@@ -23,7 +23,6 @@
       <a href="#built">Built</a>
       <a href="3d.html">3D</a>
     </nav>
-    <a class="btn" href="demo.html">Open the demo</a>
   </header>
 
   <section class="hero" id="top">
@@ -183,6 +182,21 @@
       <li><b>Updates over Wi-Fi.</b> New features arrive as a file you send from your phone. The dash checks the file is complete, undamaged and made for your unit before it installs. You can also update from the memory card.</li>
       <li><b>Setup made easy.</b> Wi-Fi networks, the state map, your fuel stations, solar gear and Bluetooth batteries, all set up from your phone instead of the knob.</li>
     </ul>
+    <div class="row-wrap">
+      <div class="progress"><i id="phone-progress"></i></div>
+      <div class="row phones" id="phones">
+        <div class="moment"><h3>Drives</h3><p>Every day the dash recorded, on a calendar. Tap the days, download one file.</p><img src="pages/phone/files.jpg" width="600" height="1190" alt="The phone's Drives page: a calendar of logged days" loading="lazy"></div>
+        <div class="moment"><h3>Live</h3><p>Any engine reading as a moving graph, with the fuel trims and sensors below.</p><img src="pages/phone/live.jpg" width="600" height="1190" alt="The Live page: rpm, coolant, trims and timing" loading="lazy"></div>
+        <div class="moment"><h3>Codes</h3><p>Each code with its name, what it means, and the snapshot of the moment it set.</p><img src="pages/phone/codes.jpg" width="600" height="1190" alt="The Codes page with three codes and a freeze frame" loading="lazy"></div>
+        <div class="moment"><h3>Photos</h3><p>Send your own pictures to the clock's slideshow.</p><img src="pages/phone/photos.jpg" width="600" height="1190" alt="The Photos page with pictures on the card" loading="lazy"></div>
+        <div class="moment"><h3>Firmware</h3><p>Choose the update file, send it, and the dash checks it before installing.</p><img src="pages/phone/firmware.jpg" width="600" height="1190" alt="The Firmware page showing the running version" loading="lazy"></div>
+        <div class="moment"><h3>Setup</h3><p>Networks, solar and batteries, maps and data, all from the phone.</p><img src="pages/phone/setup.jpg" width="600" height="1190" alt="The Setup page" loading="lazy"></div>
+        <div class="moment"><h3>Networks</h3><p>Its own hotspot, or your home and shop Wi-Fi, saved.</p><img src="pages/phone/networks.jpg" width="600" height="1190" alt="The Networks page" loading="lazy"></div>
+        <div class="moment"><h3>Solar and batteries</h3><p>Pair a charge controller, a shunt and Bluetooth batteries; combine them into one bank.</p><img src="pages/phone/victron.jpg" width="600" height="1190" alt="The Solar and batteries page" loading="lazy"></div>
+        <div class="moment"><h3>Maps and data</h3><p>The state map for the border signs and the fuel station list, on the card.</p><img src="pages/phone/maps_data.jpg" width="600" height="1190" alt="The Maps and data page" loading="lazy"></div>
+        <div class="moment"><h3>Dash log</h3><p>The newest lines from the dash, to copy and paste when you ask for help.</p><img src="pages/phone/dash_log.jpg" width="600" height="1190" alt="The Dash log page" loading="lazy"></div>
+      </div>
+    </div>
   </section>
 
   <section class="page" id="camp">
@@ -275,6 +289,6 @@
 document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
 document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
 </script>
-<script src="index.js?v=20261028f"></script>
+<script src="index.js?v=20261028g"></script>
 </body>
 </html>
