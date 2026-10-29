@@ -20,9 +20,11 @@
     row.addEventListener('wheel', (e) => {
       if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;            // a trackpad swiping sideways: leave it native
       const max = row.scrollWidth - row.clientWidth; if (max <= 0) return;
-      const at = target === null ? row.scrollLeft : target;
-      if ((e.deltaY > 0 && at >= max - 1) || (e.deltaY < 0 && at <= 1)) { target = null; return; }   // at an end: let the page scroll
+      const here = row.scrollLeft, gliding = target !== null;
+      // the row keeps the wheel until it has actually reached its end (not just aimed at it); only then does the page scroll
+      if (!gliding && ((e.deltaY > 0 && here >= max - 1) || (e.deltaY < 0 && here <= 1))) return;
       e.preventDefault();
+      const at = gliding ? target : here;
       target = Math.max(0, Math.min(max, at + e.deltaY * 1.6));
       if (!anim) anim = requestAnimationFrame(step);
     }, { passive: false });
