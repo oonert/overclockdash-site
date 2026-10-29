@@ -313,7 +313,8 @@
       restart() { api.on(); },
       set(key, value) { setOne(key, value); },
       skip(ms) { c.skip(ms); },                  // run ahead by this much of the firmware's own time, as fast as the browser allows
-      skipping() { return !!c.skipping(); },   // a saved value, any time; most are read at boot, so restart() after
+      skipping() { return !!c.skipping(); },
+      booted() { return !!c.booted(); },         // true once setup() has finished (the first boot)   // a saved value, any time; most are read at boot, so restart() after
       // An update: update.bin lands on the card with a version note beside it
       // and the firmware restarts into its own UPDATING, UPDATED screens, then
       // boots the "new" version. bytes sets how long the bar takes (about 340 KB/s).

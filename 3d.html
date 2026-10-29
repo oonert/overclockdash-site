@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=20261028l">
-<link rel="stylesheet" href="3d.css?v=20261028l">
+<link rel="stylesheet" href="site.css?v=20261028m">
+<link rel="stylesheet" href="3d.css?v=20261028m">
 </head>
 <body class="demo three">
 <header class="bar">
@@ -50,12 +50,13 @@
 document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
 document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
 </script>
-<script src="overclock.js?v=20261028l"></script>
+<script src="overclock.js?v=20261028m"></script>
+<script src="demo_truck.js?v=20261028m"></script>
 <script type="module">
-import {THREE, OrbitControls, GLTFLoader, MeshoptDecoder, RoomEnvironment} from './lib/three-viewer.js?v=20261028l';   // Three.js 0.169 and its loaders, bundled
+import {THREE, OrbitControls, GLTFLoader, MeshoptDecoder, RoomEnvironment} from './lib/three-viewer.js?v=20261028m';   // Three.js 0.169 and its loaders, bundled
 
 const BASE = '3d/';                 // the models, labels and still screens
-const FW = { base: 'dist/', v: '2026-10-28f' };   // the site's own firmware files
+const FW = { base: 'dist/', v: '2026-10-28g' };   // the site's own firmware files
 const SCREENS = {
   '4runner':[['dash','Dash'],['clock','Clock'],['gauges','Gauges'],['temp','Temps'],['towing','Towing'],['starter','Starter'],['apps','Apps']].map(([f,n])=>['screens/'+f+'.jpg',n]),
   tacoma:[['clock','Clock'],['gauges','Gauges'],['temp','Temps'],['towing','Towing'],['starter','Starter'],['apps','Apps'],['retro','Retro']].map(([f,n])=>['screens/portrait/'+f+'.png',n])};
@@ -112,7 +113,7 @@ function startLive(m){
   if(!live[o]) live[o]=(async()=>{
     if(!window.OverclockClock) throw new Error('no firmware');
     const host=document.createElement('div'); host.style.cssText='position:fixed;left:0;top:0;opacity:0.001;pointer-events:none;z-index:-1'; document.body.appendChild(host);
-    const clk=await OverclockClock.mount(host,{orientation:o,base:FW.base,v:FW.v,scale:1,dial:false,storage:null,backlight:false,alerts:{storm:false},settings:{scr_Slides:0, clk_face:0, clk_24h:0, clk_page:2, clk_color:0x8FE0, clk_slots:[21,1,7,16,11,12,7,8]}});
+    const clk=await OverclockDemoTruck.mount(host,{orientation:o,base:FW.base,v:FW.v,scale:1,dial:false,storage:null,backlight:false,alerts:{storm:false}});
     const t=new THREE.CanvasTexture(clk.canvas); t.colorSpace=THREE.SRGBColorSpace; t.flipY=false; t.anisotropy=8; t.minFilter=THREE.LinearFilter;
     return {clk,t};
   })();
