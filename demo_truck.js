@@ -19,7 +19,7 @@
   const f32s = (arr) => { const b = new Uint8Array(arr.length * 4), v = new DataView(b.buffer); arr.forEach((x, i) => v.setFloat32(i * 4, x, true)); return Array.from(b); };
   // The dash keeps the windshield odometer (odo_base_m, set once) apart from
   // the metres it has counted itself (odo_total_m); the live reading is the sum.
-  const BASE_M = Math.round(186000 * MI), OWN_M = Math.round(1412 * MI), FILL_ODO_M = BASE_M + OWN_M - Math.round(183 * MI);
+  const BASE_M = Math.round((390262 - 1412) * MI), OWN_M = Math.round(1412 * MI), FILL_ODO_M = BASE_M + OWN_M - Math.round(183 * MI);   // the windshield reads 390,262 (Derek 2026-10-28)
 
   // RECORDS: REC_N slots of { float value (metric), u32 unix time, char
   // where[24], char postal[4], u8 set, pad[3] } (records.h). The record
@@ -43,7 +43,11 @@
   }
 
   const settings = {
-    clk_face: 0, clk_24h: 0, clk_page: 2, clk_color: 0x8FE0, clk_slots: [21, 1, 7, 16, 11, 12, 7, 8], scr_Slides: 0,
+    // THE LOOK (Derek 2026-10-28): DIGITAL face, VFD green time, white corners; corners
+    // SPEED, RPM, COOLANT, HEADING, and on page 2 OUTSIDE, DATE, MPG, ALTITUDE
+    // (ids in clock_comp.h); US units; DIGITAL VFD gauges (the defaults); games in colour.
+    clk_face: 0, clk_24h: 0, clk_page: 2, clk_color: 0x8FE0, wdg_color: 0xFFBC, clk_slots: [7, 21, 16, 8, 3, 1, 11, 9], scr_Slides: 0,
+    u_temp: 1, u_fuel: 1, u_elev: 1, u_baro: 1, gc_color: 1,     // the gauges keep their defaults: DIGITAL, VFD green
     trip_a_m: Math.round(48.3 * MI), trip_b_m: Math.round(1284.6 * MI),
     fl_odo: FILL_ODO_M, fl_full: 1, fl_price: 349, fl_lgal: f(17.4), fl_mpgl: f(18.6), fl_msum: f(55.6), fl_mn: f(3), fl_gsum: f(52.1), fl_gn: f(3),
     fl_mpg3: f32s([18.6, 17.9, 19.1]), fl_cal: f(1.02), fl_caln: 3, fl_tank: f(9.8), fl_lnpump: f(17.4), fl_lndash: f(17.1), fl_lnflag: 'OK',
@@ -51,7 +55,11 @@
     sb_visit: 'USA.WA;USA.OR;USA.ID;USA.MT;USA.CA;USA.NV;USA.UT;', sb_last: 'USA.WA', rec_v1: recordsBlob(),
     z60_best: 9870,
   };
-  const after = { odo_base_m: BASE_M, odo_total_m: OWN_M };
+  // After the demo's own first-boot seed: three probes (cabin, outside, fridge; no
+  // freezer), and the solar gear as Derek runs it: a Victron controller with a
+  // Victron SmartShunt on the house bank (sol_shunt 1 = Victron; 4 would be the
+  // battery's own Bluetooth, which shows the cells pages instead).
+  const after = { odo_base_m: BASE_M, odo_total_m: OWN_M, prb_frz: 0, sol_on: 1, sol_ctl: 1, sol_shunt: 1, sol_shunt2: 0 };
   const SPLASH_MS = 14000, skipMs = 110000;
 
   // Mount, then give the truck its odometer and boot again, fast-forwarding
