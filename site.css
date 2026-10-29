@@ -105,16 +105,14 @@ section.page .sub { font-size: var(--t-lead); color: var(--ink); margin-top: 16p
 .row::-webkit-scrollbar { display: none; }
 .moment { flex: 0 0 280px; scroll-snap-align: start; display: flex; flex-direction: column; }
 .moment h3 { font-size: 22px; font-weight: 700; }
-.moment p { margin-top: 8px; color: var(--muted); font-size: 16px; min-height: 4.5em; }
-.moment .air { flex: 0 0 var(--air, 80px); }
-.moment img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--panel); }
+.moment p { margin-top: 8px; color: var(--muted); font-size: 16px; flex: 1 0 auto; }
+.moment img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; background: #000; margin-top: 20px; border: 1px solid #2a2a2a; border-radius: 6px; image-rendering: auto; }
 .row-btns { display: flex; gap: 8px; }
 .row-btns button { width: 48px; height: 48px; border: 0; background: var(--panel-3); color: var(--ink); font-size: 22px; }
 .row-btns button:hover { background: var(--amber); color: #000; }
 @media (max-width: 760px) {
   .row { gap: 16px; }
   .moment { flex-basis: 72vw; }
-  .moment .air { flex-basis: calc(var(--air, 80px) * .5); }
   .row-btns { display: none; }
 }
 
