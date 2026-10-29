@@ -64,6 +64,8 @@
   jbtn.addEventListener('contextmenu', (e) => e.preventDefault());
 
   // ── the knob buttons ──────────────────────────────────────────────────────
+  // LEARN THE KNOB: the firmware's own first-power-on lesson (SETUP), from WELCOME
+  $('#learn').addEventListener('click', () => { if (!clock) return; hideHint(); clock.goto('Setup'); $('#clock').focus(); });
   $$('[data-knob]').forEach(b => b.addEventListener('click', () => {
     if (!clock) return;
     const [what, n] = b.dataset.knob.split(':');

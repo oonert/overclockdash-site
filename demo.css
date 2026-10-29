@@ -80,3 +80,7 @@ body.demo .foot-small { margin-top: 0; }
   .jog { width: min(78vw, 300px); }
   .stage #clock .overclock-dial { display: none !important; }
 }
+
+/* learn the knob: the one big button under the clock */
+.learn { display: flex; align-items: center; gap: 16px; margin-top: 16px; flex-wrap: wrap; }
+.learn span { color: var(--muted); font-size: var(--t-small); max-width: 36ch; }
