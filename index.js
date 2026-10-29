@@ -42,26 +42,25 @@
   // like a curtain, so a plain anchor jump goes nowhere: scroll to the end instead.
   $$('a[href="#fits"]').forEach(a => a.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' }); }));
 
-  // Want one: the short form. With a Formspree form set up it posts there and
-  // thanks the person in place; until then it opens their email app with the
-  // note written out, so nothing is lost either way.
+  // Want one: the short form posts to a small Google Apps Script in Derek's
+  // Workspace (a row in the OVERCLOCK interest sheet, an email to hello@).
+  // The script answers from another origin without CORS headers, so the post
+  // is sent "no-cors": the browser cannot read the reply, only whether the
+  // request itself went out. If it did not, the person is pointed at email.
   const form = $('#want-form'), say = $('#form-say');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const email = form.email.value.trim(), truck = form.truck.value.trim(), notes = form.notes.value.trim();
+    const email = form.email.value.trim(), truck = form.truck.value.trim();
     say.classList.remove('bad');
     if (!email || !/.+@.+\..+/.test(email)) { say.textContent = 'An email address, so we can reply.'; say.classList.add('bad'); form.email.focus(); return; }
     if (!truck) { say.textContent = 'What do you drive? Year and model.'; say.classList.add('bad'); form.truck.focus(); return; }
-    if (/FORM_ID/.test(form.action)) {
-      location.href = 'mailto:hello@overclockdash.com?subject=' + encodeURIComponent('I want an OVERCLOCK') + '&body=' + encodeURIComponent('Truck (year and model): ' + truck + '\n\nAnything else: ' + notes + '\n\nReply to: ' + email);
-      say.textContent = 'Your email app should open with the note written out.'; return;
-    }
     say.textContent = 'Sending...';
+    const btn = form.querySelector('button'); btn.disabled = true;
     try {
-      const r = await fetch(form.action, { method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form) });
-      if (r.ok) { say.textContent = "Got it. You'll hear back from us personally."; form.reset(); }
-      else throw new Error('status ' + r.status);
+      await fetch(form.action, { method: 'POST', mode: 'no-cors', body: new FormData(form) });
+      say.textContent = "Got it. You'll hear back from us personally."; form.reset();
     } catch (err) { say.textContent = 'That did not go through. Email hello@overclockdash.com instead.'; say.classList.add('bad'); }
+    btn.disabled = false;
   });
 
   const more = $('#more-screens');

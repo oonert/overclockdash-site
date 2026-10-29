@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=20261028n">
+<link rel="stylesheet" href="site.css?v=20261028o">
 </head>
 <body>
 <main>
@@ -298,13 +298,12 @@
         <p class="actions"><a class="btn" href="mailto:hello@overclockdash.com?subject=I%20want%20an%20OVERCLOCK&amp;body=Truck%20(year%20and%20model)%3A%0A%0AAnything%20else%3A">I want one</a></p>
         <p class="fine">or write to <a href="mailto:hello@overclockdash.com">hello@overclockdash.com</a></p>
       </div>
-      <form class="want-form in" id="want-form" action="https://formspree.io/f/FORM_ID" method="POST" novalidate>
+      <form class="want-form in" id="want-form" action="https://script.google.com/macros/s/AKfycbxi-XidVNt5O5QgqWX2Q7AxgvgE4CeUgcNRVTkpfK_G4opo1XjTwOyEbTPtx3rodjcp6w/exec" method="POST" novalidate>
         <label>Email<input type="email" name="email" required autocomplete="email" placeholder="you@example.com"></label>
         <label>Truck, year and model<input type="text" name="truck" required placeholder="1997 4Runner SR5"></label>
         <label>Anything else<textarea name="notes" rows="3" placeholder="Optional"></textarea></label>
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="gotcha">
-        <input type="hidden" name="_subject" value="OVERCLOCK: I want one">
-        <button class="btn" type="submit">Save my spot</button>
+                <button class="btn" type="submit">Save my spot</button>
         <p class="form-say" id="form-say" aria-live="polite"></p>
       </form>
     </div>
@@ -340,6 +339,6 @@
 document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
 document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
 </script>
-<script src="index.js?v=20261028n"></script>
+<script src="index.js?v=20261028o"></script>
 </body>
 </html>
