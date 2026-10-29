@@ -123,6 +123,11 @@ section.page .sub { font-size: var(--t-lead); color: var(--ink); margin-top: 16p
 .row.phones .moment img { aspect-ratio: 600 / 1190; border: 0; background: transparent; border-radius: 0; }
 @media (max-width: 760px) { .row.phones .moment { flex-basis: 62vw; } }
 
+/* the app note: small but seen */
+.soon-note { margin: 32px var(--margin) 0; padding: 18px 20px; border-left: 3px solid var(--green); background: var(--panel); max-width: 72ch; }
+.soon-note b { display: block; color: var(--green); font-size: 18px; margin-bottom: 6px; }
+.soon-note p { font-size: 16px; color: var(--muted); }
+
 /* what it watches: the list beside the case */
 .watch { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); padding: 40px var(--margin) 0; align-items: center; }
 .watch-list { grid-column: 1 / 7; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; font-size: var(--t-lead); max-width: 40ch; }
