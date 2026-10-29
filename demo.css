@@ -16,6 +16,7 @@ body.demo { overflow-x: clip; touch-action: pan-y; }
 .stage .guide h2 { color: var(--amber); font-size: 18px; font-weight: 700; letter-spacing: .04em; }
 .stage .guide ul { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 15px; color: var(--muted); }
 .stage .guide b { color: var(--ink); }
+.panels .fine { color: var(--muted); font-size: 13px; padding: 4px 24px; }
 .panels { display: flex; flex-direction: column; gap: 14px; padding-top: 8px; }
 .panel { background: var(--panel); padding: 24px 24px 22px; }
 .panel:nth-child(even) { background: var(--panel-2); }
