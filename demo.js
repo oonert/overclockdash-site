@@ -16,13 +16,21 @@
     status.textContent = 'Loading the firmware (about 4 MB)...';
     try {
       clock = await OverclockClock.mount($('#clock'), { frame: which, frameWidth: frameWidth(), base: 'dist/', dial: false, alerts: { storm: false }, settings: { clk_face: 0, clk_24h: 0, clk_page: 2, clk_color: 0x8FE0, clk_slots: [21, 1, 7, 16, 11, 12, 7, 8] } });
-      status.innerHTML = 'Firmware <b>' + clock.version + '</b> is running. Scroll on the screen to turn, tap to click, hold to hold.';
+      status.textContent = ''; showHint();
       $('#fw').textContent = clock.version;
       buildFaults(); markRunning();
     } catch (e) { status.textContent = 'The firmware could not load. ' + (e && e.message ? e.message : ''); console.error(e); }
   }
   $$('.tabs [role=tab]').forEach(b => b.addEventListener('click', () => { if (b.dataset.case !== currentCase) mountClock(b.dataset.case); }));
   mountClock(new URLSearchParams(location.search).get('v') === 'tacoma' ? 'tacoma' : '4runner');
+
+  // ── the hint: how to work the knob, gone after the first turn or click (or 12 s)
+  const hint = $('#hint'); let hintTimer = null;
+  function hideHint() { if (!hint.hidden) hint.classList.add('gone'); clearTimeout(hintTimer); }
+  function showHint() { hint.hidden = false; hint.classList.remove('gone'); clearTimeout(hintTimer); hintTimer = setTimeout(hideHint, 12000); }
+  const stage = $('.stage');
+  stage.addEventListener('wheel', hideHint, { passive: true }); stage.addEventListener('pointerdown', (e) => { if (e.target.closest('#clock, #jog')) hideHint(); });
+  document.addEventListener('keydown', (e) => { if (/^Arrow| |Enter/.test(e.key)) hideHint(); });
 
   // ── the jog wheel: an iPod-style ring for a thumb, a button in the middle ──
   const ring = $('#jog-ring'), ticks = $('#jog-ticks'), jbtn = $('#jog-btn');

@@ -32,14 +32,13 @@
       <button role="tab" aria-selected="false" data-case="tacoma">Tacoma</button>
     </div>
     <div id="clock"></div>
-    <p class="howto" aria-label="How the knob works"><span><b>Turn</b> moves between pages and items</span><span><b>Click</b> selects</span><span><b>Hold</b> goes back</span></p>
     <p class="status" id="status">Loading the firmware (about 4 MB)...</p>
+    <p class="hint" id="hint" hidden><span class="desk"><b>Mouse scroll wheel</b> over the screen turns the knob</span><span class="phone"><b>Spin the wheel</b> below to turn the knob</span><span><b>Click</b> selects</span><span><b>Hold</b> goes back</span></p>
   </section>
 
   <div class="panels">
     <section class="panel" id="knob">
       <h2>THE KNOB</h2>
-      <p>Rotate to move, click to act, hold to go back (on the clock, hold opens its own settings). Run your thumb around the wheel to turn. Tap the middle to click, keep it pressed to hold.</p>
       <div class="jog" id="jog" aria-label="The knob: drag around the ring to turn, press the middle to click or hold">
         <div class="jog-ring" id="jog-ring" tabindex="0" role="slider" aria-label="Turn the knob" aria-valuetext="turn"><div class="jog-ticks" id="jog-ticks"></div></div>
         <button class="jog-btn" id="jog-btn" type="button" aria-label="Click, or hold">CLICK<small>hold to go back</small></button>
@@ -54,20 +53,19 @@
 
     <section class="panel" id="pages">
       <h2>PAGES</h2>
-      <p>Jump straight to a page. Turning the knob from there goes to the next one.</p>
       <div class="chips" id="page-chips"></div>
     </section>
 
     <section class="panel" id="faults">
       <h2>INJECT A FAULT</h2>
-      <p>The firmware's own demo events: each bends a real reading, so the real alert fires. One at a time; each eases back by itself. <span id="fault-now">Nothing running.</span></p>
+      <p><span id="fault-now">Nothing running.</span></p>
       <div class="chips faults" id="fault-chips"></div>
       <div class="chips"><button class="btn ghost" type="button" id="stop-fault">Stop the fault</button></div>
     </section>
 
     <section class="panel" id="truck">
       <h2>TIP THE TRUCK</h2>
-      <p>Drag up and down for pitch, side to side for roll. The TILT page follows through the firmware's own filter, so the needles settle like they do in the truck.</p>
+      <p>Drag the truck. The TILT page follows.</p>
       <div id="truck3d" aria-label="A 3D truck you can drag"><div id="readout"></div></div>
       <div class="chips presets" role="group" aria-label="Preset tilts">
         <button class="btn ghost" type="button" data-tilt="0,0" aria-pressed="true">Level</button>

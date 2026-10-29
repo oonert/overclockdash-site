@@ -7,8 +7,11 @@ body.demo { overflow-x: clip; touch-action: pan-y; }
 .stage #clock .overclock { padding: 0; gap: 18px; }
 .stage #clock .overclock-dial { box-shadow: none !important; } /* removes the widget's own: taste-skill-ignore */
 .stage .status { text-align: center; max-width: 44ch; }
-.stage .howto { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; margin-top: 12px; font-size: 15px; color: var(--muted); }
-.stage .howto b { color: var(--amber); font-weight: 700; margin-right: 4px; }
+.stage .hint { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; margin-top: 12px; font-size: 15px; color: var(--muted); transition: opacity .8s var(--ease); }
+.stage .hint b { color: var(--amber); font-weight: 700; margin-right: 4px; }
+.stage .hint.gone { opacity: 0; pointer-events: none; }
+.stage .hint .phone { display: none; }
+@media (hover: none) and (pointer: coarse) { .stage .hint .desk { display: none; } .stage .hint .phone { display: inline; } }
 .panels { display: flex; flex-direction: column; gap: 14px; padding-top: 8px; }
 .panel { background: var(--panel); padding: 24px 24px 22px; }
 .panel:nth-child(even) { background: var(--panel-2); }
@@ -35,7 +38,7 @@ body.demo { overflow-x: clip; touch-action: pan-y; }
   .stage #clock .overclock { gap: 10px; }
   .stage #clock .overclock-dial { width: 48px !important; height: 48px !important; }
   .stage .status { display: none; }
-  .stage .howto { margin-top: 6px; font-size: 13px; gap: 4px 12px; }
+  .stage .hint { margin-top: 6px; font-size: 13px; gap: 4px 12px; }
   .panels { padding-top: 12px; }
   .panel { padding: 18px 16px 16px; }
   .panel h2 { font-size: 22px; }

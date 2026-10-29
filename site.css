@@ -70,6 +70,8 @@ h1, h2, h3, p { margin: 0; }
 .hero-clock #clock .overclock-dial { display: none; }
 .status { margin-top: 14px; font-size: var(--t-small); color: var(--muted); min-height: 1.5em; max-width: 52ch; text-align: center; }
 .status a { color: var(--amber); }
+.demo-link { display: inline-block; color: var(--amber); font-size: 18px; font-weight: 700; text-decoration: none; margin-top: 18px; }
+.demo-link:hover { text-decoration: underline; }
 .status b { color: var(--green); font-weight: 400; }
 @media (max-width: 900px) {
   .hero { display: flex; flex-direction: column; padding-top: 8px; }
