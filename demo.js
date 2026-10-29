@@ -92,6 +92,7 @@
   // ── the truck ──────────────────────────────────────────────────────────────
   const box = $('#truck3d');
   let pitch = 0, roll = 0, target = { pitch: 0, roll: 0 }, LIMIT = 35;
+  let camp = null, tent = { visible: false }, block = { visible: false };   // the camp scene (filled in with WebGL)
   function setTilt(p, r) { target.pitch = Math.max(-LIMIT, Math.min(LIMIT, p)); target.roll = Math.max(-LIMIT, Math.min(LIMIT, r)); }
   function clearPresets() { $$('.presets .btn').forEach(b => b.setAttribute('aria-pressed', 'false')); }
   if (window.THREE) {
@@ -106,10 +107,11 @@
     scene.add(new THREE.HemisphereLight(0xcfd8e6, 0x202428, 0.9));
     const sun = new THREE.DirectionalLight(0xfff2dc, 1.1); sun.position.set(5, 9, 4); sun.castShadow = true;
     sun.shadow.mapSize.set(1024, 1024); sun.shadow.camera.left = sun.shadow.camera.bottom = -6; sun.shadow.camera.right = sun.shadow.camera.top = 6; scene.add(sun);
-    const rig = new THREE.Group(); scene.add(rig);
+    const rig = new THREE.Group(); scene.add(rig);          // the ground
+    const trig = new THREE.Group(); scene.add(trig);        // the truck, on its own so it can sit on a block
     const slab = new THREE.Mesh(new THREE.BoxGeometry(7, 0.18, 4.4), new THREE.MeshStandardMaterial({ color: 0x5b5346, roughness: 1 })); slab.position.y = -0.09; slab.receiveShadow = true; rig.add(slab);
     const grid = new THREE.GridHelper(7, 14, 0x8a7f6a, 0x6e6555); grid.position.y = 0.001; rig.add(grid);
-    const truck = new THREE.Group(); rig.add(truck);
+    const truck = new THREE.Group(); trig.add(truck);
     const paint = new THREE.MeshStandardMaterial({ color: 0xb8352a, roughness: 0.55, metalness: 0.15 });
     const dark = new THREE.MeshStandardMaterial({ color: 0x22262b, roughness: 0.9 });
     const glass = new THREE.MeshStandardMaterial({ color: 0x9fc6d9, roughness: 0.2, metalness: 0.4, transparent: true, opacity: 0.75 });
@@ -132,16 +134,33 @@
       part(new THREE.CylinderGeometry(0.48, 0.48, 0.36, 24), rubber, x, 0.48, z).rotation.x = Math.PI / 2;
       part(new THREE.CylinderGeometry(0.26, 0.26, 0.38, 12), rim, x, 0.48, z).rotation.x = Math.PI / 2;
     }
+    // Camp: a rooftop tent, and a block under the front-right wheel.
+    tent = new THREE.Group(); tent.visible = false; truck.add(tent);
+    const canvasMat = new THREE.MeshStandardMaterial({ color: 0x9a8a5c, roughness: 1 });
+    const tentBase = new THREE.Mesh(new THREE.BoxGeometry(2.3, 0.22, 1.5), new THREE.MeshStandardMaterial({ color: 0x2b2b2b, roughness: 1 })); tentBase.position.set(-0.75, 2.33, 0); tentBase.castShadow = true; tent.add(tentBase);
+    const ridge = new THREE.Shape(); ridge.moveTo(-0.8, 0); ridge.lineTo(0.8, 0); ridge.lineTo(0, 0.7); ridge.lineTo(-0.8, 0);
+    const tentTop = new THREE.Mesh(new THREE.ExtrudeGeometry(ridge, { depth: 2.3, bevelEnabled: false }), canvasMat);
+    tentTop.rotation.y = Math.PI / 2; tentTop.position.set(-0.75 + 1.15, 2.44, 0); tentTop.castShadow = true; tent.add(tentTop);
+    const FR_WHEEL_X = 1.35, FR_WHEEL_Z = 1.0;   // the truck faces +x; +z is its right side
+    block = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.06, 0.5), new THREE.MeshStandardMaterial({ color: 0xffb000, roughness: 0.8 })); block.visible = false; block.position.set(FR_WHEEL_X, 0.03, FR_WHEEL_Z); block.castShadow = true; rig.add(block);
     let drag = null;
     box.addEventListener('pointerdown', e => { box.setPointerCapture(e.pointerId); drag = { x: e.clientX, y: e.clientY, p: target.pitch, r: target.roll }; box.classList.add('grabbing'); if (clock) clock.goto('Level'); e.preventDefault(); });
-    box.addEventListener('pointermove', e => { if (!drag) return; setTilt(drag.p + (drag.y - e.clientY) * 0.25, drag.r + (e.clientX - drag.x) * 0.25); clearPresets(); });
+    box.addEventListener('pointermove', e => { if (!drag) return; if (camp) { camp = null; tent.visible = false; block.visible = false; campSay.textContent = ''; campWedge.disabled = true; campPack.disabled = true; campPark.disabled = false; } setTilt(drag.p + (drag.y - e.clientY) * 0.25, drag.r + (e.clientX - drag.x) * 0.25); clearPresets(); });
     const drop = () => { drag = null; box.classList.remove('grabbing'); };
     box.addEventListener('pointerup', drop); box.addEventListener('pointercancel', drop);
     const readout = $('#readout'); let lastSent = '';
     (function frame() {
       requestAnimationFrame(frame);
       pitch += (target.pitch - pitch) * 0.15; roll += (target.roll - roll) * 0.15;
-      rig.rotation.set(-roll * Math.PI / 180, 0, pitch * Math.PI / 180);
+      const D = Math.PI / 180;
+      if (camp) {
+        rig.rotation.set(-camp.ground.roll * D, 0, camp.ground.pitch * D);
+        block.scale.y = Math.max(0.01, camp.lift); block.position.y = 0.03 * camp.lift;
+      } else rig.rotation.set(-roll * D, 0, pitch * D);
+      trig.rotation.set(-roll * D, 0, pitch * D);
+      // Level on the block, the rear-left wheel stays on the ground and the
+      // front-right rides up: the body rises half the block's height.
+      trig.position.y = camp ? camp.lift * 0.03 : 0;
       renderer.render(scene, camera);
       const key = pitch.toFixed(1) + ',' + roll.toFixed(1);
       if (key !== lastSent) { lastSent = key; if (clock) clock.tilt(pitch, roll); readout.textContent = 'pitch ' + (pitch >= 0 ? '+' : '') + pitch.toFixed(1) + '°   roll ' + (roll >= 0 ? '+' : '') + roll.toFixed(1) + '°'; }
@@ -149,5 +168,24 @@
   } else {
     box.innerHTML = '<p style="padding:24px">The 3D truck needs WebGL. The preset buttons still tip the clock.</p>';
   }
-  $$('.presets .btn').forEach(b => b.addEventListener('click', () => { const [p, r] = b.dataset.tilt.split(',').map(Number); setTilt(p, r); clearPresets(); b.setAttribute('aria-pressed', 'true'); if (clock) clock.goto('Level'); }));
+  // ── camp for the night ────────────────────────────────────────────────────
+  // A 3rd gen 4Runner: wheelbase 105.3 in, front track 59.3 in. Parked so the
+  // front-right wheel sits 2.2 in below the rear-left (the two beside it 1.1):
+  // a 2-inch block under the front right pivots the truck level on its rear-left.
+  const WB = 105.3, TK = 59.3, LOW_IN = 1.1;
+  const groundPitch = -Math.asin(LOW_IN / WB) * 180 / Math.PI, groundRoll = -Math.asin(LOW_IN / TK) * 180 / Math.PI;
+  const campPark = $('#camp-park'), campWedge = $('#camp-wedge'), campPack = $('#camp-pack'), campSay = $('#camp-say');
+  function campState(lift) {
+    camp = { ground: { pitch: groundPitch, roll: groundRoll }, lift };
+    tent.visible = true; block.visible = lift > 0;
+    setTilt(groundPitch * (1 - lift), groundRoll * (1 - lift)); clearPresets();
+    campWedge.disabled = lift > 0; campPack.disabled = false; campPark.disabled = lift === 0;
+    campSay.textContent = lift > 0 ? 'Level. The CAMP page says sleep on it.' : 'Nose down and leaning right. The CAMP page says 2 inches under the front right, 1 under the two beside it. Start with the 2.';
+    if (clock) clock.goto('Camp');
+  }
+  campPark.addEventListener('click', () => campState(0));
+  campWedge.addEventListener('click', () => campState(1));
+  campPack.addEventListener('click', () => { camp = null; tent.visible = false; block.visible = false; setTilt(0, 0); clearPresets(); $('.presets .btn').setAttribute('aria-pressed', 'true'); campWedge.disabled = true; campPack.disabled = true; campPark.disabled = false; campSay.textContent = ''; if (clock) clock.goto('Tilt'); });
+  $$('[data-view]').forEach(b => b.addEventListener('click', () => clock && clock.goto(b.dataset.view)));
+  $$('.presets .btn').forEach(b => b.addEventListener('click', () => { const [p, r] = b.dataset.tilt.split(',').map(Number); if (camp) { camp = null; tent.visible = false; block.visible = false; campSay.textContent = ''; campWedge.disabled = true; campPack.disabled = true; campPark.disabled = false; } setTilt(p, r); clearPresets(); b.setAttribute('aria-pressed', 'true'); if (clock) clock.goto('Level'); }));
 })();
