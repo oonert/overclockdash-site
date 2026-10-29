@@ -116,14 +116,15 @@ section.page .sub { font-size: var(--t-lead); color: var(--ink); margin-top: 16p
 .row-wrap { margin-top: 40px; }
 .progress { height: 6px; background: var(--panel-3); margin-inline: var(--margin); }
 .progress i { display: block; height: 100%; width: 20%; background: var(--ink); transition: width .2s; }
-.row { display: flex; gap: 32px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--margin); padding: 32px var(--margin) 8px; scrollbar-width: none; }
+.row { display: flex; gap: 32px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x proximity; scroll-padding-inline: var(--margin); padding: 32px var(--margin) 28px; scrollbar-width: none; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; }
 .row::-webkit-scrollbar { display: none; }
 @media (hover: hover) { .row { cursor: grab; } .row.grabbing, .row.thrown { cursor: grabbing; scroll-snap-type: none; } .row.grabbing { user-select: none; } .row img { -webkit-user-drag: none; } }
-.moment { flex: 0 0 280px; scroll-snap-align: start; display: flex; flex-direction: column; }
+.moment { flex: 0 0 280px; scroll-snap-align: start; display: flex; flex-direction: column; contain: layout paint; }
 .row:not(.all) .moment.more { display: none; }
 .moment h3 { font-size: 22px; font-weight: 700; }
 .moment p { margin-top: 8px; color: var(--muted); font-size: 16px; flex: 1 0 auto; }
-.moment img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; background: #000; margin-top: 20px; border: 1px solid #2a2a2a; border-radius: 6px; image-rendering: auto; }
+.moment img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; background: #000; margin-top: 20px; border: 1px solid #2a2a2a; border-radius: 6px; image-rendering: auto; cursor: zoom-in; transition: transform .5s cubic-bezier(.34, 1.56, .64, 1); will-change: transform; }
+@media (hover: hover) { .moment:hover img { transform: scale(1.07); } }
 .row-btns { display: flex; gap: 8px; }
 .row-btns button { width: 48px; height: 48px; border: 0; background: var(--panel-3); color: var(--ink); font-size: 22px; }
 .row-btns button:hover { background: var(--amber); color: #000; }
@@ -302,3 +303,11 @@ section.page .sub a { color: var(--amber); }
 .faces img { width: 100%; height: auto; border: 1px solid #2a2a2a; border-radius: 6px; background: #000; }
 .faces figcaption { margin-top: 8px; color: var(--muted); font-size: var(--t-small); }
 @media (max-width: 760px) { .faces { grid-template-columns: 1fr; } }
+
+/* the lightbox: click a screen or a phone page to see it big */
+.lightbox { position: fixed; inset: 0; z-index: 200; background: rgba(0, 0, 0, .88); display: flex; align-items: center; justify-content: center; padding: 24px; cursor: zoom-out; opacity: 0; transition: opacity .25s; }
+.lightbox.show { opacity: 1; }
+.lightbox img { max-width: min(96vw, 1100px); max-height: 92vh; width: auto; height: auto; border-radius: 8px; box-shadow: 0 30px 80px rgba(0, 0, 0, .7); transform: scale(.7); transition: transform .55s cubic-bezier(.34, 1.56, .64, 1); image-rendering: auto; }
+.lightbox.show img { transform: scale(1); }
+.lightbox .cap { position: absolute; left: 0; right: 0; bottom: 20px; text-align: center; color: var(--muted); font-size: var(--t-small); }
+@media (prefers-reduced-motion: reduce) { .moment img, .lightbox img { transition: none; } }

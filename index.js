@@ -14,12 +14,12 @@
     row.addEventListener('pointerdown', (e) => {
       if (e.pointerType !== 'mouse' || e.button !== 0) return;
       cancelAnimationFrame(coast); grab = { x: e.clientX, left: row.scrollLeft, t: performance.now(), moved: false }; vel = 0;
-      row.classList.add('grabbing'); row.setPointerCapture(e.pointerId);
+      row.classList.add('grabbing'); grab.id = e.pointerId;
     });
     row.addEventListener('pointermove', (e) => {
       if (!grab) return;
       const dx = e.clientX - grab.x, now = performance.now();
-      if (Math.abs(dx) > 4) grab.moved = true;
+      if (Math.abs(dx) > 4 && !grab.moved) { grab.moved = true; try { row.setPointerCapture(grab.id); } catch (_) {} }
       const left = grab.left - dx; vel = (left - row.scrollLeft) / Math.max(1, now - grab.t); grab.t = now;
       row.scrollLeft = left;
     });
@@ -35,6 +35,18 @@
     row.addEventListener('dragstart', (e) => e.preventDefault());
   }
   grabRow(row);
+  // click a picture in a row: the lightbox
+  $$('.row').forEach(r => r.addEventListener('click', (e) => {
+    const img = e.target.closest('img'); if (!img || r.classList.contains('thrown')) return;
+    const box = document.createElement('div'); box.className = 'lightbox';
+    const big = new Image(); big.src = img.currentSrc || img.src; big.alt = img.alt;
+    const cap = document.createElement('div'); cap.className = 'cap'; const h = img.closest('.moment')?.querySelector('h3'); cap.textContent = h ? h.textContent : img.alt;
+    box.append(big, cap); document.body.appendChild(box);
+    requestAnimationFrame(() => requestAnimationFrame(() => box.classList.add('show')));
+    const close = () => { box.classList.remove('show'); document.removeEventListener('keydown', onKey); setTimeout(() => box.remove(), 260); };
+    const onKey = (ev) => { if (ev.key === 'Escape') close(); };
+    box.addEventListener('click', close); document.addEventListener('keydown', onKey);
+  }));
   rowProgress($('#phones'), $('#phone-progress')); grabRow($('#phones'));
   $$('.row').forEach(el => { el.classList.add('in'); });
 
