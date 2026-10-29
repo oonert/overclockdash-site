@@ -42,6 +42,28 @@
   // like a curtain, so a plain anchor jump goes nowhere: scroll to the end instead.
   $$('a[href="#fits"]').forEach(a => a.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' }); }));
 
+  // Want one: the short form. With a Formspree form set up it posts there and
+  // thanks the person in place; until then it opens their email app with the
+  // note written out, so nothing is lost either way.
+  const form = $('#want-form'), say = $('#form-say');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = form.email.value.trim(), truck = form.truck.value.trim(), notes = form.notes.value.trim();
+    say.classList.remove('bad');
+    if (!email || !/.+@.+\..+/.test(email)) { say.textContent = 'An email address, so we can reply.'; say.classList.add('bad'); form.email.focus(); return; }
+    if (!truck) { say.textContent = 'What do you drive? Year and model.'; say.classList.add('bad'); form.truck.focus(); return; }
+    if (/FORM_ID/.test(form.action)) {
+      location.href = 'mailto:hello@overclockdash.com?subject=' + encodeURIComponent('I want an OVERCLOCK') + '&body=' + encodeURIComponent('Truck (year and model): ' + truck + '\n\nAnything else: ' + notes + '\n\nReply to: ' + email);
+      say.textContent = 'Your email app should open with the note written out.'; return;
+    }
+    say.textContent = 'Sending...';
+    try {
+      const r = await fetch(form.action, { method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form) });
+      if (r.ok) { say.textContent = "Got it. You'll hear back from us personally."; form.reset(); }
+      else throw new Error('status ' + r.status);
+    } catch (err) { say.textContent = 'That did not go through. Email hello@overclockdash.com instead.'; say.classList.add('bad'); }
+  });
+
   const more = $('#more-screens');
   more.addEventListener('click', () => { row.classList.add('all'); more.parentElement.style.display = 'none'; updateProgress(); row.scrollBy({ left: 312, behavior: 'smooth' }); });
 

@@ -160,6 +160,24 @@ section.page .sub.small { font-size: var(--t-small); color: var(--muted); margin
 @media (max-width: 900px) { .feat li, .wont li { grid-column: span 6; } }
 @media (max-width: 600px) { .feat li, .wont li { grid-column: span 12; } .feat, .wont { row-gap: 20px; } }
 
+/* want one: the words and a short form side by side */
+.want { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); padding: 8px var(--margin) 0; align-items: start; }
+.want .sub { padding-inline: 0; }
+.want-words { grid-column: 1 / 7; }
+.want-words .sub { padding-inline: 0; margin-left: 0; }
+.want-words .actions { margin-top: 28px; }
+.want-words .fine { margin-top: 12px; font-size: var(--t-small); color: var(--muted); }
+.want-words .fine a { color: var(--amber); }
+.want-form { grid-column: 7 / 13; max-width: 440px; background: var(--panel); padding: 24px; margin-top: 16px; display: flex; flex-direction: column; gap: 14px; }
+.want-form label { display: flex; flex-direction: column; gap: 6px; font-size: var(--t-small); color: var(--muted); }
+.want-form input, .want-form textarea { font: var(--t-body)/1.4 var(--font); color: var(--ink); background: #000; border: 1px solid #333; padding: 10px 12px; border-radius: 0; }
+.want-form input:focus, .want-form textarea:focus { outline: 2px solid var(--amber); outline-offset: 0; border-color: var(--amber); }
+.want-form .btn { align-self: flex-start; }
+.want-form .gotcha { position: absolute; left: -9999px; width: 1px; height: 1px; }
+.form-say { margin: 0; font-size: var(--t-body); color: var(--green); min-height: 1.4em; }
+.form-say.bad { color: var(--amber); }
+@media (max-width: 900px) { .want { display: block; } .want-form { max-width: none; margin-top: 28px; } }
+
 /* try it: the two cases as doors */
 .try { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); padding: 40px var(--margin) 32px; }
 .try-card { display: block; text-decoration: none; background: var(--panel); padding: 24px; transition: transform .25s var(--ease), background .2s; }

@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=20261028m">
+<link rel="stylesheet" href="site.css?v=20261028n">
 </head>
 <body>
 <main>
@@ -22,6 +22,7 @@
       <a href="#logs">Logging</a>
       <a href="#built">Built</a>
       <a href="3d.html">3D</a>
+      <a href="#want">Want one?</a>
     </nav>
   </header>
 
@@ -288,6 +289,27 @@
     </ul>
   </section>
 
+  <section class="page" id="want">
+    <div class="head in"><h2>WANT ONE?</h2></div>
+    <div class="want">
+      <div class="want-words in">
+        <p class="sub">OVERCLOCK is finished. Designed, built, and tested on the road. The first batch is small and limited, and we're starting with the people who reach out first.</p>
+        <p class="sub">Send a quick note with what you drive and we'll reply personally with where you stand and what happens next. No deposit, no commitment, no spam.</p>
+        <p class="actions"><a class="btn" href="mailto:hello@overclockdash.com?subject=I%20want%20an%20OVERCLOCK&amp;body=Truck%20(year%20and%20model)%3A%0A%0AAnything%20else%3A">I want one</a></p>
+        <p class="fine">or write to <a href="mailto:hello@overclockdash.com">hello@overclockdash.com</a></p>
+      </div>
+      <form class="want-form in" id="want-form" action="https://formspree.io/f/FORM_ID" method="POST" novalidate>
+        <label>Email<input type="email" name="email" required autocomplete="email" placeholder="you@example.com"></label>
+        <label>Truck, year and model<input type="text" name="truck" required placeholder="1997 4Runner SR5"></label>
+        <label>Anything else<textarea name="notes" rows="3" placeholder="Optional"></textarea></label>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="gotcha">
+        <input type="hidden" name="_subject" value="OVERCLOCK: I want one">
+        <button class="btn" type="submit">Save my spot</button>
+        <p class="form-say" id="form-say" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
   <section class="page" id="try">
     <div class="head in"><h2>TRY THE REAL THING</h2></div>
     <p class="sub">The real firmware, in your browser. Every page, thirteen faults to inject, and a truck to tip.</p>
@@ -304,7 +326,7 @@
     <div class="col"><b>Fits</b><span>3rd gen 4Runner, 1996 to 2002</span><span>1st gen Tacoma, 1995 to 2004</span><span>T100, 1993 to 1998</span><span>Engine data on 1996 and newer; everything else on all of them</span><b class="soon">Coming soon</b><span>1st and 2nd gen 4Runner, 1984 to 1995: GPS and sensors, no engine data</span><span>More trucks on the way</span></div>
     <div class="col"><b>In the box</b><span>The OVERCLOCK Field Computer, in your truck's case</span><span>The knob, with a flush mount and a stick-on housing</span><span>Bluetooth engine adapter</span><span>Memory card</span></div>
     <div class="col"><b>Inside</b><span>Fully custom board, two processors</span><span>GPS, barometer, altimeter, gyro and accelerometer, precision voltmeter</span><span>Bluetooth and WiFi</span><span>Terminals for probes and senders, an expansion port</span></div>
-    <div class="col"><b>Designed in</b><span>Vancouver, Washington</span><a href="demo.html">The demo</a><a href="3d.html">In 3D</a></div>
+    <div class="col"><b>Designed in</b><span>Vancouver, Washington</span><span>Questions? <a href="mailto:hello@overclockdash.com">hello@overclockdash.com</a></span><a href="demo.html">The demo</a><a href="3d.html">In 3D</a></div>
   </div>
   <div></div>
   <div>
@@ -318,6 +340,6 @@
 document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
 document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
 </script>
-<script src="index.js?v=20261028m"></script>
+<script src="index.js?v=20261028n"></script>
 </body>
 </html>
