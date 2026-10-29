@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>OVERCLOCK Field Computer: the clock your Toyota should have come with</title>
 <meta name="description" content="OVERCLOCK Field Computer plugs into the factory clock spot of a nineties Toyota truck. Engine codes in plain English, GPS, every drive logged every second, weather, tilt, solar and alerts. No wiring. Try the real firmware in your browser.">
-<link rel="stylesheet" href="site.css?v=20261029e">
+<link rel="stylesheet" href="site.css?v=20261029f">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -81,7 +81,7 @@
       <h2>ONE KNOB, EVERY PAGE</h2>
       <div class="row-btns"><button type="button" data-step="-1" aria-label="Back">&larr;</button><button type="button" data-step="1" aria-label="Forward">&rarr;</button></div>
     </div>
-    <p class="sub">Turn to move between pages. Click to open the thing you are looking at. Hold to go back. That is the whole manual.</p>
+    <p class="sub">Turn to move between pages. Click to open the thing you are looking at. Hold to go back. That is the whole manual. No touchscreen on purpose: the knob sits where your hand already rests, your eyes stay on the road, and the screen stays for the information. <a href="faq.html">Why not a touchscreen?</a></p>
     <div class="row-wrap">
       <div class="progress"><i id="row-progress"></i></div>
       <div class="row" id="moments">
@@ -405,7 +405,7 @@
 document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
 document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
 </script>
-<script src="index.js?v=20261029e"></script>
-<script src="menu.js?v=20261029e"></script>
+<script src="index.js?v=20261029f"></script>
+<script src="menu.js?v=20261029f"></script>
 </body>
 </html>
