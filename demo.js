@@ -72,9 +72,10 @@
 
   // ── key on, key off, an update ────────────────────────────────────────────
   const pwSay = $('#pw-say');
-  $('#pw-off').addEventListener('click', () => { if (!clock) return; clock.off(); pwSay.textContent = 'Key off. The screen is dark; the firmware is stopped.'; });
-  $('#pw-on').addEventListener('click', () => { if (!clock) return; clock.on(); pwSay.textContent = 'Key on: the startup screen, then the clock.'; });
-  $('#pw-update').addEventListener('click', () => { if (!clock) return; clock.update('0.99.200', 1500000); pwSay.textContent = 'An update file landed on the card. The dash restarts, installs it with the bar filling, says UPDATED, and boots again.'; });
+  const pwState = (on) => { $('#pw-on').setAttribute('aria-pressed', String(on)); $('#pw-off').setAttribute('aria-pressed', String(!on)); };
+  $('#pw-off').addEventListener('click', () => { if (!clock) return; clock.off(); pwState(false); pwSay.textContent = 'Key off. The screen is dark; the firmware is stopped.'; });
+  $('#pw-on').addEventListener('click', () => { if (!clock) return; clock.on(); pwState(true); pwSay.textContent = 'Key on: the startup screen, then the clock.'; });
+  $('#pw-update').addEventListener('click', () => { if (!clock) return; clock.update('0.99.200', 1500000); pwState(true); pwSay.textContent = 'An update file landed on the card. The dash restarts, installs it with the bar filling, says UPDATED, and boots again.'; });
 
   // ── the pages ─────────────────────────────────────────────────────────────
   const PAGES = [['Clock', 'Clock'], ['Gauges', 'Gauges'], ['Temp', 'Temp'], ['Speed', 'Speed'], ['Weather', 'Weather'], ['Solar', 'Solar'], ['Voltage', 'Voltage'], ['Level', 'Tilt'], ['Health', 'Health'], ['Trips', 'Trips'], ['Fuel', 'Fuel'], ['Towing', 'Towing'], ['Obd', 'Codes'], ['Records', 'Records'], ['Apps', 'Apps'], ['Settings', 'Settings']];
