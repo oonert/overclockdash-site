@@ -63,7 +63,7 @@ body.menu-open .menu-btn span:nth-child(3) { transform: translateY(-10.5px) rota
 .hero .words { grid-column: 1 / 8; padding-top: 32px; }
 .hero h1 { font-weight: 700; font-size: var(--t-display); line-height: .92; letter-spacing: -.02em; }
 .hero .lead { font-size: var(--t-lead); margin-top: 32px; max-width: 46ch; color: var(--ink); }
-.hero .actions { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
+.hero .actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 32px; max-width: 520px; }
 .hero .object { grid-column: 8 / 13; display: flex; flex-direction: column; align-items: flex-end; padding-top: 32px; }
 .tabs { display: flex; gap: 28px; margin-bottom: 12px; }
 .tabs button { background: none; border: 0; padding: 10px 0; font-size: 18px; color: var(--muted); border-bottom: 3px solid transparent; }
@@ -307,3 +307,11 @@ section.page .sub a:not(.btn) { color: var(--amber); }
 @media (max-width: 600px) { .faces { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 
+
+.hero .actions .btn { width: 100%; min-height: 56px; font-size: 18px; padding: 0 12px; }
+.hero .actions .btn:nth-child(2), .hero .actions .btn:nth-child(3) { background: var(--panel-3); color: var(--ink); }
+.hero .actions .btn:nth-child(2):hover, .hero .actions .btn:nth-child(3):hover { background: var(--amber); color: #000; }
+.hero .fits-link { margin-top: 14px; font-size: var(--t-small); }
+.hero .fits-link a { color: var(--muted); }
+.hero .fits-link a:hover { color: var(--amber); }
+@media (max-width: 560px) { .hero .actions { max-width: none; } .hero .actions .btn { font-size: 16px; } }
