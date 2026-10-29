@@ -31,6 +31,10 @@
   row.addEventListener('click', (e) => { if (row.classList.contains('thrown')) e.preventDefault(); }, true);
   row.addEventListener('dragstart', (e) => e.preventDefault());
 
+  // "Does it fit my truck?" points at the footer, which is pinned under the page
+  // like a curtain, so a plain anchor jump goes nowhere: scroll to the end instead.
+  $$('a[href="#fits"]').forEach(a => a.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' }); }));
+
   const more = $('#more-screens');
   more.addEventListener('click', () => { row.classList.add('all'); more.parentElement.style.display = 'none'; updateProgress(); row.scrollBy({ left: 312, behavior: 'smooth' }); });
 
