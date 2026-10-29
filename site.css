@@ -261,3 +261,13 @@ body.doc { display: block; }
 .doc-main a { color: var(--amber); }
 .doc-main ul.lic { margin: 12px 0 0; padding-left: 20px; }
 .doc-main ul.lic li { margin-top: 10px; line-height: 1.5; }
+
+/* section bands: alternate dark panels, a hairline and a page number above each title, like the clock's own page headers */
+main { counter-reset: sec; }
+section.page { counter-increment: sec; padding-block: clamp(64px, 7vw, 120px); }
+section.page:nth-of-type(even) { background: #101010; border-top: 1px solid #222; border-bottom: 1px solid #222; }
+section.page > .head { flex-wrap: wrap; }
+section.page > .head::before { content: "PAGE " counter(sec, decimal-leading-zero); flex: 1 0 100%; color: var(--amber); font-size: 13px; font-weight: 700; letter-spacing: .25em; padding-bottom: 10px; margin-bottom: 24px; border-bottom: 1px solid #2a2a2a; }
+.want-page { padding-top: clamp(64px, 7vw, 120px); }
+.stripes { margin-block: 0; }
+main { padding-bottom: 0; }
