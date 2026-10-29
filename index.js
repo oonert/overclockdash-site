@@ -9,28 +9,6 @@
   row.addEventListener('scroll', updateProgress, { passive: true }); updateProgress(); window.addEventListener('resize', updateProgress);
   // Grab a row with the mouse and throw it: it coasts and slows down. Touch
   // keeps the browser's own swipe. Snap is off while the mouse has it.
-  // the mouse wheel over a row scrolls it sideways, smoothly, with a glide at the end (not wired up: Derek 2026-10-28, it fought the page scroll; drag, the arrows and a trackpad swipe move the rows)
-  function wheelRow(row) {
-    let target = null, anim = null;
-    const step = () => {
-      const d = target - row.scrollLeft;
-      if (Math.abs(d) < 0.5) { row.scrollLeft = target; target = null; anim = null; return; }
-      row.scrollLeft += d * 0.16; anim = requestAnimationFrame(step);
-    };
-    row.addEventListener('wheel', (e) => {
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;            // a trackpad swiping sideways: leave it native
-      const max = row.scrollWidth - row.clientWidth; if (max <= 0) return;
-      const here = row.scrollLeft, gliding = target !== null;
-      // the row keeps the wheel until it has actually reached its end (not just aimed at it); only then does the page scroll
-      if (!gliding && ((e.deltaY > 0 && here >= max - 1) || (e.deltaY < 0 && here <= 1))) return;
-      e.preventDefault();
-      const at = gliding ? target : here;
-      target = Math.max(0, Math.min(max, at + e.deltaY * 1.6));
-      if (!anim) anim = requestAnimationFrame(step);
-    }, { passive: false });
-    row.addEventListener('pointerdown', () => { target = null; });
-  }
-
   function grabRow(row) {
     let grab = null, vel = 0, coast = null;
     row.addEventListener('pointerdown', (e) => {
@@ -57,18 +35,6 @@
     row.addEventListener('dragstart', (e) => e.preventDefault());
   }
   grabRow(row);
-  // click a picture in a row: the lightbox
-  $$('.row').forEach(r => r.addEventListener('click', (e) => {
-    const img = e.target.closest('img'); if (!img || r.classList.contains('thrown')) return;
-    const box = document.createElement('div'); box.className = 'lightbox';
-    const big = new Image(); big.src = img.currentSrc || img.src; big.alt = img.alt;
-    const cap = document.createElement('div'); cap.className = 'cap'; const h = img.closest('.moment')?.querySelector('h3'); cap.textContent = h ? h.textContent : img.alt;
-    box.append(big, cap); document.body.appendChild(box);
-    requestAnimationFrame(() => requestAnimationFrame(() => box.classList.add('show')));
-    const close = () => { box.classList.remove('show'); document.removeEventListener('keydown', onKey); setTimeout(() => box.remove(), 260); };
-    const onKey = (ev) => { if (ev.key === 'Escape') close(); };
-    box.addEventListener('click', close); document.addEventListener('keydown', onKey);
-  }));
   rowProgress($('#phones'), $('#phone-progress')); grabRow($('#phones'));
   $$('.row').forEach(el => { el.classList.add('in'); });
 
