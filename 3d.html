@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>OVERCLOCK Field Computer in 3D: the 4Runner and Tacoma units and the board</title>
+<meta name="description" content="Turn the OVERCLOCK Field Computer over in 3D: the 4Runner and Tacoma units with the real firmware running on their screens, and the fully custom circuit board with every part labelled.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="3d.css">
+</head>
+<body class="demo three">
+<header class="bar">
+  <a class="mark" href="index.html"><span class="mark-top">OVERCLOCK</span><span class="mark-sub">FIELD COMPUTER</span></a>
+  <nav>
+    <a href="index.html#why">Why</a>
+    <a href="index.html#install">Install</a>
+    <a href="demo.html">Demo</a>
+  </nav>
+  <a class="btn" href="demo.html">Open the demo</a>
+</header>
+
+<main class="three-page">
+  <section class="stage-head">
+    <h1>IN 3D</h1>
+    <div class="tabs" role="group" aria-label="Which model">
+      <button id="m-4runner" role="tab" aria-pressed="true" aria-selected="true">4Runner</button>
+      <button id="m-tacoma" role="tab" aria-pressed="false" aria-selected="false">Tacoma</button>
+      <button id="m-board" role="tab" aria-pressed="false" aria-selected="false">Circuit board</button>
+    </div>
+  </section>
+  <div class="stage" id="stage">
+    <canvas id="c" aria-label="3D model. Drag to turn, pinch or scroll to zoom."></canvas>
+    <div class="dots" id="dots"></div>
+    <div class="screenbar" id="screenbar">
+      <button id="prev" aria-label="Turn knob left">&larr;</button><button id="press" aria-label="Press knob">CLICK</button><span id="sname">Dash</span><button id="next" aria-label="Turn knob right">&rarr;</button>
+    </div>
+    <div class="tools">
+      <button class="btn ghost" id="flip">Show back</button>
+      <button class="btn ghost" id="labels" aria-pressed="true">Hide labels</button>
+      <button class="btn ghost" id="reset">Reset view</button>
+    </div>
+    <div class="card" id="card" hidden><button class="x" id="cardx" aria-label="Close">&times;</button><h2 id="ct"></h2><p id="cb"></p><div class="ref" id="cr"></div></div>
+    <div class="hint" id="hint">Drag to turn &middot; Pinch or scroll to zoom &middot; Tap a dot &middot; Tap the screen to press the knob</div>
+    <div class="loading" id="loading">Loading the model...</div>
+  </div>
+  <p class="fine">The screens run the real firmware. The board is the production V2 board, straight from its design files.</p>
+</main>
+
+<script>
+document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
+document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
+</script>
+<script src="overclock.js"></script>
+<script type="module">
+import {THREE, OrbitControls, GLTFLoader, MeshoptDecoder, RoomEnvironment} from './lib/three-viewer.js';   // Three.js 0.169 and its loaders, bundled
+
+const BASE = '3d/';                 // the models, labels and still screens
+const FW = { base: 'dist/', v: '2026-10-28b' };   // the site's own firmware files
+const SCREENS = {
+  '4runner':[['dash','Dash'],['clock','Clock'],['gauges','Gauges'],['temp','Temps'],['towing','Towing'],['starter','Starter'],['apps','Apps']].map(([f,n])=>['screens/'+f+'.jpg',n]),
+  tacoma:[['clock','Clock'],['gauges','Gauges'],['temp','Temps'],['towing','Towing'],['starter','Starter'],['apps','Apps'],['retro','Retro']].map(([f,n])=>['screens/portrait/'+f+'.png',n])};
+const TEXT = {
+  screen:['Live screen','This is the real OVERCLOCK firmware running in your browser. Use the arrows to turn the knob and tap the screen to press it.'],
+  sma:['GPS antenna port','Standard SMA screw-on antenna. GPS sets the clock and tracks speed and altitude.'],
+  oem:['Factory plug','The original clock connector plugs straight in. No cutting or splicing.'],
+  terminals:['Sensor terminals','Screw terminals for a pressure sender and a temperature probe.'],
+  tempb:['TEMP B input','A second temperature input, for a sender like transmission temp.'],
+  sd:['microSD slot','Trip logs and firmware updates. Cards up to 32 GB.'],
+  fuse:['Fuse access','The board’s 2 A blade fuse is reachable through the bottom of the case.'],
+  ties:['Zip-tie anchors','Loops on top of the case to keep the wiring tidy behind the dash.'],
+  U302:['Coprocessor','A second ESP32 that shares the work and runs the expansion port.'],
+  U301:['Main processor','ESP32 with 16 MB flash. Runs the screen, gauges, Wi-Fi and Bluetooth.'],
+  U601:['GPS receiver','u-blox M10. Sets the time and tracks speed, heading and altitude.'],
+  J601:['GPS antenna jack','Wired to the SMA connector on the case.'],
+  F101:['2 A blade fuse','Protects the board and the truck. Mounted on the underside.'],
+  J705:['Pressure input','PRES A terminals: 5 V, A− and A+ for a pressure sender.'],
+  J702:['Temperature probe','3V3, GND and DATA for a digital temperature probe.'],
+  J706:['TEMP B input','Two terminals for a second temperature sender.'],
+  J701:['Knob connector','Plug for the rotary knob that drives the menus.'],
+  J704:['Expansion port','Spare connection for future add-ons.'],
+  U402:['Motion sensor','Gyro and accelerometer for tilt and g-force.'],
+  U404:['Barometer','Air pressure for altitude and weather trends.'],
+  U401:['Real-time clock','Keeps time with the key off.'],
+  J502:['microSD slot','Trip logs and firmware updates.'],
+  J501:['Screen connector','Ribbon cable to the display.'],
+  P701:['Factory plug pins','The four original clock pins solder here.'],
+};
+
+let LABELS={};
+const canvas=document.getElementById('c'), stage=document.getElementById('stage');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.05;
+renderer.outputColorSpace=THREE.SRGBColorSpace;
+const scene=new THREE.Scene(); scene.background=new THREE.Color(0x000000);
+const pmrem=new THREE.PMREMGenerator(renderer);
+scene.environment=pmrem.fromScene(new RoomEnvironment(),0.04).texture; scene.environmentIntensity=0.85;
+const key=new THREE.DirectionalLight(0xffffff,2.0); key.position.set(-0.6,1.0,0.9); scene.add(key);
+const rim=new THREE.DirectionalLight(0xffb000,0.3); rim.position.set(0.8,0.3,-1); scene.add(rim);
+const camera=new THREE.PerspectiveCamera(32,1,0.002,5);
+const controls=new OrbitControls(camera,canvas);
+controls.enableDamping=true; controls.dampingFactor=0.08; controls.enablePan=false;
+controls.autoRotate=true; controls.autoRotateSpeed=0.9;
+const loader=new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+const cache={}; let current=null, mode='4runner', screenIdx=0, screenMat=null, back=false, showLabels=true, idleTimer;
+const texCache={};
+const loadTex=(src)=>texCache[src]||(texCache[src]=new Promise(res=>new THREE.TextureLoader().load(BASE+src,t=>{t.colorSpace=THREE.SRGBColorSpace;t.flipY=false;t.anisotropy=8;res(t);},undefined,()=>res(null))));
+// the real firmware, one per orientation, drawn onto the 3D screen
+const live={}; let liveTex=null, liveClock=null;
+function startLive(m){
+  const o= m==='tacoma'?'portrait':'landscape';
+  if(!live[o]) live[o]=(async()=>{
+    if(!window.OverclockClock) throw new Error('no firmware');
+    const host=document.createElement('div'); host.style.cssText='position:fixed;left:0;top:0;opacity:0.001;pointer-events:none;z-index:-1'; document.body.appendChild(host);
+    const clk=await OverclockClock.mount(host,{orientation:o,base:FW.base,v:FW.v,scale:1,dial:false,storage:null,backlight:false,alerts:{storm:false},settings:{scr_Slides:0}});
+    const t=new THREE.CanvasTexture(clk.canvas); t.colorSpace=THREE.SRGBColorSpace; t.flipY=false; t.anisotropy=8; t.minFilter=THREE.LinearFilter;
+    return {clk,t};
+  })();
+  return live[o];
+}
+async function setScreen(i){
+  const list=SCREENS[mode]; if(!list) return;
+  screenIdx=(i+list.length)%list.length;
+  if(liveClock){ return; }
+  document.getElementById('sname').textContent=list[screenIdx][1];
+  if(!screenMat) return;
+  const t=await loadTex(list[screenIdx][0]); if(t&&!liveClock){ screenMat.emissiveMap=t; screenMat.needsUpdate=true; }
+}
+async function goLive(m){
+  for(const k in live){ live[k].then(x=>x.clk.pause()).catch(()=>{}); }
+  liveClock=null; liveTex=null;
+  if(m==='board') return;
+  try{
+    const {clk,t}=await startLive(m); if(mode!==m) return;
+    clk.resume(); liveClock=clk; liveTex=t;
+    if(screenMat){ screenMat.emissiveMap=t; screenMat.needsUpdate=true; }
+    document.getElementById('sname').textContent='LIVE';
+  }catch(e){ console.warn('live firmware unavailable, showing still screens',e); }
+}
+function knob(n){ if(liveClock){ n===0?liveClock.click():liveClock.turn(n); } else if(n) setScreen(screenIdx+n); else setScreen(screenIdx+1); pauseSpin(); }
+function frame(obj,dir){
+  const box=new THREE.Box3().setFromObject(obj), c=box.getCenter(new THREE.Vector3()), r=box.getSize(new THREE.Vector3()).length()/2;
+  const vf=THREE.MathUtils.degToRad(camera.fov/2), hf=Math.atan(Math.tan(vf)*camera.aspect);
+  const d=r/Math.sin(Math.min(vf,hf))*0.95;
+  controls.target.copy(c); camera.position.copy(c).add(dir.clone().normalize().multiplyScalar(d));
+  controls.minDistance=d*0.35; controls.maxDistance=d*2.2; camera.near=d/100; camera.far=d*10; camera.updateProjectionMatrix(); controls.update();
+}
+function homeDir(){ return mode==='board'? new THREE.Vector3(0.35,1,0.55).multiplyScalar(back?-1:1).setX(0.35) : back? new THREE.Vector3(0.55,0.45,-1): new THREE.Vector3(-0.62,0.32,1); }
+async function show(m){
+  mode=m; back=false; hideCard();
+  for(const b of ['4runner','tacoma','board']) document.getElementById('m-'+b).setAttribute('aria-pressed',String(b===m));
+  document.getElementById('screenbar').hidden = m==='board';
+  document.getElementById('flip').textContent = m==='board' ? 'Show bottom' : 'Show back';
+  const file = m==='board' ? 'board.gltf.json' : `clock_${m}.gltf.json`;
+  document.getElementById('loading').hidden=false;
+  if(!cache[file]) cache[file]=loader.loadAsync(BASE+file).then(g=>g.scene);
+  const obj=await cache[file]; if(mode!==m) return;
+  if(current) scene.remove(current); current=obj; scene.add(obj);
+  screenMat=null;
+  obj.traverse(o=>{ if(o.isMesh&&o.material&&o.material.name==='screen'){ screenMat=o.material; screenMat.color.set(0x000000); screenMat.emissive.set(0xffffff); screenMat.toneMapped=false; screenMat.roughness=0.45; screenMat.envMapIntensity=0.3; }
+    if(o.isMesh&&o.material&&o.material.name==='case'){ o.material.roughness=0.85; o.material.color.setRGB(0.022,0.022,0.024); } });
+  document.getElementById('loading').hidden=true;
+  liveClock=null; screenIdx=0; await setScreen(0);
+  frame(obj,homeDir()); buildDots(); goLive(m);
+}
+// hotspots
+const dotsEl=document.getElementById('dots'); let dots=[];
+function buildDots(){
+  dotsEl.innerHTML=''; dots=[];
+  for(const l of (LABELS[mode]||[])){
+    const b=document.createElement('button'); b.className='dot'; b.setAttribute('aria-expanded','false');
+    const t=TEXT[l.id]||[l.id,'']; b.setAttribute('aria-label',t[0]); b.title=t[0];
+    b.onclick=(e)=>{e.stopPropagation(); openCard(l.id,b);}; dotsEl.appendChild(b);
+    dots.push({el:b,p:new THREE.Vector3(...l.p),n:new THREE.Vector3(...l.n),id:l.id});
+  }
+  dotsEl.hidden=!showLabels;
+}
+const card=document.getElementById('card');
+function openCard(id,btn){
+  const t=TEXT[id]||[id,'']; document.getElementById('ct').textContent=t[0]; document.getElementById('cb').textContent=t[1];
+  document.getElementById('cr').textContent= /^[A-Z]+\d+$/.test(id) ? 'Board reference '+id : '';
+  card.hidden=false; dots.forEach(d=>d.el.setAttribute('aria-expanded',String(d.el===btn))); pauseSpin();
+}
+function hideCard(){ card.hidden=true; dots.forEach(d=>d.el.setAttribute('aria-expanded','false')); }
+document.getElementById('cardx').onclick=hideCard;
+const v=new THREE.Vector3(), toCam=new THREE.Vector3();
+function placeDots(){
+  const w=canvas.clientWidth,h=canvas.clientHeight;
+  for(const d of dots){
+    v.copy(d.p).project(camera); toCam.copy(camera.position).sub(d.p).normalize();
+    const facing=toCam.dot(d.n)>0.12 && v.z<1;
+    d.el.style.left=((v.x+1)/2*w)+'px'; d.el.style.top=((1-v.y)/2*h)+'px';
+    d.el.classList.toggle('away',!facing);
+  }
+}
+// interaction
+function pauseSpin(){ controls.autoRotate=false; clearTimeout(idleTimer); idleTimer=setTimeout(()=>{ if(card.hidden) controls.autoRotate=!matchMedia('(prefers-reduced-motion: reduce)').matches; },9000); }
+controls.addEventListener('start',()=>{pauseSpin(); document.getElementById('hint').style.opacity=0;});
+if(matchMedia('(prefers-reduced-motion: reduce)').matches) controls.autoRotate=false;
+document.getElementById('prev').onclick=()=>knob(-1);
+document.getElementById('next').onclick=()=>knob(1);
+document.getElementById('press').onclick=()=>knob(0);
+document.getElementById('flip').onclick=()=>{ back=!back; if(current) frame(current,homeDir()); document.getElementById('flip').textContent = mode==='board' ? (back?'Show top':'Show bottom') : (back?'Show front':'Show back'); pauseSpin(); };
+document.getElementById('reset').onclick=()=>{ back=false; if(current) frame(current,homeDir()); document.getElementById('flip').textContent= mode==='board'?'Show bottom':'Show back'; hideCard(); };
+document.getElementById('labels').onclick=(e)=>{ showLabels=!showLabels; dotsEl.hidden=!showLabels; e.currentTarget.textContent=showLabels?'Hide labels':'Show labels'; e.currentTarget.setAttribute('aria-pressed',String(showLabels)); if(!showLabels) hideCard(); };
+for(const m of ['4runner','tacoma','board']) document.getElementById('m-'+m).onclick=()=>{ if(location.hash!=='#'+m) history.replaceState(null,'','#'+m); show(m); };
+// tap the screen to change it
+const ray=new THREE.Raycaster(), ptr=new THREE.Vector2(); let down=null;
+canvas.addEventListener('pointerdown',e=>{down=[e.clientX,e.clientY];});
+canvas.addEventListener('pointerup',e=>{
+  if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>6||!current) return;
+  const r=canvas.getBoundingClientRect(); ptr.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);
+  ray.setFromCamera(ptr,camera); const hit=ray.intersectObject(current,true)[0];
+  if(hit&&hit.object.material&&hit.object.material.name==='screen') knob(0); else hideCard();
+});
+function resize(){ const w=stage.clientWidth,h=stage.clientHeight; renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix(); }
+new ResizeObserver(resize).observe(stage); resize();
+let lastTex=0;
+renderer.setAnimationLoop((now)=>{ controls.update(); if(liveTex&&now-lastTex>33){ liveTex.needsUpdate=true; lastTex=now; } renderer.render(scene,camera); if(showLabels) placeDots(); });
+LABELS = await (await fetch(BASE+'labels.json')).json();
+const start=['4runner','tacoma','board'].includes(location.hash.slice(1))?location.hash.slice(1):'4runner';
+addEventListener('hashchange',()=>{const h=location.hash.slice(1); if(['4runner','tacoma','board'].includes(h)&&h!==mode) show(h);});
+show(start);
+</script>
+</body>
+</html>

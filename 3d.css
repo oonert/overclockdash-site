@@ -1,0 +1,42 @@
+/* The 3D page: the stage fills the view under the bar; everything on it is drawn like the demo's panels. */
+[hidden] { display: none !important; }
+body.three { overflow: hidden; height: 100svh; display: flex; flex-direction: column; }
+body.three .bar { flex: 0 0 auto; }
+.three-page { flex: 1; min-height: 0; display: flex; flex-direction: column; padding: 0 var(--margin) 12px; gap: 10px; }
+.stage-head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--gap); flex-wrap: wrap; }
+.stage-head h1 { color: var(--amber); font-size: var(--t-title); font-weight: 700; line-height: 1; }
+.stage-head .tabs { margin-bottom: 0; }
+.stage { position: relative; flex: 1; min-height: 0; background: var(--panel); overflow: hidden; }
+.stage canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+.hint { position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); font-size: var(--t-small); color: var(--muted); pointer-events: none; white-space: nowrap; transition: opacity .4s; }
+.dots { position: absolute; inset: 0; pointer-events: none; }
+.dot { position: absolute; width: 26px; height: 26px; margin: -13px 0 0 -13px; border-radius: 50%; border: 2px solid var(--green); background: rgba(0, 0, 0, .55); pointer-events: auto; cursor: pointer; padding: 0; transition: opacity .25s, transform .2s; display: grid; place-items: center; }
+.dot::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); }
+.dot:hover, .dot[aria-expanded="true"] { transform: scale(1.18); border-color: var(--amber); }
+.dot[aria-expanded="true"]::after { background: var(--amber); box-shadow: 0 0 10px var(--amber); }
+.dot.away { opacity: 0; pointer-events: none; }
+.card { position: absolute; left: 12px; bottom: 12px; max-width: min(360px, calc(100% - 24px)); background: rgba(17, 17, 17, .96); border-left: 3px solid var(--amber); padding: 14px 18px 14px 16px; }
+.card h2 { color: var(--amber); font-size: 22px; font-weight: 700; line-height: 1.1; margin: 0 24px 6px 0; }
+.card p { margin: 0; font-size: 16px; line-height: 1.45; }
+.card .ref { font-size: 13px; color: var(--muted); margin-top: 6px; letter-spacing: .06em; }
+.card .x { position: absolute; top: 4px; right: 6px; background: none; border: 0; color: var(--muted); font-size: 22px; cursor: pointer; padding: 4px 8px; }
+.card .x:hover { color: var(--ink); }
+.tools { position: absolute; right: 12px; top: 12px; display: flex; flex-direction: column; gap: 6px; }
+.tools .btn { min-height: 40px; padding: 0 14px; font-size: 15px; justify-content: flex-start; }
+.screenbar { position: absolute; top: 12px; left: 12px; display: flex; align-items: center; gap: 4px; background: rgba(17, 17, 17, .92); padding: 4px; }
+.screenbar button { background: var(--panel-3); border: 0; color: var(--ink); font: 700 16px/1 var(--font); padding: 10px 12px; cursor: pointer; }
+.screenbar button:hover { background: var(--amber); color: #000; }
+.screenbar #press { color: var(--amber); letter-spacing: .06em; }
+.screenbar #press:hover { color: #000; }
+.screenbar span { font: 700 13px/1 var(--font); color: var(--green); letter-spacing: .1em; min-width: 72px; text-align: center; text-transform: uppercase; }
+.loading { position: absolute; inset: 0; display: grid; place-items: center; font-size: var(--t-small); color: var(--muted); letter-spacing: .08em; pointer-events: none; }
+.three-page .fine { color: var(--muted); font-size: 13px; }
+@media (max-width: 760px) {
+  .three-page { padding: 0 12px 10px; }
+  .stage-head h1 { font-size: 24px; }
+  .hint { display: none; }
+  .tools .btn { min-height: 36px; padding: 0 10px; font-size: 14px; }
+  .screenbar button { padding: 8px 10px; }
+  .three-page .fine { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .dot, .hint { transition: none; } }
