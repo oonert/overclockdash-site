@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css">
-<link rel="stylesheet" href="3d.css">
+<link rel="stylesheet" href="site.css?v=20261028e">
+<link rel="stylesheet" href="3d.css?v=20261028e">
 </head>
 <body class="demo three">
 <header class="bar">
@@ -50,9 +50,9 @@
 document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
 document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
 </script>
-<script src="overclock.js"></script>
+<script src="overclock.js?v=20261028e"></script>
 <script type="module">
-import {THREE, OrbitControls, GLTFLoader, MeshoptDecoder, RoomEnvironment} from './lib/three-viewer.js';   // Three.js 0.169 and its loaders, bundled
+import {THREE, OrbitControls, GLTFLoader, MeshoptDecoder, RoomEnvironment} from './lib/three-viewer.js?v=20261028e';   // Three.js 0.169 and its loaders, bundled
 
 const BASE = '3d/';                 // the models, labels and still screens
 const FW = { base: 'dist/', v: '2026-10-28b' };   // the site's own firmware files
