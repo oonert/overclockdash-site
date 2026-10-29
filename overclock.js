@@ -180,7 +180,7 @@
       fb: Module._oc_fb, width: Module._oc_width, height: Module._oc_height, lamp: Module._oc_lamp,
       writes: Module._oc_writes, turn: Module._oc_turn, press: Module._oc_press, pause: Module._oc_pause,
       booted: Module._oc_booted, setU32: withStr(Module._oc_set_u32), setStr: withStr(Module._oc_set_str),
-      goto: withStr(Module._oc_goto), sign: withStr(Module._oc_sign), setTime: Module._oc_set_time,
+      goto: withStr(Module._oc_goto), sign: withStr(Module._oc_sign), wifiJoinAfter: Module._oc_wifi_join_after, setTime: Module._oc_set_time,
       setBlob: (key, bytes) => { const n = Module.lengthBytesUTF8(key) + 1, k = Module._malloc(n), d = Module._malloc(bytes.length); Module.stringToUTF8(key, k, n); Module.HEAPU8.set(bytes, d); try { Module._oc_set_blob(k, d, bytes.length); } finally { Module._free(k); Module._free(d); } },
       version: () => Module.UTF8ToString(Module._oc_version()),
       notifyDefault: Module._oc_notify_default, notifyBit: withStr(Module._oc_notify_bit), notifyMask: Module._oc_notify_mask,
@@ -312,6 +312,7 @@
       isOn() { return powered; },
       restart() { api.on(); },
       set(key, value) { setOne(key, value); },
+      wifiJoinAfter(ms) { if (c.wifiJoinAfter) c.wifiJoinAfter(ms >>> 0); },   // for the videos: a pretend phone joins the hotspot this long after START
       sign(code, name, tag) { c.sign(code, name || '', tag || ''); },   // the call sign: a state line crossed ('OR', 'OREGON', 'FIRST TIME HERE') or home ('HOME', 'WELCOME HOME')
       skip(ms) { c.skip(ms); },                  // run ahead by this much of the firmware's own time, as fast as the browser allows
       skipping() { return !!c.skipping(); },
