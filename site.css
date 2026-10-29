@@ -1,5 +1,7 @@
 /* overclockdash.com: the page is the clock. Black field, warm-white ink,
    amber titles like the clock's own pages, green only for live readouts. */
+@font-face { font-family: "Roboto Condensed"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/roboto-condensed-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Roboto Condensed"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/roboto-condensed-latin-700-normal.woff2") format("woff2"); }
 :root {
   --ground: #000;
   --panel: #111;
@@ -233,3 +235,24 @@ footer .legal { font-size: 13px; color: #3a3630; }
   html { scroll-behavior: auto; }
   .fault:hover { transform: none; }
 }
+
+/* skip link, the small footer on the demo and 3D pages, and the document pages */
+.skip { position: absolute; left: -9999px; top: 8px; z-index: 100; background: var(--amber); color: #000; padding: 10px 16px; font-weight: 700; }
+.skip:focus { left: 8px; }
+.foot-small { padding: 24px var(--margin) 28px; color: var(--muted); font-size: var(--t-small); border-top: 1px solid #222; }
+.foot-small p { margin: 0 0 6px; }
+.foot-small a { color: var(--amber); text-decoration: none; }
+.foot-small a:hover { text-decoration: underline; }
+footer .legal a { color: #3a3630; }
+.form-note { margin: 12px 0 0; font-size: var(--t-small); color: var(--muted); }
+.form-note a { color: var(--amber); }
+.demo-note { text-align: center; color: var(--muted); font-size: 13px; }
+body.doc { display: block; }
+.doc-main { max-width: 72ch; padding: 24px var(--margin) 64px; }
+.doc-main h1 { color: var(--amber); font-size: var(--t-title); font-weight: 700; line-height: 1; }
+.doc-main .updated { color: var(--muted); font-size: var(--t-small); margin-top: 10px; }
+.doc-main h2 { color: var(--amber); font-size: 22px; font-weight: 700; margin-top: 32px; }
+.doc-main p { margin-top: 10px; font-size: var(--t-body); line-height: 1.55; }
+.doc-main a { color: var(--amber); }
+.doc-main ul.lic { margin: 12px 0 0; padding-left: 20px; }
+.doc-main ul.lic li { margin-top: 10px; line-height: 1.5; }

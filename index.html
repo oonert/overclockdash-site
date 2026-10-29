@@ -5,13 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>OVERCLOCK Field Computer: the clock your Toyota should have come with</title>
 <meta name="description" content="OVERCLOCK Field Computer plugs into the factory clock spot of a nineties Toyota truck. Engine codes in plain English, GPS, every drive logged every second, weather, tilt, solar and alerts. No wiring. Try the real firmware in your browser.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=20261028p">
+<link rel="stylesheet" href="site.css?v=20261028q">
 </head>
 <body>
-<main>
+<a class="skip" href="#main">Skip to content</a>
+<main id="main">
   <header class="bar">
     <a class="mark" href="#top"><span class="mark-top">OVERCLOCK</span><span class="mark-sub">FIELD COMPUTER</span></a>
     <nav>
@@ -127,7 +125,7 @@
       <li><b>Live gauges.</b> Speed, rpm, coolant, intake air, load, throttle, timing, airflow, fuel trims and more. Pick the ones you want on screen.</li>
       <li><b>Transmission temperature.</b> Read straight from the engine computer on 1999 and newer automatics. Older trucks and manuals can add a sender on the screw terminals.</li>
       <li><b>Oil or fuel pressure.</b> Add an optional pressure sender and see the real number, not just a warning light. Low oil pressure gets the one alert that says stop the engine now.</li>
-      <li><b>Will it pass smog?</b> See which emissions self-tests your truck has finished, with a straight answer on whether it's ready. Clearing codes takes a long press, so it never happens by accident.</li>
+      <li><b>Will it pass smog?</b> See which emissions self-tests your truck has finished, with a straight answer on whether it's ready. Clearing codes takes a deliberate long press.</li>
     </ul>
     <p class="sub small">Engine features need a 1996 or newer truck and the included Bluetooth adapter.</p>
   </section>
@@ -157,9 +155,9 @@
       <img class="lead-shot" src="pages/speed.png" width="320" height="240" alt="The SPEED page with heading and top speed" loading="lazy">
     </div>
     <ul class="feat in">
-      <li><b>Always the right time.</b> The clock sets itself from GPS satellites, time zone included. Cross into a new time zone and the hour changes on its own. You'll never set it again.</li>
+      <li><b>Always the right time.</b> The clock sets itself from GPS satellites, time zone included. Cross into a new time zone and the hour changes on its own. You shouldn't need to set it again.</li>
       <li><b>Speed from the sky.</b> True ground speed from GPS, even on trucks too old to report it.</li>
-      <li><b>Every real mile.</b> GPS and engine data checked against each other, so a parked truck never gains a mile and a tunnel never loses one.</li>
+      <li><b>Every real mile.</b> GPS and engine data checked against each other, so a parked truck doesn't gain miles and a tunnel doesn't lose them.</li>
       <li><b>Altitude, climb and grade.</b> Barometer and GPS working together, with your total climb and descent since you left.</li>
       <li><b>Dims at sunset, wherever you are.</b> Sunrise and sunset worked out for your exact location, so it dims at the right minute in Yuma or Yellowknife. Or wire it to your headlights. Night mode protects your night vision.</li>
       <li><b>It notices the pump.</b> Pull into a gas station and it asks if you filled up. It learns your stations, and every fill makes your mpg and range more accurate.</li>
@@ -315,6 +313,7 @@
       </div>
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="gotcha">
       <div class="send"><button class="btn" type="submit">Save my spot</button><p class="form-say" id="form-say" aria-live="polite"></p></div>
+      <p class="form-note">Used only to reply to you about OVERCLOCK and to keep our place-in-line list. Never shared or sold. <a href="privacy.html">Privacy</a></p>
     </form>
   </section>
 
@@ -339,7 +338,7 @@
   <div></div>
   <div>
     <svg class="mark-big" viewBox="0 0 1000 215" aria-hidden="true" focusable="false"><text x="0" y="128" textLength="1000" lengthAdjust="spacingAndGlyphs" font-family="Roboto Condensed, Arial Narrow, sans-serif" font-weight="700" font-size="150" fill="#000">OVERCLOCK</text><rect x="0" y="142" width="1000" height="6" fill="#000"/><text x="0" y="205" textLength="1000" lengthAdjust="spacingAndGlyphs" font-family="Roboto Condensed, Arial Narrow, sans-serif" font-weight="700" font-size="54" fill="#b8860b">FIELD COMPUTER</text></svg>
-    <p class="legal">OVERCLOCK Field Computer is not affiliated with Toyota Motor Corporation or Victron Energy. 4Runner, Tacoma and T100 are Toyota's names for their trucks. Compatibility with third-party solar gear and batteries is by reading their published Bluetooth data.</p>
+    <p class="legal">&copy; 2026 OVERCLOCK Field Computer. Not affiliated with Toyota Motor Corporation, Victron Energy, 3M, Google, the Bluetooth SIG or the Wi-Fi Alliance; their names are used only to say what the product works with. 4Runner, Tacoma and T100 are Toyota's names for their trucks. Compatibility with third-party solar gear and batteries is by reading their published Bluetooth data. <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="licenses.html">Licenses</a></p>
   </div>
 </footer>
 
@@ -348,6 +347,6 @@
 document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
 document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
 </script>
-<script src="index.js?v=20261028p"></script>
+<script src="index.js?v=20261028q"></script>
 </body>
 </html>
