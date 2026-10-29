@@ -103,6 +103,7 @@ section.page .sub { font-size: var(--t-lead); color: var(--ink); margin-top: 16p
 .progress i { display: block; height: 100%; width: 20%; background: var(--ink); transition: width .2s; }
 .row { display: flex; gap: 32px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--margin); padding: 32px var(--margin) 8px; scrollbar-width: none; }
 .row::-webkit-scrollbar { display: none; }
+@media (hover: hover) { .row { cursor: grab; } .row.grabbing, .row.thrown { cursor: grabbing; scroll-snap-type: none; } .row.grabbing { user-select: none; } .row img { -webkit-user-drag: none; } }
 .moment { flex: 0 0 280px; scroll-snap-align: start; display: flex; flex-direction: column; }
 .moment h3 { font-size: 22px; font-weight: 700; }
 .moment p { margin-top: 8px; color: var(--muted); font-size: 16px; flex: 1 0 auto; }
