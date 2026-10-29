@@ -31,6 +31,8 @@
  *   clock.pause(); clock.resume(); clock.destroy();
  *   clock.off(); clock.on(); clock.isOn();   // power: dark panel, or boot from the startup screen
  *   clock.update('0.99.200', 1500000);     // an update from the card: UPDATING, the bar, UPDATED, reboot
+ *   clock.skip(90000);                    // jump the demo drive ahead 90 s (fast-forward, not a pause)
+ *   clock.set('trip_a_m', 77700);         // write a saved value (number, string, byte array or { f32: x }); restart() to apply
  *
  * The dial and the panel both work as the knob: mouse wheel (or a drag around
  * the dial) turns, a tap clicks, a finger kept still holds. A drag never
@@ -184,7 +186,7 @@
       notifyDefault: Module._oc_notify_default, notifyBit: withStr(Module._oc_notify_bit), notifyMask: Module._oc_notify_mask,
       event: Module._oc_event, eventRunning: Module._oc_event_running, eventCount: Module._oc_event_count,
       eventName: (n) => Module.UTF8ToString(Module._oc_event_name(n)),
-      tilt: Module._oc_tilt, restart: Module._oc_restart, update: withStr(Module._oc_update),
+      tilt: Module._oc_tilt, restart: Module._oc_restart, update: withStr(Module._oc_update), skip: Module._oc_skip, skipping: Module._oc_skipping,
     };
     // Which alerts may pop up: the firmware's defaults, minus the ones the page
     // turns off ({ storm: false }). Applied before boot, over the saved settings.
@@ -196,10 +198,16 @@
     // The DEMO app's fault events, by name.
     const events = {};
     for (let i = 1; i < c.eventCount(); i++) { const n = c.eventName(i); if (n) events[n] = i; }
-    for (const k in opts.settings) {
-      const v = opts.settings[k];
-      if (typeof v === 'string') c.setStr(k, v); else if (Array.isArray(v)) c.setBlob(k, Uint8Array.from(v)); else c.setU32(k, v >>> 0);
+    // A setting is a number (any integer key: u8, u16, u32, bool), a string,
+    // a byte array (a blob), or { f32: 9.4 } for one of the firmware's float
+    // keys (the trip and fuel counters, say).
+    function setOne(k, v) {
+      if (typeof v === 'string') c.setStr(k, v);
+      else if (Array.isArray(v)) c.setBlob(k, Uint8Array.from(v));
+      else if (v && typeof v === 'object' && 'f32' in v) { const b = new DataView(new ArrayBuffer(4)); b.setFloat32(0, v.f32, true); c.setU32(k, b.getUint32(0, true)); }
+      else c.setU32(k, v >>> 0);
     }
+    for (const k in opts.settings) setOne(k, opts.settings[k]);
     Module.callMain([]);            // boots the firmware; it runs on between the browser's frames
 
     // ── the panel on the canvas ─────────────────────────────────────────────
@@ -303,6 +311,9 @@
       on() { if (powered) { c.restart(); return; } powered = true; lastWrites = -1; c.restart(); c.pause(0); },
       isOn() { return powered; },
       restart() { api.on(); },
+      set(key, value) { setOne(key, value); },
+      skip(ms) { c.skip(ms); },                  // run ahead by this much of the firmware's own time, as fast as the browser allows
+      skipping() { return !!c.skipping(); },   // a saved value, any time; most are read at boot, so restart() after
       // An update: update.bin lands on the card with a version note beside it
       // and the firmware restarts into its own UPDATING, UPDATED screens, then
       // boots the "new" version. bytes sets how long the bar takes (about 340 KB/s).
