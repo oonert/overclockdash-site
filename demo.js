@@ -83,19 +83,29 @@
   PAGES.forEach(([name, label]) => { const b = document.createElement('button'); b.className = 'btn ghost'; b.type = 'button'; b.textContent = label; b.addEventListener('click', () => clock && clock.goto(name)); pc.appendChild(b); });
 
   // ── the faults ────────────────────────────────────────────────────────────
-  const NAMES = { overheat: 'Overheat', nocharge: 'No charge', overvolt: 'Overvolt', checkengine: 'Check engine', misfire: 'Misfire', threecodes: 'Three codes', loselink: 'Lose link', engineok: 'Engine OK (clear)', fridgewarm: 'Fridge warm', fridgecold: 'Fridge cold', freezerthaw: 'Freezer thaw', towing: 'Towing climb', lowoil: 'Low oil pressure' };
-  const fc = $('#fault-chips');
+  const NAMES = { overheat: 'Overheat', nocharge: 'No charge', overvolt: 'Overvolt', lowoil: 'Low oil pressure', towing: 'Towing climb', loselink: 'Lose link',
+                  checkengine: 'Check engine', misfire: 'Misfire', threecodes: 'Three codes', engineok: 'Clear codes',
+                  fridgewarm: 'Fridge warm', fridgecold: 'Fridge cold', freezerthaw: 'Freezer thaw' };
+  const GROUPS = { engine: ['overheat', 'nocharge', 'overvolt', 'lowoil', 'towing', 'loselink'], codes: ['checkengine', 'misfire', 'threecodes', 'engineok'], camp: ['fridgewarm', 'fridgecold', 'freezerthaw'] };
   function buildFaults() {
-    fc.innerHTML = '';
-    clock.events.forEach(ev => { const b = document.createElement('button'); b.className = 'btn'; b.type = 'button'; b.dataset.event = ev; b.textContent = NAMES[ev] || ev; b.addEventListener('click', () => { clock.event(ev); markRunning(); }); fc.appendChild(b); });
+    for (const g in GROUPS) {
+      const box = $('#faults [data-group="' + g + '"]'); box.innerHTML = '';
+      GROUPS[g].filter(ev => clock.events.includes(ev)).forEach(ev => { const b = document.createElement('button'); b.className = 'btn'; b.type = 'button'; b.dataset.event = ev; b.textContent = NAMES[ev] || ev; b.addEventListener('click', () => { clock.event(ev); markRunning(); }); box.appendChild(b); });
+    }
   }
   function markRunning() {
     const r = clock ? clock.eventRunning() : null;
-    $$('#fault-chips .btn').forEach(b => b.classList.toggle('running', b.dataset.event === r));
+    $$('#faults .btn[data-event]').forEach(b => b.classList.toggle('running', b.dataset.event === r));
     $('#fault-now').textContent = r ? 'Running: ' + (NAMES[r] || r) + '.' : 'Nothing running.';
   }
   setInterval(markRunning, 1500);
-  $('#stop-fault').addEventListener('click', () => { if (clock) clock.event('stop'); markRunning(); });
+  // RESET: stop whatever is running, clear the codes it set, back to a healthy truck.
+  $('#reset-faults').addEventListener('click', () => {
+    if (!clock) return;
+    clock.event('stop'); clock.event('engineok'); markRunning();
+    $('#fault-now').textContent = 'Reset: fault stopped, codes clearing, readings easing back to normal.';
+    setTimeout(() => { if (clock && clock.eventRunning() === 'engineok') clock.event('stop'); markRunning(); }, 4000);
+  });
 
   // ── the truck ──────────────────────────────────────────────────────────────
   const box = $('#truck3d');

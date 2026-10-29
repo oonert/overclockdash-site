@@ -19,6 +19,15 @@ body.demo { overflow-x: clip; touch-action: pan-y; }
 .panels .fine { color: var(--muted); font-size: 13px; padding: 4px 24px; }
 .chips.camp[hidden] { display: none; }
 .chips .btn[data-view][aria-pressed="true"], #camp-block[aria-pressed="true"], #pw-on[aria-pressed="true"], #pw-off[aria-pressed="true"] { background: var(--amber); color: #000; }
+.panel .panel-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.panel .panel-head h2 { margin: 0; }
+.btn.reset { background: var(--red); color: #fff; letter-spacing: .08em; padding: 0 20px; }
+.btn.reset:hover { background: #ef4a30; }
+.panel h3.group { margin-top: 18px; font-size: 13px; font-weight: 700; letter-spacing: .14em; color: var(--muted); text-transform: uppercase; }
+.panel h3.group + .chips { margin-top: 8px; }
+.chips.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 8px; }
+.chips.grid.three { grid-template-columns: repeat(3, 1fr); }
+.chips.grid .btn { width: 100%; padding: 0 8px; white-space: nowrap; }
 .panels { display: flex; flex-direction: column; gap: 14px; padding-top: 8px; }
 .panel { background: var(--panel); padding: 24px 24px 22px; }
 .panel:nth-child(even) { background: var(--panel-2); }
@@ -27,9 +36,9 @@ body.demo { overflow-x: clip; touch-action: pan-y; }
 .panel p span { color: var(--green); }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
 .chips .btn { min-height: 44px; padding: 0 16px; font-size: 16px; }
-.chips.faults .btn { background: var(--panel-3); color: var(--ink); }
-.chips.faults .btn:hover { background: #2a2a2a; }
-.chips.faults .btn.running { background: var(--amber); color: #000; }
+#faults .chips .btn { background: var(--panel-3); color: var(--ink); }
+#faults .chips .btn:hover { background: #2a2a2a; }
+#faults .chips .btn.running { background: var(--amber); color: #000; }
 .chips.presets .btn[aria-pressed="true"] { background: var(--amber); color: #000; }
 #truck3d { position: relative; width: 100%; aspect-ratio: 16 / 10; background: #14171b; margin-top: 16px; touch-action: none; cursor: grab; }
 #truck3d.grabbing { cursor: grabbing; }

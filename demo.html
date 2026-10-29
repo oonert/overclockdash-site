@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=20261028h">
-<link rel="stylesheet" href="demo.css?v=20261028h">
+<link rel="stylesheet" href="site.css?v=20261028i">
+<link rel="stylesheet" href="demo.css?v=20261028i">
 </head>
 <body class="demo">
 <header class="bar">
@@ -65,7 +65,7 @@
 
     <section class="panel" id="power">
       <h2>KEY ON, KEY OFF</h2>
-      <div class="chips">
+      <div class="chips grid three">
         <button class="btn ghost" type="button" id="pw-off" aria-pressed="false">Key off</button>
         <button class="btn ghost" type="button" id="pw-on" aria-pressed="true">Key on</button>
         <button class="btn ghost" type="button" id="pw-update">Install an update</button>
@@ -75,14 +75,21 @@
 
     <section class="panel" id="pages">
       <h2>PAGES</h2>
-      <div class="chips" id="page-chips"></div>
+      <div class="chips grid" id="page-chips"></div>
     </section>
 
     <section class="panel" id="faults">
-      <h2>INJECT A FAULT</h2>
+      <div class="panel-head">
+        <h2>INJECT A FAULT</h2>
+        <button class="btn reset" type="button" id="reset-faults">RESET</button>
+      </div>
       <p><span id="fault-now">Nothing running.</span></p>
-      <div class="chips faults" id="fault-chips"></div>
-      <div class="chips"><button class="btn ghost" type="button" id="stop-fault">Stop the fault</button></div>
+      <h3 class="group">Engine</h3>
+      <div class="chips grid" data-group="engine"></div>
+      <h3 class="group">Codes</h3>
+      <div class="chips grid" data-group="codes"></div>
+      <h3 class="group">Camp and trail</h3>
+      <div class="chips grid" data-group="camp"></div>
     </section>
 
     <section class="panel" id="truck">
@@ -111,7 +118,7 @@
 document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
 document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
 </script>
-<script src="overclock.js?v=20261028h"></script>
-<script src="demo.js?v=20261028h"></script>
+<script src="overclock.js?v=20261028i"></script>
+<script src="demo.js?v=20261028i"></script>
 </body>
 </html>
