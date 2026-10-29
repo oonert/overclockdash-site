@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>OVERCLOCK Field Computer: the clock your Toyota should have come with</title>
 <meta name="description" content="OVERCLOCK Field Computer plugs into the factory clock spot of a nineties Toyota truck. Engine codes in plain English, GPS, every drive logged every second, weather, tilt, solar and alerts. No wiring. Try the real firmware in your browser.">
-<link rel="stylesheet" href="site.css?v=20261030h">
+<link rel="stylesheet" href="site.css?v=20261030i">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -21,6 +21,7 @@
       <a href="#temps">Temps</a>
       <a href="#gps">GPS</a>
       <a href="#logs">Logging</a>
+      <a href="#fuel">Fuel</a>
       <a href="#built">Built</a>
       <a href="3d.html">3D</a>
       <a href="faq.html">Questions</a>
@@ -230,6 +231,22 @@
     </ul>
   </section>
 
+  <section class="page" id="fuel">
+    <div class="head in"><h2>EVERY GALLON, ACCOUNTED FOR</h2></div>
+    <div class="lead-row">
+      <p class="sub">Real miles per gallon from the engine, not a guess from the gauge. Log a fill at the pump and every number gets sharper: this tank, the last one, your range, and what the truck is costing you.</p>
+      <img class="lead-shot" src="pages/fuel.png" width="320" height="240" alt="The FUEL page: range, this tank, last tank and the fill-up tile" loading="lazy">
+    </div>
+    <ul class="feat in">
+      <li><b>Live mpg, all the time.</b> Fuel is measured from the engine's own airflow every second, so mpg sits in a corner of the clock, on the gauges and on the trip meters while you drive.</li>
+      <li><b>This tank, last tank, range.</b> The FUEL page shows what this tank is doing so far, what the last clean tank did, and how far the fuel left will take you.</li>
+      <li><b>It notices the pump.</b> Stop where you have filled before and it asks if you filled up. Gallons and price per gallon take a few turns of the knob; it checks your gallons against what it burned.</li>
+      <li><b>It learns from every fill.</b> Each fill compares what the dash thought the tank burned with what the pump said, and corrects itself. The LEARNING page shows that gap shrinking fill by fill.</li>
+      <li><b>Cost over time.</b> Every fill is saved with the date, miles, gallons, price and cost. Open the log on your phone and see what the truck costs per month, per trip, per mile.</li>
+      <li><b>Best and worst.</b> Your best and worst tanks are kept with the records, so you know what towing or the roof rack really costs you.</li>
+    </ul>
+  </section>
+
   <section class="page" id="phone">
     <div class="head in"><h2>YOUR PHONE IS THE BIG SCREEN</h2></div>
     <div class="lead-row">
@@ -424,7 +441,7 @@
 document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
 document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
 </script>
-<script src="index.js?v=20261030h"></script>
-<script src="menu.js?v=20261030h"></script>
+<script src="index.js?v=20261030i"></script>
+<script src="menu.js?v=20261030i"></script>
 </body>
 </html>
