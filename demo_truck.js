@@ -59,7 +59,9 @@
   // freezer), and the solar gear as Derek runs it: a Victron controller with a
   // Victron SmartShunt on the house bank (sol_shunt 1 = Victron; 4 would be the
   // battery's own Bluetooth, which shows the cells pages instead).
-  const after = { odo_base_m: BASE_M, odo_total_m: OWN_M, prb_frz: 0, sol_on: 1, sol_ctl: 1, sol_shunt: 1, sol_shunt2: 0 };
+  // pg_turn 1 = SLIDE, the page turn the site's clocks use (Derek 2026-10-30;
+  // the firmware's own default is WIPE). Read at boot, so it rides the restart.
+  const after = { odo_base_m: BASE_M, odo_total_m: OWN_M, prb_frz: 0, sol_on: 1, sol_ctl: 1, sol_shunt: 1, sol_shunt2: 0, pg_turn: 1 };
   const SPLASH_MS = 14000, skipMs = 110000;
 
   // Mount, then give the truck its odometer and boot again, fast-forwarding
