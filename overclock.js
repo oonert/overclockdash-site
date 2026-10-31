@@ -186,6 +186,7 @@
       notifyDefault: Module._oc_notify_default, notifyBit: withStr(Module._oc_notify_bit), notifyMask: Module._oc_notify_mask,
       event: Module._oc_event, eventRunning: Module._oc_event_running, eventCount: Module._oc_event_count,
       eventName: (n) => Module.UTF8ToString(Module._oc_event_name(n)),
+      vscroll: Module._oc_vscroll || (() => 0), rot: Module._oc_rot || (() => 0),
       tilt: Module._oc_tilt, restart: Module._oc_restart, update: withStr(Module._oc_update), skip: Module._oc_skip, skipping: Module._oc_skipping,
     };
     // Which alerts may pop up: the firmware's defaults, minus the ones the page
@@ -225,7 +226,7 @@
     const ctx = canvas.getContext('2d');
     const img = ctx.createImageData(W, H);
     const px = new Uint32Array(img.data.buffer);
-    let lastWrites = -1, lastLamp = -1, raf = 0, alive = true;
+    let lastWrites = -1, lastLamp = -1, lastVs = 0, raf = 0, alive = true;
     // RGB565 to RGBA, once per level of backlight (256 steps), looked up per pixel.
     const lut = new Uint32Array(65536);
     let lutLamp = -1;
@@ -240,16 +241,28 @@
     function paint() {
       if (!alive) return;
       raf = requestAnimationFrame(paint);
-      const writes = c.writes(), L = opts.backlight ? Math.round(c.lamp() * 255) / 255 : 1;
+      const writes = c.writes(), L = opts.backlight ? Math.round(c.lamp() * 255) / 255 : 1, vs = c.vscroll();
       if (!powered) return;
-      if (writes === lastWrites && L === lastLamp) return;
-      lastWrites = writes; lastLamp = L;
+      if (writes === lastWrites && L === lastLamp && vs === lastVs) return;
+      lastWrites = writes; lastLamp = L; lastVs = vs;
       if (L !== lutLamp) buildLut(L);
       const fb = c.fb() >> 1;
       const heap = Module.HEAPU16;
-      for (let y = 0; y < H; y++) {
-        const row = fb + y * 320, out = y * W;
-        for (let x = 0; x < W; x++) px[out + x] = lut[heap[row + x]];
+      if (!vs) {
+        for (let y = 0; y < H; y++) {
+          const row = fb + y * 320, out = y * W;
+          for (let x = 0; x < W; x++) px[out + x] = lut[heap[row + x]];
+        }
+      } else {
+        // The SLIDE page turn scrolls the panel along its long side; rotations
+        // 0 and 1 run the other way (the same mapping as the emulator's shown()).
+        const back = c.rot() < 2, map = new Int16Array(320);
+        for (let p = 0; p < 320; p++) map[p] = back ? 319 - ((319 - p + vs) % 320) : (p + vs) % 320;
+        for (let y = 0; y < H; y++) {
+          const out = y * W;
+          if (W === 320) { const row = fb + y * 320; for (let x = 0; x < W; x++) px[out + x] = lut[heap[row + map[x]]]; }
+          else { const row = fb + map[y] * 320; for (let x = 0; x < W; x++) px[out + x] = lut[heap[row + x]]; }
+        }
       }
       ctx.putImageData(img, 0, 0);
     }
