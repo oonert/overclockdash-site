@@ -61,7 +61,7 @@ document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.sca
 import {THREE, OrbitControls, GLTFLoader, MeshoptDecoder, RoomEnvironment} from './lib/three-viewer.js?v=20261030t';   // Three.js 0.169 and its loaders, bundled
 
 const BASE = '3d/';                 // the models, labels and still screens
-const FW = { base: 'dist/', v: '2026-10-30a' };   // the site's own firmware files
+const FW = { base: 'dist/', v: '2026-10-31a' };   // the site's own firmware files
 const SCREENS = {
   '4runner':[['dash','Dash'],['clock','Clock'],['gauges','Gauges'],['temp','Temps'],['towing','Towing'],['starter','Starter'],['apps','Apps']].map(([f,n])=>['screens/'+f+'.jpg',n]),
   tacoma:[['clock','Clock'],['gauges','Gauges'],['temp','Temps'],['towing','Towing'],['starter','Starter'],['apps','Apps'],['retro','Retro']].map(([f,n])=>['screens/portrait/'+f+'.png',n])};
