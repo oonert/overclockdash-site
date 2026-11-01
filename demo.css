@@ -75,7 +75,6 @@ body.demo .foot-small { margin-top: 0; }
 .jog-btn.held { box-shadow: 0 0 0 6px rgba(255, 176, 0, .35); }
 @media (max-width: 900px) {
   .jog { width: min(52vw, 200px); }
-  .stage .learn { display: none; }                 /* on phones the button sits at the top of THE KNOB panel instead, so the sticky stage stays short */
   .stage .fine { display: none; }
   .stage h1 { font-size: 18px; margin-bottom: 6px; }
   .stage #clock { min-height: 0; }
@@ -114,4 +113,12 @@ body.demo .foot-small { margin-top: 0; }
   .stage.compact { padding-top: 4px; }
   .stage.compact #clock { transform: scale(.68); transform-origin: top center; transition: transform .25s; margin-bottom: -28%; }
   .panels { padding-bottom: 36svh; }                /* room to bring the last panel up under the shrunken stage */
+}
+
+/* THE KNOB stays at the top of the right column on desktop; the other panels scroll under it */
+.learn-btn { min-height: 40px; padding: 0 16px; font-size: 16px; }
+@media (min-width: 901px) {
+  #knob { position: sticky; top: 16px; z-index: 4; box-shadow: 0 -16px 0 var(--ground), 0 18px 24px -12px rgba(0, 0, 0, .9); padding-top: 18px; padding-bottom: 16px; }
+  #knob .jog { width: min(100%, 230px); margin-top: 10px; }
+  #knob .chips { margin-top: 12px; }
 }

@@ -69,7 +69,7 @@
   function compactStage() { if (!phone()) { stage.classList.remove('compact'); return; } stage.classList.toggle('compact', window.scrollY > knobPanel.offsetTop + knobPanel.offsetHeight - 120); }
   window.addEventListener('scroll', compactStage, { passive: true }); window.addEventListener('resize', compactStage);
   // LEARN THE KNOB: the firmware's own first-power-on lesson (SETUP), from WELCOME
-  $$('#learn, #learn2').forEach(b => b.addEventListener('click', () => { if (!clock) return; hideHint(); clock.goto('Setup'); $('#clock').focus(); }));
+  $$('#learn').forEach(b => b.addEventListener('click', () => { if (!clock) return; hideHint(); clock.goto('Setup'); $('#clock').focus(); }));
   $$('[data-knob]').forEach(b => b.addEventListener('click', () => {
     if (!clock) return;
     const [what, n] = b.dataset.knob.split(':');

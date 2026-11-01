@@ -237,12 +237,13 @@
       }
       lutLamp = L;
     }
-    let powered = true;
+    let powered = true, holdUntil = 0;   // holdUntil: stay dark after key on until the reboot has drawn
     function paint() {
       if (!alive) return;
       raf = requestAnimationFrame(paint);
       const writes = c.writes(), L = opts.backlight ? Math.round(c.lamp() * 255) / 255 : 1, vs = c.vscroll();
       if (!powered) return;
+      if (holdUntil) { if (performance.now() < holdUntil) return; holdUntil = 0; lastWrites = -1; }
       if (writes === lastWrites && L === lastLamp && vs === lastVs) return;
       lastWrites = writes; lastLamp = L; lastVs = vs;
       if (L !== lutLamp) buildLut(L);
@@ -321,7 +322,7 @@
       // from the startup screen again (the same restart path the firmware
       // takes after an update). isOn() says which.
       off() { if (!powered) return; powered = false; c.pause(1); ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H); },
-      on() { if (powered) { c.restart(); return; } powered = true; lastWrites = -1; c.restart(); c.pause(0); },
+      on() { if (powered) { c.restart(); return; } powered = true; holdUntil = performance.now() + 450; Module.HEAPU16.fill(0, c.fb() >> 1, (c.fb() >> 1) + W * H); c.restart(); c.pause(0); },
       isOn() { return powered; },
       restart() { api.on(); },
       set(key, value) { setOne(key, value); },
