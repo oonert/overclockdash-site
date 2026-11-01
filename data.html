@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Real data: OVERCLOCK Field Computer</title>
 <meta name="description" content="Real OVERCLOCK Field Computer logs: every second of every drive, every start, every fill-up.">
-<link rel="stylesheet" href="site.css?v=20261101d">
+<link rel="stylesheet" href="site.css?v=20261101e">
 <style>
 .dv { --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500; --one:#ffb000;
       --grid:#232323; --axis:#3a3a3a; --tick:#8f877c; }
@@ -56,7 +56,7 @@ details.tbl th:first-child, details.tbl td:first-child { text-align:left; }
 <header class="bar">
   <a class="mark" href="index.html"><span class="mark-top">OVERCLOCK</span><span class="mark-stripes"></span><span class="mark-sub" aria-label="Field Computer">FIELD COMPUTER</span></a>
   <button class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
-  <nav id="site-nav"><a href="index.html">Home</a><a href="demo.html">Demo</a><a href="3d.html">3D</a><a href="data.html" aria-current="page">Data</a><a href="faq.html">Questions</a><a href="index.html#want">Want one?</a></nav>
+  <nav id="site-nav"><a href="index.html">Home</a><a href="demo.html">Demo</a><a href="data.html" aria-current="page">Data</a><a href="3d.html">3D</a><a href="faq.html">Questions</a><a class="nav-cta" href="index.html#want">Want one?</a></nav>
 </header>
 <main id="main">
 
@@ -444,6 +444,6 @@ function first(){ if(once) return; once=true; all(); ['t-warm','t-batt','t-fuel'
 let rt; let lastW=innerWidth; addEventListener('resize',()=>{ if(innerWidth===lastW) return; lastW=innerWidth; clearTimeout(rt); rt=setTimeout(()=>{ ['t-warm','t-batt','t-fuel','t-acc'].forEach(id=>{ const t=$(id).querySelector('table'); if(t) t.remove(); }); all(); },150); });
 })();
 </script>
-<script src="menu.js?v=20261101d"></script>
+<script src="menu.js?v=20261101e"></script>
 </body>
 </html>
