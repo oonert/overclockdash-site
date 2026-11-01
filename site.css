@@ -315,3 +315,16 @@ section.page .sub a:not(.btn) { color: var(--amber); }
 .hero .fits-link a { color: var(--muted); }
 .hero .fits-link a:hover { color: var(--amber); }
 @media (max-width: 560px) { .hero .actions { max-width: none; } .hero .actions .btn { font-size: 16px; } }
+
+/* Desktop: text column left, screen pinned right, cards in two columns */
+@media (min-width: 901px) {
+  section.page:has(> .lead-row) { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: var(--gap); align-items: start; }
+  section.page:has(> .lead-row) > * { grid-column: 1; }
+  section.page:has(> .lead-row) > .lead-row { display: contents; }
+  section.page:has(> .lead-row) > .lead-row > .sub { grid-column: 1; grid-row: 2; }
+  section.page:has(> .lead-row) > .lead-row > .lead-shot { grid-column: 2; grid-row: 1 / span 5; position: sticky; top: 96px; max-width: 520px; margin: 0 var(--margin) 0 0; justify-self: end; }
+  section.page:has(> .lead-row) > .feat { grid-template-columns: repeat(2, minmax(0, 1fr)); padding-top: 32px; }
+  section.page:has(> .lead-row) > .feat li { grid-column: span 1; }
+  .feat li { font-size: 18px; }
+  .feat li b { font-size: 24px; }
+}
