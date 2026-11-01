@@ -7,7 +7,7 @@
 
   // ── the clock ─────────────────────────────────────────────────────────────
   let clock = null, currentCase = '4runner';
-  const FW_STAMP = '2026-11-01a';   // bump when dist/ is rebuilt, so browsers fetch the new firmware
+  const FW_STAMP = '2026-11-01b';   // bump when dist/ is rebuilt, so browsers fetch the new firmware
   const status = $('#status');
   function frameWidth() { return phone() ? Math.round((window.innerWidth - 24) * 0.68) : Math.min(560, Math.round(window.innerWidth * 0.42)); }
   async function mountClock(which) {
@@ -99,11 +99,13 @@
   const PANES = { overheat: [3, 2, 1, 5], lowoil: [21, 2, 3, 5], loselink: [1, 2, 3, 5] }, PANES_DEFAULT = [1, 2, 3, 5];
   const SHOW = { overheat: ['Gauges', 'Watch COOLANT climb'], nocharge: ['Voltage', 'Watch the volts sag'], overvolt: ['Voltage', 'Watch the volts creep up'],
                  lowoil: ['Gauges', 'Watch OIL PRESSURE fall'], towing: ['Towing', 'Watch trans and coolant on the grade'], loselink: ['Gauges', 'Watch the engine readings drop out'],
-                 fridgewarm: ['Temp', 'Watch FRIDGE warm up'], fridgecold: ['Temp', 'Watch FRIDGE drop'], freezerthaw: ['Temp', 'Watch the freezer thaw'] };
+                 fridgewarm: ['Temp', 'Watch FRIDGE warm up'], fridgecold: ['Temp', 'Watch FRIDGE drop'], freezerthaw: ['Temp', 'Watch FREEZER warm up'] };
   const TAKEOVER = ev => ['overheat', 'nocharge', 'overvolt', 'lowoil', 'towing', 'fridgewarm', 'fridgecold', 'freezerthaw'].includes(ev);
   function runFault(ev) {
     const s = SHOW[ev];
     if (PANES[ev] && clock.gauges) clock.gauges(...PANES[ev]);
+    // The demo truck runs without a freezer probe; the freezer button adds one so TEMP shows it.
+    if (clock.freezer && (ev === 'freezerthaw' || ev === 'fridgewarm' || ev === 'fridgecold')) clock.freezer(ev === 'freezerthaw');
     if (s) clock.goto(s[0]);
     setTimeout(() => { clock.event(ev); markRunning(); }, s ? 400 : 0);
   }
@@ -125,6 +127,7 @@
     if (!clock) return;
     clock.event('stop'); clock.event('engineok'); markRunning();
     if (clock.gauges) clock.gauges(...PANES_DEFAULT);
+    if (clock.freezer) clock.freezer(false);
     $('#fault-now').textContent = 'Reset: fault stopped, codes clearing, readings easing back to normal.';
     setTimeout(() => { if (clock && clock.eventRunning() === 'engineok') clock.event('stop'); markRunning(); }, 4000);
   });
