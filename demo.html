@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>OVERCLOCK Field Computer demo: the real firmware, every control beside it</title>
 <meta name="description" content="Drive the OVERCLOCK Field Computer's actual firmware in your browser: the knob, the pages, thirteen faults to inject, and a truck to tip while the TILT page follows.">
-<link rel="stylesheet" href="site.css?v=20261101f">
-<link rel="stylesheet" href="demo.css?v=20261101f">
+<link rel="stylesheet" href="site.css?v=20261101g">
+<link rel="stylesheet" href="demo.css?v=20261101g">
 </head>
 <body class="demo">
 <a class="skip" href="#main">Skip to content</a>
@@ -40,11 +40,11 @@
         <div class="jog-ring" id="jog-ring" tabindex="0" role="slider" aria-label="Turn the knob" aria-valuetext="turn"><div class="jog-ticks" id="jog-ticks"></div></div>
         <button class="jog-btn" id="jog-btn" type="button" aria-label="Click, or hold">CLICK<small>hold to go back</small></button>
       </div>
-      <div class="chips">
-        <button class="btn ghost" type="button" data-knob="turn:-1">&larr; Turn</button>
-        <button class="btn ghost" type="button" data-knob="turn:1">Turn &rarr;</button>
+      <div class="chips knob-row">
+        <button class="btn ghost" type="button" data-knob="turn:-1" aria-label="Turn left">&larr; Turn</button>
         <button class="btn" type="button" data-knob="click">Click</button>
         <button class="btn" type="button" data-knob="hold">Hold</button>
+        <button class="btn ghost" type="button" data-knob="turn:1" aria-label="Turn right">Turn &rarr;</button>
       </div>
     </section>
 
@@ -118,9 +118,9 @@
 document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
 document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
 </script>
-<script src="overclock.js?v=20261101f"></script>
-<script src="demo_truck.js?v=20261101f"></script>
-<script src="demo.js?v=20261101f"></script>
-<script src="menu.js?v=20261101f"></script>
+<script src="overclock.js?v=20261101g"></script>
+<script src="demo_truck.js?v=20261101g"></script>
+<script src="demo.js?v=20261101g"></script>
+<script src="menu.js?v=20261101g"></script>
 </body>
 </html>
