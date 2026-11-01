@@ -346,3 +346,11 @@ section.page .sub a:not(.btn) { color: var(--amber); }
 @media (max-width: 760px) { body.menu-open .bar nav { align-items: stretch; } }
 .bar nav a[aria-current="page"] { color: var(--amber); }
 .bar nav a.nav-cta { color: var(--amber); font-weight: 700; }
+
+/* hardware: the two boards as a slightly overlapping collage, no frames */
+.lead-row .lead-shot.boards { display: block; position: relative; width: 100%; max-width: 640px; aspect-ratio: 1.18; border: 0; background: transparent; }
+.lead-row .lead-shot.boards img { position: absolute; height: auto; border: 0; background: transparent; border-radius: 0; filter: drop-shadow(0 26px 34px rgba(0, 0, 0, .85)); }
+.lead-row .lead-shot.boards .b1 { width: 74%; left: 0; top: 0; z-index: 1; }
+.lead-row .lead-shot.boards .b2 { width: 60%; right: 0; bottom: 0; z-index: 2; }
+@media (min-width: 901px) { section.page:has(> .lead-row) > .lead-row > .lead-shot.boards { max-width: 640px; } }
+@media (max-width: 900px) { .lead-row .lead-shot.boards { width: calc(100% - 2 * var(--margin)); } }
