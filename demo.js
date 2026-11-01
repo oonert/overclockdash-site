@@ -93,16 +93,27 @@
                   checkengine: 'Check engine', misfire: 'Misfire', threecodes: 'Three codes', engineok: 'Clear codes',
                   fridgewarm: 'Fridge warm', fridgecold: 'Fridge cold', freezerthaw: 'Freezer thaw' };
   const GROUPS = { engine: ['overheat', 'nocharge', 'overvolt', 'lowoil', 'towing', 'loselink'], codes: ['checkengine', 'misfire', 'threecodes', 'engineok'], camp: ['fridgewarm', 'fridgecold', 'freezerthaw'] };
+  // Each fault opens the page where you can watch it build, so the button never feels dead.
+  const SHOW = { overheat: ['Gauges', 'Watch COOLANT climb'], nocharge: ['Voltage', 'Watch the volts sag'], overvolt: ['Voltage', 'Watch the volts creep up'],
+                 lowoil: ['Gauges', 'Oil pressure falling'], towing: ['Towing', 'Watch trans and coolant on the grade'], loselink: ['Gauges', 'Watch the engine readings drop out'],
+                 fridgewarm: ['Temp', 'Watch FRIDGE warm up'], fridgecold: ['Temp', 'Watch FRIDGE drop'], freezerthaw: ['Temp', 'Watch the freezer thaw'] };
+  const TAKEOVER = ev => ['overheat', 'nocharge', 'overvolt', 'lowoil', 'towing', 'fridgewarm', 'fridgecold', 'freezerthaw'].includes(ev);
+  function runFault(ev) {
+    const s = SHOW[ev];
+    if (s) clock.goto(s[0]);
+    setTimeout(() => { clock.event(ev); markRunning(); }, s ? 400 : 0);
+  }
   function buildFaults() {
     for (const g in GROUPS) {
       const box = $('#faults [data-group="' + g + '"]'); box.innerHTML = '';
-      GROUPS[g].filter(ev => clock.events.includes(ev)).forEach(ev => { const b = document.createElement('button'); b.className = 'btn'; b.type = 'button'; b.dataset.event = ev; b.textContent = NAMES[ev] || ev; b.addEventListener('click', () => { clock.event(ev); markRunning(); }); box.appendChild(b); });
+      GROUPS[g].filter(ev => clock.events.includes(ev)).forEach(ev => { const b = document.createElement('button'); b.className = 'btn'; b.type = 'button'; b.dataset.event = ev; b.textContent = NAMES[ev] || ev; b.addEventListener('click', () => runFault(ev)); box.appendChild(b); });
     }
   }
   function markRunning() {
     const r = clock ? clock.eventRunning() : null;
     $$('#faults .btn[data-event]').forEach(b => b.classList.toggle('running', b.dataset.event === r));
-    $('#fault-now').textContent = r ? 'Running: ' + (NAMES[r] || r) + '.' : 'Nothing running.';
+    const s = r && SHOW[r];
+    $('#fault-now').textContent = !r ? 'Nothing running.' : (NAMES[r] || r) + (s ? ': ' + s[1] + (TAKEOVER(r) ? '. The alert takes the screen in about 15 to 20 seconds.' : '.') : '.');
   }
   setInterval(markRunning, 1500);
   // RESET: stop whatever is running, clear the codes it set, back to a healthy truck.

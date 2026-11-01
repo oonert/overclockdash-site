@@ -13,10 +13,8 @@ body.demo .foot-small { margin-top: 0; }
 .stage .hint.gone { opacity: 0; pointer-events: none; }
 .stage .hint .phone { display: none; }
 @media (hover: none) and (pointer: coarse) { .stage .hint .desk { display: none; } .stage .hint .phone { display: inline; } }
-.stage .guide { width: 100%; max-width: 560px; margin-top: 28px; padding: 20px 22px; background: var(--panel); }
-.stage .guide h2 { color: var(--amber); font-size: 18px; font-weight: 700; letter-spacing: .04em; }
-.stage .guide ul { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 15px; color: var(--muted); }
-.stage .guide b { color: var(--ink); }
+.panel.guide ul { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 15px; color: var(--muted); }
+.panel.guide b { color: var(--ink); }
 .panels .fine { color: var(--muted); font-size: 13px; padding: 4px 24px; }
 .chips.camp[hidden] { display: none; }
 .chips .btn[data-view][aria-pressed="true"], #camp-block[aria-pressed="true"], #pw-on[aria-pressed="true"], #pw-off[aria-pressed="true"] { background: var(--amber); color: #000; }
@@ -56,7 +54,6 @@ body.demo .foot-small { margin-top: 0; }
   .stage #clock .overclock-dial { width: 48px !important; height: 48px !important; }
   .stage .status { display: none; }
   .stage .demo-note { display: none; }
-  .stage .guide { display: none; }
   .stage .hint { margin-top: 6px; font-size: 13px; gap: 4px 12px; }
   .panels { padding-top: 12px; }
   .panel { padding: 18px 16px 16px; }
