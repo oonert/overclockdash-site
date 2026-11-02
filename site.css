@@ -354,3 +354,13 @@ section.page .sub a:not(.btn) { color: var(--amber); }
 .lead-row .lead-shot.boards .b2 { width: 60%; right: 0; bottom: 0; z-index: 2; }
 @media (min-width: 901px) { section.page:has(> .lead-row) > .lead-row > .lead-shot.boards { max-width: 640px; } }
 @media (max-width: 900px) { .lead-row .lead-shot.boards { width: calc(100% - 2 * var(--margin)); } }
+
+/* home: one link out to the real-truck photos (FACTORY FIT) */
+.trucks-link { display: flex; align-items: center; gap: 20px; margin: 40px var(--margin) 0; padding: 14px; background: var(--panel); text-decoration: none; color: var(--ink); max-width: 640px; transition: background .2s; }
+.trucks-link:hover { background: #222; }
+.tl-thumbs { display: flex; flex: 0 0 auto; }
+.tl-thumbs img { width: 78px; height: 58px; object-fit: cover; border: 2px solid var(--panel); margin-left: -18px; box-shadow: 0 4px 10px rgba(0,0,0,.6); }
+.tl-thumbs img:first-child { margin-left: 0; }
+.tl-text b { display: block; font-size: 20px; color: var(--amber); }
+.tl-text span { color: var(--muted); font-size: 15px; }
+@media (min-width: 901px) { section.page:has(> .lead-row) > .trucks-link { grid-column: 1; } }
