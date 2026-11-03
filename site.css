@@ -367,3 +367,24 @@ section.page .sub a:not(.btn) { color: var(--amber); }
 @media (min-width: 901px) { section.page:has(> .lead-row) > .trucks-link { grid-column: 1; } }
 
 @media (max-width: 600px) { .tl-thumbs img { width: 56px; height: 42px; margin-left: -14px; } .tl-text b { font-size: 18px; } .trucks-link { gap: 14px; } }
+
+/* ===== B version: slop cleanup (preview) ===== */
+/* 1. no PAGE 01 labels or the line under them */
+section.page > .head::before { content: none; display: none; }
+/* 4. no hairlines between bands, no outlined pictures */
+section.page:nth-of-type(even) { border-top: 0; border-bottom: 0; }
+.lead-row .lead-shot, .lead-row .lead-shot.boards img, .moment img, .faces img { border: 0; }
+.data-strip { border-top: 0; padding-top: 0; }
+footer.foot-small { border-top: 0; background: #0b0b0b; }
+/* 5. no resting shadows */
+.tl-thumbs img { box-shadow: none; }
+.want-form { box-shadow: none; }
+/* 6. labels in normal case at a readable size */
+.data-strip-lab, .spec-block h3 { font-size: 20px; letter-spacing: 0; text-transform: none; }
+.data-strip-lab { color: var(--ink); }
+/* 3. fewer, larger small sizes */
+:root { --t-small: 16px; }
+.why li small, .demo-note { font-size: 16px; }
+.data-tiles span { font-size: 16px; }
+/* fix: the pinned screen slid over the log numbers on desktop */
+@media (min-width: 901px) { section.page:has(> .lead-row) > .data-strip { grid-column: 1; } }
