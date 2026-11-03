@@ -388,3 +388,41 @@ footer.foot-small { border-top: 0; background: #0b0b0b; }
 .data-tiles span { font-size: 16px; }
 /* fix: the pinned screen slid over the log numbers on desktop */
 @media (min-width: 901px) { section.page:has(> .lead-row) > .data-strip { grid-column: 1; } }
+
+/* ===== Round 2: bigger hero clock, varied sections, phone headline ===== */
+/* hero: the clock takes real room on the first screen */
+@media (min-width: 901px) {
+  .hero .words { grid-column: 1 / 7; }
+  .hero .object { grid-column: 7 / 13; padding-top: 8px; }
+  .hero-clock { max-width: 620px; }
+}
+/* phone: headline holds to two lines */
+@media (max-width: 900px) { .hero h1 { font-size: clamp(32px, 9.4vw, 72px); } .hero-clock { max-width: 88vw; } }
+
+/* factory fit: real trucks, full width */
+.photo-band { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); padding: 48px var(--margin) 0; }
+.photo-band img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .3s var(--ease); }
+.photo-band a { display: block; overflow: hidden; }
+.photo-band a:hover img { transform: scale(1.03); }
+.photo-more { margin-top: 16px; }
+.photo-more a { color: var(--amber); font-weight: 700; font-size: 20px; text-decoration: none; }
+@media (max-width: 700px) { .photo-band { grid-template-columns: 1fr 1fr; } .photo-band a:first-child { grid-column: 1 / -1; } }
+@media (min-width: 901px) { section.page:has(> .lead-row) > .photo-band { grid-column: 1 / -1; } }
+
+@media (min-width: 901px) {
+  /* temperatures and fuel: mirrored, screen on the left */
+  #temps.page, #fuel.page { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+  #temps.page > *, #fuel.page > * { grid-column: 2; }
+  #temps.page > .lead-row > .sub, #fuel.page > .lead-row > .sub { grid-column: 2; }
+  #temps.page > .lead-row > .lead-shot, #fuel.page > .lead-row > .lead-shot { grid-column: 1; justify-self: start; margin: 0 0 0 var(--margin); }
+
+  /* engine: one big screen across, the list under it in three columns */
+  #engine.page { display: block; }
+  #engine.page > .lead-row { display: block; }
+  #engine.page > .lead-row > .lead-shot { position: static; max-width: 860px; width: calc(100% - 2 * var(--margin)); margin: 40px auto 0; justify-self: auto; }
+  #engine.page > .feat { grid-template-columns: repeat(3, minmax(0, 1fr)); padding-top: 48px; }
+  #engine.page > .feat li { grid-column: span 1; }
+}
+
+/* the closing statement: three or four lines, not six */
+.want-copy .big { max-width: 38ch; font-size: clamp(20px, 1.8vw, 26px); }
