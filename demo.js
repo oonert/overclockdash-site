@@ -66,6 +66,8 @@
   // ── the knob buttons ──────────────────────────────────────────────────────
   // phones: once the knob panel has scrolled under the stage, the stage shrinks to the clock
   const knobPanel = $('#knob');
+  // desktop: THE KNOB stops following once the 3D truck comes up, so it never covers it
+  if ('IntersectionObserver' in window && $('#truck')) new IntersectionObserver(([e]) => knobPanel.classList.toggle('let-go', e.isIntersecting), { rootMargin: '0px 0px -45% 0px' }).observe($('#truck'));
   function compactStage() { if (!phone()) { stage.classList.remove('compact'); return; } stage.classList.toggle('compact', window.scrollY > knobPanel.offsetTop + knobPanel.offsetHeight - 120); }
   window.addEventListener('scroll', compactStage, { passive: true }); window.addEventListener('resize', compactStage);
   // LEARN THE KNOB: the firmware's own first-power-on lesson (SETUP), from WELCOME
