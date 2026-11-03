@@ -8,28 +8,28 @@
 <link rel="stylesheet" href="site.css?v=20261102g">
 <style>
 .dv { --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500; --one:#ffb000;
-      --grid:#232323; --axis:#3a3a3a; --tick:#8f877c; }
+      --grid:#333; --axis:#5a5a5a; --tick:#c9c1b5; --panel:#1b1b1b; }
 .dv-hero { padding: 24px var(--margin) 0; }
 .dv-hero h1 { font-weight:700; font-size:var(--t-display); line-height:.92; letter-spacing:-.02em; max-width:14ch; padding-top:32px; }
 .dv-hero .lead { font-size:var(--t-lead); margin-top:28px; max-width:52ch; }
 .tiles { list-style:none; margin:48px 0 0; padding:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:var(--gap); }
-.tiles li { border-top:1px solid #2a2a2a; padding-top:14px; }
+.tiles li { background:var(--panel); padding:20px 20px 18px; }
 .tiles b { display:block; font-size:clamp(34px,4vw,56px); line-height:1; color:var(--ink); }
-.tiles span { display:block; margin-top:8px; color:var(--muted); font-size:15px; line-height:1.3; }
+.tiles span { display:block; margin-top:8px; color:var(--ink); font-size:16px; line-height:1.3; }
 
 @media (max-width:560px){ .tiles { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-.chart { margin:40px var(--margin) 0; position:relative; }
+.chart { margin:24px var(--margin) 0; position:relative; background:var(--panel); padding:28px 0 14px; }
 .chart svg { display:block; width:100%; overflow:visible; font-family:var(--font); }
-.chart .ax text, .chart text.t { fill:var(--tick); font-size:13px; font-variant-numeric:tabular-nums; }
-.chart text.lab { fill:var(--ink); font-size:14px; font-weight:700; }
-.chart text.val { fill:var(--ink); font-size:14px; font-variant-numeric:tabular-nums; }
-.chart text.note { fill:var(--muted); font-size:13px; }
+.chart .ax text, .chart text.t { fill:var(--tick); font-size:15px; font-variant-numeric:tabular-nums; }
+.chart text.lab { fill:var(--ink); font-size:17px; font-weight:700; }
+.chart text.val { fill:var(--ink); font-size:16px; font-variant-numeric:tabular-nums; }
+.chart text.note { fill:var(--tick); font-size:15px; }
 .chart .grid line { stroke:var(--grid); stroke-width:1; }
 .chart .base { stroke:var(--axis); stroke-width:1; }
 .chart .hair { stroke:var(--ink); stroke-opacity:.5; stroke-width:1; pointer-events:none; }
-.legend { display:flex; flex-wrap:wrap; gap:6px 22px; margin:20px var(--margin) 0; font-size:15px; color:var(--ink); }
-.legend i { display:inline-block; width:12px; height:12px; border-radius:2px; margin-right:8px; vertical-align:-1px; }
-.facts { margin:18px var(--margin) 0; color:var(--muted); font-size:var(--t-small); max-width:80ch; }
+.legend { display:flex; flex-wrap:wrap; gap:6px 24px; margin:20px var(--margin) 0; font-size:17px; color:var(--ink); }
+.legend i { display:inline-block; width:14px; height:14px; border-radius:2px; margin-right:8px; vertical-align:-1px; }
+.facts { margin:20px var(--margin) 0; color:var(--amber); font-size:clamp(19px,1.7vw,24px); font-weight:700; line-height:1.35; max-width:52ch; }
 .facts b { color:var(--ink); font-weight:700; }
 details.tbl { margin:16px var(--margin) 0; font-size:var(--t-small); color:var(--muted); }
 details.tbl summary { cursor:pointer; color:var(--amber); font-weight:700; padding:8px 0; }
@@ -44,11 +44,14 @@ details.tbl th:first-child, details.tbl td:first-child { text-align:left; }
 .tip .r i { display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:6px; }
 .tip .r span:first-child { color:var(--muted); }
 .cv { position:absolute; pointer-events:none; }
-.scale { display:flex; align-items:center; gap:10px; margin:14px var(--margin) 0; font-size:14px; color:var(--muted); }
-.scale .ramp { width:180px; height:10px; border-radius:2px; background:linear-gradient(to right, rgba(255,176,0,.08), #ffb000); }
+.scale { display:flex; align-items:center; gap:10px; margin:14px var(--margin) 0; font-size:16px; color:var(--ink); }
+.scale .ramp { display:inline-flex; gap:3px; } .scale .ramp i { width:22px; height:14px; background:#ffb000; }
 .dv-h3.first { margin-top:40px; }
 .dv-h3 { color:var(--ink); font-size:clamp(22px,2.2vw,30px); font-weight:700; margin:72px var(--margin) 0; }
 .dv-end { padding:48px var(--margin) 0; color:var(--muted); font-size:var(--t-small); max-width:80ch; }
+.dv section.page:nth-of-type(even){ background:#000; }
+.dv section.page { padding-block: clamp(56px,6vw,96px); }
+.chart[id^="c-map"] { padding:0; background:#14212b; }
 </style>
 </head>
 <body class="dv">
@@ -69,8 +72,8 @@ details.tbl th:first-child, details.tbl td:first-child { text-align:left; }
 <section class="page">
   <div class="head"><h2>One drive, every second</h2></div>
   <p class="sub" id="s1-sub"></p>
-  <div class="chart" id="c-drive"></div>
   <p class="facts" id="s1-facts"></p>
+  <div class="chart" id="c-drive"></div>
 </section>
 
 <section class="page">
@@ -89,59 +92,60 @@ details.tbl th:first-child, details.tbl td:first-child { text-align:left; }
 <section class="page">
   <div class="head"><h2>Problem: thermostat stuck open</h2></div>
   <p class="sub">No warning light. No code. The engine just never gets warm.</p>
+  <p class="facts" id="s-cmp-facts"></p>
   <div class="legend" id="l-cmp"></div>
   <div class="chart" id="c-cmp"></div>
-  <p class="facts" id="s-cmp-facts"></p>
   <p class="sub" style="margin-top:56px">On the highway it runs even colder.</p>
-  <div class="chart" id="c-hwy"></div>
   <p class="facts" id="s-hwy-facts"></p>
+  <div class="chart" id="c-hwy"></div>
 </section>
 
 <section class="page">
   <div class="head"><h2>Battery, every start</h2></div>
   <p class="sub" id="s5-sub"></p>
+  <p class="facts" id="s5-facts"></p>
   <div class="legend" id="l-batt"></div>
   <div class="chart" id="c-batt"></div>
-  <p class="facts" id="s5-facts"></p>
 </section>
 
 <section class="page">
   <div class="head"><h2>Fuel</h2></div>
   <p class="sub" id="s6-sub"></p>
-  <div class="chart" id="c-fuel"></div>
   <p class="facts" id="s6-facts"></p>
+  <div class="chart" id="c-fuel"></div>
   <h3 class="dv-h3">Fuel trim</h3>
   <p class="sub" id="s8-sub"></p>
-  <div class="chart" id="c-trim"></div>
   <p class="facts" id="s8-facts"></p>
+  <div class="chart" id="c-trim"></div>
 </section>
 
 <section class="page">
   <div class="head"><h2>Parked</h2></div>
   <p class="sub" id="s7-sub"></p>
+  <p class="facts" id="s7-facts"></p>
   <div class="legend" id="l-park"></div>
   <div class="chart" id="c-park"></div>
-  <p class="facts" id="s7-facts"></p>
 </section>
 
 <section class="page">
   <div class="head"><h2>Drivetrain</h2></div>
   <h3 class="dv-h3 first">Gears</h3>
   <p class="sub">Each line is a gear. A slipping transmission shows up as scatter above the lines.</p>
-  <div class="chart" id="c-gears"></div>
   <p class="facts" id="s2-facts"></p>
+  <div class="chart" id="c-gears"></div>
   <h3 class="dv-h3">Engine map</h3>
   <p class="sub">Time at every RPM and load. Towing, a heavy load or a dragging brake shifts the picture.</p>
-  <div class="chart" id="c-heat"></div>
-  <div class="scale"><span>Less time</span><span class="ramp"></span><span>More time</span></div>
   <p class="facts" id="s3-facts"></p>
+  <div class="chart" id="c-heat"></div>
+  <div class="scale"><span>Less time</span><span class="ramp"><i style="opacity:.15"></i><i style="opacity:.35"></i><i style="opacity:.6"></i><i style="opacity:1"></i></span><span>More time</span></div>
+  
 </section>
 
 <section class="page">
   <div class="head"><h2>Distance vs GPS</h2></div>
   <p class="sub" id="s9-sub"></p>
-  <div class="chart" id="c-acc"></div>
   <p class="facts" id="s9-facts"></p>
+  <div class="chart" id="c-acc"></div>
 </section>
 
 <p class="dv-end">Charts built from real OVERCLOCK drive logs. Home location hidden.</p>
@@ -159,7 +163,7 @@ details.tbl th:first-child, details.tbl td:first-child { text-align:left; }
 const D = JSON.parse(document.getElementById('dvdata').textContent);
 const NS = 'http://www.w3.org/2000/svg';
 const css = getComputedStyle(document.body);
-const C = { one:'#ffb000', c1:'#3987e5', c2:'#d95926', c3:'#199e70', c4:'#c98500', ink:'#f2e8d8', muted:'#b9b0a3', tick:'#8f877c', surf:'#000' };
+const C = { one:'#ffb000', c1:'#3987e5', c2:'#d95926', c3:'#199e70', c4:'#c98500', ink:'#f2e8d8', muted:'#b9b0a3', tick:'#c9c1b5', surf:'#1b1b1b' };
 const fmt = (v,d=0) => v==null||isNaN(v) ? 'n/a' : Number(v).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
 const $ = id => document.getElementById(id);
 function el(tag, a, p){ const e=document.createElementNS(NS,tag); for(const k in a) e.setAttribute(k,a[k]); if(p) p.appendChild(e); return e; }
@@ -187,7 +191,7 @@ $('tiles').innerHTML=[
 ].map(t=>'<li><b>'+t[0]+'</b><span>'+t[1]+'</span></li>').join('');
 const DS=D.drive_sum;
 $('s1-sub').textContent=`Speed, RPM, load, coolant and elevation on one timeline.`;
-$('s1-facts').innerHTML=`${Math.round(DS.miles)} mi &middot; ${Math.round(DS.minutes)} min &middot; top speed ${DS.maxmph} mph &middot; ${fmt(DS.climb)} ft climb`;
+$('s1-facts').innerHTML=`${Math.round(DS.miles)} miles in ${Math.round(DS.minutes)} minutes. Top speed ${DS.maxmph} mph, ${fmt(DS.climb)} feet of climb. Move across the chart to read any second.`;
 
 /* ---------- 1. one drive, small multiples ---------- */
 function drawDrive(){
@@ -201,7 +205,7 @@ function drawDrive(){
     const y0=top+i*(ph+gap), y=lin(nn.lo,nn.hi,y0+ph,y0); ys.push(y);
     grid(s,y,L,w-R,nn.ticks);
     txt(s,L,y0-10,p[0]+'  ('+p[1]+')','lab');
-    el('path',{d:path(V.t,V[p[2]],x,y),fill:'none',stroke:C.one,'stroke-width':2,'stroke-linejoin':'round'},s);
+    el('path',{d:path(V.t,V[p[2]],x,y),fill:'none',stroke:C.one,'stroke-width':2.75,'stroke-linejoin':'round'},s);
     vals.push(txt(s,w-R,y0-10,'max '+fmt(hi),'val','end'));
   });
   const yb=top+(P.length-1)*(ph+gap)+ph; xaxis(s,x,yb,nice(0,x.d[1],w<600?4:8).ticks.filter(v=>v<=x.d[1]),v=>v+' min');
@@ -226,12 +230,13 @@ function drawMapOne(id,M,big){ const outline=!!big;
   const d=pts=>'M'+pts.map(p=>P(p).join(' ')).join('L');
   const cid='clip-'+id; const cp=el('clipPath',{id:cid},el('defs',{},s)); el('rect',{x:0,y:0,width:w,height:h},cp);
   const g=el('g',{'clip-path':'url(#'+cid+')'},s);
-  if(outline){ M.states.forEach(r=>el('path',{d:d(r)+'Z',fill:'#0d0d0d',stroke:'#3a3a3a','stroke-width':1},g));
-  M.counties.forEach(r=>el('path',{d:d(r),fill:'none',stroke:'#1f1f1f','stroke-width':1},g)); }
-  else { const ppm=sc/69.17; const mi=[1,2,5,10,20,50].find(v=>v*ppm>=90)||50; const bx=w-16-mi*ppm, by=h-16; el('line',{x1:bx,x2:bx+mi*ppm,y1:by,y2:by,stroke:C.ink,'stroke-width':2},s); txt(s,bx+mi*ppm,by-8,mi+' mi','note','end'); }
-  const sw=big?2.4:2.2;
+  el('rect',{x:0,y:0,width:w,height:h,fill:'#14212b'},g);
+  M.states.forEach(r=>el('path',{d:d(r)+'Z',fill:'#2b2b2b',stroke:'#5c5c5c','stroke-width':1.2},g));
+  M.counties.forEach(r=>el('path',{d:d(r),fill:'none',stroke:'#3a3a3a','stroke-width':1},g));
+  if(!outline){ const ppm=sc/69.17; const mi=[1,2,5,10,20,50].find(v=>v*ppm>=90)||50; const bx=w-16-mi*ppm, by=h-16; el('line',{x1:bx,x2:bx+mi*ppm,y1:by,y2:by,stroke:C.ink,'stroke-width':2},s); txt(s,bx+mi*ppm,by-8,mi+' mi','note','end'); }
+  const sw=big?3.2:4;
   M.lines.forEach(([b,pts])=>el('path',{d:d(pts),fill:'none',stroke:SPD[b],'stroke-width':sw,'stroke-linecap':'round','stroke-linejoin':'round'},g));
-  M.cities.forEach(c=>{ const [x,y]=P([c[1],c[2]]); el('circle',{cx:x,cy:y,r:3,fill:C.ink},g); txt(g,+x+7,+y+4,c[0],'note'); });
+  M.cities.forEach(c=>{ const [x,y]=P([c[1],c[2]]); el('circle',{cx:x,cy:y,r:4,fill:C.ink},g); const t=txt(g,+x+8,+y+5,c[0],'val'); t.setAttribute('paint-order','stroke'); t.setAttribute('stroke','#14212b'); t.setAttribute('stroke-width','4'); });
   const hl=el('circle',{r:6,fill:'none',stroke:C.ink,'stroke-width':2,cx:-99,cy:-99},s);
   const H=M.hover.map(p=>[+P(p)[0],+P(p)[1],p]);
   const ov=el('rect',{x:0,y:0,width:w,height:h,fill:'transparent'},s);
@@ -258,8 +263,8 @@ function drawGears(){
   grid(s,y,L,w-R,[0,1000,2000,3000,4000]); xaxis(s,x,h-B,[0,10,20,30,40,50,60,70,80],v=>v+(v===80?' mph':''));
   txt(s,L,Tp-0,'','t');
   const cv=document.createElement('canvas'); cv.className='cv'; const dpr=window.devicePixelRatio||1; const pw=w-L-R, ph=h-B-Tp;
-  cv.style.left=L+'px'; cv.style.top=Tp+'px'; cv.style.width=pw+'px'; cv.style.height=ph+'px'; cv.width=pw*dpr; cv.height=ph*dpr; host.appendChild(cv);
-  const g=cv.getContext('2d'); g.scale(dpr,dpr); g.fillStyle='rgba(255,176,0,0.16)';
+  const pt=parseFloat(getComputedStyle(host).paddingTop)||0; cv.style.left=L+'px'; cv.style.top=(Tp+pt)+'px'; cv.style.width=pw+'px'; cv.style.height=ph+'px'; cv.width=pw*dpr; cv.height=ph*dpr; host.appendChild(cv);
+  const g=cv.getContext('2d'); g.scale(dpr,dpr); g.fillStyle='rgba(255,176,0,0.32)';
   for(let i=0;i<G.mph.length;i++){ const px=x(G.mph[i])-L, py=y(G.rpm[i])-Tp; if(px<0||px>pw||py<0||py>ph) continue; g.fillRect(px-1,py-1,2.2,2.2); }
   const names=['1st','2nd','3rd','Overdrive'];
   const slopes=K.ratios.map(r=>K.od*r/K.ratios[3]);
@@ -272,7 +277,7 @@ function drawGears(){
     const k=rpm/mph; let bi=0; slopes.forEach((sl,i)=>{ if(Math.abs(Math.log(k/sl))<Math.abs(Math.log(k/slopes[bi]))) bi=i; });
     showTip(ev,fmt(mph)+' mph, '+fmt(rpm,0)+' RPM',[['Closest gear',names[bi]],['That gear at this speed',fmt(slopes[bi]*mph)+' RPM']]); });
   ov.addEventListener('pointerleave',hideTip);
-  $('s2-facts').innerHTML=`${fmt(G.mph.length)} seconds &middot; ${K.od.toFixed(1)} RPM per mph in overdrive`;
+  $('s2-facts').innerHTML=`Each dot is one second of driving (${fmt(G.mph.length)} of them). The bright line is overdrive: ${K.od.toFixed(1)} RPM for every mph.`;
 }
 
 /* ---------- 3. heatmap ---------- */
@@ -282,14 +287,14 @@ function drawHeat(){
   let mx=0; H.pct.forEach(r=>r.forEach(v=>mx=Math.max(mx,v)));
   let best=[0,0,0];
   H.pct.forEach((col,i)=>col.forEach((v,j)=>{ if(v>best[2]) best=[i,j,v];
-    const r=el('rect',{x:L+i*cw+1,y:Tp+(ny-1-j)*ch+1,width:Math.max(0,cw-2),height:Math.max(0,ch-2),rx:2,fill:v>0?C.one:'#141414','fill-opacity':v>0?(0.08+0.92*Math.sqrt(v/mx)).toFixed(3):1},s);
+    const r=el('rect',{x:L+i*cw+1,y:Tp+(ny-1-j)*ch+1,width:Math.max(0,cw-2),height:Math.max(0,ch-2),rx:2,fill:v>0?C.one:'#2a2a2a','fill-opacity':v>0?(0.08+0.92*Math.sqrt(v/mx)).toFixed(3):1},s);
     r.addEventListener('pointermove',ev=>showTip(ev,fmt(H.rpm[i])+' to '+fmt(H.rpm[i+1])+' RPM',[['Engine load',H.load[j]+' to '+H.load[j+1]+'%'],['Share of running time',fmt(v,1)+'%'],['Seconds',fmt(v/100*H.n)]]));
     r.addEventListener('pointerleave',hideTip); }));
   const a=el('g',{class:'ax'},s);
   H.load.forEach((v,j)=>{ if(j%2===0) txt(a,L-8,Tp+(ny-j)*ch+4,v+'%','t','end'); });
   H.rpm.forEach((v,i)=>{ if(i%4===0&&i<nx) txt(a,L+i*cw,h-B+18,fmt(v)+(i+4>=nx?' RPM':''),'t','middle'); });
   txt(s,L-48,Tp+10,'Load','t','start');
-  $('s3-facts').innerHTML=`Most time: ${fmt(H.rpm[best[0]])} to ${fmt(H.rpm[best[0]+1])} RPM, ${H.load[best[1]]} to ${H.load[best[1]+1]}% load (${fmt(best[2],1)}%)`;
+  $('s3-facts').innerHTML=`Brighter squares mean more time. The busiest: ${fmt(H.rpm[best[0]])} to ${fmt(H.rpm[best[0]+1])} RPM at ${H.load[best[1]]} to ${H.load[best[1]+1]}% load, ${fmt(best[2],1)}% of all running time.`;
 }
 
 /* ---------- 4. warm-up ---------- */
@@ -299,14 +304,14 @@ function drawCmp(){
   grid(s,y,L,w-R,[40,80,120,160,200],v=>v+'°F'); xaxis(s,x,h-Bt,nice(0,xm,w<600?4:6).ticks.filter(v=>v<=xm),v=>v+' min');
   el('line',{x1:L,x2:w-R,y1:y(180),y2:y(180),stroke:C.ink,'stroke-opacity':.5},s); txt(s,w-R,y(180)+18,'180°F','note','end');
   const S=[[A,'Healthy',C.c1],[B,'Stuck open',C.c2]];
-  S.forEach(([d,lab,col])=>el('path',{d:path(d.t,d.c,x,y),fill:'none',stroke:col,'stroke-width':2},s));
+  S.forEach(([d,lab,col])=>el('path',{d:path(d.t,d.c,x,y),fill:'none',stroke:col,'stroke-width':3},s));
   const hair=el('line',{class:'hair',y1:Tp,y2:h-Bt,x1:-9999,x2:-9999},s);
   const ov=el('rect',{x:L,y:Tp,width:w-L-R,height:h-Tp-Bt,fill:'transparent'},s);
   ov.addEventListener('pointermove',ev=>{ const r=s.getBoundingClientRect(); const m=Math.max(0,Math.min(xm,x.inv(ev.clientX-r.left))); hair.setAttribute('x1',x(m)); hair.setAttribute('x2',x(m));
     showTip(ev,'Minute '+m.toFixed(1),S.map(([d,lab,col])=>[lab.split(',')[0],fmt(d.c[bis(d.t,m)])+'°F',col])); });
   ov.addEventListener('pointerleave',()=>{hideTip(); hair.setAttribute('x1',-9999); hair.setAttribute('x2',-9999);});
   legend('l-cmp',S.map(q=>[q[1],q[2]]));
-  $('s-cmp-facts').innerHTML=`Healthy: 180°F in ${K.to180_97} min (normal is 4 to 6) &middot; stuck open: ${B.end}°F after ${B.mins} min`;
+  $('s-cmp-facts').innerHTML=`Healthy engine: warm (180°F) in ${K.to180_97} minutes. Stuck thermostat: only ${B.end}°F after ${B.mins} minutes.`;
 }
 function drawHwy(){
   const host=$('c-hwy'), V=D.cmp.hwy, P=[['Speed','mph','mph'],['Coolant','°F','cool']];
@@ -315,7 +320,7 @@ function drawHwy(){
   P.forEach((p,i)=>{ const y0=top+i*(ph+gap); const nn=p[2]==='cool'?{lo:120,hi:200,ticks:[120,160,200]}:nice(0,Math.max(...V.mph.filter(v=>v!=null)),2);
     const y=lin(nn.lo,nn.hi,y0+ph,y0); grid(s,y,L,w-R,nn.ticks); txt(s,L,y0-10,p[0]+'  ('+p[1]+')','lab');
     if(p[2]==='cool'){ el('line',{x1:L,x2:w-R,y1:y(190),y2:y(190),stroke:C.ink,'stroke-opacity':.5},s); txt(s,w-R,y(190)-6,'Normal 190°F','note','end'); }
-    el('path',{d:path(V.t,V[p[2]],x,y),fill:'none',stroke:C.one,'stroke-width':2,'stroke-linejoin':'round'},s);
+    el('path',{d:path(V.t,V[p[2]],x,y),fill:'none',stroke:C.one,'stroke-width':2.75,'stroke-linejoin':'round'},s);
     vals.push(txt(s,L+150,y0-10,'','val','start')); });
   const yb=top+(P.length-1)*(ph+gap)+ph; xaxis(s,x,yb,nice(0,xm,w<600?4:8).ticks.filter(v=>v<=xm),v=>v+' min');
   const hair=el('line',{class:'hair',y1:top-4,y2:yb,x1:-9999,x2:-9999},s);
@@ -323,7 +328,7 @@ function drawHwy(){
   ov.addEventListener('pointermove',ev=>{ const r=s.getBoundingClientRect(); const i=bis(V.t,x.inv(ev.clientX-r.left)); const X=x(V.t[i]); hair.setAttribute('x1',X); hair.setAttribute('x2',X);
     vals[0].textContent=fmt(V.mph[i])+' mph'; vals[1].textContent=fmt(V.cool[i])+'°F'; });
   ov.addEventListener('pointerleave',()=>{ hair.setAttribute('x1',-9999); hair.setAttribute('x2',-9999); vals.forEach(v=>v.textContent=''); });
-  $('s-hwy-facts').innerHTML=`At 55+ mph: ${V.hwy_lo} to ${V.hwy_hi}°F &middot; normal: about 190°F`;
+  $('s-hwy-facts').innerHTML=`Above 55 mph it sat at ${V.hwy_lo} to ${V.hwy_hi}°F. A healthy engine holds about 190°F.`;
 }
 /* ---------- 5. battery ---------- */
 function drawBatt(){
@@ -335,7 +340,7 @@ function drawBatt(){
   const tk=[]; for(let k=0;k<=4;k++) tk.push(t0+k*7*864e5);
   xaxis(s,x,h-Bt,tk,v=>'Week '+(Math.round((v-t0)/(7*864e5))+1));
   const ser=[['chrg','Charging',C.c3],['rest','Before start',C.c1],['crank','Cranking low',C.c2]];
-  ser.forEach(([k,lab,col])=>B.forEach((b,i)=>{ if(b[k]==null) return; el('circle',{cx:x(tms[i]),cy:y(b[k]),r:4,fill:col,stroke:'#101010','stroke-width':2},s); }));
+  ser.forEach(([k,lab,col])=>B.forEach((b,i)=>{ if(b[k]==null) return; el('circle',{cx:x(tms[i]),cy:y(b[k]),r:4,fill:col,stroke:'#1b1b1b','stroke-width':2},s); }));
   let lo=0; B.forEach((b,i)=>{ if(b.crank<B[lo].crank) lo=i; });
   { const lx=x(tms[lo]), right=lx<w*0.6; txt(s,lx+(right?10:-10),y(B[lo].crank)+4,'Lowest: '+B[lo].crank.toFixed(2)+' V','val',right?'start':'end'); }
   const ov=el('rect',{x:L,y:Tp,width:w-L-R,height:h-Tp-Bt,fill:'transparent'},s);
@@ -345,7 +350,7 @@ function drawBatt(){
   legend('l-batt',ser.map(s=>[s[1],s[2]]));
   const avg=k=>{const a=B.map(b=>b[k]).filter(v=>v!=null); return a.reduce((p,c)=>p+c,0)/a.length;};
   $('s5-sub').textContent=`A battery that dips lower every week is about to quit.`;
-  $('s5-facts').innerHTML=`${B.length} starts &middot; average ${avg('rest').toFixed(2)} V before, ${avg('crank').toFixed(2)} V cranking, ${avg('chrg').toFixed(2)} V charging`;
+  $('s5-facts').innerHTML=`Each dot is one start (${B.length} in five weeks). On average: ${avg('rest').toFixed(1)} V resting, ${avg('crank').toFixed(1)} V while cranking, ${avg('chrg').toFixed(1)} V charging.`;
 }
 
 /* ---------- 6. fuel ---------- */
@@ -365,7 +370,7 @@ function drawFuel(){
     hit.addEventListener('pointermove',ev=>{ p.setAttribute('fill','#ffc43d'); showTip(ev,'Tank '+(i+1),[['Miles per gallon',f.mpg.toFixed(1)],['Miles on the tank',fmt(f.mi,1)],['Gallons',fmt(f.gal,1)],['Price per gallon','$'+f.ppg.toFixed(2)],['Cost per mile','$'+f.cpm.toFixed(2)]]); });
     hit.addEventListener('pointerleave',()=>{ p.setAttribute('fill',C.one); hideTip(); }); });
   el('line',{x1:L,x2:w-R,y1:y(avg),y2:y(avg),stroke:C.ink,'stroke-opacity':.6,'stroke-width':1,'pointer-events':'none'},s);
-  $('s6-facts').innerHTML=`${fmt(totMi)} miles &middot; ${avg.toFixed(1)} mpg average (the line) &middot; $${(Fu.reduce((p,f)=>p+f.cost,0)/totMi).toFixed(2)} a mile`;
+  $('s6-facts').innerHTML=`${avg.toFixed(1)} mpg average over ${fmt(totMi)} miles (the white line). Fuel cost $${(Fu.reduce((p,f)=>p+f.cost,0)/totMi).toFixed(2)} a mile.`;
   $('s6-sub').textContent=`MPG every tank. A sudden drop is often a dragging brake, low tires or a failing sensor.`;
 }
 
@@ -379,7 +384,7 @@ function drawPark(){
   panels.forEach((p,k)=>{ const all=[].concat(...p[2].map(q=>P[q[0]])); let lo=Math.min(...all), hi=Math.max(...all); if(p[2][0][0]==='sol') lo=0; if(p[2][0][0]==='soc'){lo=Math.floor(lo-2);hi=Math.ceil(hi+2);} if(p[2].length>1) lo=30;
     const nn=nice(lo,hi,p[2].length>1?3:2), y0=top+k*(ph+gap), y=lin(nn.lo,nn.hi,y0+ph,y0);
     grid(s,y,L,w-R,nn.ticks); txt(s,L,y0-10,p[0]+'  ('+p[1]+')','lab');
-    p[2].forEach(q=>el('path',{d:path(idx,P[q[0]],x,y),fill:'none',stroke:q[1],'stroke-width':2},s));
+    p[2].forEach(q=>el('path',{d:path(idx,P[q[0]],x,y),fill:'none',stroke:q[1],'stroke-width':2.75},s));
     vals.push(txt(s,w-R,y0-10,'','val','end')); });
   const yb=top+(panels.length-1)*(ph+gap)+ph;
   const tk=idx.filter(i=>P.ts[i].endsWith(':00')&&(+P.ts[i].slice(0,2))%2===0);
@@ -395,16 +400,16 @@ function drawPark(){
   legend('l-park',[['Fridge',C.c1],['Cabin',C.c2],['Outside',C.c3]]);
   const fl=Math.min(...P.fridge), fh=Math.max(...P.fridge);
   $('s7-sub').textContent=`Checked every 15 minutes while you're away. A warming fridge or a draining battery shows up here first.`;
-  $('s7-facts').innerHTML=`Fridge ${fmt(fl)} to ${fmt(fh)}°F &middot; house battery ${fmt(P.soc[0],1)}% to ${fmt(P.soc[P.soc.length-1],1)}% &middot; solar peak ${Math.max(...P.sol)} W`;
+  $('s7-facts').innerHTML=`One parked day: the fridge held ${fmt(fl)} to ${fmt(fh)}°F, the house battery went from ${fmt(P.soc[0],0)}% to ${fmt(P.soc[P.soc.length-1],0)}%, and solar peaked at ${Math.max(...P.sol)} W.`;
 }
 
 /* ---------- 8. fuel trims ---------- */
 function drawTrim(){
   const host=$('c-trim'), Tr=D.trims; const h=Math.min(340,Math.max(260,host.clientWidth*0.32));
-  const [s,w]=svg(host,h); const L=56,R=16,Tp=12,B=34; const x=lin(-10,12,L,w-R); const mx=Math.max(...Tr.pct); const y=lin(0,Math.ceil(mx/5)*5,h-B,Tp);
-  grid(s,y,L,w-R,nice(0,Math.ceil(mx/5)*5,3).ticks,v=>v+'%');
-  el('rect',{x:x(-10),y:Tp,width:x(10)-x(-10),height:h-Tp-B,fill:'#ffffff','fill-opacity':.03},s);
-  txt(s,x(-10)+6,Tp+16,'Healthy range','note');
+  const [s,w]=svg(host,h); const L=56,R=16,Tp=12,B=34; const x=lin(-10,12,L,w-R); const mx=Math.max(...Tr.pct); const tn=nice(0,Math.ceil(mx/5)*5,3); const y=lin(0,tn.hi,h-B,Tp);
+  grid(s,y,L,w-R,tn.ticks,v=>v+'%');
+  el('rect',{x:x(-10),y:Tp,width:x(10)-x(-10),height:h-Tp-B,fill:'#199e70','fill-opacity':.14},s);
+  txt(s,x(-10)+8,Tp+20,'Healthy range: within 10%','lab');
   Tr.pct.forEach((v,i)=>{ const x0=x(Tr.bins[i])+1, x1=x(Tr.bins[i+1])-1, top=y(v), base=y(0); if(v<=0) return; const r=Math.min(4,(x1-x0)/2,base-top);
     const p=el('path',{d:`M${x0} ${base}V${top+r}Q${x0} ${top} ${x0+r} ${top}H${x1-r}Q${x1} ${top} ${x1} ${top+r}V${base}Z`,fill:C.one},s);
     const hit=el('rect',{x:x(Tr.bins[i]),y:Tp,width:x(Tr.bins[i+1])-x(Tr.bins[i]),height:h-Tp-B,fill:'transparent'},s);
@@ -412,7 +417,7 @@ function drawTrim(){
     hit.addEventListener('pointerleave',()=>{ p.setAttribute('fill',C.one); hideTip(); }); });
   xaxis(s,x,h-B,[-10,-5,0,5,10],v=>(v>0?'+':'')+v+'%');
   el('line',{x1:x(0),x2:x(0),y1:Tp,y2:h-B,stroke:C.ink,'stroke-opacity':.4},s);
-  $('s8-facts').innerHTML=`Average ${Tr.mean>0?'+':''}${Tr.mean}% &middot; ${Tr.within10}% of the time within 10%`;
+  $('s8-facts').innerHTML=`Average ${Tr.mean>0?'+':''}${Tr.mean}%. In the healthy range ${Tr.within10}% of the time.`;
   $('s8-sub').textContent=`Near zero is healthy. Trims creeping up point to a vacuum leak or a weak fuel pump.`;
 }
 
@@ -425,7 +430,7 @@ function drawAcc(){
   el('line',{x1:x(0),y1:y(0),x2:x(top),y2:y(top),stroke:C.ink,'stroke-opacity':.5},s);
   txt(s,x(top*0.62),y(top*0.62)-10,'Perfect agreement','note','end');
   txt(s,L+6,Tp+16,'Engine computer miles','note');
-  A.forEach(a=>{ const c=el('circle',{cx:x(a[1]),cy:y(a[2]),r:4,fill:C.one,stroke:'#101010','stroke-width':2},s); });
+  A.forEach(a=>{ const c=el('circle',{cx:x(a[1]),cy:y(a[2]),r:5,fill:C.one,stroke:'#1b1b1b','stroke-width':2},s); });
   const ov=el('rect',{x:L,y:Tp,width:w-L-R,height:h-Tp-B,fill:'transparent'},s);
   ov.addEventListener('pointermove',ev=>{ const r=s.getBoundingClientRect(); const px=ev.clientX-r.left, py=ev.clientY-r.top; let bi=0, bd=1e9; A.forEach((a,i)=>{ const d=Math.hypot(x(a[1])-px,y(a[2])-py); if(d<bd){bd=d;bi=i;} }); if(bd>40){hideTip();return;} const a=A[bi];
     showTip(ev,'Drive',[['GPS',fmt(a[1],2)+' mi'],['Engine computer',fmt(a[2],2)+' mi'],['Difference',a[1]>0?fmt((a[2]-a[1])/a[1]*100,1)+'%':'n/a']]); });
@@ -433,7 +438,7 @@ function drawAcc(){
   const g=A.reduce((p,a)=>p+a[1],0), o=A.reduce((p,a)=>p+a[2],0);
   $('s9-sub').textContent=`Dash miles vs GPS. Off by more than a percent means the tire size setting needs a look.`;
   let wi=0; A.forEach((a,i)=>{ if(Math.abs(a[2]-a[1])>Math.abs(A[wi][2]-A[wi][1])) wi=i; });
-  $('s9-facts').innerHTML=`${fmt(o)} miles &middot; ${(Math.abs(o-g)/g*100).toFixed(2)}% apart`;
+  $('s9-facts').innerHTML=`Each dot is one drive. Over ${fmt(o)} miles, the dash and GPS agree within ${(Math.abs(o-g)/g*100).toFixed(2)}%.`;
 }
 
 const draws=[drawDrive,drawMap,drawGears,drawHeat,drawCmp,drawHwy,drawBatt,drawFuel,drawPark,drawTrim,drawAcc];
