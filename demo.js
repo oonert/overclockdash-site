@@ -11,7 +11,7 @@
   const status = $('#status');
   function frameWidth() { return phone() ? Math.round((window.innerWidth - 24) * 0.68) : Math.min(560, Math.round(window.innerWidth * 0.42)); }
   async function mountClock(which) {
-    currentCase = which;
+    currentCase = which; if (window.__setTruck) window.__setTruck(which);
     $$('.tabs [role=tab]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.case === which)));
     if (clock) { clock.destroy(); clock = null; }
     status.textContent = 'Loading the firmware (about 4 MB)...';
@@ -155,40 +155,19 @@
     sun.shadow.mapSize.set(1024, 1024); sun.shadow.camera.left = sun.shadow.camera.bottom = -6; sun.shadow.camera.right = sun.shadow.camera.top = 6; scene.add(sun);
     const rig = new THREE.Group(); scene.add(rig);          // the ground
     const trig = new THREE.Group(); scene.add(trig);        // the truck, on its own so it can sit on a block
-    const slab = new THREE.Mesh(new THREE.BoxGeometry(7, 0.18, 4.4), new THREE.MeshStandardMaterial({ color: 0x5b5346, roughness: 1 })); slab.position.y = -0.09; slab.receiveShadow = true; rig.add(slab);
+    const slab = new THREE.Mesh(new THREE.BoxGeometry(7, 0.18, 5.8), new THREE.MeshStandardMaterial({ color: 0x5b5346, roughness: 1 })); slab.position.y = -0.09; slab.receiveShadow = true; rig.add(slab);
     const grid = new THREE.GridHelper(7, 14, 0x8a7f6a, 0x6e6555); grid.position.y = 0.001; rig.add(grid);
     const truck = new THREE.Group(); trig.add(truck);
-    const paint = new THREE.MeshStandardMaterial({ color: 0xb8352a, roughness: 0.55, metalness: 0.15 });
-    const dark = new THREE.MeshStandardMaterial({ color: 0x22262b, roughness: 0.9 });
-    const glass = new THREE.MeshStandardMaterial({ color: 0x9fc6d9, roughness: 0.2, metalness: 0.4, transparent: true, opacity: 0.75 });
-    const rubber = new THREE.MeshStandardMaterial({ color: 0x15171a, roughness: 1 });
-    const rim = new THREE.MeshStandardMaterial({ color: 0x9aa0a6, roughness: 0.4, metalness: 0.7 });
-    const lamp = (c, e) => new THREE.MeshStandardMaterial({ color: c, emissive: e, emissiveIntensity: 0.6 });
-    function part(geo, mat, x, y, z) { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); m.castShadow = true; m.receiveShadow = true; truck.add(m); return m; }
-    part(new THREE.BoxGeometry(4.2, 0.55, 1.9), dark, 0, 0.75, 0);
-    part(new THREE.BoxGeometry(1.7, 0.75, 1.95), paint, 1.2, 1.35, 0);
-    part(new THREE.BoxGeometry(2.0, 1.15, 1.95), paint, -0.9, 1.55, 0);
-    part(new THREE.BoxGeometry(1.1, 0.7, 1.75), glass, -0.25, 1.85, 0);
-    part(new THREE.BoxGeometry(0.5, 0.9, 1.95), paint, -1.95, 1.4, 0);
-    part(new THREE.BoxGeometry(0.25, 0.1, 1.5), dark, -0.3, 2.18, 0);
-    part(new THREE.BoxGeometry(0.25, 0.1, 1.5), dark, -1.2, 2.18, 0);
-    part(new THREE.BoxGeometry(0.15, 0.18, 0.35), lamp(0xfff1b0, 0xffe08a), 2.06, 1.3, 0.7);
-    part(new THREE.BoxGeometry(0.15, 0.18, 0.35), lamp(0xfff1b0, 0xffe08a), 2.06, 1.3, -0.7);
-    part(new THREE.BoxGeometry(0.12, 0.2, 0.3), lamp(0xff3b2e, 0xc01810), -2.21, 1.3, 0.7);
-    part(new THREE.BoxGeometry(0.12, 0.2, 0.3), lamp(0xff3b2e, 0xc01810), -2.21, 1.3, -0.7);
-    for (const [x, z] of [[1.35, 1.0], [1.35, -1.0], [-1.35, 1.0], [-1.35, -1.0]]) {
-      part(new THREE.CylinderGeometry(0.48, 0.48, 0.36, 24), rubber, x, 0.48, z).rotation.x = Math.PI / 2;
-      part(new THREE.CylinderGeometry(0.26, 0.26, 0.38, 12), rim, x, 0.48, z).rotation.x = Math.PI / 2;
+    // the truck follows the case picked above: blue 4Runner or red Tacoma (trucks.js)
+    block = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.06, 0.5), new THREE.MeshStandardMaterial({ color: 0xffb000, roughness: 0.8 })); block.visible = false; block.position.y = 0.03; block.castShadow = true; rig.add(block);
+    function buildTruck(kind) {
+      while (truck.children.length) truck.remove(truck.children[0]);
+      const info = kind === 'tacoma' ? TRUCKS.tacoma({ paint: 0xa8322b }) : TRUCKS.fourRunner({ paint: 0x23344f });
+      truck.add(info.group);
+      const t = TRUCKS.tent('soft', info); t.visible = !!camp; truck.add(t); tent = t;   // the fold-out tent, up in camp only
+      block.position.x = info.wheelX; block.position.z = info.track;                       // under the front-right wheel (+z is the right side)
     }
-    // Camp: a rooftop tent, and a block under the front-right wheel.
-    tent = new THREE.Group(); tent.visible = false; truck.add(tent);
-    const canvasMat = new THREE.MeshStandardMaterial({ color: 0x9a8a5c, roughness: 1 });
-    const tentBase = new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.22, 1.5), new THREE.MeshStandardMaterial({ color: 0x2b2b2b, roughness: 1 })); tentBase.position.set(-0.9, 2.33, 0);   // on the cab roof (the cab is x -1.9 to 0.1) tentBase.castShadow = true; tent.add(tentBase);
-    const ridge = new THREE.Shape(); ridge.moveTo(-0.8, 0); ridge.lineTo(0.8, 0); ridge.lineTo(0, 0.7); ridge.lineTo(-0.8, 0);
-    const tentTop = new THREE.Mesh(new THREE.ExtrudeGeometry(ridge, { depth: 2.0, bevelEnabled: false }), canvasMat);
-    tentTop.rotation.y = Math.PI / 2; tentTop.position.set(-1.9, 2.44, 0);   // extrudes toward +x after the turn tentTop.castShadow = true; tent.add(tentTop);
-    const FR_WHEEL_X = 1.35, FR_WHEEL_Z = 1.0;   // the truck faces +x; +z is its right side
-    block = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.06, 0.5), new THREE.MeshStandardMaterial({ color: 0xffb000, roughness: 0.8 })); block.visible = false; block.position.set(FR_WHEEL_X, 0.03, FR_WHEEL_Z); block.castShadow = true; rig.add(block);
+    buildTruck(currentCase); window.__setTruck = buildTruck;
     let drag = null;
     box.addEventListener('pointerdown', e => { box.setPointerCapture(e.pointerId); drag = { x: e.clientX, y: e.clientY, p: target.pitch, r: target.roll }; box.classList.add('grabbing'); if (camp) campEnd(); if (clock) clock.goto('Tilt'); e.preventDefault(); });
     box.addEventListener('pointermove', e => { if (!drag) return; if (camp) campEnd(); setTilt(drag.p + (drag.y - e.clientY) * 0.25, drag.r + (e.clientX - drag.x) * 0.25); clearPresets(); });
