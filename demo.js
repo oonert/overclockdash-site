@@ -74,6 +74,9 @@
     if (!clock) return;
     const [what, n] = b.dataset.knob.split(':');
     if (what === 'turn') clock.turn(+n); else if (what === 'click') clock.click(); else if (what === 'hold') clock.hold(1100);
+    else if (what === 'home') {   // the real move: press, turn two clicks while held, let go
+      clock.press(true); setTimeout(() => clock.turn(1), 180); setTimeout(() => clock.turn(1), 420); setTimeout(() => clock.press(false), 680);
+    }
   }));
 
   // ── key on, key off, an update ────────────────────────────────────────────

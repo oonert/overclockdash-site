@@ -126,3 +126,6 @@ body.demo .foot-small { margin-top: 0; }
 /* the four knob buttons: one centered row under the ring, turns on the outside */
 .chips.knob-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; max-width: 440px; margin: 16px auto 0; }
 .chips.knob-row .btn { width: 100%; padding: 0 8px; white-space: nowrap; }
+
+.chips.knob-row .home-btn { grid-column: 1 / -1; }
+.chips.knob-row .home-btn span { font-weight: 400; color: var(--muted); margin-left: 6px; }
