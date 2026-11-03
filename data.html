@@ -133,11 +133,6 @@ details.tbl th:first-child, details.tbl td:first-child { text-align:left; }
   <p class="sub">Each line is a gear. A slipping transmission shows up as scatter above the lines.</p>
   <p class="facts" id="s2-facts"></p>
   <div class="chart" id="c-gears"></div>
-  <h3 class="dv-h3">Engine map</h3>
-  <p class="sub">Time at every RPM and load. Towing, a heavy load or a dragging brake shifts the picture.</p>
-  <p class="facts" id="s3-facts"></p>
-  <div class="chart" id="c-heat"></div>
-  <div class="scale"><span>Less time</span><span class="ramp"><i style="opacity:.15"></i><i style="opacity:.35"></i><i style="opacity:.6"></i><i style="opacity:1"></i></span><span>More time</span></div>
   
 </section>
 
@@ -441,7 +436,7 @@ function drawAcc(){
   $('s9-facts').innerHTML=`Each dot is one drive. Over ${fmt(o)} miles, the dash and GPS agree within ${(Math.abs(o-g)/g*100).toFixed(2)}%.`;
 }
 
-const draws=[drawDrive,drawMap,drawGears,drawHeat,drawCmp,drawHwy,drawBatt,drawFuel,drawPark,drawTrim,drawAcc];
+const draws=[drawDrive,drawMap,drawGears,drawCmp,drawHwy,drawBatt,drawFuel,drawPark,drawTrim,drawAcc];
 let once=false;
 function all(){ draws.forEach(f=>{ try{ f(); }catch(e){ console.error(f.name,e); } }); }
 function first(){ if(once) return; once=true; all(); ['t-warm','t-batt','t-fuel','t-acc'].forEach(()=>{}); }
