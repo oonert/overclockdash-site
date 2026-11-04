@@ -426,3 +426,13 @@ footer.foot-small { border-top: 0; background: #0b0b0b; }
 
 /* the closing statement: three or four lines, not six */
 .want-copy .big { max-width: 38ch; font-size: clamp(20px, 1.8vw, 26px); }
+
+/* Knob photo in ONE KNOB, EVERY PAGE (2026-11-04) */
+.knob-intro { display: grid; gap: 24px; padding: 0 var(--margin); margin-top: 16px; }
+section.page .knob-intro .sub { padding: 0; margin: 0; }
+.knob-photo { margin: 0; }
+.knob-photo img { display: block; width: 100%; height: auto; }
+.knob-photo figcaption { margin-top: 10px; font-size: var(--t-small); color: var(--muted); max-width: 60ch; }
+@media (min-width: 901px) {
+  .knob-intro { grid-template-columns: 1fr 1fr; align-items: center; gap: 48px; }
+}

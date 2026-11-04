@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Real data: OVERCLOCK Field Computer</title>
 <meta name="description" content="Real OVERCLOCK Field Computer logs: every second of every drive, every start, every fill-up.">
-<link rel="stylesheet" href="site.css?v=20261102j">
+<link rel="stylesheet" href="site.css?v=20261104a">
 <style>
 .dv { --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500; --one:#ffb000;
       --grid:#333; --axis:#5a5a5a; --tick:#c9c1b5; --panel:#1b1b1b; }
@@ -444,6 +444,6 @@ function first(){ if(once) return; once=true; all(); ['t-warm','t-batt','t-fuel'
 let rt; let lastW=innerWidth; addEventListener('resize',()=>{ if(innerWidth===lastW) return; lastW=innerWidth; clearTimeout(rt); rt=setTimeout(()=>{ ['t-warm','t-batt','t-fuel','t-acc'].forEach(id=>{ const t=$(id).querySelector('table'); if(t) t.remove(); }); all(); },150); });
 })();
 </script>
-<script src="menu.js?v=20261102j"></script>
+<script src="menu.js?v=20261104a"></script>
 </body>
 </html>
