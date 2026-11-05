@@ -19,8 +19,8 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="site.css?v=20261104a">
-<link rel="stylesheet" href="3d.css?v=20261104a">
+<link rel="stylesheet" href="site.css?v=20261105a">
+<link rel="stylesheet" href="3d.css?v=20261105a">
 </head>
 <body class="demo three">
 <a class="skip" href="#main">Skip to content</a>
@@ -64,10 +64,10 @@
 document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
 document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
 </script>
-<script src="overclock.js?v=20261104a"></script>
-<script src="demo_truck.js?v=20261104a"></script>
+<script src="overclock.js?v=20261105a"></script>
+<script src="demo_truck.js?v=20261105a"></script>
 <script type="module">
-import {THREE, OrbitControls, GLTFLoader, MeshoptDecoder, RoomEnvironment} from './lib/three-viewer.js?v=20261104a';   // Three.js 0.169 and its loaders, bundled
+import {THREE, OrbitControls, GLTFLoader, MeshoptDecoder, RoomEnvironment} from './lib/three-viewer.js?v=20261105a';   // Three.js 0.169 and its loaders, bundled
 
 const BASE = '3d/';                 // the models, labels and still screens
 const FW = { base: 'dist/', v: '2026-11-03b' };   // the site's own firmware files
@@ -233,6 +233,6 @@ const start=['4runner','tacoma','board'].includes(location.hash.slice(1))?locati
 addEventListener('hashchange',()=>{const h=location.hash.slice(1); if(['4runner','tacoma','board'].includes(h)&&h!==mode) show(h);});
 show(start);
 </script>
-<script src="menu.js?v=20261104a"></script>
+<script src="menu.js?v=20261105a"></script>
 </body>
 </html>
