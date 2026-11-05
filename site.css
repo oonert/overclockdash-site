@@ -450,3 +450,6 @@ section.page .knob-intro .sub { padding: 0; margin: 0; }
 .cmp-note b { display: block; color: var(--ink); font-size: 20px; margin-bottom: 6px; }
 .cmp-note p { font-size: 17px; color: var(--muted); }
 .cmp-note a { color: var(--amber); }
+
+/* Hero subtitle line (2026-11-05) */
+.hero h1 .h1-kick { display: block; color: var(--amber); font-size: .72em; margin-top: .18em; letter-spacing: -.01em; }
