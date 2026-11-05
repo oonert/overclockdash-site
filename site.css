@@ -475,3 +475,8 @@ section.page .knob-intro .sub { padding: 0; margin: 0; }
 .build-row figcaption b { color: var(--ink); }
 @media (max-width: 1100px) { .build-row { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 760px) { .build-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; } .build-row figcaption { font-size: 15px; } }
+
+/* Camp section photo (2026-11-05) */
+.camp-photo { margin: 48px var(--margin) 0; }
+.camp-photo img { display: block; width: 100%; height: auto; max-height: 720px; object-fit: cover; }
+@media (min-width: 901px) { #camp .camp-photo { grid-column: 1; } }
