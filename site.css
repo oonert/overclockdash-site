@@ -453,3 +453,25 @@ section.page .knob-intro .sub { padding: 0; margin: 0; }
 
 /* Hero subtitle line (2026-11-05) */
 .hero h1 .h1-kick { display: block; color: var(--amber); font-size: .72em; margin-top: .18em; letter-spacing: -.01em; }
+
+/* WHY I BUILT THIS + build history (2026-11-05) */
+.story { padding: 0 var(--margin); max-width: 68ch; }
+.story p { font-size: 19px; line-height: 1.6; color: var(--ink); margin-top: 18px; }
+.story p:first-child { margin-top: 16px; font-size: 22px; }
+.story .story-sig { color: var(--amber); font-weight: 700; font-size: 22px; }
+.story-shot { object-fit: cover; aspect-ratio: 4/3; }
+@media (min-width: 901px) {
+  section.page:has(> .lead-row) > .lead-row > .story { grid-column: 1; grid-row: 2; }
+  #story .story-shot { position: static; grid-row: 1 / span 3; align-self: start; margin-top: 8px; }
+  #story .build-h, #story .build-row { grid-column: 1 / -1; }
+}
+@media (max-width: 900px) { .story-shot { width: calc(100% - 2*var(--margin)); margin: 28px var(--margin) 0; display: block; } }
+.build-h { margin: 64px var(--margin) 0; font-size: 28px; color: var(--amber); }
+.build-row { margin: 20px var(--margin) 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.build-row figure { margin: 0; }
+.build-row img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; display: block; }
+.no-photo { aspect-ratio: 1; background: #1b1b1b; border: 1px dashed #444; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 18px; text-align: center; padding: 12px; }
+.build-row figcaption { margin-top: 10px; font-size: 16px; color: var(--muted); line-height: 1.45; }
+.build-row figcaption b { color: var(--ink); }
+@media (max-width: 1100px) { .build-row { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .build-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; } .build-row figcaption { font-size: 15px; } }
