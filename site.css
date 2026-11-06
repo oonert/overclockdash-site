@@ -480,3 +480,18 @@ section.page .knob-intro .sub { padding: 0; margin: 0; }
 .camp-photo { margin: 48px var(--margin) 0; }
 .camp-photo img { display: block; width: 100%; height: auto; max-height: 720px; object-fit: cover; }
 @media (min-width: 901px) { #camp .camp-photo { grid-column: 1; } }
+
+/* Build history: tap to enlarge (2026-11-06) */
+.build-row .zoom { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.build-row .zoom img { transition: opacity .2s; }
+.build-row .zoom:hover img { opacity: .85; }
+.lb { position: fixed; inset: 0; z-index: 60; background: rgba(0,0,0,.94); display: none; align-items: center; justify-content: center; }
+.lb.on { display: flex; }
+.lb figure { margin: 0; max-width: min(92vw, 1600px); }
+.lb img { display: block; max-width: 100%; max-height: 80vh; margin: 0 auto; }
+.lb figcaption { margin-top: 14px; text-align: center; color: var(--ink); font-size: 16px; }
+.lb .nav { position: absolute; top: 50%; transform: translateY(-50%); width: 56px; height: 56px; border: 0; border-radius: 50%; background: #1d1d1d; color: var(--ink); font-size: 26px; cursor: pointer; }
+.lb .nav:hover { background: var(--amber); color: #000; }
+.lb .prev { left: 20px; } .lb .next { right: 20px; }
+.lb .x { position: absolute; top: 16px; right: 20px; width: 48px; height: 48px; border: 0; background: transparent; color: var(--ink); font-size: 34px; cursor: pointer; }
+@media (max-width: 700px) { .lb .nav { display: none; } }
