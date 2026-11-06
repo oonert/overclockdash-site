@@ -485,7 +485,7 @@ section.page .knob-intro .sub { padding: 0; margin: 0; }
 /* Photo viewer, every page (lightbox.js, 2026-11-06) */
 img.zoomable { cursor: zoom-in; }
 .build-row .zoom { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; -webkit-appearance: none; appearance: none; }
-.zv { position: fixed; inset: 0; z-index: 100; background: #000; display: none; align-items: center; justify-content: center; height: 100vh; height: 100dvh; padding: calc(64px + env(safe-area-inset-top)) 12px calc(20px + env(safe-area-inset-bottom)); box-sizing: border-box; overscroll-behavior: contain; touch-action: pan-y; }
+.zv { position: fixed; inset: 0; z-index: 100; background: #000; display: none; align-items: center; justify-content: center; height: 100vh; height: 100dvh; padding: calc(64px + env(safe-area-inset-top)) 12px calc(20px + env(safe-area-inset-bottom)); box-sizing: border-box; overscroll-behavior: contain; touch-action: none; overflow: hidden; }
 .zv.on { display: flex; }
 .zv figure { margin: 0; max-width: min(100%, 1600px); }
 .zv img { display: block; max-width: 100%; max-height: calc(100dvh - 150px - env(safe-area-inset-top) - env(safe-area-inset-bottom)); margin: 0 auto; object-fit: contain; }
@@ -497,3 +497,9 @@ img.zoomable { cursor: zoom-in; }
 .zv-prev { left: 20px; } .zv-next { right: 20px; }
 .zv.single .zv-nav { display: none; }
 @media (max-width: 700px), (hover: none) { .zv-nav { display: none; } }
+
+.zv img { transform-origin: center center; will-change: transform; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.zv.zoomed figcaption { visibility: hidden; }
+.zv.zoomed img { cursor: grab; }
+.zv-x, .zv-nav { z-index: 2; }
+.zv figure { position: relative; z-index: 1; }
