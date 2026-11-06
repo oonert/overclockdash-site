@@ -76,19 +76,3 @@
 
 })();
 
-// Build history: tap a photo to see it full size (arrows, keys, swipe).
-(() => {
-  const btns = [...document.querySelectorAll('.build-row .zoom')], lb = document.getElementById('lb');
-  if (!btns.length || !lb) return;
-  const img = lb.querySelector('img'), cap = lb.querySelector('figcaption');
-  let i = 0, x0 = null;
-  const show = k => { i = (k + btns.length) % btns.length; const b = btns[i]; img.src = b.dataset.full; img.alt = b.querySelector('img').alt; cap.textContent = b.closest('figure').querySelector('figcaption').textContent; };
-  const open = k => { show(k); lb.classList.add('on'); document.body.style.overflow = 'hidden'; };
-  const close = () => { lb.classList.remove('on'); document.body.style.overflow = ''; };
-  btns.forEach((b, k) => b.addEventListener('click', () => open(k)));
-  lb.querySelector('.x').onclick = close; lb.querySelector('.prev').onclick = () => show(i - 1); lb.querySelector('.next').onclick = () => show(i + 1);
-  lb.addEventListener('click', e => { if (e.target === lb) close(); });
-  document.addEventListener('keydown', e => { if (!lb.classList.contains('on')) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') show(i - 1); if (e.key === 'ArrowRight') show(i + 1); });
-  lb.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
-  lb.addEventListener('touchend', e => { if (x0 == null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 50) show(i + (dx < 0 ? 1 : -1)); x0 = null; });
-})();
