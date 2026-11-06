@@ -57,7 +57,10 @@
     say.textContent = 'Sending...';
     const btn = form.querySelector('button'); btn.disabled = true;
     try {
-      await fetch(form.action, { method: 'POST', mode: 'no-cors', body: new FormData(form) });
+      // The sheet script reads email, truck and notes; the answer rides in notes.
+      const fd = new FormData(form), src = fd.get('source');
+      if (src) fd.set('notes', ('Heard about us: ' + src + '\n' + (fd.get('notes') || '')).trim());
+      await fetch(form.action, { method: 'POST', mode: 'no-cors', body: fd });
       say.textContent = "Got it. You'll hear back from us personally."; form.reset();
     } catch (err) { say.textContent = 'That did not go through. Email hello@overclockdash.com instead.'; say.classList.add('bad'); }
     btn.disabled = false;
