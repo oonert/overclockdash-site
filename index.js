@@ -48,6 +48,7 @@
   // is sent "no-cors": the browser cannot read the reply, only whether the
   // request itself went out. If it did not, the person is pointed at email.
   const form = $('#want-form'), say = $('#form-say');
+  form.t0.value = Date.now();                        // page load time; the script drops anything sent under 3 s later
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = form.email.value.trim(), truck = form.truck.value.trim();
@@ -58,10 +59,11 @@
     const btn = form.querySelector('button'); btn.disabled = true;
     try {
       // The sheet script reads email, truck and notes; the answer rides in notes.
+      form.t1.value = Date.now();
       const fd = new FormData(form), src = fd.get('source');
       if (src) fd.set('notes', ('Heard about us: ' + src + '\n' + (fd.get('notes') || '')).trim());
       await fetch(form.action, { method: 'POST', mode: 'no-cors', body: fd });
-      say.textContent = "Got it. You'll hear back from us personally."; form.reset();
+      say.textContent = "Got it. You'll hear back from us personally."; form.reset(); form.t0.value = Date.now();
     } catch (err) { say.textContent = 'That did not go through. Email hello@overclockdash.com instead.'; say.classList.add('bad'); }
     btn.disabled = false;
   });
