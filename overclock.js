@@ -96,12 +96,16 @@
 
     // One firmware file per orientation; each defines OverclockModule when it
     // loads, so the factory is kept per orientation and the global cleared.
-    if (!factories[orient]) {
+    // opts.build names another firmware file in base ('overclock-v2-1' for the
+    // V2 demo); the default is the V1 demo for the orientation.
+    // opts.fw: 'v2' picks the V2 demo for the orientation (overclock-v2-<orient>).
+    const build = opts.build || ((opts.fw === 'v2' ? 'overclock-v2-' : 'overclock-') + orient);
+    if (!factories[build]) {
       global.OverclockModule = undefined;       // a plain var once a file has loaded: cannot be deleted, only overwritten
-      await loadScript(base + 'overclock-' + orient + '.js' + bust);
-      factories[orient] = global.OverclockModule; global.OverclockModule = undefined;
+      await loadScript(base + build + '.js' + bust);
+      factories[build] = global.OverclockModule; global.OverclockModule = undefined;
     }
-    const factory = factories[orient];
+    const factory = factories[build];
 
     // ── the page ────────────────────────────────────────────────────────────
     const root = document.createElement('div');
@@ -159,6 +163,7 @@
         m.ENV.EMU_CARD = '/card';
         m.ENV.EMU_NVS = NVS_PATH;
         m.ENV.EMU_TIME = timeString(timeAt);
+        if (opts.serial) m.ENV.EMU_SERIAL = '1';   // the firmware's serial log to the console (debugging)
         if (saved) m.FS.writeFile(NVS_PATH, saved);
       }],
     });
@@ -187,6 +192,7 @@
       event: Module._oc_event, eventRunning: Module._oc_event_running, eventCount: Module._oc_event_count,
       eventName: (n) => Module.UTF8ToString(Module._oc_event_name(n)),
       vscroll: Module._oc_vscroll || (() => 0), rot: Module._oc_rot || (() => 0),
+      key: Module._oc_key || null, hasKey: Module._oc_has_key ? !!Module._oc_has_key() : false,
       tilt: Module._oc_tilt, restart: Module._oc_restart, update: withStr(Module._oc_update), skip: Module._oc_skip, skipping: Module._oc_skipping,
     };
     // Which alerts may pop up: the firmware's defaults, minus the ones the page
@@ -242,7 +248,7 @@
       if (!alive) return;
       raf = requestAnimationFrame(paint);
       const writes = c.writes(), L = opts.backlight ? Math.round(c.lamp() * 255) / 255 : 1, vs = c.vscroll();
-      if (!powered) return;
+      if (!powered && !c.hasKey) return;        // a V2 build keeps drawing with the key off: its own key-off screen, then dark
       if (holdUntil) { if (performance.now() < holdUntil) return; holdUntil = 0; lastWrites = -1; }
       if (writes === lastWrites && L === lastLamp && vs === lastVs) return;
       lastWrites = writes; lastLamp = L; lastVs = vs;
@@ -282,10 +288,13 @@
     function hash(b) { let h = 0; for (let i = 0; i < b.length; i++) h = (h * 31 + b[i]) | 0; return h; }
 
     // ── the clock chip follows the visitor's clock when the tab was asleep ──
-    let lastSeen = Date.now();
+    // ...and after a skip() (the demo drive run ahead moves the chip's clock
+    // ahead with it), and once a minute regardless.
+    let lastSeen = Date.now(), lastSync = Date.now(), needSync = false;   // needSync: a skip() was asked for (a short one is over before the next tick)
+    const syncTime = () => { const d = new Date(); c.setTime(d.getFullYear(), d.getMonth() + 1, d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds()); lastSync = Date.now(); needSync = false; };
     const ticker = setInterval(() => {
-      const now = Date.now();
-      if (!opts.time && now - lastSeen > 5000) { const d = new Date(); c.setTime(d.getFullYear(), d.getMonth() + 1, d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds()); }
+      const now = Date.now(), skipping = !!c.skipping();
+      if (!opts.time && !skipping && (now - lastSeen > 5000 || needSync || now - lastSync > 60000)) syncTime();
       lastSeen = now;
     }, 1000);
 
@@ -321,8 +330,12 @@
       // Power: off() stops the firmware and darkens the panel; on() boots it
       // from the startup screen again (the same restart path the firmware
       // takes after an update). isOn() says which.
-      off() { if (!powered) return; powered = false; c.pause(1); ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H); },
-      on() { if (powered) { c.restart(); return; } powered = true; holdUntil = performance.now() + 450; Module.HEAPU16.fill(0, c.fb() >> 1, (c.fb() >> 1) + W * H); c.restart(); c.pause(0); },
+      // On a V2 build the key is real: off() turns the key off and the firmware
+      // runs its own key-off screen, SAVING finale and fade; on() turns the key
+      // back on (it carries on during the grace, restarts after the release).
+      off() { if (!powered) return; powered = false; if (c.hasKey) { c.key(0); return; } c.pause(1); ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H); },
+      on() { if (c.hasKey) { if (powered) { c.restart(); return; } powered = true; c.key(1); return; } if (powered) { c.restart(); return; } powered = true; holdUntil = performance.now() + 450; Module.HEAPU16.fill(0, c.fb() >> 1, (c.fb() >> 1) + W * H); c.restart(); c.pause(0); },
+      hasKey() { return !!c.hasKey; },
       isOn() { return powered; },
       restart() { api.on(); },
       set(key, value) { setOne(key, value); },
@@ -332,7 +345,7 @@
       freezer(on) { c.freezer(on ? 1 : 0); },
       wifiJoinAfter(ms) { if (c.wifiJoinAfter) c.wifiJoinAfter(ms >>> 0); },   // for the videos: a pretend phone joins the hotspot this long after START
       sign(code, name, tag) { c.sign(code, name || '', tag || ''); },   // the call sign: a state line crossed ('OR', 'OREGON', 'FIRST TIME HERE') or home ('HOME', 'WELCOME HOME')
-      skip(ms) { c.skip(ms); },                  // run ahead by this much of the firmware's own time, as fast as the browser allows
+      skip(ms) { c.skip(ms); needSync = true; },                  // run ahead by this much of the firmware's own time, as fast as the browser allows
       skipping() { return !!c.skipping(); },
       booted() { return !!c.booted(); },         // true once setup() has finished (the first boot)   // a saved value, any time; most are read at boot, so restart() after
       // An update: update.bin lands on the card with a version note beside it

@@ -7,7 +7,8 @@
 
   // ── the clock ─────────────────────────────────────────────────────────────
   let clock = null, currentCase = '4runner';
-  const FW_STAMP = '2026-11-03b';   // bump when dist/ is rebuilt, so browsers fetch the new firmware
+  const FW_STAMP = '2026-11-07a';   // bump when dist/ is rebuilt, so browsers fetch the new firmware
+  const FW = new URLSearchParams(location.search).get('fw') === 'v1' ? null : 'v2';   // ?fw=v1 falls back to the V1 demo build
   const status = $('#status');
   function frameWidth() { return phone() ? Math.round((window.innerWidth - 24) * 0.68) : Math.min(560, Math.round(window.innerWidth * 0.42)); }
   async function mountClock(which) {
@@ -16,8 +17,8 @@
     if (clock) { clock.destroy(); clock = null; }
     status.textContent = 'Loading the firmware (about 4 MB)...';
     try {
-      clock = await OverclockDemoTruck.mount($('#clock'), { frame: which, frameWidth: frameWidth(), base: 'dist/', v: FW_STAMP, dial: false, storage: null, alerts: { storm: false } });
-      status.textContent = ''; showHint();
+      clock = await OverclockDemoTruck.mount($('#clock'), { frame: which, frameWidth: frameWidth(), base: 'dist/', v: FW_STAMP, fw: FW, serial: new URLSearchParams(location.search).has('serial'), dial: false, storage: null, alerts: { storm: false } });
+      status.textContent = ''; showHint(); window.__clock = clock;   // for testing from the console
       $('#fw').textContent = clock.version;
       buildFaults(); markRunning();
     } catch (e) { status.textContent = 'The firmware could not load. ' + (e && e.message ? e.message : ''); console.error(e); }
@@ -84,7 +85,7 @@
   // ── key on, key off, an update ────────────────────────────────────────────
   const pwSay = $('#pw-say');
   const pwState = (on) => { $('#pw-on').setAttribute('aria-pressed', String(on)); $('#pw-off').setAttribute('aria-pressed', String(!on)); };
-  $('#pw-off').addEventListener('click', () => { if (!clock) return; clock.off(); pwState(false); pwSay.textContent = 'Key off. The screen is dark; the firmware is stopped.'; });
+  $('#pw-off').addEventListener('click', () => { if (!clock) return; clock.off(); pwState(false); pwSay.textContent = clock.hasKey && clock.hasKey() ? 'Key off. It keeps running a few seconds in case you are only restarting, then saves and goes dark. Key on in that window and it carries on.' : 'Key off. The screen is dark; the firmware is stopped.'; });
   $('#pw-on').addEventListener('click', () => { if (!clock) return; clock.on(); pwState(true); pwSay.textContent = 'Key on: the startup screen, then the clock.'; });
   $('#pw-update').addEventListener('click', () => { if (!clock) return; clock.update('0.99.200', 1500000); pwState(true); pwSay.textContent = 'An update file landed on the card. The dash restarts, installs it with the bar filling, says UPDATED, and boots again.'; });
 
