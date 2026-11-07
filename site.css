@@ -503,3 +503,7 @@ img.zoomable { cursor: zoom-in; }
 .zv.zoomed img { cursor: grab; }
 .zv-x, .zv-nav { z-index: 2; }
 .zv figure { position: relative; z-index: 1; }
+
+/* Search landing pages (2026-11-06) */
+.cr-photo { margin: 24px 0 0; } .cr-photo img { display: block; width: 100%; height: auto; } .cr-photo figcaption { margin-top: 8px; color: var(--muted); font-size: var(--t-small); }
+.cr-steps, .cr-list { margin: 12px 0 0; padding-left: 1.3em; } .cr-steps li, .cr-list li { margin-top: 8px; line-height: 1.5; } .cr-steps b, .cr-list b { color: var(--ink); }
