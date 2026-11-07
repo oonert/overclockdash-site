@@ -507,3 +507,15 @@ img.zoomable { cursor: zoom-in; }
 /* Search landing pages (2026-11-06) */
 .cr-photo { margin: 24px 0 0; } .cr-photo img { display: block; width: 100%; height: auto; } .cr-photo figcaption { margin-top: 8px; color: var(--muted); font-size: var(--t-small); }
 .cr-steps, .cr-list { margin: 12px 0 0; padding-left: 1.3em; } .cr-steps li, .cr-list li { margin-top: 8px; line-height: 1.5; } .cr-steps b, .cr-list b { color: var(--ink); }
+
+/* Road trips (2026-11-07): the clock's summary beside the phone's trip page */
+#roadtrip .rt-sub { padding: 0 var(--margin); max-width: 46ch; }
+.rt-pair { display: flex; align-items: center; justify-content: center; gap: 40px; padding: 40px var(--margin) 8px; }
+.rt-pair .rt-clock { width: min(560px, 52vw); height: auto; border: 1px solid #2a2a2a; border-radius: 6px; background: #000; }
+.rt-pair .rt-phone { width: min(280px, 30vw); height: auto; }
+.row.rt-row .moment img { aspect-ratio: 4 / 3; }
+.row.rt-row .moment.ph { flex-basis: 220px; }
+.row.rt-row .moment.ph img { aspect-ratio: 600 / 1190; border: 0; background: transparent; border-radius: 0; }
+.row.rt-row { align-items: flex-start; }
+@media (min-width: 1100px) { section.page#roadtrip { display: block; } }
+@media (max-width: 760px) { .rt-pair { flex-direction: column; gap: 24px; } .rt-pair .rt-clock { width: 100%; } .rt-pair .rt-phone { width: 62vw; } .row.rt-row .moment.ph { flex-basis: 52vw; } }

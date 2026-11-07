@@ -36,6 +36,7 @@
   }
   grabRow(row);
   rowProgress($('#phones'), $('#phone-progress')); grabRow($('#phones'));
+  if ($('#rt-row')) grabRow($('#rt-row'));
   $$('.row').forEach(el => { el.classList.add('in'); });
 
   // "Does it fit my truck?" points at the footer, which is pinned under the page
