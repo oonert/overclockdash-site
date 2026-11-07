@@ -7,7 +7,7 @@
 
   // ── the clock ─────────────────────────────────────────────────────────────
   let clock = null, currentCase = '4runner';
-  const FW_STAMP = '2026-11-07a';   // bump when dist/ is rebuilt, so browsers fetch the new firmware
+  const FW_STAMP = '2026-11-07b';   // bump when dist/ is rebuilt, so browsers fetch the new firmware
   const FW = new URLSearchParams(location.search).get('fw') === 'v1' ? null : 'v2';   // ?fw=v1 falls back to the V1 demo build
   const status = $('#status');
   function frameWidth() { return phone() ? Math.round((window.innerWidth - 24) * 0.68) : Math.min(560, Math.round(window.innerWidth * 0.42)); }

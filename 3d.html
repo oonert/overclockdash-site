@@ -19,8 +19,8 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="site.css?v=20261107b">
-<link rel="stylesheet" href="3d.css?v=20261107b">
+<link rel="stylesheet" href="site.css?v=20261107c">
+<link rel="stylesheet" href="3d.css?v=20261107c">
 </head>
 <body class="demo three">
 <a class="skip" href="#main">Skip to content</a>
@@ -65,13 +65,13 @@
 document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
 document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
 </script>
-<script src="overclock.js?v=20261107b"></script>
-<script src="demo_truck.js?v=20261107b"></script>
+<script src="overclock.js?v=20261107c"></script>
+<script src="demo_truck.js?v=20261107c"></script>
 <script type="module">
-import {THREE, OrbitControls, GLTFLoader, MeshoptDecoder, RoomEnvironment} from './lib/three-viewer.js?v=20261107b';   // Three.js 0.169 and its loaders, bundled
+import {THREE, OrbitControls, GLTFLoader, MeshoptDecoder, RoomEnvironment} from './lib/three-viewer.js?v=20261107c';   // Three.js 0.169 and its loaders, bundled
 
 const BASE = '3d/';                 // the models, labels and still screens
-const FW = { base: 'dist/', v: '2026-11-07a', fw: 'v2' };   // the site's own firmware files (the V2 demo build)
+const FW = { base: 'dist/', v: '2026-11-07b', fw: 'v2' };   // the site's own firmware files (the V2 demo build)
 const SCREENS = {
   '4runner':[['dash','Dash'],['clock','Clock'],['gauges','Gauges'],['temp','Temps'],['towing','Towing'],['starter','Starter'],['apps','Apps']].map(([f,n])=>['screens/'+f+'.jpg',n]),
   tacoma:[['clock','Clock'],['gauges','Gauges'],['temp','Temps'],['towing','Towing'],['starter','Starter'],['apps','Apps'],['retro','Retro']].map(([f,n])=>['screens/portrait/'+f+'.png',n])};
@@ -84,7 +84,7 @@ const TEXT = {
   sd:['microSD slot','Trip logs and firmware updates. Cards up to 32 GB.'],
   fuse:['Fuse access','The board’s 2 A blade fuse is reachable through the bottom of the case.'],
   ties:['Zip-tie anchors','Loops on top of the case to keep the wiring tidy behind the dash.'],
-  U302:['Coprocessor','A second ESP32 that does all the Bluetooth: the engine adapter, solar gear and smart batteries. It also runs the expansion port.'],
+  U302:['Coprocessor','A second ESP32 that does all the Bluetooth: the Bluetooth OBD2 dongle, solar gear and smart batteries. It also runs the expansion port.'],
   U301:['Main processor','ESP32 with 16 MB flash. Runs the screen, the gauges, the sensors, the logging and WiFi.'],
   U601:['GPS receiver','u-blox M10. Sets the time and tracks speed, heading and altitude.'],
   J601:['GPS antenna jack','Wired to the SMA connector on the case.'],
@@ -234,6 +234,6 @@ const start=['4runner','tacoma','board'].includes(location.hash.slice(1))?locati
 addEventListener('hashchange',()=>{const h=location.hash.slice(1); if(['4runner','tacoma','board'].includes(h)&&h!==mode) show(h);});
 show(start);
 </script>
-<script src="menu.js?v=20261107b"></script>
+<script src="menu.js?v=20261107c"></script>
 </body>
 </html>
