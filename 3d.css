@@ -14,6 +14,7 @@ body.three .bar { flex: 0 0 auto; }
 .dots { position: absolute; inset: 0; pointer-events: none; }
 .dot { position: absolute; width: 26px; height: 26px; margin: -13px 0 0 -13px; border-radius: 50%; border: 2px solid var(--green); background: rgba(0, 0, 0, .55); pointer-events: auto; cursor: pointer; padding: 0; transition: opacity .25s, transform .2s; display: grid; place-items: center; }
 .dot::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); }
+.dot::before { content: ""; position: absolute; inset: -10px; border-radius: 50%; }
 .dot:hover, .dot[aria-expanded="true"] { transform: scale(1.18); border-color: var(--amber); }
 .dot[aria-expanded="true"]::after { background: var(--amber); box-shadow: 0 0 10px var(--amber); }
 .dot.away { opacity: 0; pointer-events: none; }

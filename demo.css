@@ -17,7 +17,7 @@ body.demo .foot-small { margin-top: 0; }
 .panel.guide b { color: var(--ink); }
 .panels .fine { color: var(--muted); font-size: 13px; padding: 4px 24px; }
 .chips.camp[hidden] { display: none; }
-.chips .btn[data-view][aria-pressed="true"], #camp-block[aria-pressed="true"], #pw-on[aria-pressed="true"], #pw-off[aria-pressed="true"] { background: var(--amber); color: #000; }
+.chips .btn[data-view][aria-pressed="true"], #camp-block[aria-pressed="true"], #pw-on[aria-pressed="true"], #pw-off[aria-pressed="true"], .chips .btn[data-press][aria-pressed="true"] { background: var(--amber); color: #000; }
 .panel .panel-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .panel .panel-head h2 { margin: 0; }
 .btn.reset { background: var(--red); color: #fff; letter-spacing: .08em; padding: 0 20px; }
@@ -92,13 +92,21 @@ body.demo .foot-small { margin-top: 0; }
 @media (max-width: 900px) {
   #truck { position: relative; }
   #truck > p:first-of-type { display: none; }
-  #truck3d { aspect-ratio: auto; height: clamp(260px, calc(100svh - 300px), 420px); margin-top: 10px; }
+  #truck3d { aspect-ratio: auto; height: clamp(240px, calc(100svh - 350px), 420px); margin-top: 10px; }
   #readout { left: 12px; top: 12px; bottom: auto; font-size: 14px; }
   #truck .chips { position: absolute; margin: 0; gap: 6px; }
   #truck .chips .btn { flex: 0 1 auto; min-height: 36px; padding: 0 10px; font-size: 13px; }
   #truck .chips .btn.ghost { background: rgba(0, 0, 0, .6); }
+  #truck .chips .btn.ghost[aria-pressed="true"] { background: var(--amber); color: #000; }
   #truck .chips.presets { left: 12px; right: 12px; bottom: 56px; justify-content: center; }
-  #truck .chips.views { top: 28px; right: 24px; }
+  #truck .chips.views { position: static; margin-top: 10px; justify-content: flex-start; }
+  #truck .chips.views .btn { flex: 0 0 auto; min-height: 40px; }
+  #truck { display: flex; flex-direction: column; }
+  #truck > h2 { order: 0; } #truck .chips.views { order: 1; } #truck3d { order: 2; }
+  #truck .chips.presets, #truck .chips.camp, #truck > p { order: 3; z-index: 2; }
+  #truck .chips.presets { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; scrollbar-width: none; }
+  #truck .chips.presets::-webkit-scrollbar { display: none; }
+  #truck .chips.presets .btn { flex: 0 0 auto; min-height: 40px; }
   #truck .chips.camp { left: 24px; right: 24px; bottom: 16px; justify-content: center; }
   #truck .chips.camp .btn { font-size: 13px; white-space: normal; text-align: center; line-height: 1.2; padding: 6px 12px; }
   #truck > p:last-child { position: absolute; left: 12px; right: 12px; bottom: 104px; margin: 0; text-align: center; font-size: 13px; color: var(--amber); pointer-events: none; text-shadow: 0 1px 4px #000; }

@@ -80,7 +80,7 @@ body.menu-open .menu-btn span:nth-child(3) { transform: translateY(-10.5px) rota
 .hero-clock #clock .overclock-dial { display: none; }
 .status { margin-top: 14px; font-size: var(--t-small); color: var(--muted); min-height: 1.5em; max-width: 52ch; text-align: center; }
 .status a { color: var(--amber); }
-.demo-link { display: inline-block; color: var(--amber); font-size: 18px; font-weight: 700; text-decoration: none; margin-top: 18px; }
+.demo-link { display: inline-block; color: var(--amber); font-size: 18px; font-weight: 700; text-decoration: none; margin-top: 10px; padding: 8px 4px; }
 .demo-link:hover { text-decoration: underline; }
 .status b { color: var(--green); font-weight: 400; }
 @media (max-width: 900px) {
@@ -509,7 +509,7 @@ img.zoomable { cursor: zoom-in; }
 .cr-steps, .cr-list { margin: 12px 0 0; padding-left: 1.3em; } .cr-steps li, .cr-list li { margin-top: 8px; line-height: 1.5; } .cr-steps b, .cr-list b { color: var(--ink); }
 
 /* Road trips (2026-11-07): the clock's summary beside the phone's trip page */
-#roadtrip .rt-sub { padding: 0 var(--margin); max-width: 46ch; }
+#roadtrip .rt-sub, #boost .rt-sub { padding: 0 var(--margin); max-width: 46ch; }
 .rt-pair { display: flex; align-items: center; justify-content: center; gap: 40px; padding: 40px var(--margin) 8px; }
 .rt-pair .rt-clock { width: min(620px, 56vw); height: auto; }
 .rt-pair .rt-phone { width: min(280px, 30vw); height: auto; }
@@ -519,3 +519,12 @@ img.zoomable { cursor: zoom-in; }
 .row.rt-row { align-items: flex-start; }
 @media (min-width: 1100px) { section.page#roadtrip { display: block; } }
 @media (max-width: 760px) { .rt-pair { flex-direction: column; gap: 24px; } .rt-pair .rt-clock { width: 100%; } .rt-pair .rt-phone { width: 62vw; } .row.rt-row .moment.ph { flex-basis: 52vw; } }
+
+/* Quick facts strip under the hero (2026-11-09, review item 5) */
+.facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: #2a2a2a; margin: 8px var(--margin) 28px; border: 1px solid #2a2a2a; }
+.facts .fact { display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; background: var(--ground); color: var(--ink); text-decoration: none; }
+.facts .fact:hover { background: var(--panel); }
+.facts .fact span { color: var(--muted); font-size: 15px; margin-bottom: 4px; }
+.facts .fact b { font-size: 18px; line-height: 1.25; }
+.facts .fact b.amber { color: var(--amber); }
+@media (max-width: 760px) { .facts { grid-template-columns: 1fr 1fr; } .facts .fact b { font-size: 16px; } }

@@ -19,8 +19,8 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="site.css?v=20261107c">
-<link rel="stylesheet" href="demo.css?v=20261107c">
+<link rel="stylesheet" href="site.css?v=20261109a">
+<link rel="stylesheet" href="demo.css?v=20261109a">
 </head>
 <body class="demo">
 <a class="skip" href="#main">Skip to content</a>
@@ -88,6 +88,15 @@
       <div class="chips grid" id="page-chips"></div>
     </section>
 
+    <section class="panel" id="boost">
+      <h2>BOOST</h2>
+      <div class="chips grid">
+        <button class="btn ghost" type="button" data-press="oil" aria-pressed="true">Oil pressure</button>
+        <button class="btn ghost" type="button" data-press="boost" aria-pressed="false">Boost</button>
+      </div>
+      <p>The pressure port can read a boost sensor instead. The demo truck has no turbo, so it makes a pretend one from engine load: vacuum most of the time, boost on hard acceleration. The warning limit is set low, 5 psi, so the drive goes over it.</p>
+    </section>
+
     <section class="panel" id="faults">
       <div class="panel-head">
         <h2>INJECT A FAULT</h2>
@@ -134,10 +143,10 @@
 document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
 document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
 </script>
-<script src="overclock.js?v=20261107c"></script>
-<script src="demo_truck.js?v=20261107c"></script>
-<script src="trucks.js?v=20261107c"></script>
-<script src="demo.js?v=20261107c"></script>
-<script src="menu.js?v=20261107c"></script>
+<script src="overclock.js?v=20261109a"></script>
+<script src="demo_truck.js?v=20261109a"></script>
+<script src="trucks.js?v=20261109a"></script>
+<script src="demo.js?v=20261109a"></script>
+<script src="menu.js?v=20261109a"></script>
 </body>
 </html>

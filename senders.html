@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Sender support: OVERCLOCK Field Computer</title>
-<meta name="description" content="The temperature probes, transmission temperature senders and oil or fuel pressure senders the OVERCLOCK Field Computer supports today.">
+<meta name="description" content="The temperature probes, transmission temperature senders oil or fuel pressure senders and boost sensors the OVERCLOCK Field Computer supports today.">
 <link rel="canonical" href="https://overclockdash.com/senders.html">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -13,13 +13,13 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="OVERCLOCK Field Computer">
 <meta property="og:title" content="Sender support: OVERCLOCK Field Computer">
-<meta property="og:description" content="The temperature probes, transmission temperature senders and oil or fuel pressure senders the OVERCLOCK Field Computer supports today.">
+<meta property="og:description" content="The temperature probes, transmission temperature senders oil or fuel pressure senders and boost sensors the OVERCLOCK Field Computer supports today.">
 <meta property="og:url" content="https://overclockdash.com/senders.html">
 <meta property="og:image" content="https://overclockdash.com/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="site.css?v=20261107c">
+<link rel="stylesheet" href="site.css?v=20261109a">
 </head>
 <body class="doc">
 <a class="skip" href="#main">Skip to content</a>
@@ -55,6 +55,14 @@
   </ul>
   <p>Oil pressure zeroes itself every time you turn the key with the engine off.</p>
 
+  <h2>Boost (one sensor, on the pressure port)</h2>
+  <ul class="lic">
+    <li>AEM 30-2130-50 (3.5 bar)</li>
+    <li>GM 3-bar MAP sensor</li>
+  </ul>
+  <p>Boost uses the same 3-wire 5-volt sensor port as oil or fuel pressure, so it's one sensor at a time. Pick it under SETTINGS &gt; SENSORS &gt; SENDERS: PRESSURE = BOOST, then the sensor.</p>
+  <p>It reads true boost at any altitude. It subtracts the clock's own barometer live, the way factory boost gauges do, so there's no key-on zeroing and no sea-level guess. Psi of boost and inHg of vacuum, or bar in metric. Set an over-boost warning at your own limit; it asks once when you first pick boost. Logged with every drive. <a href="demo.html?boost">See it in the demo.</a></p>
+
   <p>More senders will be added over time. Don't see yours? <a href="mailto:hello@overclockdash.com">Contact us</a>.</p>
 </main>
 <footer class="foot-small">
@@ -63,6 +71,6 @@
   <p>Follow: <a href="https://www.facebook.com/overclockfieldcomputer">Facebook</a> &middot; <a href="https://www.instagram.com/overclockfieldcomputer">Instagram</a></p>
   <p>Contains FCC ID: 2AC7Z-ESP32WROOM32E</p>
 </footer>
-<script src="menu.js?v=20261107c"></script>
+<script src="menu.js?v=20261109a"></script>
 </body>
 </html>
