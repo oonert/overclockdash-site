@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>OVERCLOCK vs ScanGauge: OVERCLOCK Field Computer</title>
-<meta name="description" content="OVERCLOCK Field Computer compared with the ScanGauge 3 and ScanGauge II, feature by feature, from each maker's published details.">
+<title>OVERCLOCK vs ScanGauge and UltraGauge: OVERCLOCK Field Computer</title>
+<meta name="description" content="OVERCLOCK Field Computer compared with the ScanGauge 3, ScanGauge II and UltraGauge, feature by feature, from each maker's published details.">
 <link rel="canonical" href="https://overclockdash.com/compare.html">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -12,8 +12,8 @@
 <meta name="theme-color" content="#000000">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="OVERCLOCK Field Computer">
-<meta property="og:title" content="OVERCLOCK vs ScanGauge: OVERCLOCK Field Computer">
-<meta property="og:description" content="OVERCLOCK Field Computer compared with the ScanGauge 3 and ScanGauge II, feature by feature, from each maker&#x27;s published details.">
+<meta property="og:title" content="OVERCLOCK vs ScanGauge and UltraGauge: OVERCLOCK Field Computer">
+<meta property="og:description" content="OVERCLOCK Field Computer compared with the ScanGauge 3, ScanGauge II and UltraGauge, feature by feature, from each maker&#x27;s published details.">
 <meta property="og:url" content="https://overclockdash.com/compare.html">
 <meta property="og:image" content="https://overclockdash.com/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -37,6 +37,13 @@ table.cmp { width: 100%; min-width: 720px; border-collapse: collapse; font-size:
 .cmp td.x { color: var(--ink); }
 .cmp tr.sec th { color: var(--amber); font-size: 24px; font-weight: 700; letter-spacing: 0; padding-top: 26px; border-bottom: 1px solid #333; }
 .cmp-lede { font-size: 18px; max-width: 72ch; }
+.cmp-h2 { margin-top: 64px; }
+.cmp-h2.first { margin-top: 24px; }
+.cmp-jump { font-size: 18px; }
+.cmp-big { font-size: 21px; color: var(--ink); }
+.cmp2 td { width: 36%; }
+.cmp-wrap:has(.cmp2)::after { display: none !important; }
+@media (max-width: 700px) { table.cmp.cmp2 { min-width: 0; width: 100%; } table.cmp.cmp2 thead th:not(:first-child), table.cmp.cmp2 td { width: auto; } }
 .cmp-note { color: var(--muted); font-size: 16px !important; margin-top: 24px !important; max-width: 80ch; }
 @media (max-width: 700px) {
   table.cmp { min-width: 600px; width: 600px; table-layout: fixed; font-size: 14px; }
@@ -57,7 +64,10 @@ table.cmp { width: 100%; min-width: 720px; border-collapse: collapse; font-size:
   <nav id="site-nav"><a href="index.html">Home</a><a href="demo.html">Demo</a><a href="data.html">Data</a><a href="3d.html">3D</a><a href="faq.html">Questions</a><a class="nav-cta" href="index.html#want">Want one?</a></nav>
 </header>
 <main class="doc-main cmp-main" id="main">
-  <h1>OVERCLOCK vs ScanGauge</h1>
+  <h1>OVERCLOCK vs ScanGauge and UltraGauge</h1>
+  <p class="cmp-lede cmp-big">A gauge shows you a number. OVERCLOCK is a field computer. It shows the numbers too, then it keeps working: it logs every drive, every second, watches for readings that are slowly getting worse, and lets you go back over any drive on your phone after the fact. ScanGauge and UltraGauge make good gauges. Just showing the number isn't enough.</p>
+  <p class="cmp-jump">Jump to: <a href="#scangauge">ScanGauge</a> &middot; <a href="#ultragauge">UltraGauge</a></p>
+  <h2 id="scangauge" class="cmp-h2 first">Thinking about a ScanGauge?</h2>
   <p class="cmp-lede">ScanGauge makes a capable engine monitor that fits almost any car built since 1996. OVERCLOCK is built for 3rd gen 4Runners, 1st gen Tacomas and T100s. It replaces the factory clock and watches the whole truck, not just the engine: GPS, temperature probes, battery and solar monitoring, tilt, weather alerts and a log of every drive, with no subscription. If you drive one of these trucks, we think OVERCLOCK is the better fit. <a href="index.html#want">Want one?</a></p>
 
   <div class="cmp-wrap">
@@ -98,6 +108,7 @@ table.cmp { width: 100%; min-width: 720px; border-collapse: collapse; font-size:
       <tr><th scope="row">Built-in GPS (speed, altitude, heading, maps)</th><td class="y">Yes</td><td class="n">No</td><td class="n">No</td></tr>
       <tr><th scope="row">Road grade and climb rate</th><td class="y">Yes</td><td class="n">No</td><td class="n">No</td></tr>
       <tr><th scope="row">Temperature probes (cab, outside, fridge, freezer)</th><td class="y">Up to 4</td><td class="n">No</td><td class="n">No</td></tr>
+      <tr><th scope="row">True boost gauge from a boost sensor</th><td class="y">Yes, on the pressure input, corrected for altitude and weather by the built-in barometer</td><td class="x" colspan="2">90s Toyota engine computers don't report boost, so a plug-in reader can't show it on these trucks</td></tr>
       <tr><th scope="row">Sender inputs (trans temp, oil or fuel pressure)</th><td class="y">Yes</td><td class="n">No</td><td class="n">No</td></tr>
       <tr><th scope="row">Starter battery check at every start (crank voltage)</th><td class="y">Yes</td><td class="nl">Not listed</td><td class="nl">Not listed</td></tr>
       <tr><th scope="row">Solar and house battery monitoring</th><td class="y">Yes</td><td class="n">No</td><td class="n">No</td></tr>
@@ -118,10 +129,40 @@ table.cmp { width: 100%; min-width: 720px; border-collapse: collapse; font-size:
   </div>
 
   <p class="cmp-note">ScanGauge details are from ScanGauge's published product pages (<a href="https://www.scangauge.com/products/productsscangauge-iii/" rel="nofollow noopener">ScanGauge 3</a>, <a href="https://www.scangauge.com/products/scangauge-ii/" rel="nofollow noopener">ScanGauge II</a>) and <a href="https://www.scangauge.com/support/user-manuals/" rel="nofollow noopener">user manuals</a> (ScanGauge 3 manual version 1.21, ScanGauge II manual version 6.0) as of November 2, 2026. "No" means the feature does not appear in those pages or manuals. "Not listed" means we could not confirm it either way. Check with the maker for current details. ScanGauge is a trademark of Linear Logic, LLC. OVERCLOCK is not affiliated with or endorsed by Linear Logic.</p>
+
+  <h2 id="ultragauge" class="cmp-h2">Thinking about an UltraGauge?</h2>
+  <p class="cmp-lede">UltraGauge is a capable OBD2 gauge, popular with overlanders. It's a separate display on your dash or windshield with a cable to the diagnostic port. OVERCLOCK replaces your factory clock instead, and adds what a plug-in gauge can't.</p>
+
+  <div class="cmp-wrap">
+  <table class="cmp cmp2">
+    <thead><tr><th scope="col"></th><th scope="col" class="oc">OVERCLOCK</th><th scope="col">UltraGauge</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Where it lives</th><td class="y">In the factory clock opening, looks stock</td><td class="x">Separate box on the dash or windshield, cable to the diagnostic port</td></tr>
+      <tr><th scope="row">Live engine gauges</th><td class="y">Yes</td><td class="x">Yes, up to 8 per page</td></tr>
+      <tr><th scope="row">Read engine codes</th><td class="y">Yes, explained in plain English with likely causes and how serious it is</td><td class="x">Code number only. Its manual says to search the web to decode it</td></tr>
+      <tr><th scope="row">Pending codes and emissions readiness</th><td class="y">Yes</td><td class="y">Yes</td></tr>
+      <tr><th scope="row">Clear engine codes</th><td class="y">Yes</td><td class="y">Yes</td></tr>
+      <tr><th scope="row">Warning alerts</th><td class="y">Yes, full-screen visual warnings</td><td class="x">Yes, audible and visual</td></tr>
+      <tr><th scope="row">Trip and fuel economy</th><td class="y">Yes</td><td class="y">Yes</td></tr>
+      <tr><th scope="row">Built-in GPS (speed, real miles, auto time, state lines)</th><td class="y">Yes</td><td class="nl">Not listed</td></tr>
+      <tr><th scope="row">Every drive logged to a memory card</th><td class="y">Yes</td><td class="nl">Not listed</td></tr>
+      <tr><th scope="row">Up to four temperature probes (cab, outside, fridge, freezer)</th><td class="y">Yes</td><td class="nl">Not listed</td></tr>
+      <tr><th scope="row">Transmission temperature sender input</th><td class="y">Yes</td><td class="x">Only from the engine computer, where available</td></tr>
+      <tr><th scope="row">Oil, fuel or boost pressure sender input</th><td class="y">Yes</td><td class="nl">Not listed</td></tr>
+      <tr><th scope="row">Boost corrected for altitude by a built-in barometer</th><td class="y">Yes</td><td class="nl">Not listed</td></tr>
+      <tr><th scope="row">Solar and house battery on the same screen</th><td class="y">Yes</td><td class="nl">Not listed</td></tr>
+      <tr><th scope="row">Barometer, weather warnings, tilt and camp level</th><td class="y">Yes</td><td class="nl">Not listed</td></tr>
+      <tr><th scope="row">Your phone as a big screen</th><td class="y">Yes</td><td class="nl">Not listed</td></tr>
+      <tr><th scope="row">Still your clock</th><td class="y">Yes</td><td class="n">No</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p class="cmp-note">UltraGauge features based on UltraGauge's published user manuals, reviews and retailer listings, November 2026. Engine features on OVERCLOCK need a 1996 or newer truck and the included Bluetooth OBD2 dongle. UltraGauge is a trademark of UltraGauge.com, Inc. OVERCLOCK is not affiliated with or endorsed by UltraGauge.com, Inc.</p>
 </main>
 <footer class="foot-small">
   <p>&copy; 2026 OVERCLOCK Field Computer. Questions? <a href="mailto:hello@overclockdash.com">hello@overclockdash.com</a></p>
-  <p><a href="index.html">Home</a> &middot; <a href="demo.html">Demo</a> &middot; <a href="3d.html">3D</a> &middot; <a href="data.html">Data</a> &middot; <a href="photos.html">Photos</a> &middot; <a href="compare.html">vs ScanGauge</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="licenses.html">Licenses</a> &middot; <a href="regulatory.html">Regulatory</a> &middot; <a href="faq.html">Questions</a> &middot; <a href="power.html">Power</a></p>
+  <p><a href="index.html">Home</a> &middot; <a href="demo.html">Demo</a> &middot; <a href="3d.html">3D</a> &middot; <a href="data.html">Data</a> &middot; <a href="photos.html">Photos</a> &middot; <a href="compare.html">vs ScanGauge and UltraGauge</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="licenses.html">Licenses</a> &middot; <a href="regulatory.html">Regulatory</a> &middot; <a href="faq.html">Questions</a> &middot; <a href="power.html">Power</a></p>
   <p>Follow: <a href="https://www.facebook.com/overclockfieldcomputer">Facebook</a> &middot; <a href="https://www.instagram.com/overclockfieldcomputer">Instagram</a></p>
   <p>Contains FCC ID: 2AC7Z-ESP32WROOM32E</p>
 </footer>
