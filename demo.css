@@ -17,7 +17,7 @@ body.demo .foot-small { margin-top: 0; }
 .panel.guide b { color: var(--ink); }
 .panels .fine { color: var(--muted); font-size: 13px; padding: 4px 24px; }
 .chips.camp[hidden] { display: none; }
-.chips .btn[data-view][aria-pressed="true"], #camp-block[aria-pressed="true"], #pw-on[aria-pressed="true"], #pw-off[aria-pressed="true"], .chips .btn[data-press][aria-pressed="true"] { background: var(--amber); color: #000; }
+.chips .btn[data-view][aria-pressed="true"], #camp-block[aria-pressed="true"], #pw-on[aria-pressed="true"], #pw-off[aria-pressed="true"], .chips .btn[data-press][aria-pressed="true"], .chips .btn[data-spl][aria-pressed="true"] { background: var(--amber); color: #000; }
 .panel .panel-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .panel .panel-head h2 { margin: 0; }
 .btn.reset { background: var(--red); color: #fff; letter-spacing: .08em; padding: 0 20px; }

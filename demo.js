@@ -7,7 +7,7 @@
 
   // ── the clock ─────────────────────────────────────────────────────────────
   let clock = null, currentCase = '4runner';
-  const FW_STAMP = '2026-11-09b';   // bump when dist/ is rebuilt, so browsers fetch the new firmware
+  const FW_STAMP = '2026-11-10a';   // bump when dist/ is rebuilt, so browsers fetch the new firmware
   const FW = new URLSearchParams(location.search).get('fw') === 'v1' ? null : 'v2';   // ?fw=v1 falls back to the V1 demo build
   const status = $('#status');
   function frameWidth() { return phone() ? Math.round((window.innerWidth - 24) * 0.68) : Math.min(560, Math.round(window.innerWidth * 0.42)); }
@@ -17,6 +17,10 @@
   // over-boost warning.
   const BOOST = { op_range: 7, gauge_panes: [1, 2, 21, 5], bst_lim: 5 };
   const BOOST_SKIP = 500000;   // start boost about 8 minutes into the drive, just before the first over-boost
+  // STARTUP (firmware 0.99.154): six startup screens. The demo page starts on STRIPES, the default; a
+  // pick saves the style and restarts the clock so the startup plays live. OLD BLUE is
+  // the placeholder name (the firmware chat's), shown by MINIMAL.
+  let splStyle = 0;
   let boostOn = new URLSearchParams(location.search).has('boost');
   async function mountClock(which) {
     currentCase = which; if (window.__setTruck) window.__setTruck(which);
@@ -24,7 +28,7 @@
     if (clock) { clock.destroy(); clock = null; }
     status.textContent = 'Loading the firmware (about 4 MB)...';
     try {
-      clock = await OverclockDemoTruck.mount($('#clock'), { frame: which, frameWidth: frameWidth(), base: 'dist/', v: FW_STAMP, fw: FW, serial: new URLSearchParams(location.search).has('serial'), dial: false, storage: null, alerts: { storm: false }, settings: boostOn ? BOOST : {}, skip: boostOn ? BOOST_SKIP : undefined });
+      clock = await OverclockDemoTruck.mount($('#clock'), { frame: which, frameWidth: frameWidth(), base: 'dist/', v: FW_STAMP, fw: FW, serial: new URLSearchParams(location.search).has('serial'), dial: false, storage: null, alerts: { storm: false }, settings: Object.assign({ spl_style: splStyle, spl_name: 'OLD BLUE' }, boostOn ? BOOST : {}), skip: boostOn ? BOOST_SKIP : undefined });
       if (boostOn) clock.goto('Gauges');   // GAUGES updates live; the big BOOST page holds still in the browser demo
       status.textContent = ''; showHint(); window.__clock = clock;   // for testing from the console
       $('#fw').textContent = clock.version;
@@ -32,6 +36,13 @@
     } catch (e) { status.textContent = 'The firmware could not load. ' + (e && e.message ? e.message : ''); console.error(e); }
   }
   $$('.tabs [role=tab]').forEach(b => b.addEventListener('click', () => { if (b.dataset.case !== currentCase) mountClock(b.dataset.case); }));
+  function splButtons() { $$('[data-spl]').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.spl === splStyle))); }
+  splButtons();
+  $$('[data-spl]').forEach(b => b.addEventListener('click', () => {
+    if (!clock) return;
+    splStyle = +b.dataset.spl; splButtons();
+    clock.set('spl_style', splStyle); clock.restart();
+  }));
   function boostButtons() { $$('[data-press]').forEach(b => b.setAttribute('aria-pressed', String((b.dataset.press === 'boost') === boostOn))); }
   boostButtons();
   $$('[data-press]').forEach(b => b.addEventListener('click', () => {

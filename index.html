@@ -162,6 +162,7 @@
       <li><b>Four corners you can set how you want.</b> There are five ready-made layouts, or save up to three of your own.</li>
       <li><b>Gauges change color based on the reading</b> so you can see at a glance if something's off.</li>
       <li><b>Guided setup.</b></li>
+      <li><b>Six startup screens.</b> Plus your truck's name under the logo. <a href="startup.html">See them &rarr;</a></li>
     </ul>
   </section>
 
@@ -177,7 +178,18 @@
       <li><b>Live engine gauges.</b> Transmission temp comes from the ECU on 1999 and newer automatics, or from an optional sender on older trucks.</li>
       <li><b>Oil pressure, fuel pressure or boost, live and logged.</b> Optional sensor. <a href="#boost">About boost.</a></li>
       <li><b>Smog check and code clearing.</b></li>
+      <li><b>Known codes.</b> Living with a gas cap code? Mark it KNOWN and OVERCLOCK stops nagging: it stays on the list, comes back as one quiet line, and is never cleared for you. The truck's own check engine light still works as normal.</li>
+      <li><b>Serious codes can never be marked.</b> Risky ones ask "are you sure" and say what ignoring them risks. Up to 4 known codes.</li>
     </ul>
+    <div class="row-wrap">
+      <div class="row rt-row" id="known-row">
+        <div class="moment"><h3>Mark as known</h3><p>One turn of the knob.</p><img src="pages/known/mark.png?v=20261110a" width="320" height="240" alt="P0171 FUEL MIX TOO LEAN with MARK AS KNOWN lit" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Explained once</h3><p>Before the first one.</p><img src="pages/known/info.png?v=20261110a" width="320" height="240" alt="KNOWN CODES explanation with NO and YES" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Still on the list</h3><p>Just quieter.</p><img src="pages/known/list_known.png?v=20261110a" width="320" height="240" alt="CODES list with P0171 marked KNOWN" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>When it comes back</h3><p>One quiet line.</p><img src="pages/known/notice.png?v=20261110a" width="320" height="240" alt="KNOWN: P0442 IS BACK" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Never for serious ones</h3><p>No option to hide it.</p><img src="pages/known/never.png?v=20261110a" width="320" height="240" alt="P0115 COOLANT SENSOR, STOP SOON, always shown" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
     <p class="sub small">Live engine data and trouble codes require the Bluetooth OBD2 dongle and a 1996 or newer truck.</p>
   </section>
 
@@ -543,7 +555,7 @@
 document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
 document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
 </script>
-<script src="index.js?v=20261109a"></script>
+<script src="index.js?v=20261110a"></script>
 <script src="lightbox.js?v=20261109a"></script>
 <script src="menu.js?v=20261109a"></script>
 </body>
