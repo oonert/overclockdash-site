@@ -528,3 +528,13 @@ img.zoomable { cursor: zoom-in; }
 .facts .fact b { font-size: 18px; line-height: 1.25; }
 .facts .fact b.amber { color: var(--amber); }
 @media (max-width: 760px) { .facts { grid-template-columns: 1fr 1fr; } .facts .fact b { font-size: 16px; } }
+
+/* Install and knob housing photo bands (2026-11-12) */
+.band-h { padding: 48px var(--margin) 0; font-size: 22px; font-weight: 700; color: var(--amber); }
+.band-note { padding: 8px var(--margin) 0; max-width: 72ch; }
+.photo-band.band-tight { padding-top: 16px; }
+.photo-band.band-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.photo-band button.zoom { display: block; width: 100%; padding: 0; border: 0; background: #000; overflow: hidden; cursor: zoom-in; }
+.photo-band button.zoom:hover img { transform: scale(1.03); }
+@media (max-width: 900px) { .photo-band.band-4 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 700px) { .photo-band.band-tight > figure:first-child { grid-column: auto; } .photo-band.band-tight { grid-template-columns: 1fr 1fr; } }
