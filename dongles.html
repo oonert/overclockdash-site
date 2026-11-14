@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Which OBD dongle? OVERCLOCK Field Computer</title>
+<meta name="description" content="How to pick a Bluetooth OBD2 dongle for the OVERCLOCK Field Computer, and how much power the ones we tested draw while parked.">
+<link rel="canonical" href="https://overclockdash.com/dongles.html">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OVERCLOCK Field Computer">
+<meta property="og:title" content="Which OBD dongle? OVERCLOCK Field Computer">
+<meta property="og:description" content="How to pick a Bluetooth OBD2 dongle for the OVERCLOCK Field Computer, and how much power the ones we tested draw while parked.">
+<meta property="og:url" content="https://overclockdash.com/dongles.html">
+<meta property="og:image" content="https://overclockdash.com/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="site.css?v=20261114a">
+<style>
+.dg-wrap { overflow-x: auto; margin: 16px 0 8px; }
+table.dg { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 17px; line-height: 1.35; }
+.dg th, .dg td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid #242424; }
+.dg thead th { color: var(--ink); border-bottom: 2px solid #333; }
+.dg tbody th { font-weight: 700; color: var(--ink); }
+.dg tbody th small { display: block; font-weight: 400; color: var(--amber); font-size: 14px; margin-top: 2px; }
+.dg td { color: var(--muted); }
+.dg tr.pick td:nth-child(3) { color: #fff; font-weight: 700; }
+@media (max-width: 700px) { table.dg { min-width: 0; font-size: 14px; } .dg th, .dg td { padding: 8px 6px; } .dg tbody th small { font-size: 12px; } .dg th:first-child { padding-left: 0; width: 30%; } }
+</style>
+</head>
+<body class="doc">
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="index.html"><span class="mark-top">OVERCLOCK</span><span class="mark-stripes"></span><span class="mark-sub" aria-label="Field Computer">FIELD COMPUTER</span></a>
+      <button class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+  <nav id="site-nav"><a href="index.html">Home</a><a href="demo.html">Demo</a><a href="data.html">Data</a><a href="3d.html">3D</a><a href="faq.html">Questions</a><a class="nav-cta" href="index.html#want">Want one?</a></nav>
+</header>
+<main class="doc-main" id="main">
+  <h1>Which OBD dongle?</h1>
+  <p class="updated">We recommend the upgraded dongle. It shuts itself off when the truck is parked, so you can leave it plugged in. If you'd rather buy your own, here is how to pick one.</p>
+
+  <h2>How to pick one</h2>
+  <p>Most Bluetooth Low Energy OBD2 dongles work with OVERCLOCK. Every one we've tried has. Look for these on the box or the listing:</p>
+  <ul class="lic">
+    <li>It says "Bluetooth Low Energy", "BLE" or "Bluetooth 4.0".</li>
+    <li>It works with both iPhone and Android.</li>
+    <li>It works with common apps like Torque, OBD Fusion or Car Scanner.</li>
+  </ul>
+  <p>Skip dongles that only work with their maker's own app. They are locked to that app and won't talk to OVERCLOCK.</p>
+  <p>As a bonus, pick one that turns itself off when the truck is parked. The table shows which ones do.</p>
+
+  <h2>Dongles we've tested</h2>
+  <div class="dg-wrap">
+  <table class="dg">
+    <thead><tr><th scope="col">Dongle</th><th scope="col">While in use</th><th scope="col">While parked</th><th scope="col">Turns itself off?</th></tr></thead>
+    <tbody>
+      <tr class="pick"><th scope="row">Vgate iCar Pro BLE 4.0<small>Our pick</small></th><td>about 40 mA</td><td>about 3 mA</td><td>Yes</td></tr>
+      <tr class="pick"><th scope="row">Vgate iCar Pro 2S<small>Our pick</small></th><td>about 40 mA</td><td>about 3 mA</td><td>Yes, it sleeps after about 30 minutes</td></tr>
+      <tr><th scope="row">LELink&sup2; OBD-II</th><td>31 mA</td><td>31 mA</td><td>Not out of the box. It has a setting for it, which we haven't tested yet.</td></tr>
+      <tr><th scope="row">JFIND JF327 BLE<small>The standard dongle in the box</small></th><td>31 to 40 mA</td><td>31 mA</td><td>No</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="updated">These are our own bench measurements of one unit of each, on a 12.00 V supply with the dongle idle.</p>
+
+  <h2>Our pick</h2>
+  <p>We recommend the Vgate iCar Pro BLE 4.0, or the iCar Pro 2S, which performed the same. Parked, they draw about a tenth of what the others do, so you can leave them plugged in. The upgraded dongle we offer is a Vgate iCar Pro.</p>
+  <p>If you buy an iCar Pro yourself, choose the "BLE 4.0" version. The same listing also offers BT3.0 and WiFi versions, and those are different dongles.</p>
+
+  <h2>If yours doesn't turn itself off</h2>
+  <p>Unplug the dongle if the truck will sit for more than about a week.</p>
+
+  <p>These are only the dongles we've tested so far. Others that match the list above should work too, and we'll add more to the table as we test them.</p>
+  <p class="updated">Product and app names are trademarks of their owners. OVERCLOCK is not affiliated with these companies.</p>
+</main>
+<footer class="foot-small">
+  <p>&copy; 2026 OVERCLOCK Field Computer. Questions? <a href="mailto:hello@overclockdash.com">hello@overclockdash.com</a></p>
+  <p><a href="index.html">Home</a> &middot; <a href="demo.html">Demo</a> &middot; <a href="3d.html">3D</a> &middot; <a href="data.html">Data</a> &middot; <a href="photos.html">Photos</a> &middot; <a href="compare.html">vs ScanGauge and UltraGauge</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="licenses.html">Licenses</a> &middot; <a href="regulatory.html">Regulatory</a> &middot; <a href="faq.html">Questions</a> &middot; <a href="power.html">Power</a> &middot; <a href="dongles.html">Dongles</a></p>
+  <p>Follow: <a href="https://www.facebook.com/overclockfieldcomputer">Facebook</a> &middot; <a href="https://www.instagram.com/overclockfieldcomputer">Instagram</a></p>
+  <p>Contains FCC ID: 2AC7Z-ESP32WROOM32E</p>
+</footer>
+<script src="menu.js?v=20261109a"></script>
+</body>
+</html>
