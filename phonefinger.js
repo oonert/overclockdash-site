@@ -13,7 +13,8 @@
     var d, w;
     try { d = fr.contentDocument; w = fr.contentWindow; } catch (e) { return; }
     if (!d || !w || d.getElementById('oc-finger')) return;
-    var mouse = matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (!d.documentElement || !w.location || w.location.href === 'about:blank') return;
+    var mouse = true;   // always on: the drag code below only answers to a mouse, so touch screens are untouched
     var st = d.createElement('style'); st.id = 'oc-finger';
     st.textContent = 'html{scrollbar-width:none;-ms-overflow-style:none}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none;width:0;height:0}' +
       (mouse ? '*,*::before,*::after{cursor:' + FINGER + ' !important;-webkit-user-select:none !important;user-select:none !important}' +
@@ -70,5 +71,10 @@
     d.addEventListener('dragstart', function (e) { e.preventDefault(); });
     d.addEventListener('wheel', stopCoast, { passive: true });
   }
-  window.OCFinger = function (fr) { fr.addEventListener('load', function () { apply(fr); }); };
+  // Applied as early as the page inside exists (not only at its load event), and re-checked
+  // so every page the visitor taps through to gets it too.
+  window.OCFinger = function (fr) {
+    fr.addEventListener('load', function () { apply(fr); });
+    setInterval(function () { if (fr.isConnected) apply(fr); }, 150);
+  };
 })();
