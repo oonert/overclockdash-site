@@ -188,12 +188,15 @@ html.lt #T .cd,html.lt #T .rw,html.lt #T .gr{background:#fff}html.lt #T .st>div.
     return s + `<text x=6 y=${Hh - 2} fill="#949494" font-size=12>1ST</text><text x=${W - 6} y=${Hh - 2} fill="#949494" font-size=12 text-anchor=end>${days}TH</text></svg>`;
   }
   // bars; a tap area per bar (data-k = keys[i]); sel draws a white outline
+  // (2026-11-14: the outline's stroke-width was unquoted and sat against the "/>". The
+  // browser read the value as "2.5/" and the picked bar's <rect> never closed, so every
+  // bar after it was swallowed inside it and vanished. Quote a value that ends a tag.)
   function bars(labels, vals, best, fmt, keys, sel) {
     const W = 340, Hh = 150, n = vals.length, sl = (W - 4) / n, pos = vals.filter(v => v > 0), mx = pos.length ? Math.max(...pos) : 1;
     let s = `<svg viewBox="0 0 ${W} ${Hh}">`;
     vals.forEach((v, i) => {
       const x = 2 + i * sl + 3, w = sl - 6, h = v > 0 ? (Hh - 52) * v / mx : 2, y = Hh - 20 - h, c = i === best ? AM : grn();
-      s += v > 0 ? `<rect x=${x} y=${y} width=${w} height=${h} rx=3 fill="${c}" ${keys && keys[i] === sel ? `stroke="${fg()}" stroke-width=2.5` : ''}/>` : `<rect x=${x} y=${Hh - 22} width=${w} height=2 fill="${dim()}"/>`;
+      s += v > 0 ? `<rect x=${x} y=${y} width=${w} height=${h} rx=3 fill="${c}" ${keys && keys[i] === sel ? `stroke="${fg()}" stroke-width="2.5"` : ''} />` : `<rect x=${x} y=${Hh - 22} width=${w} height=2 fill="${dim()}"/>`;
       if (v > 0) s += `<text x=${x + w / 2} y=${y - 6} fill="${i === best ? AM : '#949494'}" font-size=${i === best ? 15 : 12} font-weight=800 text-anchor=middle>${fmt(v)}</text>`;
       s += `<text x=${x + w / 2} y=${Hh - 4} fill="${i === best ? AM : '#949494'}" font-size=12 text-anchor=middle>${labels[i]}</text>`;
       if (keys) s += `<rect data-k="${keys[i]}" x=${2 + i * sl} y=0 width=${sl} height=${Hh} fill=transparent />`;
