@@ -48,12 +48,12 @@
 #T .rw .lf{min-width:0;flex:1}#T .rw .lf b{display:block;font-size:17px}#T .rw .lf small{color:#949494;font-size:13px;display:block}
 #T .rw .r{text-align:right;flex:none;margin-left:10px}#T .rw .r b{font-size:19px;display:block}#T .rw .r small{color:#949494;font-size:12px}
 #T .ch{color:#666;margin-left:8px;font-size:20px;flex:none}#T .rw.hi{outline:2px solid #ffb000}
-#T .rw *,#T .big *,#T .st *{background:transparent}#T .ok{color:#7fd13b}#T .am{color:#ffb000}
+#T .rw *,#T .big,#T .big *,#T .st *{background:transparent}#T .ok{color:#7fd13b}#T .am{color:#ffb000}
 #T .dp{background:#1d1a10;border:1.5px solid #ffb000;border-radius:12px;padding:12px 14px;margin:-2px 0 10px}#T .dp b{display:block;font-size:16px}#T .dp small{display:block;color:#bbb;font-size:13px;margin-top:2px}#T .dp a{display:inline-block;margin-top:8px;color:#ffb000;font:800 13px system-ui;text-decoration:none}
 #T .cd.tp{cursor:pointer}#T .cd .mo{color:#ffb000;font:700 13px system-ui;margin-top:8px}
 #T .ll{margin-top:10px;border-top:1px solid #262626}#T .ll div{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #262626;font-size:14px}#T .ll small{color:#949494}
 #T .nm{display:flex;gap:8px;margin-top:8px}#T .nm input{flex:1;min-width:0;background:#000;border:1px solid #333;border-radius:8px;color:#fff;padding:10px;font:600 15px system-ui;text-transform:uppercase}#T .nm button{height:44px;border:2px solid #ffb000;background:none;color:#ffb000;border-radius:8px;font:800 14px system-ui;padding:0 14px}
-#T .btn{display:block;text-align:center;border:2px solid #ffb000;color:#ffb000;border-radius:12px;padding:14px;font:800 18px system-ui;margin:16px 0;background:none;width:100%}
+#T .btn{display:block;text-align:center;border:2px solid #ffb000;color:#ffb000;border-radius:12px;padding:14px;font:800 18px system-ui;margin:16px 0;background:none;width:100%;white-space:normal;line-height:1.25;height:auto}
 #T .mp{background:#0b0b0b;border-radius:12px;overflow:hidden;position:relative;height:230px;touch-action:none;margin-bottom:10px}#T .mp canvas{display:block;width:100%;height:100%}
 html.lt #T .cd,html.lt #T .rw,html.lt #T .gr{background:#fff}html.lt #T .st>div.tp{background:#eceef2}html.lt #T .big{color:#111}html.lt #T .nm input{background:#fff;color:#111;border-color:#ccc}html.lt #T .dp{background:#fff7e0}html.lt #T .dp small{color:#555}html.lt #T .mp{background:#f7f7f9}`;
   document.head.appendChild(css);

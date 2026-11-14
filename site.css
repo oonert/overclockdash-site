@@ -562,3 +562,7 @@ body.pvf-on { overflow: hidden; }
   .pvh-scr { width: 184px; height: 400px; border-radius: 22px; }
   .pvh-start { font-size: 15px; padding: 10px 14px; }
 }
+
+/* work miles: two phone stills side by side */
+.wk-pair .rt-phone { width: min(280px, 38vw); }
+@media (max-width: 760px) { .rt-pair.wk-pair { flex-direction: row; gap: 12px; } .wk-pair .rt-phone { width: 44vw; } }
