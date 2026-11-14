@@ -1,0 +1,1 @@
+P.dt='M4 6h16v14H4zM4 10h16M8 3v5M16 3v5';g0.innerHTML+=R('dt','#f5a','/dt','Dates','...');J('/dts').then(j=>E('dt',(j.n.length?`<s>${j.n.length} date${j.n.length==1?'':'s'}</s>`:'No dates yet')+D+'US holidays '+(j.h?'on':'off')))

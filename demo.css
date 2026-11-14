@@ -139,3 +139,31 @@ body.demo .foot-small { margin-top: 0; }
 .chips.knob-row .home-btn span { font-weight: 400; color: var(--muted); margin-left: 6px; }
 
 @media (min-width: 901px) { #knob.let-go { position: relative; top: auto; box-shadow: none; } }
+
+/* "See it on your phone": the clock's phone pages in an iframe (phone_demo/) */
+.pv-open { margin-top: 12px; }
+.pv[hidden] { display: none !important; }
+.pv-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.pv-close { background: none; border: 0; color: var(--amber); font: 700 17px var(--font, inherit); cursor: pointer; padding: 8px 0; }
+.pv-bar span { color: var(--muted); font-size: 14px; }
+.pv-scr iframe { border: 0; display: block; background: #000; }
+.pv-note { color: var(--muted); font-size: 14px; text-align: center; max-width: 34ch; margin: 10px auto 0; }
+@media (min-width: 901px) {
+  /* a phone over the right-hand column, beside the clock */
+  .pv { position: fixed; z-index: 20; top: 0; bottom: 0; right: 0; left: calc(var(--margin) + (100vw - 2 * var(--margin) - var(--gap)) * 7 / 12 + var(--gap) / 2); background: var(--ground); justify-content: center; display: flex; flex-direction: column; align-items: center; padding: 4px 8px; box-shadow: -24px 0 32px -8px rgba(0, 0, 0, .9); }
+  .pv-bar { width: 100%; max-width: 360px; }
+  .pv-phone { --s: .8; width: calc(390px * var(--s) + 24px); height: calc(844px * var(--s) + 24px); border-radius: 46px; background: #0d0d0d; box-shadow: inset 0 0 0 2px #2b2b2b; padding: 12px; box-sizing: border-box; flex: 0 0 auto; }
+  .pv-scr { width: calc(390px * var(--s)); height: calc(844px * var(--s)); border-radius: 34px; overflow: hidden; }
+  .pv-scr iframe { width: 390px; height: 844px; transform: scale(var(--s)); transform-origin: 0 0; }
+}
+@media (max-width: 900px) {
+  /* on a phone, no phone-in-a-phone: the pages fill the screen */
+  .pv { position: fixed; inset: 0; z-index: 1000; background: #000; display: flex; flex-direction: column; }
+  .pv-bar { flex: 0 0 auto; padding: max(env(safe-area-inset-top), 4px) 14px 4px; border-bottom: 1px solid #222; }
+  .pv-phone, .pv-scr { flex: 1 1 auto; display: flex; min-height: 0; }
+  .pv-scr iframe { width: 100%; height: 100%; }
+  .pv-note { display: none; }
+  body.pv-on { overflow: hidden; }
+  .pv-open { margin-top: 6px; min-height: 36px; padding: 0 14px; font-size: 15px; }
+  .stage.compact .pv-open { display: none; }
+}

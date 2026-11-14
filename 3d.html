@@ -19,7 +19,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="site.css?v=20261112a">
+<link rel="stylesheet" href="site.css?v=20261114a">
 <link rel="stylesheet" href="3d.css?v=20261109a">
 </head>
 <body class="demo three">
@@ -71,7 +71,7 @@ document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.sca
 import {THREE, OrbitControls, GLTFLoader, MeshoptDecoder, RoomEnvironment} from './lib/three-viewer.js?v=20261109a';   // Three.js 0.169 and its loaders, bundled
 
 const BASE = '3d/';                 // the models, labels and still screens
-const FW = { base: 'dist/', v: '2026-11-10a', fw: 'v2' };   // the site's own firmware files (the V2 demo build)
+const FW = { base: 'dist/', v: '2026-11-14a', fw: 'v2' };   // the site's own firmware files (the V2 demo build)
 const SCREENS = {
   '4runner':[['dash','Dash'],['clock','Clock'],['gauges','Gauges'],['temp','Temps'],['towing','Towing'],['starter','Starter'],['apps','Apps']].map(([f,n])=>['screens/'+f+'.jpg',n]),
   tacoma:[['clock','Clock'],['gauges','Gauges'],['temp','Temps'],['towing','Towing'],['starter','Starter'],['apps','Apps'],['retro','Retro']].map(([f,n])=>['screens/portrait/'+f+'.png',n])};

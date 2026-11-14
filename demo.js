@@ -7,7 +7,7 @@
 
   // ── the clock ─────────────────────────────────────────────────────────────
   let clock = null, currentCase = '4runner';
-  const FW_STAMP = '2026-11-10a';   // bump when dist/ is rebuilt, so browsers fetch the new firmware
+  const FW_STAMP = '2026-11-14a';   // bump when dist/ is rebuilt, so browsers fetch the new firmware
   const FW = new URLSearchParams(location.search).get('fw') === 'v1' ? null : 'v2';   // ?fw=v1 falls back to the V1 demo build
   const status = $('#status');
   function frameWidth() { return phone() ? Math.round((window.innerWidth - 24) * 0.68) : Math.min(560, Math.round(window.innerWidth * 0.42)); }
@@ -30,7 +30,7 @@
     try {
       clock = await OverclockDemoTruck.mount($('#clock'), { frame: which, frameWidth: frameWidth(), base: 'dist/', v: FW_STAMP, fw: FW, serial: new URLSearchParams(location.search).has('serial'), dial: false, storage: null, alerts: { storm: false }, settings: Object.assign({ spl_style: splStyle, spl_name: 'OLD BLUE' }, boostOn ? BOOST : {}), skip: boostOn ? BOOST_SKIP : undefined });
       if (boostOn) clock.goto('Gauges');   // GAUGES updates live; the big BOOST page holds still in the browser demo
-      status.textContent = ''; showHint(); window.__clock = clock;   // for testing from the console
+      status.textContent = ''; showHint(); window.__clock = clock; $('#pv-open').hidden = false;   // for testing from the console
       $('#fw').textContent = clock.version;
       buildFaults(); markRunning();
     } catch (e) { status.textContent = 'The firmware could not load. ' + (e && e.message ? e.message : ''); console.error(e); }
@@ -249,4 +249,34 @@
     if (clock) clock.goto(b.dataset.view);
   }));
   $$('.presets .btn').forEach(b => b.addEventListener('click', () => { const [p, r] = b.dataset.tilt.split(',').map(Number); if (camp) campEnd(); setTilt(p, r); clearPresets(); b.setAttribute('aria-pressed', 'true'); if (clock) clock.goto('Tilt'); }));
+
+  // ── "See it on your phone": the clock's phone pages (phone_demo/, made-up months of
+  // driving) in an iframe. Loaded only when opened. Desktop: a phone over the right-hand
+  // column, sized to the window. Phone: full screen with a Back to clock bar.
+  const pv = $('#pv'), pvFrame = $('#pv-frame'), pvPhone = pv.querySelector('.pv-phone');
+  function pvFit() {
+    if (innerWidth <= 900) return;
+    const s = Math.max(.5, Math.min(.9, (innerHeight - 24 - 50 - 70 - 24) / 844));
+    pvPhone.style.setProperty('--s', s.toFixed(3));
+  }
+  function pvOpen() {
+    if (!pvFrame.getAttribute('src')) pvFrame.src = 'phone_demo/index.html';
+    pv.hidden = false; pvFit(); document.body.classList.add('pv-on'); $('#pv-close').focus();
+  }
+  function pvClose() { pv.hidden = true; document.body.classList.remove('pv-on'); $('#pv-open').focus(); }
+  // on a computer, the mouse becomes a fingertip over the phone screen
+  const FINGER = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ccircle cx='16' cy='16' r='12' fill='rgba(255,255,255,.35)' stroke='rgba(255,255,255,.85)' stroke-width='2'/%3E%3C/svg%3E\") 16 16, pointer";
+  pvFrame.addEventListener('load', () => {
+    if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    try {
+      const d = pvFrame.contentDocument; if (!d || d.getElementById('oc-finger')) return;
+      const st = d.createElement('style'); st.id = 'oc-finger';
+      st.textContent = '*, *::before, *::after { cursor: ' + FINGER + ' !important; }';
+      (d.head || d.documentElement).appendChild(st);
+    } catch (e) { /* other origin: leave the normal cursor */ }
+  });
+  $('#pv-open').addEventListener('click', pvOpen);
+  $('#pv-close').addEventListener('click', pvClose);
+  addEventListener('keydown', e => { if (e.key === 'Escape' && !pv.hidden) pvClose(); });
+  addEventListener('resize', pvFit);
 })();
