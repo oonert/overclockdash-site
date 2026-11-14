@@ -264,17 +264,7 @@
     pv.hidden = false; pvFit(); document.body.classList.add('pv-on'); $('#pv-close').focus();
   }
   function pvClose() { pv.hidden = true; document.body.classList.remove('pv-on'); $('#pv-open').focus(); }
-  // on a computer, the mouse becomes a fingertip over the phone screen
-  const FINGER = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ccircle cx='16' cy='16' r='12' fill='rgba(255,255,255,.35)' stroke='rgba(255,255,255,.85)' stroke-width='2'/%3E%3C/svg%3E\") 16 16, pointer";
-  pvFrame.addEventListener('load', () => {
-    if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-    try {
-      const d = pvFrame.contentDocument; if (!d || d.getElementById('oc-finger')) return;
-      const st = d.createElement('style'); st.id = 'oc-finger';
-      st.textContent = '*, *::before, *::after { cursor: ' + FINGER + ' !important; }';
-      (d.head || d.documentElement).appendChild(st);
-    } catch (e) { /* other origin: leave the normal cursor */ }
-  });
+  if (window.OCFinger) window.OCFinger(pvFrame);   // phonefinger.js: fingertip, drag to scroll, no scroll bar
   $('#pv-open').addEventListener('click', pvOpen);
   $('#pv-close').addEventListener('click', pvClose);
   addEventListener('keydown', e => { if (e.key === 'Escape' && !pv.hidden) pvClose(); });
