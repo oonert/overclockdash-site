@@ -13,22 +13,23 @@
   function frameWidth() { return phone() ? Math.round((window.innerWidth - 24) * 0.68) : Math.min(560, Math.round(window.innerWidth * 0.42)); }
   // BOOST (firmware 2026-11-09): the pressure port reads a MAP sensor as boost. The demo
   // truck has oil pressure; these settings swap in an AEM boost sensor, put boost in
-  // the GAUGES page's third pane, and set a low 5 psi limit so the drive trips the
-  // over-boost warning.
-  const BOOST = { op_range: 7, gauge_panes: [1, 2, 21, 5], bst_lim: 5 };
+  // the GAUGES page's third pane. No over-boost limit, as on the real clock, which
+  // has none until the owner sets one. The Over-boost fault button adds BOOST_LIM (5 psi,
+  // low enough that the drive goes over it) so the warning shows only when asked for.
+  const BOOST = { op_range: 7, gauge_panes: [1, 2, 21, 5] }, BOOST_LIM = { bst_lim: 5 };
   const BOOST_SKIP = 500000;   // start boost about 8 minutes into the drive, just before the first over-boost
   // STARTUP (firmware 0.99.154): six startup screens. The demo page starts on STRIPES, the default; a
   // pick saves the style and restarts the clock so the startup plays live. OLD BLUE is
   // the placeholder name (the firmware chat's), shown by MINIMAL.
   let splStyle = 0;
-  let boostOn = new URLSearchParams(location.search).has('boost');
+  let boostOn = new URLSearchParams(location.search).has('boost'), boostLim = false;
   async function mountClock(which) {
     currentCase = which; if (window.__setTruck) window.__setTruck(which);
     $$('.tabs [role=tab]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.case === which)));
     if (clock) { clock.destroy(); clock = null; }
     status.textContent = 'Loading the firmware (about 4 MB)...';
     try {
-      clock = await OverclockDemoTruck.mount($('#clock'), { frame: which, frameWidth: frameWidth(), base: 'dist/', v: FW_STAMP, fw: FW, serial: new URLSearchParams(location.search).has('serial'), dial: false, storage: null, alerts: { storm: false }, settings: Object.assign({ spl_style: splStyle, spl_name: 'OLD BLUE' }, boostOn ? BOOST : {}), skip: boostOn ? BOOST_SKIP : undefined });
+      clock = await OverclockDemoTruck.mount($('#clock'), { frame: which, frameWidth: frameWidth(), base: 'dist/', v: FW_STAMP, fw: FW, serial: new URLSearchParams(location.search).has('serial'), dial: false, storage: null, alerts: { storm: false }, settings: Object.assign({ spl_style: splStyle, spl_name: 'OLD BLUE' }, boostOn ? BOOST : {}, boostOn && boostLim ? BOOST_LIM : {}), skip: boostOn ? BOOST_SKIP : undefined });
       if (boostOn) clock.goto('Gauges');   // GAUGES updates live; the big BOOST page holds still in the browser demo
       status.textContent = ''; showHint(); window.__clock = clock; $('#pv-open').hidden = false;   // for testing from the console
       $('#fw').textContent = clock.version;
@@ -46,8 +47,8 @@
   function boostButtons() { $$('[data-press]').forEach(b => b.setAttribute('aria-pressed', String((b.dataset.press === 'boost') === boostOn))); }
   boostButtons();
   $$('[data-press]').forEach(b => b.addEventListener('click', () => {
-    const want = b.dataset.press === 'boost'; if (want === boostOn && clock) { if (want) clock.goto('Gauges'); return; }
-    boostOn = want; boostButtons(); mountClock(currentCase);
+    const want = b.dataset.press === 'boost'; if (want === boostOn && !boostLim && clock) { if (want) clock.goto('Gauges'); return; }
+    boostOn = want; boostLim = false; boostButtons(); mountClock(currentCase);
   }));
   mountClock(new URLSearchParams(location.search).get('v') === 'tacoma' ? 'tacoma' : '4runner');
 
@@ -140,22 +141,28 @@
     if (s) clock.goto(s[0]);
     setTimeout(() => { clock.event(ev); markRunning(); }, s ? 400 : 0);
   }
+  // Over-boost is a setting, not a fault the firmware plays: boost sensor on, limit at 5 psi,
+  // clock restarted a little before the drive's first hard pull.
+  function runOverboost() { if (!clock) return; boostOn = true; boostLim = true; boostButtons(); mountClock(currentCase); }
   function buildFaults() {
     for (const g in GROUPS) {
       const box = $('#faults [data-group="' + g + '"]'); box.innerHTML = '';
       GROUPS[g].filter(ev => clock.events.includes(ev)).forEach(ev => { const b = document.createElement('button'); b.className = 'btn'; b.type = 'button'; b.dataset.event = ev; b.textContent = NAMES[ev] || ev; b.addEventListener('click', () => runFault(ev)); box.appendChild(b); });
+      if (g === 'engine') { const b = document.createElement('button'); b.className = 'btn'; b.type = 'button'; b.dataset.ob = '1'; b.textContent = 'Over-boost'; b.addEventListener('click', runOverboost); box.appendChild(b); }
     }
   }
   function markRunning() {
     const r = clock ? clock.eventRunning() : null;
     $$('#faults .btn[data-event]').forEach(b => b.classList.toggle('running', b.dataset.event === r));
     const s = r && SHOW[r];
-    $('#fault-now').textContent = !r ? 'Nothing running.' : (NAMES[r] || r) + (s ? ': ' + s[1] + (TAKEOVER(r) ? '. The alert takes the screen in about 15 to 20 seconds.' : '.') : '.');
+    $$('#faults .btn[data-ob]').forEach(b => b.classList.toggle('running', boostLim && !r));
+    $('#fault-now').textContent = !r && boostLim ? 'Over-boost: the limit is set to 5 psi. Watch BOOST PSI. The warning takes the screen on the next hard pull, in about a minute.' : !r ? 'Nothing running.' : (NAMES[r] || r) + (s ? ': ' + s[1] + (TAKEOVER(r) ? '. The alert takes the screen in about 15 to 20 seconds.' : '.') : '.');
   }
   setInterval(markRunning, 1500);
   // RESET: stop whatever is running, clear the codes it set, back to a healthy truck.
   $('#reset-faults').addEventListener('click', () => {
     if (!clock) return;
+    if (boostLim) { boostLim = false; mountClock(currentCase); $('#fault-now').textContent = 'Reset: the over-boost limit is off again.'; return; }
     clock.event('stop'); clock.event('engineok'); markRunning();
     if (clock.gauges) clock.gauges(...PANES_DEFAULT);
     if (clock.freezer) clock.freezer(false);
