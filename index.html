@@ -20,7 +20,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://overclockdash.com/#org", "name": "OVERCLOCK", "url": "https://overclockdash.com/", "logo": "https://overclockdash.com/icon-192.png", "email": "hello@overclockdash.com", "sameAs": ["https://www.facebook.com/overclockfieldcomputer", "https://www.instagram.com/overclockfieldcomputer"]}, {"@type": "WebSite", "name": "OVERCLOCK Field Computer", "url": "https://overclockdash.com/", "publisher": {"@id": "https://overclockdash.com/#org"}}, {"@type": "Product", "name": "OVERCLOCK Field Computer", "brand": {"@id": "https://overclockdash.com/#org"}, "image": "https://overclockdash.com/og.jpg", "description": "OVERCLOCK Field Computer replaces the factory clock in the 3rd gen 4Runner, 1st gen Tacoma and T100. Engine codes spelled out, GPS, every drive logged every second, weather, tilt, solar and alerts. Try the real firmware in your browser."}]}</script>
-<link rel="stylesheet" href="site.css?v=20261116a">
+<link rel="stylesheet" href="site.css?v=20261116d">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -87,21 +87,20 @@
     <p class="sub">Drops into the same spot as the factory clock. Same mounting points, same connector. You can put the original clock back whenever you want.</p>
     <div class="photo-band in">
       <figure><a href="photos.html"><img src="pages/trucks/truck-04-thumb.webp" width="900" height="675" alt="OVERCLOCK on the GAUGES page in a 2001 4Runner" decoding="async"></a><figcaption>2001 4Runner. Factory opening, factory plug.</figcaption></figure>
-      <figure><a href="photos.html"><img src="pages/trucks/truck-11-thumb.webp" width="900" height="675" alt="OVERCLOCK at night in a 1997 4Runner" decoding="async"></a><figcaption>1997 4Runner at night. Dims with the headlights.</figcaption></figure>
-      <figure><a href="photos.html"><img src="pages/trucks/truck-19-thumb.webp" width="900" height="675" alt="The OVERCLOCK knob on the center console by the shifter" decoding="async"></a><figcaption>The knob, by the shifter. 5 ft cable.</figcaption></figure>
+      <figure><a href="photos.html"><img src="pages/trucks/truck-11-thumb.webp" width="900" height="675" alt="OVERCLOCK at night in a 1997 4Runner" decoding="async"></a><figcaption>1997 4Runner. The screen dims with the headlights, or use auto mode: it dims based on your local sunrise and sunset times.</figcaption></figure>
+      <figure><a href="photos.html"><img src="pages/trucks/truck-19-thumb.webp" width="900" height="675" alt="The OVERCLOCK knob on the center console by the shifter" decoding="async"></a><figcaption>The control knob. Place it anywhere with the included 5-foot cable.</figcaption></figure>
     </div>
-    <p class="sub photo-more"><a href="install.html">Install photos &rarr;</a> &nbsp; <a href="photos.html">All photos &rarr;</a></p>
+    <p class="sub photo-more"><a class="btn ghost" href="install.html">Install photos</a> <a class="btn ghost" href="photos.html">All photos</a></p>
     <ol class="install-steps in">
       <li><b>Pull the factory clock.</b> It comes out of the dash the same way it went in.</li>
-      <li><b>Drop OVERCLOCK in.</b> OVERCLOCK uses the same opening and the same connector.</li>
+      <li><b>Drop OVERCLOCK in.</b> OVERCLOCK uses the same opening and the same connector, with no cutting or splicing.</li>
       <li><b>Run the knob cable and GPS antenna,</b> plus any probes you add. The OBD2 dongle plugs into the diagnostic port under the dash.</li>
     </ol>
-    <p class="sub small">No cutting or splicing. The original clock goes back in any time.</p>
     <ul class="feat in">
       <li><b>Bluetooth OBD2 dongle included.</b> Plug it in once and leave it there.</li>
       <li><b>Everything is controlled with one knob.</b> Turn, click or hold, so your eyes stay on the road.</li>
       <li><b>Mount the knob flush with one hole,</b> or stick it on with the included housing and tape if you don't want to drill.</li>
-      <li><b>Start with the basics</b> or add up to four temp probes, a transmission temp sender, and an oil or fuel pressure sender. Whatever you add gets logged with everything else.</li>
+      <li><b>Start with the basics</b> or add up to four temp probes, a transmission temp sender, and an oil or fuel pressure sensor, or a boost sensor for turbocharged and supercharged trucks. Whatever you add gets logged with everything else.</li>
     </ul>
   </section>
 
@@ -135,7 +134,7 @@
 
   <section class="page" id="knob">
     <div class="head in">
-      <h2>ONE KNOB, EVERY PAGE</h2>
+      <h2>EVERY SCREEN</h2>
       <div class="row-btns"><button type="button" data-step="-1" aria-label="Back">&larr;</button><button type="button" data-step="1" aria-label="Forward">&rarr;</button></div>
     </div>
     <div class="knob-intro">
@@ -144,7 +143,7 @@
     </div>
     <div class="row-wrap">
       <div class="progress"><i id="row-progress"></i></div>
-      <div class="row" id="moments">
+      <div class="row all" id="moments">
         <div class="moment"><h3>Gauges</h3><p>4 live readings, fully customizable.</p><img src="pages/gauges.png" width="320" height="240" alt="The GAUGES page: speed, rpm, coolant and volts" loading="lazy" decoding="async"></div>
         <div class="moment"><h3>Health</h3><p>Spots worsening trends days or weeks before a failure.</p><img src="pages/health.png" width="320" height="240" alt="The HEALTH page: a list of small graphs" loading="lazy" decoding="async"></div>
         <div class="moment"><h3>The retro clock</h3><p>For when you want the original.</p><img src="pages/retro.png" width="320" height="240" alt="The retro clock face" loading="lazy" decoding="async"></div>
@@ -173,7 +172,6 @@
         <div class="moment more"><h3>Settings</h3><p>Full settings menu.</p><img src="pages/settings.png" width="320" height="240" alt="The SETTINGS list" loading="lazy" decoding="async"></div>
       </div>
     </div>
-    <p class="sub"><button class="btn ghost" type="button" id="more-screens">More screens</button></p>
   </section>
 
   <section class="page" id="yours">
@@ -527,11 +525,11 @@
             <label>Email<input type="email" name="email" required autocomplete="email" placeholder="you@example.com"></label>
             <label>Truck, year and model<input type="text" name="truck" required placeholder="1997 4Runner SR5"></label>
             <label class="wide">How did you hear about us?<select name="source"><option value="">Optional</option><option>Reddit</option><option>A forum</option><option>Facebook</option><option>Instagram</option><option>YouTube</option><option>Google search</option><option>A friend</option><option>Saw one in a truck</option><option>Other</option></select></label>
-            <label class="wide">Anything else<textarea name="notes" rows="2" placeholder="Optional"></textarea></label>
+            <label class="wide">Anything else? (feature requests or questions)<textarea name="notes" rows="2" placeholder="Optional. Tell us a feature you'd want, or ask anything."></textarea></label>
           </div>
           <div class="gotcha" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div><input type="hidden" name="t0"><input type="hidden" name="t1">
           <div class="send"><button class="btn big" type="submit">Save my spot</button><p class="form-say" id="form-say" aria-live="polite"></p></div>
-          <p class="form-note">Used only to reply to you about OVERCLOCK and to keep our place-in-line list. Never shared or sold. <a href="privacy.html">Privacy</a></p>
+          <p class="form-note">Used only to tell you more about OVERCLOCK and to add you to the list. Never shared or sold. <a href="privacy.html">Privacy</a></p>
         </form>
         <p class="fine">Prefer email? <a href="mailto:hello@overclockdash.com">hello@overclockdash.com</a></p>
         <p class="fine">Follow the build on <a href="https://www.facebook.com/overclockfieldcomputer">Facebook</a> and <a href="https://www.instagram.com/overclockfieldcomputer">Instagram</a>.</p>
@@ -554,13 +552,13 @@
       <div class="row"><span>3rd gen 4Runner</span><b>1996 to 2002</b></div>
       <div class="row"><span>1st gen Tacoma</span><b>1995 to 2004</b></div>
       <div class="row"><span>T100</span><b>1993 to 1998</b></div>
-      <h3 class="later">What needs what</h3>
-      <div class="row"><span>Engine codes and gauges</span><b>1996 and newer, with the dongle</b></div>
-      <div class="row"><span>GPS, weather, tilt, probes, logging</span><b>Every year listed</b></div>
       <h3 class="later">In the works</h3>
       <div class="row"><span>Land Cruiser, Lexus LX 450</span><b>1996 to 1997, full feature set</b></div>
       <div class="row"><span>1st and 2nd gen 4Runner</span><b>1984 to 1995, no engine pages</b></div>
       <p class="spec-note"><a href="#want">Want one of these? Say so on the interest form.</a></p>
+      <h3 class="later">What needs what</h3>
+      <div class="row"><span>Engine codes and gauges</span><b>1996 and newer, with the dongle</b></div>
+      <div class="row"><span>GPS, weather, tilt, probes, logging</span><b>Every year listed</b></div>
     </div>
     <div class="spec-block">
       <h3>In the box</h3>
@@ -598,8 +596,7 @@
   <a class="mark" href="#top"><span class="mark-top">OVERCLOCK</span><span class="mark-stripes"></span><span class="mark-sub" aria-label="Field Computer">FIELD COMPUTER</span></a>
   <p>&copy; 2026 OVERCLOCK Field Computer. Not affiliated with Toyota Motor Corporation, Victron Energy, 3M, Google, the Bluetooth SIG or the Wi-Fi Alliance; their names are used only to say what the product works with. 4Runner, Tacoma, T100, Land Cruiser and Lexus LX 450 are Toyota's names for their vehicles. Compatibility with third-party solar gear and batteries is by reading their published Bluetooth data.</p>
   <p>Auto Meter is a trademark of Auto Meter Products, Inc. VDO is a trademark of Continental AG. AEM is a trademark of AEM Performance Electronics. OVERCLOCK is not affiliated with or endorsed by these companies. ScanGauge is a trademark of Linear Logic, LLC; OVERCLOCK is not affiliated with Linear Logic.</p>
-  <p><a href="demo.html">Demo</a> &middot; <a href="3d.html">3D</a> &middot; <a href="data.html">Data</a> &middot; <a href="games.html">Games</a> &middot; <a href="photos.html">Photos</a> &middot; <a href="compare.html">vs ScanGauge and UltraGauge</a> &middot; <a href="faq.html">Questions</a> &middot; <a href="power.html">Power</a> &middot; <a href="senders.html">Senders</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="licenses.html">Licenses</a> &middot; <a href="regulatory.html">Regulatory</a></p>
-  <p>Follow: <a href="https://www.facebook.com/overclockfieldcomputer">Facebook</a> &middot; <a href="https://www.instagram.com/overclockfieldcomputer">Instagram</a></p>
+  <nav class="foot-links" aria-label="Site"><div><b>Product</b><a href="demo.html">Demo</a><a href="3d.html">3D</a><a href="data.html">Data</a><a href="games.html">Games</a><a href="photos.html">Photos</a></div><div><b>Help</b><a href="faq.html">Questions</a><a href="install.html">Install</a><a href="power.html">Power</a><a href="senders.html">Senders</a><a href="dongles.html">Dongles</a><a href="compare.html">vs ScanGauge and UltraGauge</a></div><div><b>Legal</b><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="licenses.html">Licenses</a><a href="regulatory.html">Regulatory</a></div><div><b>Follow</b><a href="https://www.facebook.com/overclockfieldcomputer">Facebook</a><a href="https://www.instagram.com/overclockfieldcomputer">Instagram</a></div></nav>
   <p>Contains FCC ID: 2AC7Z-ESP32WROOM32E</p>
 </footer>
 
@@ -608,7 +605,7 @@
 document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
 document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
 </script>
-<script src="index.js?v=20261110a"></script>
+<script src="index.js?v=20261116a"></script>
 <script src="lightbox.js?v=20261109a"></script>
 <script src="phonefinger.js?v=20261114d"></script>
 <script src="phoneview.js?v=20261114c"></script>

@@ -625,3 +625,33 @@ section.page .sub, .doc-main, .story, #roadtrip .rt-sub, #boost .rt-sub, .band-n
 .try-card:hover { background: var(--panel); }
 
 .facts .fact small { color: var(--muted); font-size: 15px; margin-top: 4px; }
+
+/* FACTORY FIT: the photo links are buttons; the three steps sit in a ruled band of their
+   own; the four points below run four across so none is left alone on a row. */
+#install .photo-more { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px; max-width: none; }
+#install .photo-more a.btn { color: var(--ink); font-size: 17px; }
+#install .photo-more a.btn:hover { color: var(--ink); }
+#install .install-steps { margin-top: 48px; padding-top: 32px; border-top: 1px solid #2a2a2a; column-gap: clamp(24px, 3vw, 56px); }
+#install .install-steps li { font-size: 19px; line-height: 1.45; }
+#install > .feat { margin: 44px var(--margin) 0; padding: 32px 0 0; border-top: 1px solid #2a2a2a; column-gap: clamp(24px, 3vw, 56px); }
+@media (min-width: 1100px) { #install > .feat li { grid-column: span 3; } }
+@media (min-width: 601px) and (max-width: 1099px) { #install > .feat li { grid-column: span 6; } }
+
+/* Footer: the small print on the left, the site's links in four short columns on the right. */
+footer.foot-small { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: clamp(32px, 5vw, 96px); align-items: start; }
+footer.foot-small > * { grid-column: 1; }
+footer.foot-small > .foot-links { grid-column: 2; grid-row: 1 / span 6; display: grid; grid-template-columns: repeat(4, auto); gap: 0 clamp(24px, 3vw, 48px); }
+.foot-links div { display: flex; flex-direction: column; gap: 5px; }
+.foot-links b { color: var(--ink); font-size: 15px; margin-bottom: 4px; }
+.foot-links a { font-size: 15px; white-space: nowrap; }
+@media (max-width: 1000px) {
+  footer.foot-small { display: block; }
+  footer.foot-small > .foot-links { margin: 16px 0 14px; padding-top: 14px; border-top: 1px solid #222; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 24px; }
+  .foot-links a { white-space: normal; }
+}
+footer.foot-small > .mark { justify-self: start; }
+/* each link group runs two across, so the columns are short */
+.foot-links div { display: grid; grid-template-columns: repeat(2, auto); justify-content: start; gap: 5px 20px; align-content: start; }
+.foot-links b { grid-column: 1 / -1; }
+@media (max-width: 1000px) { footer.foot-small > .foot-links { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { footer.foot-small > .foot-links { grid-template-columns: 1fr; } }
