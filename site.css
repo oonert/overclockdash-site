@@ -566,3 +566,60 @@ body.pvf-on { overflow: hidden; }
 /* work miles: two phone stills side by side */
 .wk-pair .rt-phone { width: min(280px, 38vw); }
 @media (max-width: 760px) { .rt-pair.wk-pair { flex-direction: row; gap: 12px; } .wk-pair .rt-phone { width: 44vw; } }
+
+/* ===== Wide screens: the content holds together in one centred column =====
+   Nothing used to limit the page's width, so on a wide monitor the words sat on the left
+   edge, the clock on the right edge, and short lines were spread across the whole window.
+   The side margin now grows once the window passes 1400px; backgrounds still run edge to edge. */
+:root { --wide: 1400px; --margin: max(clamp(16px, 2.2vw, 32px), calc((100vw - var(--wide)) / 2)); }
+
+/* these limit their own line length AND carry the side margin as padding; the limit has to
+   count the words only, or the growing margin eats the whole column */
+section.page .sub, .doc-main, .story, #roadtrip .rt-sub, #boost .rt-sub, .band-note, .cmp-note, .dv-end, .su-facts { box-sizing: content-box; }
+.doc-main .cmp-note { margin-inline: 0; }      /* it sits inside a column that already has the margin */
+/* the sections that pin a picture on the right are a two-column grid, and every piece in the
+   left column carried the margin on BOTH sides. Past 1464px the section carries it once. */
+@media (min-width: 1465px) {
+  section.page:has(> .lead-row) { padding-inline: var(--margin); }
+  section.page:has(> .lead-row) > *:not(.lead-row), section.page:has(> .lead-row) > .lead-row > * { padding-inline: 0; margin-inline: 0; }
+  section.page:has(> .lead-row) > .lead-row > .lead-shot, section.page:has(> .lead-row) > .lead-row > .sub, section.page:has(> .lead-row) > .lead-row > .story { padding-inline: 0; margin-inline: 0; }
+  section.page:has(> .lead-row) .row { padding-inline: 0; }
+  #temps.page > .lead-row > .lead-shot, #fuel.page > .lead-row > .lead-shot { margin-inline: 0; }
+}
+
+/* the hero video shares the class name .faces with the three-faces row further down, and
+   was picking up that row's side padding; with the wider margin it squeezed the clock flat.
+   It keeps the same padding it has always had. */
+.hero .faces { padding: 32px clamp(16px, 2.2vw, 32px) 0; }
+
+/* a little more size where the type read small */
+:root { --t-body: 18px; }
+.facts .fact span { font-size: 16px; }
+.facts .fact b { font-size: 20px; }
+.feat li b, .wont li b { font-size: 24px; }
+.pvh-text .fine { font-size: 15px; }
+.bar nav a { font-size: 18px; }
+
+/* A FIELD COMPUTER, NOT A GAUGE: two halves. The three points and the invitation on the
+   left, the phone on the right, where three thin columns and a floating phone used to be. */
+@media (min-width: 1000px) {
+  #computer { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: clamp(40px, 6vw, 110px); align-items: start; padding-inline: var(--margin); }
+  #computer > .head, #computer > .sub, #computer > .feat { grid-column: 1; padding-inline: 0; }
+  #computer > .sub { max-width: 40ch; }
+  #computer > .feat { grid-template-columns: 1fr; row-gap: 26px; padding-top: 36px; }
+  #computer > .feat li { grid-column: auto; font-size: 20px; max-width: 52ch; }
+  #computer > .feat li b { font-size: 27px; }
+  #computer > .pvh { display: contents; }
+  #computer > .pvh > * { opacity: 1; transform: none; }      /* a box-less wrapper is never seen scrolling in, so its children must not wait on it */
+  #computer .pvh-text { grid-column: 1; max-width: 50ch; margin-top: 40px; padding-top: 32px; border-top: 1px solid #2a2a2a; }
+  #computer .pvh-text p { font-size: 20px; }
+  #computer .pvh-text .fine { font-size: 16px; }
+  #computer .pvh-phone { grid-column: 2; grid-row: 1 / span 4; width: 375px; height: 784px; }
+  #computer .pvh-scr { width: 351px; height: 760px; }
+  #computer .pvh-scr iframe { transform: scale(.9); }
+}
+
+/* LIVE DEMO cards: the two clocks play a short loop of their pages. The loop has the card's
+   own background baked in, so the card keeps that colour on hover. */
+.try-card video { display: block; width: 100%; height: auto; max-height: 420px; object-fit: contain; background: var(--panel); }
+.try-card:hover { background: var(--panel); }
