@@ -167,3 +167,6 @@ body.demo .foot-small { margin-top: 0; }
   .pv-open { margin-top: 6px; min-height: 36px; padding: 0 14px; font-size: 15px; }
   .stage.compact .pv-open { display: none; }
 }
+
+.demo-games { margin-top: 10px; }
+@media (max-width: 900px) { .stage.compact .demo-games { display: none; } }

@@ -19,8 +19,8 @@
   const BOOST = { op_range: 7, gauge_panes: [1, 2, 21, 5] }, BOOST_LIM = { bst_lim: 5 };
   const BOOST_SKIP = 500000;   // start boost about 8 minutes into the drive, just before the first over-boost
   // STARTUP (firmware 0.99.154): six startup screens. The demo page starts on STRIPES, the default; a
-  // pick saves the style and restarts the clock so the startup plays live. OLD BLUE is
-  // the placeholder name (the firmware chat's), shown by MINIMAL.
+  // pick saves the style and restarts the clock so the startup plays live. No name is
+  // set, so the line under OVERCLOCK is the clock's own default, FIELD COMPUTER.
   let splStyle = 0;
   let boostOn = new URLSearchParams(location.search).has('boost'), boostLim = false;
   async function mountClock(which) {
@@ -29,7 +29,7 @@
     if (clock) { clock.destroy(); clock = null; }
     status.textContent = 'Loading the firmware (about 4 MB)...';
     try {
-      clock = await OverclockDemoTruck.mount($('#clock'), { frame: which, frameWidth: frameWidth(), base: 'dist/', v: FW_STAMP, fw: FW, serial: new URLSearchParams(location.search).has('serial'), dial: false, storage: null, alerts: { storm: false }, settings: Object.assign({ spl_style: splStyle, spl_name: 'OLD BLUE' }, boostOn ? BOOST : {}, boostOn && boostLim ? BOOST_LIM : {}), skip: boostOn ? BOOST_SKIP : undefined });
+      clock = await OverclockDemoTruck.mount($('#clock'), { frame: which, frameWidth: frameWidth(), base: 'dist/', v: FW_STAMP, fw: FW, serial: new URLSearchParams(location.search).has('serial'), dial: false, storage: null, alerts: { storm: false }, settings: Object.assign({ spl_style: splStyle }, boostOn ? BOOST : {}, boostOn && boostLim ? BOOST_LIM : {}), skip: boostOn ? BOOST_SKIP : undefined });
       if (boostOn) clock.goto('Gauges');   // GAUGES updates live; the big BOOST page holds still in the browser demo
       status.textContent = ''; showHint(); window.__clock = clock; $('#pv-open').hidden = false;   // for testing from the console
       $('#fw').textContent = clock.version;

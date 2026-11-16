@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>OVERCLOCK Arcade: play the four built-in games</title>
+<meta name="description" content="Play the four arcade games built into the OVERCLOCK Field Computer, in your browser, running the same code as the clock.">
+<link rel="canonical" href="https://overclockdash.com/games.html">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OVERCLOCK Field Computer">
+<meta property="og:title" content="OVERCLOCK Arcade: play the four built-in games">
+<meta property="og:description" content="Play the four arcade games built into the OVERCLOCK Field Computer, in your browser, running the same code as the clock.">
+<meta property="og:url" content="https://overclockdash.com/games.html">
+<meta property="og:image" content="https://overclockdash.com/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="site.css?v=20261114a">
+<link rel="stylesheet" href="games.css?v=20261115g">
+</head>
+<body class="gm-body">
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="index.html"><span class="mark-top">OVERCLOCK</span><span class="mark-stripes"></span><span class="mark-sub" aria-label="Field Computer">FIELD COMPUTER</span></a>
+      <button class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+  <nav id="site-nav"><a href="index.html">Home</a><a href="demo.html">Demo</a><a href="data.html">Data</a><a href="3d.html">3D</a><a href="faq.html">Questions</a><a class="nav-cta" href="index.html#want">Want one?</a></nav>
+</header>
+
+<main class="gm" id="main">
+  <div class="gm-left">
+    <h1>ARCADE</h1>
+    <p class="gm-sub">Four games are built into every OVERCLOCK. These run the same code as the clock.</p>
+    <div class="gm-tiles" id="gm-tiles" role="tablist" aria-label="Pick a game"></div>
+    <p class="gm-more">More games coming soon.</p>
+    <p class="gm-how" id="gm-how"></p>
+  </div>
+
+  <div class="gm-mid">
+    <div class="gm-house" id="gm-house">
+      <div class="gm-glass"><canvas id="gm-scr" width="320" height="240" aria-label="The game screen"></canvas>
+        <div class="gm-cue" id="gm-cue" aria-hidden="true">
+          <svg class="gm-cue-mouse" viewBox="0 0 44 64" width="44" height="64"><rect x="3" y="3" width="38" height="58" rx="19"/><rect class="w" x="18" y="13" width="8" height="16" rx="4"/></svg>
+          <span class="gm-cue-desk"><b>Use your mouse wheel</b>Scroll to turn. Click to start.</span>
+          <span class="gm-cue-touch"><b>Use the knob below</b>Turn it to steer. Tap it to start.</span>
+        </div></div>
+    </div>
+    <div class="gm-ctl">
+      <div class="gm-ctl-l">
+        <div class="gm-set">
+          <span class="gm-sw" role="group" aria-label="Colours"><button type="button" data-color="1" aria-pressed="true">Colour</button><button type="button" data-color="0" aria-pressed="false">Mono</button></span>
+          <span class="gm-sw" role="group" aria-label="Which screen"><button type="button" data-o="1" aria-pressed="true">4Runner</button><button type="button" data-o="2" aria-pressed="false">Tacoma</button></span>
+          <span class="gm-sw"><button type="button" id="gm-pause" aria-pressed="false">Pause</button></span>
+          <span class="gm-sw"><button type="button" id="gm-full">Full screen</button></span>
+        </div>
+        <p class="gm-status" id="gm-status">Loading the games...</p>
+      </div>
+      <span class="gm-noknob">No scroll wheel?<br>Drag this knob.</span>
+      <div class="gm-knob" id="gm-knob" role="button" tabindex="0" aria-label="The knob: drag around to turn, tap to push, hold to quit"><i id="gm-tick"></i><b></b></div>
+    </div>
+  </div>
+</main>
+<p class="gm-stamp">Games build 18e2ad1 2026-11-16. Scores are saved in this browser.</p>
+
+<footer class="foot-small">
+  <p>&copy; 2026 OVERCLOCK Field Computer. Questions? <a href="mailto:hello@overclockdash.com">hello@overclockdash.com</a></p>
+  <p><a href="index.html">Home</a> &middot; <a href="demo.html">Demo</a> &middot; <a href="3d.html">3D</a> &middot; <a href="data.html">Data</a> &middot; <a href="games.html">Games</a> &middot; <a href="photos.html">Photos</a> &middot; <a href="compare.html">vs ScanGauge and UltraGauge</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="licenses.html">Licenses</a> &middot; <a href="regulatory.html">Regulatory</a> &middot; <a href="faq.html">Questions</a> &middot; <a href="power.html">Power</a> &middot; <a href="dongles.html">Dongles</a></p>
+  <p>Follow: <a href="https://www.facebook.com/overclockfieldcomputer">Facebook</a> &middot; <a href="https://www.instagram.com/overclockfieldcomputer">Instagram</a></p>
+  <p>Contains FCC ID: 2AC7Z-ESP32WROOM32E</p>
+</footer>
+<script src="menu.js?v=20261109a"></script>
+<script src="games/arc1.js?v=20261115g"></script>
+<script src="games.js?v=20261115g"></script>
+</body>
+</html>
