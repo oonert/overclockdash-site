@@ -623,3 +623,5 @@ section.page .sub, .doc-main, .story, #roadtrip .rt-sub, #boost .rt-sub, .band-n
    own background baked in, so the card keeps that colour on hover. */
 .try-card video { display: block; width: 100%; height: auto; max-height: 420px; object-fit: contain; background: var(--panel); }
 .try-card:hover { background: var(--panel); }
+
+.facts .fact small { color: var(--muted); font-size: 15px; margin-top: 4px; }
