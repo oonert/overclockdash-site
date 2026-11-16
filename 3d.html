@@ -88,9 +88,9 @@ const TEXT = {
   U301:['Main processor','ESP32 with 16 MB flash. Runs the screen, the gauges, the sensors, the logging and WiFi.'],
   U601:['GPS receiver','u-blox M10. Sets the time and tracks speed, heading and altitude.'],
   J601:['GPS antenna jack','Wired to the SMA connector on the case.'],
-  F101:['2 A blade fuse','Protects the board and the truck. Mounted on the underside.'],
-  J705:['Pressure input','PRES A terminals: 5 V, A− and A+ for a pressure sender.'],
-  J702:['Temperature probes','3V3, GND and DATA. Up to four digital temperature probes, wired in parallel on this one port.'],
+  F101:['2 A micro blade fuse','Protects the board and the truck. Mounted on the underside.'],
+  J705:['Pressure input','A plug-in terminal: 5 V, A− and A+ for a pressure sender. The wires screw into a plug that pushes into the board.'],
+  J702:['Temperature probes','A plug-in terminal: 3V3, GND and DATA. Up to four digital temperature probes, wired in parallel on this one port.'],
   J706:['TEMP B input','Two terminals for a second temperature sender.'],
   J701:['Knob connector','Plug for the rotary knob that drives the menus.'],
   J704:['Expansion port','Spare connection for future add-ons.'],
@@ -166,7 +166,7 @@ async function show(m){
   mode=m; back=false; hideCard();
   for(const b of ['4runner','tacoma','board']){ const el=document.getElementById('m-'+b); el.setAttribute('aria-pressed',String(b===m)); el.setAttribute('aria-selected',String(b===m)); }
   document.getElementById('flip').textContent = m==='board' ? 'Show bottom' : 'Show back';
-  const file = m==='board' ? 'board.gltf.json' : `clock_${m}.gltf.json`;
+  const file = m==='board' ? 'board.gltf.json?v=20261116a' : `clock_${m}.gltf.json`;      // the board is V2 Rev.2 (2026-11-16)
   document.getElementById('loading').hidden=false;
   if(!cache[file]) cache[file]=loader.loadAsync(BASE+file).then(g=>g.scene);
   const obj=await cache[file]; if(mode!==m) return;
