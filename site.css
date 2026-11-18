@@ -655,3 +655,19 @@ footer.foot-small > .mark { justify-self: start; }
 .foot-links b { grid-column: 1 / -1; }
 @media (max-width: 1000px) { footer.foot-small > .foot-links { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 480px) { footer.foot-small > .foot-links { grid-template-columns: 1fr; } }
+
+/* factory clock photo morphing into the retro face (2026-11-17). Both images
+   are the same photo framing (firmware render lined up by the buttons), so
+   only the face changes. */
+.oem-swap { position: relative; aspect-ratio: 1200 / 789; background: none; }
+.oem-swap img { position: absolute; inset: 0; width: 100%; height: auto; display: block; border: 0; }
+.oem-swap .oem-retro { opacity: 0; animation: oemRetro 8s ease-in-out infinite; }
+@keyframes oemRetro { 0%, 30% { opacity: 0; } 45%, 80% { opacity: 1; } 95%, 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .oem-swap img { animation: none; } }
+.oem-row { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: var(--gap); align-items: center; margin-top: 40px; }
+.oem-row .sub { margin: 0; }
+.oem-row .oem-swap { width: 100%; max-width: 560px; justify-self: end; }
+@media (max-width: 900px) { .oem-row { display: block; } .oem-row .oem-swap { margin: 20px auto 0; max-width: 92%; } }
+section.page > .oem-row { padding: 0 var(--margin); margin-top: 16px; }
+section.page .oem-row .sub { padding: 0; margin: 0; }
+.oem-row .oem-swap { max-width: 520px; }
