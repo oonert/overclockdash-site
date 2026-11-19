@@ -19,7 +19,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="site.css?v=20261118a">
+<link rel="stylesheet" href="site.css?v=20261119a">
 </head>
 <body class="doc">
 <a class="skip" href="#main">Skip to content</a>
@@ -32,70 +32,70 @@
   <h1>Questions</h1>
   <p class="updated">Something else? <a href="mailto:hello@overclockdash.com">hello@overclockdash.com</a></p>
 
-  <h2>Why is it called OVERCLOCK FIELD COMPUTER?</h2>
+  <h2 id="name">Why is it called OVERCLOCK FIELD COMPUTER?</h2>
   <p>"Overclock" because it does a lot more than tell time, and it fits the overlanding use case. "Field Computer" is a reference to the Field Monitor that Toyota offered on the Japanese Hilux Surf (the equivalent of our 3rd-gen 4Runner) but never sold in the US.</p>
 
-  <h2>Which trucks does it fit?</h2>
+  <h2 id="fit">Which trucks does it fit?</h2>
   <p><a href="4runner-clock-replacement.html">3rd gen 4Runner</a> (1996 to 2002), 1st gen Tacoma (1995 to 2004), T100 (1993 to 1998). In the works: 1996 and 1997 Land Cruiser and Lexus LX 450, and 1st and 2nd gen 4Runner (no engine pages). Want one of those? Say so on the <a href="index.html#want">interest form</a>.</p>
 
   <h2 id="price">How much is it?</h2>
   <p>Our current estimate is $300 to $350. It's not a final price: it depends on manufacturing costs and on how many people join the list. Everyone on the <a href="index.html#want">list</a> hears the final price before anyone pays. That includes the clock, knob, GPS antenna, two temp probes, a memory card and a Bluetooth OBD2 dongle. We recommend the upgraded dongle, available for an additional cost: it shuts itself off when the truck is parked.</p>
 
-  <h2>How hard is it to install?</h2>
+  <h2 id="install">How hard is it to install?</h2>
   <p>It's a direct replacement for the factory clock, but there is still some wiring, about like installing an aftermarket stereo. If you're comfortable putting in a stereo, you'll be right at home installing OVERCLOCK.</p>
   <p>Pull the factory clock, drop this one in, and plug it into the same connector. Then run the knob cable and GPS antenna (and any probes you add). The Bluetooth OBD2 dongle plugs into the diagnostic port under the dash.</p>
   <p>No splicing into the truck's wiring: it uses the factory plug. The only wire work is stripping the ends of the temperature probe and pressure sender wires so they go into the clock's screw terminals.</p>
   <p>Detailed step-by-step instructions are written, and installation videos are on the way.</p>
 
-  <h2>Can I put the factory clock back?</h2>
+  <h2 id="factory-clock">Can I put the factory clock back?</h2>
   <p>Yes. It plugs right back in.</p>
 
-  <h2>Is it 3D printed?</h2>
+  <h2 id="3d-printed">Is it 3D printed?</h2>
   <p>Yes. At our volumes, injection molding doesn't make sense. The case is ASA, a plastic that handles heat and holds up to the sun. It's made for a truck dash in summer.</p>
 
-  <h2>Will it fit other vehicles?</h2>
+  <h2 id="other-vehicles">Will it fit other vehicles?</h2>
   <p>No plans right now, but we won't say never. Nothing about other vehicles rules it out, and we could support many more in the future. For now we're focused on making the best tool for bringing modern features to these trucks.</p>
 
-  <h2>Does it work on trucks older than 1996?</h2>
+  <h2 id="older-trucks">Does it work on trucks older than 1996?</h2>
   <p>Yes, everything except engine codes and live engine data. Those need the 1996 and newer diagnostic port. Some 1995s have it.</p>
 
-  <h2>Do I need the Bluetooth OBD2 dongle?</h2>
+  <h2 id="dongle">Do I need the Bluetooth OBD2 dongle?</h2>
   <p>Only for engine codes and engine data. One comes in the box. We recommend the upgraded dongle, available for an additional cost: it shuts itself off when the truck is parked. You can also bring your own. Most Bluetooth Low Energy dongles work. Older Bluetooth 3.0 "classic" dongles don't. <a href="dongles.html">Which OBD dongle?</a></p>
 
-  <h2>Is it like a ScanGauge or UltraGauge?</h2>
+  <h2 id="scangauge">Is it like a ScanGauge or UltraGauge?</h2>
   <p>A ScanGauge or UltraGauge shows engine data on its own screen. OVERCLOCK replaces the factory clock, reads the same engine data, and adds GPS, temperature probes, tilt, full logging and full-screen alerts. <a href="compare.html">Compare with ScanGauge</a> or <a href="compare.html#ultragauge">UltraGauge</a>.</p>
 
-  <h2>Can't I just build this myself with an ESP32?</h2>
+  <h2 id="diy">Can't I just build this myself with an ESP32?</h2>
   <p>Yes, and you should. That's exactly how OVERCLOCK started, and I spent hundreds of dollars on parts, boards and dead ends getting here. Trust me, it won't be cheaper. OVERCLOCK is the finished version: a fully custom board, built to fit where the factory clock sits. The hardware is the hard part, and it's done. Start with ours and spend your time on the fun part.</p>
 
   <h2 id="custom-firmware">Can I write my own firmware for it?</h2>
   <p>Yes. That's the fun part. OVERCLOCK comes with an Arduino library for the board, so you can write your own code for the hardware we've already built. If you want the stock firmware back, rescue mode restores it any time.</p>
 
-  <h2>Why a knob and not a touchscreen?</h2>
+  <h2 id="touchscreen">Why a knob and not a touchscreen?</h2>
   <p>A small touchscreen is hard to hit accurately while driving. The single knob (turn, click, hold) keeps your eyes on the road and leaves the whole screen for information. Flush mount or stick-on housing, four-foot cable.</p>
 
-  <h2>Can it tune or reprogram my truck?</h2>
+  <h2 id="tune">Can it tune or reprogram my truck?</h2>
   <p>No. Read-only. The only change it makes is clearing codes, and only when you hold the knob to confirm.</p>
 
-  <h2>Is there a subscription or an account?</h2>
+  <h2 id="subscription">Is there a subscription or an account?</h2>
   <p>No subscription, no account, no cloud.</p>
 
-  <h2>Do I need my phone?</h2>
+  <h2 id="phone">Do I need my phone?</h2>
   <p>No. Everything works from the knob. Your phone is optional: settings, updates and log downloads over Wi-Fi. A companion app is coming.</p>
 
-  <h2>Are temperature probes included?</h2>
+  <h2 id="probes">Are temperature probes included?</h2>
   <p>Two wired probes in the box, up to four total. Plus a trans temp sender and an oil or fuel pressure sender. Wireless RuuviTag Pro sensors are sold separately. See the <a href="senders.html">supported senders</a>.</p>
 
-  <h2>Does it work with wireless temperature sensors?</h2>
+  <h2 id="wireless">Does it work with wireless temperature sensors?</h2>
   <p>Yes. Up to four RuuviTag Pro 2in1 or 3in1 sensors, alongside up to four wired probes. You add and name them on the clock with the knob, with no phone app. RuuviTag Pro is the only wireless sensor we recommend and support. It isn't included and we don't sell it; buy it from Ruuvi or one of their resellers. See the <a href="senders.html#wireless">supported sensors</a>.</p>
 
-  <h2>Can I read transmission temperature?</h2>
+  <h2 id="trans-temp">Can I read transmission temperature?</h2>
   <p>Yes. From OBD2 on 1999 and newer automatics, or from the optional trans temp sender.</p>
 
-  <h2>Does it work with my solar setup?</h2>
+  <h2 id="solar">Does it work with my solar setup?</h2>
   <p>Victron SmartSolar charge controllers and SmartShunt battery monitors. Bluetooth lithium batteries: see below.</p>
 
-  <h2>Which Bluetooth lithium batteries work?</h2>
+  <h2 id="batteries">Which Bluetooth lithium batteries work?</h2>
   <p>OVERCLOCK is built to read the battery-management systems inside most Bluetooth lithium batteries. Brand-by-brand testing is underway. Send us your battery's Bluetooth name and we'll confirm before you buy.</p>
   <ul>
     <li>Encryption on in the battery's app? Turn it off.</li>
@@ -103,34 +103,34 @@
     <li>Some batteries go quiet with no load. The clock shows NOT HEARD until something turns on.</li>
   </ul>
 
-  <h2>Will it drain my battery?</h2>
+  <h2 id="battery-drain">Will it drain my battery?</h2>
   <p>No. About 110 mA while driving, about one dash bulb. Parked, it&#39;s fully off between check-ins: under 1 mA. A low-battery cutoff (11.8 V by default) stops the check-ins. We recommend the upgraded dongle, which shuts itself off when parked. The standard one draws a little power on its own; with it, unplug the dongle if the truck will sit for more than about a week. Full numbers on the <a href="power.html">power page</a>.</p>
 
-  <h2>What happens when the truck is off?</h2>
+  <h2 id="truck-off">What happens when the truck is off?</h2>
   <p>It saves your trip and switches off. Then it wakes on a schedule you pick: every hour, 30 minutes or 15 minutes. Screen stays off. Each wake lasts about 20 seconds: GPS, probes, barometer and solar, one line in the log, then off. About 0.6 mAh per wake, or 15 mAh a day on the hourly default. Your truck&#39;s own parked draw is 500 to 1,200 mAh a day.</p>
 
-  <h2>What if I disconnect the battery?</h2>
+  <h2 id="disconnect">What if I disconnect the battery?</h2>
   <p>Settings and logs are kept. GPS resets the time on your next drive.</p>
 
-  <h2>Is the screen readable in daylight?</h2>
+  <h2 id="daylight">Is the screen readable in daylight?</h2>
   <p>Yes. Bright, high contrast, and auto dimming with the headlights or at sunset.</p>
 
-  <h2>How do I get updates?</h2>
+  <h2 id="updates">How do I get updates?</h2>
   <p>Over Wi-Fi from your phone, or from the memory card. Every update is checked before install.</p>
 
-  <h2>What memory card should I use?</h2>
+  <h2 id="memory-card">What memory card should I use?</h2>
   <p>An 8 GB card comes in the box. Replacing it? A high-endurance microSD made for dash cams, up to 32 GB, from a trusted seller. Knockoff and counterfeit cards can work fine in a computer and still fail in OVERCLOCK, which writes to the card every second.</p>
 
-  <h2>Where does my data go?</h2>
+  <h2 id="data">Where does my data go?</h2>
   <p>The memory card in the dash. Nowhere else. See the <a href="privacy.html">privacy page</a>.</p>
 
-  <h2>Is it waterproof?</h2>
+  <h2 id="waterproof">Is it waterproof?</h2>
   <p>No.</p>
 
-  <h2>What's the warranty and return policy?</h2>
+  <h2 id="warranty">What's the warranty and return policy?</h2>
   <p>Three-year limited warranty on materials and workmanship. Defects in that time: repaired or replaced. Dead on arrival: replaced, shipping covered. Damage from installation, water or modifications isn't covered. 30-day returns in original condition. Full terms on the <a href="terms.html">terms page</a>.</p>
 
-  <h2>Is it legal to use?</h2>
+  <h2 id="legal">Is it legal to use?</h2>
   <p>Yes. Its radio modules carry their own FCC ID. See <a href="regulatory.html">Regulatory Information</a>. Treat it like your radio: adjust it only when it's safe, keep your eyes on the road, and follow your local distracted-driving laws.</p>
 </main>
 <footer class="foot-small">
