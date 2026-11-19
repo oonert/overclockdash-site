@@ -78,5 +78,21 @@
   $$('.in').forEach(el => io.observe(el));
   $$('.row').forEach(el => { el.classList.add('in'); io.observe(el); });
 
+
+  // The clips below the top load only when you scroll near them, and pause when
+  // they leave the screen, so a first visit does not pull every video at once.
+  // The top clip still plays straight away.
+  const clips = $$('video[data-play]');
+  if ('IntersectionObserver' in window) {
+    const vo = new IntersectionObserver(es => es.forEach(e => {
+      const v = e.target;
+      if (e.isIntersecting) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+      else if (!v.paused) v.pause();
+    }), { rootMargin: '300px 0px' });
+    clips.forEach(v => vo.observe(v));
+  } else {
+    clips.forEach(v => { v.preload = 'auto'; v.autoplay = true; v.play(); });
+  }
+
 })();
 

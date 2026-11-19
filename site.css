@@ -119,7 +119,7 @@ section.page .sub { font-size: var(--t-lead); color: var(--ink); margin-top: 16p
 .row-wrap { margin-top: 40px; }
 .progress { height: 6px; background: var(--panel-3); margin-inline: var(--margin); }
 .progress i { display: block; height: 100%; width: 20%; background: var(--ink); transition: width .2s; }
-.row { display: flex; gap: 32px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: none; padding: 32px var(--margin) 24px; scrollbar-width: none; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y; }
+.row { display: flex; gap: 32px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: none; padding: 32px var(--margin) 24px; scrollbar-width: none; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y pinch-zoom; }
 .row::-webkit-scrollbar { display: none; }
 @media (hover: hover) { .row { cursor: grab; } .row.grabbing, .row.thrown { cursor: grabbing; } .row.grabbing { user-select: none; } .row img { -webkit-user-drag: none; } }
 .moment { flex: 0 0 280px; display: flex; flex-direction: column; }
@@ -346,6 +346,16 @@ section.page .sub a:not(.btn) { color: var(--amber); }
 @media (max-width: 760px) { body.menu-open .bar nav { align-items: stretch; } }
 .bar nav a[aria-current="page"] { color: var(--amber); }
 .bar nav a.nav-cta { color: var(--amber); font-weight: 700; }
+
+/* home: the bar stays at the top while you scroll, so "Want one?" is always one tap away */
+.bar.sticky { position: sticky; top: 0; z-index: 50; padding-top: 12px; padding-bottom: 12px; background: var(--ground); border-bottom: 1px solid #222; }
+:root:has(.bar.sticky) { scroll-padding-top: 96px; }
+.bar-cta { display: none; }
+@media (max-width: 760px) { .bar-cta { display: inline-flex; min-height: 44px; } .bar .bar-cta { padding: 0 12px; } .bar.sticky .menu-btn { margin-left: 0; } }
+@media (max-width: 360px) { .bar .bar-cta { padding: 0 10px; font-size: 16px; } }
+/* the ask, repeated at the end of a few sections */
+.cta-line { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+.cta-line .fine { color: var(--muted); }
 
 /* hardware: the two boards as a slightly overlapping collage, no frames */
 .lead-row .lead-shot.boards { display: block; position: relative; width: 100%; max-width: 640px; aspect-ratio: 1.18; border: 0; background: transparent; }

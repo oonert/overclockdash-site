@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OVERCLOCK: 4Runner and Tacoma clock with gauges, codes and GPS</title>
 <meta name="description" content="OVERCLOCK Field Computer replaces the factory clock in the 3rd gen 4Runner, 1st gen Tacoma and T100. Engine codes spelled out, GPS, every drive logged every second, weather, tilt, solar and alerts. Try the real firmware in your browser.">
 <link rel="canonical" href="https://overclockdash.com/">
@@ -20,13 +20,14 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://overclockdash.com/#org", "name": "OVERCLOCK", "url": "https://overclockdash.com/", "logo": "https://overclockdash.com/icon-192.png", "email": "hello@overclockdash.com", "sameAs": ["https://www.facebook.com/overclockfieldcomputer", "https://www.instagram.com/overclockfieldcomputer"]}, {"@type": "WebSite", "name": "OVERCLOCK Field Computer", "url": "https://overclockdash.com/", "publisher": {"@id": "https://overclockdash.com/#org"}}, {"@type": "Product", "name": "OVERCLOCK Field Computer", "brand": {"@id": "https://overclockdash.com/#org"}, "image": "https://overclockdash.com/og.jpg", "description": "OVERCLOCK Field Computer replaces the factory clock in the 3rd gen 4Runner, 1st gen Tacoma and T100. Engine codes spelled out, GPS, every drive logged every second, weather, tilt, solar and alerts. Try the real firmware in your browser."}]}</script>
-<link rel="stylesheet" href="site.css?v=20261117b">
+<link rel="stylesheet" href="site.css?v=20261118a">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <main id="main">
-  <header class="bar">
+  <header class="bar sticky">
     <a class="mark" href="#top"><span class="mark-top">OVERCLOCK</span><span class="mark-stripes"></span><span class="mark-sub" aria-label="Field Computer">FIELD COMPUTER</span></a>
+        <a class="btn bar-cta" href="#want">Want one?</a>
         <button class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
     <nav id="site-nav"><a href="demo.html">Demo</a><a href="data.html">Data</a><a href="3d.html">3D</a><a href="faq.html">Questions</a><a class="nav-cta" href="#want">Want one?</a></nav>
   </header>
@@ -102,6 +103,7 @@
       <li><b>Mount the knob flush with one hole,</b> or stick it on with the included housing and tape if you don't want to drill.</li>
       <li><b>Start with the basics</b> or add up to four temp probes and four wireless temp sensors, a transmission temp sender, and an oil or fuel pressure sensor, or a boost sensor for turbocharged and supercharged trucks. Whatever you add gets logged with everything else.</li>
     </ul>
+    <p class="sub cta-line"><a class="btn" href="#want">Want one?</a> <span class="fine">No payment to join the list.</span></p>
   </section>
 
   <section class="page" id="why">
@@ -119,14 +121,15 @@
       <b>A field computer, not just a gauge.</b>
       <p>A gauge shows you a number. OVERCLOCK also keeps the record, spots readings slowly getting worse, and lets you look back after the fact. Built for these trucks, not every vehicle. <a href="compare.html">How it compares to a ScanGauge or UltraGauge &rarr;</a></p>
     </aside>
+    <p class="sub cta-line"><a class="btn" href="#want">Want one?</a> <span class="fine">No payment to join the list.</span></p>
   </section>
 
   <section class="page" id="try">
     <div class="head in"><h2>LIVE DEMO</h2></div>
-    <p class="sub">The actual firmware, running in your browser. Turn the knob, click, hold, or inject a fault.</p>
+    <p class="sub">The actual firmware runs in your browser on the demo page. Turn the knob, click, hold, or inject a fault. The clips below show each truck stepping through its pages. Pick one to try it yourself.</p>
     <div class="try">
-      <a class="try-card" href="demo.html?v=4runner"><video src="video/demo-4runner.mp4?v=20261115a" poster="video/demo-4runner-poster.jpg?v=20261115a" muted loop playsinline autoplay preload="metadata" width="900" height="704" aria-label="The 4Runner clock stepping through its pages"></video><span>4Runner</span></a>
-      <a class="try-card" href="demo.html?v=tacoma"><video src="video/demo-tacoma.mp4?v=20261115a" poster="video/demo-tacoma-poster.jpg?v=20261115a" muted loop playsinline autoplay preload="metadata" width="900" height="838" aria-label="The Tacoma clock stepping through its pages"></video><span>Tacoma</span></a>
+      <a class="try-card" href="demo.html?v=4runner"><video data-play src="video/demo-4runner.mp4?v=20261115a" poster="video/demo-4runner-poster.jpg?v=20261115a" muted loop playsinline preload="none" width="900" height="704" aria-label="The 4Runner clock stepping through its pages"></video><span>Try the 4Runner &rarr;</span></a>
+      <a class="try-card" href="demo.html?v=tacoma"><video data-play src="video/demo-tacoma.mp4?v=20261115a" poster="video/demo-tacoma-poster.jpg?v=20261115a" muted loop playsinline preload="none" width="900" height="838" aria-label="The Tacoma clock stepping through its pages"></video><span>Try the Tacoma &rarr;</span></a>
     </div>
     <p class="sub"><a class="btn" href="demo.html">Open the demo</a> <a class="btn" href="3d.html">See it in 3D</a></p>
   </section>
@@ -178,7 +181,7 @@
     <div class="head in"><h2>YOUR CLOCK, YOUR WAY</h2></div>
     <div class="lead-row">
       <p class="sub">2 fonts, 10 colors, 12 or 24-hour, four configurable corners.</p>
-      <video class="lead-shot" src="video/faces.mp4" poster="video/faces-poster.jpg" muted loop playsinline autoplay preload="auto" width="1200" height="938" aria-label="The clock in eight looks: digital and classic fonts, different time and corner colors, different corner readings, 12 and 24-hour time"></video>
+      <video data-play class="lead-shot" src="video/faces.mp4" poster="video/faces-poster.jpg" muted loop playsinline preload="none" width="1200" height="938" aria-label="The clock in eight looks: digital and classic fonts, different time and corner colors, different corner readings, 12 and 24-hour time"></video>
     </div>
     <ul class="feat in">
       <li><b>Four corners you can set how you want.</b> There are five ready-made layouts, or save up to three of your own.</li>
@@ -203,7 +206,7 @@
     <div class="head in"><h2>FULL ENGINE DIAGNOSTICS</h2></div>
     <div class="lead-row">
       <p class="sub">Checks for codes on every drive. Shows active and pending codes as they appear, and saves freeze-frame data for every one.</p>
-      <video class="lead-shot" src="video/codes.mp4" poster="video/codes-poster.jpg" muted loop playsinline autoplay preload="auto" width="1200" height="938" aria-label="Three codes set, one opened to what it means and what to check, then the codes cleared"></video>
+      <video data-play class="lead-shot" src="video/codes.mp4" poster="video/codes-poster.jpg" muted loop playsinline preload="none" width="1200" height="938" aria-label="Three codes set, one opened to what it means and what to check, then the codes cleared"></video>
     </div>
     <ul class="feat in">
       <li><b>Codes are explained in plain language,</b> with a starting point for troubleshooting and a note on how serious they are.</li>
@@ -257,7 +260,7 @@
     <div class="head in"><h2>ALERTS</h2></div>
     <div class="lead-row">
       <p class="sub">Watches the whole time and takes over the screen for serious issues like high coolant or transmission temperature.</p>
-      <video class="lead-shot" src="video/takeovers.mp4?v=2" poster="video/takeovers-poster.jpg" muted loop playsinline autoplay preload="auto" width="1200" height="938" aria-label="The gauges page, then a code alert, an overheat alert and a fridge warning taking the screen"></video>
+      <video data-play class="lead-shot" src="video/takeovers.mp4?v=2" poster="video/takeovers-poster.jpg" muted loop playsinline preload="none" width="1200" height="938" aria-label="The gauges page, then a code alert, an overheat alert and a fridge warning taking the screen"></video>
     </div>
     <ul class="feat in">
       <li><b>Over-voltage.</b> You'll know right away if the voltage regulator fails.</li>
@@ -275,7 +278,7 @@
     <div class="head in"><h2>TEMPERATURES, ANYWHERE YOU WANT THEM.</h2></div>
     <div class="lead-row">
       <p class="sub">Up to four wired probes and four wireless sensors, each with a name (fridge, outside, etc.). The temperature page only shows the ones you have.</p>
-      <video class="lead-shot" src="video/temps.mp4" poster="video/temps-poster.jpg" muted loop playsinline autoplay preload="auto" width="1200" height="938" aria-label="The TEMP page laying itself out for one, two, three and four probes, then the last 24 hours of every probe as charts"></video>
+      <video data-play class="lead-shot" src="video/temps.mp4" poster="video/temps-poster.jpg" muted loop playsinline preload="none" width="1200" height="938" aria-label="The TEMP page laying itself out for one, two, three and four probes, then the last 24 hours of every probe as charts"></video>
     </div>
     <ul class="feat in">
       <li><b>New: wireless sensors.</b> Works with RuuviTag Pro 2in1 and 3in1 sensors. Nothing to wire through the cab and no phone app. Add and name them with the knob. <a href="senders.html#wireless">See how</a>.</li>
@@ -293,7 +296,7 @@
     <div class="head in"><h2>INTEGRATED GPS</h2></div>
     <div class="lead-row">
       <p class="sub">Built-in GPS. Sets the clock and time zone automatically. No phone or subscription needed.</p>
-      <video class="lead-shot" src="video/gps.mp4" poster="video/gps-poster.jpg" muted loop playsinline autoplay preload="auto" width="1200" height="938" aria-label="The SPEED page live, the ALTITUDE page climbing, the WELCOME TO OREGON sign taking the screen, then WELCOME HOME"></video>
+      <video data-play class="lead-shot" src="video/gps.mp4" poster="video/gps-poster.jpg" muted loop playsinline preload="none" width="1200" height="938" aria-label="The SPEED page live, the ALTITUDE page climbing, the WELCOME TO OREGON sign taking the screen, then WELCOME HOME"></video>
     </div>
     <ul class="feat in">
       <li><b>GPS ground speed.</b> OVERCLOCK stays accurate no matter what size tires you run.</li>
@@ -310,7 +313,7 @@
     <div class="head in"><h2>EVERY SECOND, LOGGED</h2></div>
     <div class="lead-row">
       <p class="sub">Logs more than 70 readings every second of every drive, plus every alert. It's all on the SD card in the dash.</p>
-      <video class="lead-shot" src="video/health.mp4" poster="video/health-poster.jpg" muted loop playsinline autoplay preload="auto" width="1200" height="938" aria-label="The HEALTH page: the list, each graph, and the two rising items opened to their verdict and what to check"></video>
+      <video data-play class="lead-shot" src="video/health.mp4" poster="video/health-poster.jpg" muted loop playsinline preload="none" width="1200" height="938" aria-label="The HEALTH page: the list, each graph, and the two rising items opened to their verdict and what to check"></video>
     </div>
     <ul class="feat in">
       <li><b>Every start, every code, every tank.</b> OVERCLOCK measures battery voltage before each start and the dip while cranking, saves every code with its freeze frame, and tracks real gallons against real miles.</li>
@@ -336,7 +339,7 @@
     <div class="head in"><h2>FUEL, TRACKED</h2></div>
     <div class="lead-row">
       <p class="sub">Calculates MPG from the engine data and gets more accurate every time you log a fill-up.</p>
-      <video class="lead-shot" src="video/fuel.mp4" poster="video/fuel-poster.jpg" muted loop playsinline autoplay preload="auto" width="1200" height="938" aria-label="The FUEL page, logging a fill: gallons, price, the engine's own check, save; then the clock with range, live mpg, average mpg and heading"></video>
+      <video data-play class="lead-shot" src="video/fuel.mp4" poster="video/fuel-poster.jpg" muted loop playsinline preload="none" width="1200" height="938" aria-label="The FUEL page, logging a fill: gallons, price, the engine's own check, save; then the clock with range, live mpg, average mpg and heading"></video>
     </div>
     <ul class="feat in">
       <li><b>This tank, last tank, range.</b> See your mpg tank by tank and how far you can go on what's left.</li>
@@ -384,13 +387,14 @@
         <div class="moment ph"><h3>Days and fill-ups</h3><p>The whole trip in one table.</p><img src="pages/phone/trips_roadtrip_days.jpg?v=20261109a" width="600" height="1190" alt="The phone's road trip days table and fill-ups" loading="lazy" decoding="async"></div>
       </div>
     </div>
+    <p class="sub cta-line"><a class="btn" href="#want">Want one?</a> <span class="fine">No payment to join the list.</span></p>
   </section>
 
   <section class="page" id="phone">
     <div class="head in"><h2>PHONE CONNECTED</h2></div>
     <div class="lead-row">
       <p class="sub">Change settings, download logs, or update the firmware from your phone over Wi-Fi.</p>
-      <video class="lead-shot" src="video/wifi.mp4" poster="video/wifi-poster.jpg" muted loop playsinline autoplay preload="auto" width="1200" height="938" aria-label="SETTINGS, DATA, WIFI, START: the hotspot card with its QR code, then CONNECTED when a phone joins"></video>
+      <video data-play class="lead-shot" src="video/wifi.mp4" poster="video/wifi-poster.jpg" muted loop playsinline preload="none" width="1200" height="938" aria-label="SETTINGS, DATA, WIFI, START: the hotspot card with its QR code, then CONNECTED when a phone joins"></video>
     </div>
     <p class="sub photo-more"><a href="#computer">Explore your drive data &uarr;</a></p>
     <ul class="feat in">
@@ -429,7 +433,7 @@
     <div class="head in"><h2>OVERLAND READY</h2></div>
     <div class="lead-row">
       <p class="sub">The features that matter once the engine's off, and the solar gear you already own, right on your dash.</p>
-      <video class="lead-shot" src="video/camp.mp4" poster="video/camp-poster.jpg" muted loop playsinline autoplay preload="auto" width="1200" height="938" aria-label="The SOLAR page through a day, the house battery and its cells, the WEATHER page with a storm coming, the CAMP level view, and the STARTER battery page"></video>
+      <video data-play class="lead-shot" src="video/camp.mp4" poster="video/camp-poster.jpg" muted loop playsinline preload="none" width="1200" height="938" aria-label="The SOLAR page through a day, the house battery and its cells, the WEATHER page with a storm coming, the CAMP level view, and the STARTER battery page"></video>
     </div>
     <ul class="feat in">
       <li><b>Shows solar input, battery current, and state of charge.</b> You can link multiple Bluetooth batteries so they appear as one bank.</li>
@@ -620,7 +624,7 @@
 document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
 document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
 </script>
-<script src="index.js?v=20261116a"></script>
+<script src="index.js?v=20261118a"></script>
 <script src="lightbox.js?v=20261109a"></script>
 <script src="phonefinger.js?v=20261114d"></script>
 <script src="phoneview.js?v=20261114c"></script>
