@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OVERCLOCK features: engine codes, alerts, GPS logging, phone and camp</title>
+<meta name="description" content="Everything OVERCLOCK Field Computer does in a 3rd gen 4Runner, 1st gen Tacoma or T100: engine codes in plain language, alerts, boost, temperatures, GPS and second-by-second logging, fuel and mileage logs, road trips, and phone and camp features.">
+<link rel="canonical" href="https://overclockdash.com/features.html">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OVERCLOCK Field Computer">
+<meta property="og:title" content="OVERCLOCK features: engine codes, alerts, GPS logging, phone and camp">
+<meta property="og:description" content="Everything OVERCLOCK Field Computer does in a 3rd gen 4Runner, 1st gen Tacoma or T100: engine codes in plain language, alerts, boost, temperatures, GPS and second-by-second logging, fuel and mileage logs, road trips, and phone and camp features.">
+<meta property="og:url" content="https://overclockdash.com/features.html">
+<meta property="og:image" content="https://overclockdash.com/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="site.css?v=20261119c">
+<noscript><style>.in > * { opacity: 1; transform: none; }</style></noscript>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<main id="main">
+  <header class="bar sticky">
+    <a class="mark" href="index.html"><span class="mark-top">OVERCLOCK</span><span class="mark-stripes"></span><span class="mark-sub" aria-label="Field Computer">FIELD COMPUTER</span></a>
+        <a class="btn bar-cta" href="index.html#want">Want one?</a>
+        <button class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <nav id="site-nav"><a href="index.html">Home</a><a href="features.html" aria-current="page">Features</a><a href="demo.html">Demo</a><a href="data.html">Data</a><a href="3d.html">3D</a><a href="faq.html">Questions</a><a class="nav-cta" href="index.html#want">Want one?</a></nav>
+  </header>
+
+  <div class="feat-intro">
+    <h1>FEATURES</h1>
+    <p class="lead">It's a computer, not a gauge, and it fits in the factory clock opening on the factory plug. I went looking for one and nobody made it, so I built it.</p>
+    <nav class="feat-jump" aria-label="On this page"><a class="btn ghost" href="#trouble">Engine watch</a><a class="btn ghost" href="#recorded">GPS and logging</a><a class="btn ghost" href="#offgrid">Phone and camp</a><a class="btn ghost" href="#grow">Looks and hardware</a></nav>
+  </div>
+
+  <div class="stripes" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="group-intro" id="trouble"><h2>ENGINE WATCH</h2></div>
+
+  <section class="page" id="engine">
+    <div class="head in"><h2>FULL ENGINE DIAGNOSTICS</h2></div>
+    <div class="lead-row">
+      <p class="sub">Checks for codes on every drive. Shows active and pending codes as they appear, and saves freeze-frame data for every one.</p>
+      <video data-play class="lead-shot" src="video/codes.mp4" poster="video/codes-poster.jpg" muted loop playsinline preload="none" width="1200" height="938" aria-label="Three codes set, one opened to what it means and what to check, then the codes cleared"></video>
+    </div>
+    <ul class="feat in">
+      <li><b>Codes are explained in plain language,</b> with a starting point for troubleshooting and a note on how serious they are.</li>
+      <li><b>Enhanced freeze frame*.</b> Your truck saves one freeze frame. Most readers show just that one. OVERCLOCK saves its own for every code, and keeps every second of the drive around it.</li>
+      <li><b>Live engine gauges.</b> Transmission temp comes from the engine computer on 1999 and newer automatics, or from an optional sender on older trucks.</li>
+      <li><b>Oil pressure, fuel pressure or boost,</b> shown live and logged, with an optional sensor. <a href="#boost">More about boost.</a></li>
+      <li><b>Smog check and code clearing.</b> See if the truck is ready for its emissions test, and clear codes when you choose to.</li>
+      <li><b>Known codes.</b> Living with a gas cap code? Mark it KNOWN and OVERCLOCK stops nagging: it stays on the list, comes back as one quiet line, and is never cleared for you. The truck's own check engine light still works as normal. Serious codes can never be marked.</li>
+    </ul>
+    <div class="row-wrap">
+      <div class="row rt-row" id="known-row" role="group" aria-label="Known code screens" tabindex="0">
+        <div class="moment"><h3>Mark as known</h3><p>One turn of the knob.</p><img src="pages/known/mark.png?v=20261110a" width="320" height="240" alt="P0171 FUEL MIX TOO LEAN with MARK AS KNOWN lit" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Explained once</h3><p>Before the first one.</p><img src="pages/known/info.png?v=20261110a" width="320" height="240" alt="KNOWN CODES explanation with NO and YES" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Still on the list</h3><p>Just quieter.</p><img src="pages/known/list_known.png?v=20261110a" width="320" height="240" alt="CODES list with P0171 marked KNOWN" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>When it comes back</h3><p>One quiet line.</p><img src="pages/known/notice.png?v=20261110a" width="320" height="240" alt="KNOWN: P0442 IS BACK" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Never for serious ones</h3><p>No option to hide it.</p><img src="pages/known/never.png?v=20261110a" width="320" height="240" alt="P0115 COOLANT SENSOR, STOP SOON, always shown" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+    <p class="sub small">Live engine data and trouble codes require the Bluetooth OBD2 dongle and a 1996 or newer truck. *Enhanced freeze frame is taken from OVERCLOCK's own recording, within about 20 seconds of the code setting.</p>
+  </section>
+
+  <section class="page" id="boost">
+    <div class="head in"><h2>BOOST</h2></div>
+    <p class="sub rt-sub">Add a MAP sensor to the pressure port and OVERCLOCK becomes a boost gauge. It corrects itself live with its own barometer, so it reads true at any altitude.</p>
+    <div class="rt-pair">
+      <img class="rt-clock" src="pages/boost/boost-bezel.jpg?v=20261109b" width="1200" height="938" alt="The BOOST page: 12 psi, peak 12 psi, 18 inHg at idle" loading="lazy" decoding="async">
+    </div>
+    <ul class="feat in">
+      <li><b>Psi of boost, inHg of vacuum.</b> OVERCLOCK reads just like a mechanical boost gauge.</li>
+      <li><b>Where you want it.</b> Put boost on the gauges page, in a corner of the clock, or give it a page of its own with peak boost and vacuum at idle.</li>
+      <li><b>Over-boost warning.</b> You set your own boost limit, and the clock warns you when you go over it.</li>
+      <li><b>Logged with every drive.</b> Look back at your boost on any drive.</li>
+      <li><b>Two sensors today.</b> OVERCLOCK works with the AEM 30-2130-50 (3.5 bar) or a GM 3-bar MAP sensor (part 12223861). Boost uses the same port as oil or fuel pressure, so it takes that spot. <a href="senders.html">Sender support</a></li>
+      <li><b>Try it.</b> <a href="demo.html?boost">See boost in the live demo.</a></li>
+    </ul>
+    <div class="row-wrap">
+      <div class="row rt-row" id="boost-row" role="group" aria-label="Boost screens" tabindex="0">
+        <div class="moment"><h3>Vacuum</h3><p>Off the throttle.</p><img src="pages/boost/boost-page-vacuum.png?v=20261109b" width="320" height="240" alt="The BOOST page in vacuum: 18 inHg" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Gauges</h3><p>Boost in any pane.</p><img src="pages/boost/gauges-boost.png?v=20261109b" width="320" height="240" alt="GAUGES with BOOST PSI 12" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Clock page</h3><p>Boost in a corner.</p><img src="pages/boost/clock-boost.png?v=20261109b" width="320" height="240" alt="The clock page with PSI 12 in a corner" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Setup</h3><p>Pick BOOST, then the sensor.</p><img src="pages/boost/setup-1-pick-boost.png?v=20261109b" width="320" height="240" alt="SENDERS: PRESSURE set to BOOST, sensor AEM" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Asked once</h3><p>Warning or no warning.</p><img src="pages/boost/setup-2-question.png?v=20261109b" width="320" height="240" alt="SET AN OVER-BOOST WARNING? No or Yes" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Your limit</h3><p>No default. You pick it.</p><img src="pages/boost/setup-3-limit.png?v=20261109b" width="320" height="240" alt="BOOST alert on, limit 15 psi" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Over the limit</h3><p>Full screen.</p><img src="pages/boost/overboost-warning.png?v=20261109b" width="320" height="240" alt="OVERBOOST 17 PSI, back off the throttle" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Metric</h3><p>Bar, negative in vacuum.</p><img src="pages/boost/boost-page-metric.png?v=20261109b" width="320" height="240" alt="The BOOST page in metric: 0.8 bar" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="watch">
+    <div class="head in"><h2>ALERTS</h2></div>
+    <div class="lead-row">
+      <p class="sub">Watches the whole time and takes over the screen for serious issues like high coolant or transmission temperature.</p>
+      <video data-play class="lead-shot" src="video/takeovers.mp4?v=2" poster="video/takeovers-poster.jpg" muted loop playsinline preload="none" width="1200" height="938" aria-label="The gauges page, then a code alert, an overheat alert and a fridge warning taking the screen"></video>
+    </div>
+    <ul class="feat in">
+      <li><b>Over-voltage.</b> You'll know right away if the voltage regulator fails.</li>
+      <li><b>Not charging.</b> You'll know if the alternator stops charging.</li>
+      <li><b>Serious engine codes.</b> Critical codes take over the full screen.</li>
+      <li><b>Low oil pressure.</b> With the optional sender, OVERCLOCK tells you to stop the engine.</li>
+      <li><b>Over-boost.</b> With a boost sensor, OVERCLOCK warns you when you go over the limit you set.</li>
+      <li><b>Notices gradual problems</b> that would otherwise only show up after something fails.</li>
+      <li><b>Fridge and freezer.</b> Set your own temperature limits and get a warning when they're crossed.</li>
+      <li><b>Towing.</b> OVERCLOCK watches transmission and coolant temps and warns you when they climb.</li>
+    </ul>
+  </section>
+
+  <section class="page" id="temps">
+    <div class="head in"><h2>TEMPERATURES, ANYWHERE YOU WANT THEM.</h2></div>
+    <div class="lead-row">
+      <p class="sub">Up to four wired probes and four wireless sensors, each with a name (fridge, outside, etc.). The temperature page only shows the ones you have.</p>
+      <video data-play class="lead-shot" src="video/temps.mp4" poster="video/temps-poster.jpg" muted loop playsinline preload="none" width="1200" height="938" aria-label="The TEMP page laying itself out for one, two, three and four probes, then the last 24 hours of every probe as charts"></video>
+    </div>
+    <ul class="feat in">
+      <li><b>New: wireless sensors.</b> Works with RuuviTag Pro 2in1 and 3in1 sensors. Nothing to wire through the cab and no phone app. Add and name them with the knob. Sold separately by Ruuvi. <a href="senders.html#wireless">See how</a>.</li>
+      <li><b>Logged while you're parked.</b> OVERCLOCK wakes on its parked schedule and records every wireless sensor, so you can see how the fridge did while you were away.</li>
+      <li><b>Fridge and freezer alerts.</b> You choose the temperature limits.</li>
+      <li><b>Trans temp.</b> There's a dedicated input for a transmission temp sender.</li>
+      <li><b>Logged with everything else.</b> Each probe and sensor keeps a 24-hour history too.</li>
+      <li><b>Simple to add.</b> All four probes share one screw terminal, so adding another is just a few more wires.</li>
+      <li><b>Which probes and senders?</b> <a href="senders.html">See the ones it supports today.</a></li>
+      <li><b>Coming next.</b> Humidity and dew point from a 3in1 sensor.</li>
+    </ul>
+  </section>
+
+  <div class="stripes" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="group-intro" id="recorded"><h2>GPS AND LOGGING</h2></div>
+
+  <section class="page" id="gps">
+    <div class="head in"><h2>INTEGRATED GPS</h2></div>
+    <div class="lead-row">
+      <p class="sub">Built-in GPS. Sets the clock and time zone automatically. No phone or subscription needed.</p>
+      <video data-play class="lead-shot" src="video/gps.mp4" poster="video/gps-poster.jpg" muted loop playsinline preload="none" width="1200" height="938" aria-label="The SPEED page live, the ALTITUDE page climbing, the WELCOME TO OREGON sign taking the screen, then WELCOME HOME"></video>
+    </div>
+    <ul class="feat in">
+      <li><b>GPS ground speed.</b> OVERCLOCK stays accurate no matter what size tires you run.</li>
+      <li><b>Compares GPS distance against the engine data</b> so its mileage stays accurate.</li>
+      <li><b>Altitude, climb and grade.</b> The barometer and GPS work together, and it keeps a total of your climb and descent.</li>
+      <li><b>Auto dimming.</b> The screen dims with your headlights, or at local sunset and sunrise.</li>
+      <li><b>Fuel stop detection.</b> After you fill up, OVERCLOCK asks you to log the fill.</li>
+      <li><b>Border crossing alerts.</b> GPS tells you when you cross into a new state.</li>
+      <li><b>Places and home.</b> Save places you go often and get a summary of each trip.</li>
+    </ul>
+  </section>
+
+  <section class="page" id="logs">
+    <div class="head in"><h2>EVERY SECOND, LOGGED</h2></div>
+    <div class="lead-row">
+      <p class="sub">Logs more than 70 readings every second of every drive, plus every alert. It's all on the SD card in the dash.</p>
+      <video data-play class="lead-shot" src="video/health.mp4" poster="video/health-poster.jpg" muted loop playsinline preload="none" width="1200" height="938" aria-label="The HEALTH page: the list, each graph, and the two rising items opened to their verdict and what to check"></video>
+    </div>
+    <ul class="feat in">
+      <li><b>Every start, every code, every tank.</b> OVERCLOCK measures battery voltage before each start and the dip while cranking, saves every code with its freeze frame, and tracks real gallons against real miles.</li>
+      <li><b>Wakes up on a schedule while the truck is parked to keep logging trends.</b> It draws very little power and shuts off if the battery gets low.</li>
+      <li><b>Room for decades.</b> An 8 GB card holds about 20 years of driving at 1,500 miles a month, and it takes cards up to 32 GB.</li>
+      <li><b>Spreadsheet-ready logs.</b> Open them in any spreadsheet and graph anything against anything.</li>
+      <li><b>Your drives on a map.</b> Export any drive as KML or GPX for Google Earth or any map app.</li>
+      <li><b>Privacy first.</b> One switch turns off location logging.</li>
+    </ul>
+    <div class="data-strip in">
+      <p class="data-strip-lab">From real OVERCLOCK logs</p>
+      <ul class="data-tiles">
+        <li><b>1,482</b><span>miles logged</span></li>
+        <li><b>1.2M</b><span>readings</span></li>
+        <li><b>80</b><span>starts measured</span></li>
+        <li><b>0.04%</b><span>dash miles vs GPS</span></li>
+      </ul>
+      <a class="btn" href="data.html">See the data</a>
+    </div>
+  </section>
+
+  <section class="page" id="fuel">
+    <div class="head in"><h2>FUEL, TRACKED</h2></div>
+    <div class="lead-row">
+      <p class="sub">Calculates MPG from the engine data and gets more accurate every time you log a fill-up.</p>
+      <video data-play class="lead-shot" src="video/fuel.mp4" poster="video/fuel-poster.jpg" muted loop playsinline preload="none" width="1200" height="938" aria-label="The FUEL page, logging a fill: gallons, price, the engine's own check, save; then the clock with range, live mpg, average mpg and heading"></video>
+    </div>
+    <ul class="feat in">
+      <li><b>This tank, last tank, range.</b> See your mpg tank by tank and how far you can go on what's left.</li>
+      <li><b>Fuel station memory.</b> OVERCLOCK learns where you fill up and reminds you to log the fill.</li>
+      <li><b>Cost over time.</b> Every fill-up is saved with the date, miles, gallons and price, so you can see your cost per month, per trip or per mile.</li>
+    </ul>
+  </section>
+
+  <section class="page" id="work">
+    <div class="head in"><h2>A MILEAGE LOG, BUILT IN</h2></div>
+    <p class="sub rt-sub">If you drive your truck for work, OVERCLOCK keeps the mileage log for you.</p>
+    <div class="rt-pair wk-pair">
+      <img class="rt-phone" src="pages/phone/work_mark.jpg?v=20261114b" width="600" height="1298" alt="Marking a drive WORK on the phone, with a note" loading="lazy" decoding="async">
+      <img class="rt-phone" src="pages/phone/work_log.jpg?v=20261114b" width="600" height="1298" alt="The phone's mileage log: work miles for the year, by month, with the download button" loading="lazy" decoding="async">
+    </div>
+    <ul class="feat in">
+      <li><b>Mark each drive work or personal.</b> It takes one tap on your phone, and you can add a note about where you went and why.</li>
+      <li><b>The details are already recorded.</b> OVERCLOCK saves the date, the start and end time, the odometer at both ends and the miles for every drive.</li>
+      <li><b>Totals by month and by year.</b> You can see your work miles, your personal miles and the drives you haven't marked yet.</li>
+      <li><b>One file at tax time.</b> Download the year's work drives as a spreadsheet you can hand to your accountant.</li>
+      <li><b>Fuel costs in the same place.</b> Every fill-up is saved with the date, station, gallons and price, so your fuel spending is on record too.</li>
+      <li><b>Your records stay with you.</b> Everything is kept on the SD card in the dash. There is no account to set up.</li>
+    </ul>
+  </section>
+
+  <section class="page" id="roadtrip">
+    <div class="head in"><h2>ROAD TRIPS</h2></div>
+    <p class="sub rt-sub">Start a trip on the clock. It counts the miles, days, fuel and states, then hands the whole trip to your phone. It saves itself at every key-off.</p>
+    <div class="rt-pair">
+      <img class="rt-clock" src="pages/roadtrip/roadtrip-summary-bezel.jpg?v=20261109a" width="1200" height="938" alt="The clock's road trip summary: Moab, 1,185 miles in 6 days" loading="lazy" decoding="async">
+      <img class="rt-phone" src="pages/phone/trips_roadtrip.jpg?v=20261109a" width="600" height="1190" alt="The phone's road trip page: the Moab route by day with its totals" loading="lazy" decoding="async">
+    </div>
+    <ul class="feat in">
+      <li><b>Live on the dash.</b> Miles, hours, today's distance and money spent update as you drive.</li>
+      <li><b>A summary worth keeping.</b> At the end you get your best day, a fuel receipt, miles each day and the states you crossed.</li>
+      <li><b>The whole route on your phone.</b> Go day by day through every drive, elevation and fill-up, and export it to CSV, GPX or KML.</li>
+    </ul>
+    <div class="row-wrap">
+      <div class="row rt-row" id="rt-row" role="group" aria-label="Road trip screens" tabindex="0">
+        <div class="moment"><h3>Live</h3><p>Day 5, still going.</p><img src="pages/roadtrip/roadtrip-live-miles.png?v=20261109a" width="320" height="240" alt="Road trip live: 1,041 miles, day 5, 4 states" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Fuel</h3><p>What the trip has cost so far.</p><img src="pages/roadtrip/roadtrip-live-fuel.png?v=20261109a" width="320" height="240" alt="Road trip fuel: $220 spent, 68.4 gallons, 21 cents a mile" loading="lazy" decoding="async"></div>
+        <div class="moment ph"><h3>Each day</h3><p>Every day on its own map.</p><img src="pages/phone/trips_day.jpg?v=20261109a" width="600" height="1190" alt="The phone's day page: Tuesday May 19 over Red Mountain and Monarch Pass" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Receipt</h3><p>Gallons, mpg, cost per mile.</p><img src="pages/roadtrip/roadtrip-summary-2-receipt.png?v=20261109a" width="320" height="240" alt="Road trip receipt: 77.8 gallons, 15.2 mpg, $279 total" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Miles each day</h3><p>The long day stands out.</p><img src="pages/roadtrip/roadtrip-summary-3-miles-each-day.png?v=20261109a" width="320" height="240" alt="Road trip miles each day: best day 349 miles" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>States</h3><p>In the order you crossed them.</p><img src="pages/roadtrip/roadtrip-summary-4-states.png?v=20261109a" width="320" height="240" alt="Road trip states: CO, UT, AZ, NM" loading="lazy" decoding="async"></div>
+        <div class="moment ph"><h3>Days and fill-ups</h3><p>The whole trip in one table.</p><img src="pages/phone/trips_roadtrip_days.jpg?v=20261109a" width="600" height="1190" alt="The phone's road trip days table and fill-ups" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+    <p class="sub cta-line"><a class="btn" href="index.html#want">Want one?</a> <span class="fine">No payment to join the list.</span></p>
+  </section>
+
+  <div class="stripes" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="group-intro" id="offgrid"><h2>PHONE AND CAMP</h2></div>
+
+  <section class="page" id="phone">
+    <div class="head in"><h2>PHONE CONNECTED</h2></div>
+    <div class="lead-row">
+      <p class="sub">Change settings, download logs, or update the firmware from your phone over Wi-Fi.</p>
+      <video data-play class="lead-shot" src="video/wifi.mp4" poster="video/wifi-poster.jpg" muted loop playsinline preload="none" width="1200" height="938" aria-label="SETTINGS, DATA, WIFI, START: the hotspot card with its QR code, then CONNECTED when a phone joins"></video>
+    </div>
+    <p class="sub photo-more"><a href="index.html#computer">Explore your drive data &uarr;</a></p>
+    <ul class="feat in">
+      <li><b>Trips.</b> Every drive and road trip on a map, day by day.</li>
+      <li><b>Your files.</b> A calendar shows every day it recorded. Pick the days you want and download them as one file.</li>
+      <li><b>Live data.</b> Watch every reading the truck reports, live.</li>
+      <li><b>Engine codes.</b> All the code tools are on the phone too.</li>
+      <li><b>Photos.</b> Send your own pictures to the clock's slideshow.</li>
+      <li><b>Updates over Wi-Fi.</b> Each update is checked before it installs.</li>
+      <li><b>Setup made easy.</b> Set up Wi-Fi, the state map, fuel stations, solar and Bluetooth batteries from your phone.</li>
+    </ul>
+    <div class="row-wrap">
+      <div class="progress"><i id="phone-progress"></i></div>
+      <div class="row phones" id="phones" role="group" aria-label="Phone app screens" tabindex="0">
+        <div class="moment"><h3>Trips</h3><p>Every drive on a map, by day. Road trips too.</p><img src="pages/phone/trips.jpg?v=20261109a" width="600" height="1190" alt="The phone's Trips page: May with the Moab road trip and each day's miles" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Drives</h3><p>Drives by date.</p><img src="pages/phone/files.jpg?v=20261109a" width="600" height="1190" alt="The phone's Drives page: a calendar of logged days" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Live</h3><p>Live graphs of any reading.</p><img src="pages/phone/live.jpg?v=20261109a" width="600" height="1190" alt="The Live page: rpm, coolant, trims and timing" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Codes</h3><p>Codes, explained.</p><img src="pages/phone/codes.jpg?v=20261109a" width="600" height="1190" alt="The Codes page with three codes and a freeze frame" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Photos</h3><p>Send your own pictures to the clock's slideshow.</p><img src="pages/phone/photos.jpg?v=20261109a" width="600" height="1190" alt="The Photos page with pictures on the card" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Dates</h3><p>Birthdays, anniversaries and US holidays, on the clock on the day.</p><img src="pages/phone/dates.jpg?v=20261109a" width="600" height="1190" alt="The phone's Dates page: a list of birthdays, anniversaries and holidays" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Firmware</h3><p>Pick the file, send, verified before install.</p><img src="pages/phone/firmware.jpg?v=20261109a" width="600" height="1190" alt="The Firmware page showing the running version" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Setup</h3><p>Networks, solar, batteries, maps and data.</p><img src="pages/phone/setup.jpg?v=20261109a" width="600" height="1190" alt="The Setup page" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Networks</h3><p>Saved networks.</p><img src="pages/phone/networks.jpg?v=20261109a" width="600" height="1190" alt="The Networks page" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Solar and batteries</h3><p>Pair controllers, shunts and batteries. Combine into one bank.</p><img src="pages/phone/victron.jpg?v=20261109a" width="600" height="1190" alt="The Solar and batteries page" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Maps and data</h3><p>Border map and fuel stations.</p><img src="pages/phone/maps_data.jpg?v=20261109a" width="600" height="1190" alt="The Maps and data page" loading="lazy" decoding="async"></div>
+        <div class="moment"><h3>Dash log</h3><p>Support log.</p><img src="pages/phone/dash_log.jpg?v=20261109a" width="600" height="1190" alt="The Dash log page" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+    <aside class="soon-note in">
+      <b>Standalone app for iOS and Android: in development.</b>
+      <p>Companion app adds rich data analysis, gps tracks, fuel economics and much more. Coming soon.</p>
+    </aside>
+  </section>
+
+  <section class="page" id="camp">
+    <div class="head in"><h2>OVERLAND READY</h2></div>
+    <div class="lead-row">
+      <p class="sub">The features that matter once the engine's off, and the solar gear you already own, right on your dash.</p>
+      <video data-play class="lead-shot" src="video/camp.mp4" poster="video/camp-poster.jpg" muted loop playsinline preload="none" width="1200" height="938" aria-label="The SOLAR page through a day, the house battery and its cells, the WEATHER page with a storm coming, the CAMP level view, and the STARTER battery page"></video>
+    </div>
+    <ul class="feat in">
+      <li><b>Shows solar input, battery current, and state of charge.</b> You can link multiple Bluetooth batteries so they appear as one bank.</li>
+      <li><b>Fridge and freezer watch.</b> OVERCLOCK warns you before your food gets warm.</li>
+      <li><b>Camp level.</b> OVERCLOCK shows how much to raise each wheel to get level.</li>
+      <li><b>Weather coming.</b> The built-in barometer watches overnight for incoming storms.</li>
+      <li><b>Sunrise and sunset.</b> Exact times for wherever you are.</li>
+      <li><b>Starter battery health.</b> It's checked every time you start the truck.</li>
+      <li><b>More than gauges.</b> There are timers, records, games and more.</li>
+    </ul>
+    <figure class="camp-photo in"><img src="pages/story/camp-tent.webp" width="1800" height="1350" alt="A 1997 4Runner at a campsite with its rooftop tent open and the ladder down" loading="lazy" decoding="async"></figure>
+  </section>
+
+  <div class="stripes" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="group-intro" id="grow"><h2>LOOKS AND HARDWARE</h2></div>
+
+  <section class="page" id="yours">
+    <div class="head in"><h2>YOUR CLOCK, YOUR WAY</h2></div>
+    <div class="lead-row">
+      <p class="sub">2 fonts, 10 colors, 12 or 24-hour, four configurable corners.</p>
+      <video data-play class="lead-shot" src="video/faces.mp4" poster="video/faces-poster.jpg" muted loop playsinline preload="none" width="1200" height="938" aria-label="The clock in eight looks: digital and classic fonts, different time and corner colors, different corner readings, 12 and 24-hour time"></video>
+    </div>
+    <ul class="feat in">
+      <li><b>Four corners you can set how you want.</b> There are five ready-made layouts, or save up to three of your own.</li>
+      <li><b>Gauges change color based on the reading</b> so you can see at a glance if something's off.</li>
+      <li><b>Guided setup.</b> The clock walks you through everything the first time you turn it on.</li>
+      <li><b>Six startup screens,</b> and you can put your truck's name under the logo. <a href="startup.html">See them &rarr;</a></li>
+    </ul>
+  </section>
+
+  <section class="page" id="retro">
+    <div class="head in"><h2>THE FACTORY LOOK</h2></div>
+    <div class="oem-row in">
+      <p class="sub">The retro face is drawn to match the original clock.</p>
+      <div class="oem-swap" role="img" aria-label="The factory clock turning into OVERCLOCK's retro face, both at 4:04">
+        <img class="oem-photo" src="pages/oem-clock.webp?v=20261117b" width="1200" height="789" alt="" loading="lazy" decoding="async">
+        <img class="oem-retro" src="pages/oem-retro.webp?v=20261117b" width="1200" height="789" alt="" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="built">
+    <div class="head in"><h2>PURPOSE-BUILT HARDWARE</h2></div>
+    <div class="lead-row">
+      <p class="sub">Custom board designed for these trucks. Parts chosen to handle dash heat and vibration.</p>
+      <div class="lead-shot boards"><img class="b1" src="pages/board-top-cut.webp" width="1074" height="773" alt="The circuit board, top: main processor, screen connector, memory card slot" loading="lazy" decoding="async"><img class="b2" src="pages/board-bottom-cut.webp" width="1000" height="829" alt="The circuit board, underside: coprocessor, GPS, screw terminals, factory plug" loading="lazy" decoding="async"></div>
+    </div>
+    <ul class="feat in">
+      <li><b>Two processors,</b> so the screen stays quick while it logs everything.</li>
+      <li><b>A bright, sharp screen.</b> It's readable in the sun and dims at night.</li>
+      <li><b>Built-in barometer.</b> OVERCLOCK tracks weather trends, warns of storms and checks your altitude against GPS.</li>
+      <li><b>Precision voltmeter.</b> It accurately measures resting, charging and cranking voltage.</li>
+      <li><b>Built-in gyro and accelerometer</b> for precise camp leveling and accurate off-road tilt.</li>
+      <li><b>Protected.</b> It's fused, surge-protected and safe if the power is hooked up backwards.</li>
+      <li><b>Designed and tested in Washington.</b></li>
+    </ul>
+  </section>
+
+  <section class="page" id="grows">
+    <div class="head in"><h2>EXPANDABLE</h2></div>
+    <div class="lead-row">
+      <p class="sub">Use it as-is or add probes and senders later. You decide how much you want on it.</p>
+      <img class="lead-shot" src="pages/clock-widgets.jpg" width="1200" height="938" alt="The clock face with four live widgets" loading="lazy">
+    </div>
+    <ul class="feat in">
+      <li><b>Add sensors over time.</b> Up to four probes, four wireless temp sensors, trans temp and oil or fuel pressure. Each appears as a gauge and in the logs once connected. <a href="senders.html">See the senders it supports today.</a></li>
+      <li><b>Add solar when you're ready.</b> Pair it and it just works.</li>
+      <li><b>Easy Wi-Fi updates from your phone,</b> with new features added often.</li>
+      <li><b>Room to expand.</b> An expansion port leaves room for future add-ons. <a href="#module">The Engine Module is the first.</a></li>
+    </ul>
+  </section>
+
+  <section class="page" id="module">
+    <div class="head in"><h2>COMING: THE ENGINE MODULE</h2></div>
+    <p class="sub rt-sub">One add-on box plugs into OVERCLOCK's expansion port and adds the extra gauges a boosted or engine-swapped truck wants. Price and date to be announced.</p>
+    <ul class="feat in">
+      <li><b>Four more sender inputs.</b> Add up to 4 more pressures and temperatures, so boost, oil pressure and fuel pressure can all show at once. Each input can be set for the sender you connect.</li>
+      <li><b>Air-fuel ratio.</b> A dedicated input reads AFR from your own wideband kit, so it doesn't use up a sender input.</li>
+      <li><b>Exhaust temperature.</b> Two inputs take K-type exhaust temperature probes.</li>
+      <li><b>On the clock and in the logs.</b> Every reading shows as a gauge on the clock and is logged with each drive.</li>
+      <li><b>Tach output.</b> The module drives the factory tachometer from OBD data on engine-swapped trucks.</li>
+      <li><b>What you need.</b> The module plugs into the expansion port on your OVERCLOCK. Sensors, probes and the wideband kit are not included.</li>
+    </ul>
+  </section>
+
+  <p class="sub cta-line feat-end"><a class="btn" href="index.html#want">Want one?</a> <span class="fine">No payment to join the list.</span></p>
+</main>
+<footer class="foot-small">
+  <p>&copy; 2026 OVERCLOCK Field Computer. Questions? <a href="mailto:hello@overclockdash.com">hello@overclockdash.com</a></p>
+  <nav class="foot-links" aria-label="Site"><div><b>Product</b><a href="index.html">Home</a><a href="features.html">Features</a><a href="demo.html">Demo</a><a href="3d.html">3D</a><a href="data.html">Data</a><a href="games.html">Games</a><a href="photos.html">Photos</a></div><div><b>Help</b><a href="faq.html">Questions</a><a href="install.html">Install</a><a href="power.html">Power</a><a href="senders.html">Senders</a><a href="dongles.html">Dongles</a><a href="compare.html">vs ScanGauge and UltraGauge</a></div><div><b>Legal</b><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="licenses.html">Licenses</a><a href="regulatory.html">Regulatory</a></div><div><b>Follow</b><a href="https://www.facebook.com/overclockfieldcomputer">Facebook</a><a href="https://www.instagram.com/overclockfieldcomputer">Instagram</a></div></nav>
+  <p>Contains FCC ID: 2AC7Z-ESP32WROOM32E</p>
+</footer>
+<script src="index.js?v=20261119c"></script>
+<script src="lightbox.js?v=20261109a"></script>
+<script src="menu.js?v=20261109a"></script>
+</body>
+</html>

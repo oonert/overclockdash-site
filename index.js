@@ -1,4 +1,5 @@
-/* The front page: the knob row and the entrances. No firmware here; the demo page has it. */
+/* The front page and the features page: card rows, reveals, clips, and the interest form. Each part checks its
+   element is on the page first. No firmware here; the demo page has it. */
 (function () {
   'use strict';
   const $ = (s) => document.querySelector(s), $$ = (s) => Array.from(document.querySelectorAll(s));
@@ -6,7 +7,7 @@
 
   function rowProgress(r, p) { const f = () => { const max = r.scrollWidth - r.clientWidth; p.style.width = (max > 0 ? 20 + 80 * r.scrollLeft / max : 100) + '%'; }; r.addEventListener('scroll', f, { passive: true }); f(); window.addEventListener('resize', f); }
   function updateProgress() { const max = row.scrollWidth - row.clientWidth; prog.style.width = (max > 0 ? 20 + 80 * row.scrollLeft / max : 100) + '%'; }
-  row.addEventListener('scroll', updateProgress, { passive: true }); updateProgress(); window.addEventListener('resize', updateProgress);
+  if (row && prog) { row.addEventListener('scroll', updateProgress, { passive: true }); updateProgress(); window.addEventListener('resize', updateProgress); }
   // Grab a row with the mouse and throw it: it coasts and slows down. Touch
   // keeps the browser's own swipe. Snap is off while the mouse has it.
   function grabRow(row) {
@@ -34,8 +35,8 @@
     row.addEventListener('click', (e) => { if (row.classList.contains('thrown')) e.preventDefault(); }, true);
     row.addEventListener('dragstart', (e) => e.preventDefault());
   }
-  grabRow(row);
-  rowProgress($('#phones'), $('#phone-progress')); grabRow($('#phones'));
+  if (row) grabRow(row);
+  if ($('#phones')) { rowProgress($('#phones'), $('#phone-progress')); grabRow($('#phones')); }
   if ($('#rt-row')) grabRow($('#rt-row'));
   if ($('#boost-row')) grabRow($('#boost-row'));
   if ($('#known-row')) grabRow($('#known-row'));
@@ -51,8 +52,8 @@
   // is sent "no-cors": the browser cannot read the reply, only whether the
   // request itself went out. If it did not, the person is pointed at email.
   const form = $('#want-form'), say = $('#form-say');
-  form.t0.value = Date.now();                        // page load time; the script drops anything sent under 3 s later
-  form.addEventListener('submit', async (e) => {
+  if (form) form.t0.value = Date.now();                        // page load time; the script drops anything sent under 3 s later
+  if (form) form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = form.email.value.trim(), truck = form.truck.value.trim();
     say.classList.remove('bad');
