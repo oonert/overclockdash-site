@@ -671,14 +671,16 @@ footer.foot-small > .mark { justify-self: start; }
 @media (max-width: 1000px) { footer.foot-small > .foot-links { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 480px) { footer.foot-small > .foot-links { grid-template-columns: 1fr; } }
 
-/* factory clock photo morphing into the retro face (2026-11-17). Both images
-   are the same photo framing (firmware render lined up by the buttons), so
-   only the face changes. */
-.oem-swap { position: relative; aspect-ratio: 1200 / 789; background: none; }
-.oem-swap img { position: absolute; inset: 0; width: 100%; height: auto; display: block; border: 0; }
-.oem-swap .oem-retro { opacity: 0; animation: oemRetro 8s ease-in-out infinite; }
-@keyframes oemRetro { 0%, 30% { opacity: 0; } 45%, 80% { opacity: 1; } 95%, 100% { opacity: 0; } }
-@media (prefers-reduced-motion: reduce) { .oem-swap img { animation: none; } }
+/* The factory clock photo and OVERCLOCK in its bezel sit on a 1340x938 stage,
+   scaled so both 4:04s land in the same spot. The old clock dims out, then
+   OVERCLOCK settles in around the same time. */
+.oem-swap { position: relative; aspect-ratio: 1340 / 938; background: none; }
+.oem-swap img { position: absolute; height: auto; display: block; border: 0; max-width: none; }
+.oem-swap .oem-photo { left: .746%; top: 2.026%; width: 98.507%; transform-origin: 51.2% 41%; animation: oemOld 9s ease-in-out infinite; }
+.oem-swap .oem-new { left: 1.343%; top: 0; width: 89.552%; transform-origin: 55.7% 40%; opacity: 0; animation: oemNew 9s ease-in-out infinite; }
+@keyframes oemOld { 0%, 30% { opacity: 1; transform: none; filter: none; } 44% { opacity: 0; transform: scale(.96); filter: brightness(.4); } 88% { opacity: 0; transform: scale(.96); filter: brightness(.4); } 98%, 100% { opacity: 1; transform: none; filter: none; } }
+@keyframes oemNew { 0%, 34% { opacity: 0; transform: scale(1.05); } 46%, 84% { opacity: 1; transform: none; } 94%, 100% { opacity: 0; transform: scale(1.05); } }
+@media (prefers-reduced-motion: reduce) { .oem-swap img { animation: none; } .oem-swap .oem-photo { opacity: 0; } .oem-swap .oem-new { opacity: 1; } }
 .oem-row { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: var(--gap); align-items: center; margin-top: 40px; }
 .oem-row .sub { margin: 0; }
 .oem-row .oem-swap { width: 100%; max-width: 560px; justify-self: end; }
