@@ -130,10 +130,15 @@ section.page .sub { font-size: var(--t-lead); color: var(--ink); margin-top: 16p
 .row-btns { display: flex; gap: 8px; }
 .row-btns button { width: 48px; height: 48px; border: 0; background: var(--panel-3); color: var(--ink); font-size: 22px; }
 .row-btns button:hover { background: var(--amber); color: #000; }
+/* card rows on touch screens: each swipe lands on a card. The mouse keeps its grab and throw, so snap stays off there. */
+@media (hover: none) { .row-wrap > .row { scroll-snap-type: x mandatory; scroll-padding-inline: var(--margin); } .row-wrap > .row > .moment { scroll-snap-align: start; } }
+/* a touchscreen laptop can still grab and throw a row with the mouse: no snap until it stops */
+.row-wrap > .row.grabbing, .row-wrap > .row.thrown { scroll-snap-type: none; }
+/* where you are in a row, as "3 / 26" under it */
+.row-count { display: block; margin: 0 var(--margin); font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
 @media (max-width: 760px) {
   .row { gap: 16px; }
   .moment { flex-basis: 72vw; }
-  .row-btns { display: none; }
 }
 
 /* the phone pages: the same drag row, taller cards */

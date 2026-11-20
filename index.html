@@ -20,7 +20,8 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://overclockdash.com/#org", "name": "OVERCLOCK", "url": "https://overclockdash.com/", "logo": "https://overclockdash.com/icon-192.png", "email": "hello@overclockdash.com", "sameAs": ["https://www.facebook.com/overclockfieldcomputer", "https://www.instagram.com/overclockfieldcomputer"]}, {"@type": "WebSite", "name": "OVERCLOCK Field Computer", "url": "https://overclockdash.com/", "publisher": {"@id": "https://overclockdash.com/#org"}}, {"@type": "Product", "name": "OVERCLOCK Field Computer", "brand": {"@id": "https://overclockdash.com/#org"}, "image": "https://overclockdash.com/og.jpg", "description": "OVERCLOCK Field Computer replaces the factory clock in the 3rd gen 4Runner, 1st gen Tacoma and T100. Engine codes spelled out, GPS, every drive logged every second, weather, tilt, solar and alerts. Try the real firmware in your browser."}]}</script>
-<link rel="stylesheet" href="site.css?v=20261119a">
+<link rel="stylesheet" href="site.css?v=20261119b">
+<noscript><style>.in > * { opacity: 1; transform: none; }</style></noscript>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -146,7 +147,7 @@
     </div>
     <div class="row-wrap">
       <div class="progress"><i id="row-progress"></i></div>
-      <div class="row all" id="moments">
+      <div class="row all" id="moments" role="group" aria-label="Every screen" tabindex="0">
         <div class="moment"><h3>Gauges</h3><p>4 live readings, fully customizable.</p><img src="pages/gauges.png" width="320" height="240" alt="The GAUGES page: speed, rpm, coolant and volts" loading="lazy" decoding="async"></div>
         <div class="moment"><h3>Health</h3><p>Spots worsening trends days or weeks before a failure.</p><img src="pages/health.png" width="320" height="240" alt="The HEALTH page: a list of small graphs" loading="lazy" decoding="async"></div>
         <div class="moment"><h3>The retro clock</h3><p>For when you want the original.</p><img src="pages/retro.png" width="320" height="240" alt="The retro clock face" loading="lazy" decoding="async"></div>
@@ -217,7 +218,7 @@
       <li><b>Known codes.</b> Living with a gas cap code? Mark it KNOWN and OVERCLOCK stops nagging: it stays on the list, comes back as one quiet line, and is never cleared for you. The truck's own check engine light still works as normal. Serious codes can never be marked.</li>
     </ul>
     <div class="row-wrap">
-      <div class="row rt-row" id="known-row">
+      <div class="row rt-row" id="known-row" role="group" aria-label="Known code screens" tabindex="0">
         <div class="moment"><h3>Mark as known</h3><p>One turn of the knob.</p><img src="pages/known/mark.png?v=20261110a" width="320" height="240" alt="P0171 FUEL MIX TOO LEAN with MARK AS KNOWN lit" loading="lazy" decoding="async"></div>
         <div class="moment"><h3>Explained once</h3><p>Before the first one.</p><img src="pages/known/info.png?v=20261110a" width="320" height="240" alt="KNOWN CODES explanation with NO and YES" loading="lazy" decoding="async"></div>
         <div class="moment"><h3>Still on the list</h3><p>Just quieter.</p><img src="pages/known/list_known.png?v=20261110a" width="320" height="240" alt="CODES list with P0171 marked KNOWN" loading="lazy" decoding="async"></div>
@@ -243,7 +244,7 @@
       <li><b>Try it.</b> <a href="demo.html?boost">See boost in the live demo.</a></li>
     </ul>
     <div class="row-wrap">
-      <div class="row rt-row" id="boost-row">
+      <div class="row rt-row" id="boost-row" role="group" aria-label="Boost screens" tabindex="0">
         <div class="moment"><h3>Vacuum</h3><p>Off the throttle.</p><img src="pages/boost/boost-page-vacuum.png?v=20261109b" width="320" height="240" alt="The BOOST page in vacuum: 18 inHg" loading="lazy" decoding="async"></div>
         <div class="moment"><h3>Gauges</h3><p>Boost in any pane.</p><img src="pages/boost/gauges-boost.png?v=20261109b" width="320" height="240" alt="GAUGES with BOOST PSI 12" loading="lazy" decoding="async"></div>
         <div class="moment"><h3>Clock page</h3><p>Boost in a corner.</p><img src="pages/boost/clock-boost.png?v=20261109b" width="320" height="240" alt="The clock page with PSI 12 in a corner" loading="lazy" decoding="async"></div>
@@ -377,7 +378,7 @@
       <li><b>The whole route on your phone.</b> Go day by day through every drive, elevation and fill-up, and export it to CSV, GPX or KML.</li>
     </ul>
     <div class="row-wrap">
-      <div class="row rt-row" id="rt-row">
+      <div class="row rt-row" id="rt-row" role="group" aria-label="Road trip screens" tabindex="0">
         <div class="moment"><h3>Live</h3><p>Day 5, still going.</p><img src="pages/roadtrip/roadtrip-live-miles.png?v=20261109a" width="320" height="240" alt="Road trip live: 1,041 miles, day 5, 4 states" loading="lazy" decoding="async"></div>
         <div class="moment"><h3>Fuel</h3><p>What the trip has cost so far.</p><img src="pages/roadtrip/roadtrip-live-fuel.png?v=20261109a" width="320" height="240" alt="Road trip fuel: $220 spent, 68.4 gallons, 21 cents a mile" loading="lazy" decoding="async"></div>
         <div class="moment ph"><h3>Each day</h3><p>Every day on its own map.</p><img src="pages/phone/trips_day.jpg?v=20261109a" width="600" height="1190" alt="The phone's day page: Tuesday May 19 over Red Mountain and Monarch Pass" loading="lazy" decoding="async"></div>
@@ -408,7 +409,7 @@
     </ul>
     <div class="row-wrap">
       <div class="progress"><i id="phone-progress"></i></div>
-      <div class="row phones" id="phones">
+      <div class="row phones" id="phones" role="group" aria-label="Phone app screens" tabindex="0">
         <div class="moment"><h3>Trips</h3><p>Every drive on a map, by day. Road trips too.</p><img src="pages/phone/trips.jpg?v=20261109a" width="600" height="1190" alt="The phone's Trips page: May with the Moab road trip and each day's miles" loading="lazy" decoding="async"></div>
         <div class="moment"><h3>Drives</h3><p>Drives by date.</p><img src="pages/phone/files.jpg?v=20261109a" width="600" height="1190" alt="The phone's Drives page: a calendar of logged days" loading="lazy" decoding="async"></div>
         <div class="moment"><h3>Live</h3><p>Live graphs of any reading.</p><img src="pages/phone/live.jpg?v=20261109a" width="600" height="1190" alt="The Live page: rpm, coolant, trims and timing" loading="lazy" decoding="async"></div>
@@ -624,7 +625,7 @@
 document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
 document.addEventListener('touchmove', e => { if (e.scale !== undefined && e.scale !== 1) e.preventDefault(); }, { passive: false });
 </script>
-<script src="index.js?v=20261118a"></script>
+<script src="index.js?v=20261119b"></script>
 <script src="lightbox.js?v=20261109a"></script>
 <script src="phonefinger.js?v=20261114d"></script>
 <script src="phoneview.js?v=20261114c"></script>

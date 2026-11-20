@@ -73,7 +73,28 @@
 
   // every screen is in the row from the start; there is no More screens button any more
 
-  $$('.row-btns button').forEach(b => b.addEventListener('click', () => row.scrollBy({ left: 312 * +b.dataset.step, behavior: 'smooth' })));
+  // Back and Forward move one card, whatever size the cards are at this width.
+  $$('.row-btns button').forEach(b => b.addEventListener('click', () => {
+    const m = row.querySelector('.moment'), gap = parseFloat(getComputedStyle(row).columnGap) || 0;
+    row.scrollBy({ left: ((m ? m.getBoundingClientRect().width : 280) + gap) * +b.dataset.step, behavior: 'smooth' });
+  }));
+
+  // Where you are in each card row, as "3 / 26" under it: the first card mostly in
+  // view, and the last number once the row reaches its end.
+  $$('.row-wrap > .row').forEach(r => {
+    const cards = Array.from(r.children).filter(c => c.classList.contains('moment') && getComputedStyle(c).display !== 'none');
+    if (cards.length < 2) return;
+    const out = document.createElement('span');
+    out.className = 'row-count'; out.setAttribute('aria-hidden', 'true');
+    r.after(out);
+    const f = () => {
+      const rr = r.getBoundingClientRect(), edge = rr.left + (parseFloat(getComputedStyle(r).paddingLeft) || 0);
+      let i = cards.findIndex(c => { const cr = c.getBoundingClientRect(); return cr.left + cr.width / 2 > edge; });
+      if (i < 0 || r.scrollLeft >= r.scrollWidth - r.clientWidth - 2) i = cards.length - 1;
+      out.textContent = (i + 1) + ' / ' + cards.length;
+    };
+    r.addEventListener('scroll', f, { passive: true }); window.addEventListener('resize', f); f();
+  });
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('seen'); io.unobserve(e.target); } }), { threshold: 0.2 });
   $$('.in').forEach(el => io.observe(el));
   $$('.row').forEach(el => { el.classList.add('in'); io.observe(el); });
