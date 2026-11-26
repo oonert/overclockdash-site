@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Confirm your place | OVERCLOCK</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="site.css?v=20261121b">
+<style>
+/* confirm page only (hidden page, linked from the presale confirm email) */
+.cf-main { max-width: 62ch; }
+.cf-form { margin-top: 28px; }
+.cf-form fieldset { border: 0; margin: 0 0 22px; padding: 0; }
+.cf-form legend { font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 10px; padding: 0; }
+.cf-opt { display: flex; align-items: center; gap: 12px; padding: 10px 14px; margin-top: 8px; background: #000; border: 1px solid #333; cursor: pointer; font-size: var(--t-body); color: var(--ink); }
+.cf-opt:hover { border-color: #555; }
+.cf-opt input { width: 20px; height: 20px; accent-color: var(--amber); margin: 0; flex: 0 0 auto; }
+.cf-opt:has(input:checked) { border-color: var(--amber); }
+.cf-opt:has(input:focus-visible) { outline: 2px solid var(--amber); }
+.cf-form input[type="text"], .cf-form textarea { width: 100%; box-sizing: border-box; font: var(--t-body)/1.4 var(--font); color: var(--ink); background: #000; border: 1px solid #333; padding: 12px 14px; border-radius: 0; }
+.cf-form input[type="text"]:focus, .cf-form textarea:focus { outline: 2px solid var(--amber); border-color: var(--amber); }
+.cf-form [hidden] { display: none !important; }
+.cf-miss { color: var(--amber); font-size: var(--t-small); margin: 6px 0 0; }
+.cf-send { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-top: 8px; }
+.cf-send .btn { min-width: 200px; }
+.cf-send .btn[disabled] { opacity: .6; cursor: wait; }
+.cf-msg { margin-top: 28px; padding: 22px 24px; background: var(--panel); border-top: 3px solid var(--amber); font-size: 20px; line-height: 1.5; }
+.cf-msg p { margin: 0; }
+.cf-msg p + p { margin-top: 10px; }
+</style>
+</head>
+<body class="doc">
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="index.html"><span class="mark-top">OVERCLOCK</span><span class="mark-stripes"></span><span class="mark-sub" aria-label="Field Computer">FIELD COMPUTER</span></a>
+</header>
+<main class="doc-main cf-main" id="main">
+  <h1>Confirm your place on the list</h1>
+  <p>Thanks for sticking with OVERCLOCK. Answer a few quick questions to keep your place. No payment today.</p>
+  <p id="cf-deadline" hidden>Confirm by <b id="cf-date"></b> to keep your place.</p>
+
+  <p id="cf-wait" class="updated">Loading&hellip;</p>
+
+  <form class="cf-form" id="cf-form" hidden novalidate>
+    <fieldset id="q1">
+      <legend>Do you still want an OVERCLOCK?</legend>
+      <label class="cf-opt"><input type="radio" name="want" value="Yes"> Yes, keep my place</label>
+      <label class="cf-opt"><input type="radio" name="want" value="No"> No, take me off the list</label>
+    </fieldset>
+
+    <div id="cf-yes">
+      <fieldset id="q2">
+        <legend>When your round opens, how likely are you to put down the $100 refundable deposit?</legend>
+        <label class="cf-opt"><input type="radio" name="deposit" value="Definitely"> Definitely</label>
+        <label class="cf-opt"><input type="radio" name="deposit" value="Probably"> Probably</label>
+        <label class="cf-opt"><input type="radio" name="deposit" value="Not sure yet"> Not sure yet</label>
+        <label class="cf-opt"><input type="radio" name="deposit" value="Probably not"> Probably not</label>
+      </fieldset>
+
+      <fieldset id="q3">
+        <legend><label for="cf-truck">Your truck (year and model)</label></legend>
+        <input type="text" id="cf-truck" name="truck" autocomplete="off">
+      </fieldset>
+
+      <fieldset id="q4">
+        <legend>Where would it ship?</legend>
+        <label class="cf-opt"><input type="radio" name="ship" value="US"> A US address</label>
+        <label class="cf-opt"><input type="radio" name="ship" value="Overseas"> Outside the US</label>
+      </fieldset>
+
+      <fieldset id="q5">
+        <legend>OBD dongle</legend>
+        <label class="cf-opt"><input type="radio" name="dongle" value="Include"> Include one with my clock</label>
+        <label class="cf-opt"><input type="radio" name="dongle" value="Bring my own"> I'll use my own (approved list coming before deposits open)</label>
+        <label class="cf-opt"><input type="radio" name="dongle" value="Not sure"> Not sure yet</label>
+      </fieldset>
+    </div>
+
+    <fieldset id="q6">
+      <legend><label for="cf-note">Anything you want to ask me? (optional)</label></legend>
+      <textarea id="cf-note" name="note" rows="3"></textarea>
+    </fieldset>
+
+    <div class="cf-send"><button class="btn big" type="submit" id="cf-go">Confirm</button></div>
+  </form>
+
+  <div class="cf-msg" id="cf-msg" role="status" aria-live="polite" hidden></div>
+</main>
+<footer class="foot-small">
+  <p>&copy; 2026 OVERCLOCK Field Computer. Questions? <a href="mailto:hello@overclockdash.com">hello@overclockdash.com</a></p>
+</footer>
+<script src="confirm.js?v=20261121a"></script>
+</body>
+</html>
